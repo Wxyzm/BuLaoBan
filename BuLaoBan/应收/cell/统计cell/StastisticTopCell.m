@@ -28,7 +28,7 @@
 - (void)setUP
 {
     NSArray *titleArr = @[@"客户",@"期初应收",@"应收金额",@"已收金额",@"已收金额",@"应收余额"];
-    for (int i = 0; i; <#increment#>) {
+    for (int i = 0; i; i++) {
         <#statements#>
     }
     
