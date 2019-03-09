@@ -1,0 +1,53 @@
+//
+//  PrefixHeader.pch
+//  BuLaoBan
+//
+//  Created by apple on 2019/1/24.
+//  Copyright © 2019年 XX. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+#import "ProjectMacro.h"
+#import "YLButton.h"
+#import "AppDelegate.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "LBNavigationController.h"
+#import "BaseTableView.h"
+#import "BaseViewFactory.h"
+#import "BaseScrollView.h"
+#import "BaseViewController.h"
+
+#import "UIView+SDAutoLayout.h"
+#import "MJExtension.h"
+#import "MJRefresh.h"
+#import "YLButton.h"
+#import "HUD.h"
+#import "HttpClient.h"
+#import "GlobalMethod.h"
+#import "NSString+MD5Extension.h"
+
+
+
+#import "UIImageView+WebCache.h"
+#import "TZImagePickerController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
+#import "TZImageManager.h"
+#import "TZPhotoPreviewController.h"
+#import "UIView+Layout.h"
+#import "LxGridViewFlowLayout.h"
+#import "TZTestCell.h"
+//model  and PL
+#import "User.h"
+#import "UserPL.h"
+#import "Sample.h"
+#import "SampleDetail.h"
+
+#endif
+
+
+#endif /* PrefixHeader_pch */
