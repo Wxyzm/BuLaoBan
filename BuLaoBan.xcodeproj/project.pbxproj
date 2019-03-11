@@ -17,7 +17,6 @@
 		0B4FC7A322339BC5001B335F /* BillTopCellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7A222339BC5001B335F /* BillTopCellCell.m */; };
 		0B4FC7A82233A361001B335F /* receivableGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7A72233A361001B335F /* receivableGoods.m */; };
 		0B4FC7AB2233A37C001B335F /* GoodsIteams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7AA2233A37C001B335F /* GoodsIteams.m */; };
-		0B4FC7B02233B57D001B335F /* StastisticTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7AF2233B57D001B335F /* StastisticTopCell.m */; };
 		0B5E54BD222F50CC00F30346 /* LinkPrinterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54BC222F50CC00F30346 /* LinkPrinterView.m */; };
 		0B5E54C1222F59F200F30346 /* PrinterModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54C0222F59F200F30346 /* PrinterModelView.m */; };
 		0B5E54C5222F723D00F30346 /* RightMenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54C4222F723D00F30346 /* RightMenueView.m */; };
@@ -26,6 +25,13 @@
 		0B5F46912230E6F300C67EF5 /* ComCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F46902230E6F300C67EF5 /* ComCustomer.m */; };
 		0B5F46942230F16900C67EF5 /* ComCustomerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F46932230F16900C67EF5 /* ComCustomerDetail.m */; };
 		0B5F46982230FEFC00C67EF5 /* CustomerSelecteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F46972230FEFC00C67EF5 /* CustomerSelecteView.m */; };
+		0B776EA12235FBEB0007DA02 /* StastisticTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B776E9F2235FBEB0007DA02 /* StastisticTopCell.m */; };
+		0B776EA22235FBEB0007DA02 /* StastisticTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B776EA02235FBEB0007DA02 /* StastisticTopCell.xib */; };
+		0B776EA9223600990007DA02 /* StastisticCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B776EA7223600990007DA02 /* StastisticCell.m */; };
+		0B776EAA223600990007DA02 /* StastisticCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B776EA8223600990007DA02 /* StastisticCell.xib */; };
+		0B776EAE223604180007DA02 /* ReceivePL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B776EAD223604180007DA02 /* ReceivePL.m */; };
+		0B776EB222362BF50007DA02 /* StasticeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B776EB122362BF50007DA02 /* StasticeItem.m */; };
+		0B776F002236340C0007DA02 /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B776EFF2236340C0007DA02 /* DatePickerView.m */; };
 		0B9BC2B1222E0B3200A4C083 /* UserInfoPL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC2B0222E0B3200A4C083 /* UserInfoPL.m */; };
 		0B9BC2B6222E0D4D00A4C083 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC2B5222E0D4D00A4C083 /* UserInfoModel.m */; };
 		0B9BC328222E601C00A4C083 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC327222E601C00A4C083 /* SettingCell.m */; };
@@ -221,8 +227,6 @@
 		0B4FC7A72233A361001B335F /* receivableGoods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = receivableGoods.m; sourceTree = "<group>"; };
 		0B4FC7A92233A37C001B335F /* GoodsIteams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsIteams.h; sourceTree = "<group>"; };
 		0B4FC7AA2233A37C001B335F /* GoodsIteams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsIteams.m; sourceTree = "<group>"; };
-		0B4FC7AE2233B57D001B335F /* StastisticTopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StastisticTopCell.h; sourceTree = "<group>"; };
-		0B4FC7AF2233B57D001B335F /* StastisticTopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StastisticTopCell.m; sourceTree = "<group>"; };
 		0B5E54BB222F50CC00F30346 /* LinkPrinterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkPrinterView.h; sourceTree = "<group>"; };
 		0B5E54BC222F50CC00F30346 /* LinkPrinterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkPrinterView.m; sourceTree = "<group>"; };
 		0B5E54BF222F59F200F30346 /* PrinterModelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrinterModelView.h; sourceTree = "<group>"; };
@@ -239,6 +243,18 @@
 		0B5F46932230F16900C67EF5 /* ComCustomerDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComCustomerDetail.m; sourceTree = "<group>"; };
 		0B5F46962230FEFC00C67EF5 /* CustomerSelecteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerSelecteView.h; sourceTree = "<group>"; };
 		0B5F46972230FEFC00C67EF5 /* CustomerSelecteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerSelecteView.m; sourceTree = "<group>"; };
+		0B776E9E2235FBEB0007DA02 /* StastisticTopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StastisticTopCell.h; sourceTree = "<group>"; };
+		0B776E9F2235FBEB0007DA02 /* StastisticTopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StastisticTopCell.m; sourceTree = "<group>"; };
+		0B776EA02235FBEB0007DA02 /* StastisticTopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StastisticTopCell.xib; sourceTree = "<group>"; };
+		0B776EA6223600990007DA02 /* StastisticCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StastisticCell.h; sourceTree = "<group>"; };
+		0B776EA7223600990007DA02 /* StastisticCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StastisticCell.m; sourceTree = "<group>"; };
+		0B776EA8223600990007DA02 /* StastisticCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StastisticCell.xib; sourceTree = "<group>"; };
+		0B776EAC223604180007DA02 /* ReceivePL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivePL.h; sourceTree = "<group>"; };
+		0B776EAD223604180007DA02 /* ReceivePL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivePL.m; sourceTree = "<group>"; };
+		0B776EB022362BF50007DA02 /* StasticeItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StasticeItem.h; sourceTree = "<group>"; };
+		0B776EB122362BF50007DA02 /* StasticeItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StasticeItem.m; sourceTree = "<group>"; };
+		0B776EFE2236340C0007DA02 /* DatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePickerView.h; sourceTree = "<group>"; };
+		0B776EFF2236340C0007DA02 /* DatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatePickerView.m; sourceTree = "<group>"; };
 		0B9BC2AF222E0B3200A4C083 /* UserInfoPL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoPL.h; sourceTree = "<group>"; };
 		0B9BC2B0222E0B3200A4C083 /* UserInfoPL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoPL.m; sourceTree = "<group>"; };
 		0B9BC2B4222E0D4D00A4C083 /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
@@ -592,6 +608,7 @@
 		0B4A24E2223344EF00C3621D /* Receivable */ = {
 			isa = PBXGroup;
 			children = (
+				0B776EAF22362B590007DA02 /* Stastics */,
 				0B4FC7A52233A093001B335F /* Goods */,
 				0B4FC7A42233A087001B335F /* Bill */,
 			);
@@ -649,8 +666,12 @@
 		0B4FC7AD2233B209001B335F /* 统计cell */ = {
 			isa = PBXGroup;
 			children = (
-				0B4FC7AE2233B57D001B335F /* StastisticTopCell.h */,
-				0B4FC7AF2233B57D001B335F /* StastisticTopCell.m */,
+				0B776E9E2235FBEB0007DA02 /* StastisticTopCell.h */,
+				0B776E9F2235FBEB0007DA02 /* StastisticTopCell.m */,
+				0B776EA02235FBEB0007DA02 /* StastisticTopCell.xib */,
+				0B776EA6223600990007DA02 /* StastisticCell.h */,
+				0B776EA7223600990007DA02 /* StastisticCell.m */,
+				0B776EA8223600990007DA02 /* StastisticCell.xib */,
 			);
 			path = "统计cell";
 			sourceTree = "<group>";
@@ -718,6 +739,33 @@
 				0B5F46972230FEFC00C67EF5 /* CustomerSelecteView.m */,
 			);
 			path = "选择客户View";
+			sourceTree = "<group>";
+		};
+		0B776EAB223604030007DA02 /* 应收 */ = {
+			isa = PBXGroup;
+			children = (
+				0B776EAC223604180007DA02 /* ReceivePL.h */,
+				0B776EAD223604180007DA02 /* ReceivePL.m */,
+			);
+			path = "应收";
+			sourceTree = "<group>";
+		};
+		0B776EAF22362B590007DA02 /* Stastics */ = {
+			isa = PBXGroup;
+			children = (
+				0B776EB022362BF50007DA02 /* StasticeItem.h */,
+				0B776EB122362BF50007DA02 /* StasticeItem.m */,
+			);
+			path = Stastics;
+			sourceTree = "<group>";
+		};
+		0B776EFD223633F60007DA02 /* 时间选择 */ = {
+			isa = PBXGroup;
+			children = (
+				0B776EFE2236340C0007DA02 /* DatePickerView.h */,
+				0B776EFF2236340C0007DA02 /* DatePickerView.m */,
+			);
+			path = "时间选择";
 			sourceTree = "<group>";
 		};
 		0B9BC2AE222E0B1800A4C083 /* 用户信息修改 */ = {
@@ -828,6 +876,7 @@
 			children = (
 				1827743321FEEB9E000F4E0F /* ReceivableViewController.h */,
 				1827743421FEEB9E000F4E0F /* ReceivableViewController.m */,
+				0B776EFD223633F60007DA02 /* 时间选择 */,
 				18290E1C2226810600745A2E /* 菜单顶部View */,
 				180B63762226B87A00578565 /* 对账单统计View */,
 				180B637B2226BBE200578565 /* cell */,
@@ -1105,6 +1154,7 @@
 			children = (
 				1889FFE321F9EA3D00F29B8B /* HttpClient.h */,
 				1889FFE421F9EA3D00F29B8B /* HttpClient.m */,
+				0B776EAB223604030007DA02 /* 应收 */,
 				0B5E54C6222FA78A00F30346 /* 图片上传PL */,
 				0B9BC2AE222E0B1800A4C083 /* 用户信息修改 */,
 				18F43BA8220FEF280089168E /* 样品 */,
@@ -1762,11 +1812,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B776EA22235FBEB0007DA02 /* StastisticTopCell.xib in Resources */,
 				189C1FF221F9A0B200C84CA4 /* Images.xcassets in Resources */,
 				0B4A24FF223380C100C3621D /* BillTopView.xib in Resources */,
 				184D666F22100C0F00181590 /* TZImagePickerController.bundle in Resources */,
 				0B4A24FA2233546300C3621D /* BillCell.xib in Resources */,
 				189C1F1D21F9923C00C84CA4 /* MJRefresh.bundle in Resources */,
+				0B776EAA223600990007DA02 /* StastisticCell.xib in Resources */,
 				189C1DC021F9882200C84CA4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1823,6 +1875,8 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PGDatePicker/PGDatePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/PGPickerView/PGPickerView.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1833,6 +1887,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PGDatePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PGPickerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1860,6 +1916,7 @@
 				189C1F1521F9923C00C84CA4 /* MJRefreshAutoNormalFooter.m in Sources */,
 				18501A4D2227BDE800AEF25E /* MineInfoView.m in Sources */,
 				18A16D69221165820099767F /* AddGoodsHomeView.m in Sources */,
+				0B776EAE223604180007DA02 /* ReceivePL.m in Sources */,
 				1827743521FEEB9E000F4E0F /* ReceivableViewController.m in Sources */,
 				187B94652213EA9B00E857D1 /* SettingViewController.m in Sources */,
 				189C1FAC21F9927800C84CA4 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -1868,6 +1925,7 @@
 				189C1F1021F9923C00C84CA4 /* MJRefreshBackFooter.m in Sources */,
 				189C1FE221F9928700C84CA4 /* SDWebImageDecoder.m in Sources */,
 				184D667422100C0F00181590 /* TZPhotoPreviewController.m in Sources */,
+				0B776F002236340C0007DA02 /* DatePickerView.m in Sources */,
 				189C1F1421F9923C00C84CA4 /* MJRefreshAutoGifFooter.m in Sources */,
 				189C1FE621F9928700C84CA4 /* SDWebImagePrefetcher.m in Sources */,
 				0B4FC7AB2233A37C001B335F /* GoodsIteams.m in Sources */,
@@ -1911,11 +1969,12 @@
 				189C1F2221F9923C00C84CA4 /* UIView+MJExtension.m in Sources */,
 				18CF0FD92212C84100B8D9CC /* GoodsWidthView.m in Sources */,
 				0B4FC7A322339BC5001B335F /* BillTopCellCell.m in Sources */,
-				0B4FC7B02233B57D001B335F /* StastisticTopCell.m in Sources */,
+				0B776EA12235FBEB0007DA02 /* StastisticTopCell.m in Sources */,
 				189C1F2121F9923C00C84CA4 /* UIScrollView+MJRefresh.m in Sources */,
 				189C1F3E21F9924E00C84CA4 /* NSObject+MJClass.m in Sources */,
 				186B84D721FEF25A0017E070 /* HomeRootViewController.m in Sources */,
 				188083A4221BCD5B000CB7B9 /* DIYSearchKeyBoardView.m in Sources */,
+				0B776EB222362BF50007DA02 /* StasticeItem.m in Sources */,
 				0B9BC2B1222E0B3200A4C083 /* UserInfoPL.m in Sources */,
 				188A01C8222382CC005B321F /* SettlementInputCell.m in Sources */,
 				184D667222100C0F00181590 /* TZPhotoPickerController.m in Sources */,
@@ -1990,6 +2049,7 @@
 				1889FFE121F9E09A00F29B8B /* ForgetPwdViewController.m in Sources */,
 				189C1FB121F9927800C84CA4 /* AFURLRequestSerialization.m in Sources */,
 				188083AC221BE172000CB7B9 /* SaleCustomerView.m in Sources */,
+				0B776EA9223600990007DA02 /* StastisticCell.m in Sources */,
 				184D6645221008C400181590 /* GoodsDetailView.m in Sources */,
 				186B84DB21FEF2810017E070 /* MenueView.m in Sources */,
 				189C1FAE21F9927800C84CA4 /* AFNetworkReachabilityManager.m in Sources */,

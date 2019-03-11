@@ -147,6 +147,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PGDatePicker/PGDatePicker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PGPickerView/PGPickerView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -154,6 +156,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PGDatePicker/PGDatePicker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PGPickerView/PGPickerView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

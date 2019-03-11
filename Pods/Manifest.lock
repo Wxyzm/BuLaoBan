@@ -5,6 +5,9 @@ PODS:
     - ObjectMapper (~> 3.4)
   - IQKeyboardManager (5.0.7)
   - ObjectMapper (3.4.2)
+  - PGDatePicker (2.6.9):
+    - PGPickerView
+  - PGPickerView (1.3.8)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -17,6 +20,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
   - IQKeyboardManager
+  - PGDatePicker
   - ReactiveCocoa (~> 2.5)
 
 SPEC REPOS:
@@ -25,6 +29,8 @@ SPEC REPOS:
     - AlamofireObjectMapper
     - IQKeyboardManager
     - ObjectMapper
+    - PGDatePicker
+    - PGPickerView
     - ReactiveCocoa
 
 SPEC CHECKSUMS:
@@ -32,8 +38,10 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
   IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  PGDatePicker: 88960f3760edac96219c10320f25536ad31d0f44
+  PGPickerView: 037acfb132a4c8054fb43aaa59a5ff50c7f747f5
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
-PODFILE CHECKSUM: ff2724bb34f660afe57511d8e2faed575f8145a0
+PODFILE CHECKSUM: fbc7278e8bb1edbaf85e6166754a777fbdb96ac0
 
 COCOAPODS: 1.5.3

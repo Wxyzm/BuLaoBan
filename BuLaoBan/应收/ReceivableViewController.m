@@ -14,7 +14,10 @@
 #import "BillCell.h"
 #import "BillTopCellCell.h"
 #import "BillCheckView.h"
+#import "StastisticTopCell.h"
+#import "StastisticCell.h"
 
+#import "ReceivePL.h"
 
 //账单model
 #import "ReceivableCustomers.h"
@@ -22,8 +25,11 @@
 //货品model
 #import "receivableGoods.h"
 #import "ReceivableItems.h"
+#import "StasticeItem.h"
+#import "DatePickerView.h"
+#import "PGDatePickManager.h"
 
-@interface ReceivableViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ReceivableViewController ()<UITableViewDelegate,UITableViewDataSource,PGDatePickerDelegate>
 /**
  左侧菜单
  */
@@ -35,6 +41,11 @@
 @property (nonatomic, strong) BaseTableView *ListTab;               //列表
 @property (nonatomic, strong) UIScrollView  *scrollView;
 @property (nonatomic, strong) BillCheckView *checkView;               //列表
+@property (nonatomic, strong) DatePickerView *datePickerView;               //列表
+/**
+ 0：开始时间   1：结束时间
+ */
+@property (nonatomic, assign) NSInteger      dateType;
 @end
 
 @implementation ReceivableViewController{
@@ -67,7 +78,7 @@
     WeakSelf(self);
      //搜索点击
     self.searchView.returnBlock = ^(NSInteger tag) {
-        
+        [weakself topBtnClickWithtag:tag];
     };
      //菜单点击
     self.MenueView.returnBlock = ^(NSInteger tag) {
@@ -95,12 +106,31 @@
             break;
         }
         case 2:{
-            
+            self.ListTab.frame =CGRectMake(0, 0, 924, ScreenHeight-64-110);
+            self.scrollView.contentSize = CGSizeMake(924, 10);
+            [self getStatisticeListFromCustomer];
             break;
         }
         default:
             break;
     }
+}
+#pragma mark ====== 顶部按钮点击
+-(void)topBtnClickWithtag:(NSInteger)tag{
+    switch (tag) {
+        case 0:{
+            _dateType = 0;
+            [self.datePickerView showView];
+            break;
+        }
+        case 1:{
+            _dateType = 1;
+            break;
+        }
+        default:
+            break;
+    }
+    
 }
 
 #pragma mark ====== 应收对账单/货品
@@ -113,9 +143,7 @@
         [self.ListTab reloadData];
     } andErrorBlock:^(NSString *msg) {
         
-    }];
-    
-    
+    }];   
 }
 
 
@@ -131,6 +159,20 @@
     }];
 
 }
+#pragma mark ====== 获取应收账款统计-按客户
+- (void)getStatisticeListFromCustomer{
+    User *user = [[UserPL shareManager] getLoginUser];
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,@"key":@""};
+    [[HttpClient sharedHttpClient] requestGET:@"finance/receivable/statistics/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
+        _dataArr2 = [StasticeItem mj_objectArrayWithKeyValuesArray:returnValue[@"items"]];
+        [self.ListTab reloadData];
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+    
+    
+}
+
 
 //设置titlelab
 - (void)setToptitle{
@@ -204,7 +246,7 @@
         receivableGoods *model = _dataArr[section];
         return model.items.count + 1;
     }
-    return 5 +2;
+    return _dataArr2.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -230,8 +272,22 @@
         ReceivableCustomers *model = _dataArr1[indexPath.section];
         cell.Items = model.items[indexPath.row-1];
         return cell;
+    }else if (_selectedType == 2){
+        if (indexPath.row ==0) {
+            static NSString *topcellid = @"StastisticTopCellid";
+            StastisticTopCell *cell = (StastisticTopCell *)[tableView dequeueReusableCellWithIdentifier:topcellid];
+            if (cell == nil) {
+                cell= (StastisticTopCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"StastisticTopCell" owner:self options:nil]  lastObject];
+            }
+            return cell;
+        }
+        StastisticCell *cell = (StastisticCell *)[tableView dequeueReusableCellWithIdentifier:@"StastisticCellid"];
+        if (cell == nil) {
+            cell= (StastisticCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"StastisticCell" owner:self options:nil]  lastObject];
+        }
+        cell.Item = _dataArr2[indexPath.row -1];
+        return cell;
     }
-    
     
     if (indexPath.row ==0) {
         static NSString *topcellid = @"topcellid";
@@ -249,6 +305,12 @@
     receivableGoods *model = _dataArr[indexPath.section];
     cell.Items = model.items[indexPath.row-1];
     return cell;
+}
+
+#pragma mark ====== 时间选择
+-(void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents{
+    NSLog(@"%@",dateComponents);
+    
 }
 
 #pragma mark ====== get
@@ -299,6 +361,14 @@
         _checkView = [[BillCheckView alloc]initWithFrame:CGRectMake(0, 50, ScreenWidth, 60)];
     }
     return _checkView;
+}
+
+-(DatePickerView *)datePickerView{
+    if (!_datePickerView) {
+        _datePickerView = [[DatePickerView alloc]init];
+        _datePickerView.datePicker.delegate = self;
+    }
+        return _datePickerView;
 }
 
 
