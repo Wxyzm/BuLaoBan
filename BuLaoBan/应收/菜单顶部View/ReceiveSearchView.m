@@ -103,14 +103,101 @@
 
 
 - (void)topBtnClick:(YLButton *)btn{
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    CGRect rect=[btn convertRect:btn.bounds toView:window];
+    rect.origin.y +=btn.height+18;
     WeakSelf(self);
     if (weakself.returnBlock) {
-        weakself.returnBlock(btn.tag-1000);
+        weakself.returnBlock(btn.tag-1000,rect);
+    }
+    if (btn.tag - 1000 ==5) {
+        //重置
+        [self allReload];
+    }
+    
+}
+
+#pragma mark === public method
+
+/**
+ 设置按钮标题
+ 
+ @param tag 0:开始日期 1:结束日期 2:客户 3：业务员
+ */
+- (void)setTitle:(NSString *)title withTag:(NSInteger)tag{
+    switch (tag) {
+        case 0:{
+            [_startTimeBtn setTitle:title forState:UIControlStateNormal];
+            [_startTimeBtn setTitleColor:UIColorFromRGB(BlueColorValue) forState:UIControlStateNormal];
+            break;
+        }
+        case 1:{
+            [_endTimeBtn setTitle:title forState:UIControlStateNormal];
+            [_endTimeBtn setTitleColor:UIColorFromRGB(BlueColorValue) forState:UIControlStateNormal];
+            break;
+        }
+        case 2:{
+            [_customerBtn setTitle:title forState:UIControlStateNormal];
+            [_customerBtn setTitleColor:UIColorFromRGB(BlueColorValue) forState:UIControlStateNormal];
+            break;
+        }
+        case 3:{
+            [_salesmanBtn setTitle:title forState:UIControlStateNormal];
+            [_salesmanBtn setTitleColor:UIColorFromRGB(BlueColorValue) forState:UIControlStateNormal];
+            break;
+        }
+        default:
+            break;
     }
     
     
 }
+/**
+ 重置标题
+ 
+ @param tag 0:开始日期 1:结束日期 2:客户 3：业务员
+ */
+- (void)clearBtnTitleWithTag:(NSInteger)tag{
+    
+    switch (tag) {
+        case 0:{
+            [_startTimeBtn setTitle:@"开始日期" forState:UIControlStateNormal];
+            [_startTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+            break;
+        }
+        case 1:{
+            [_endTimeBtn setTitle:@"结束日期" forState:UIControlStateNormal];
+            [_endTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+            break;
+        }
+        case 2:{
+            [_customerBtn setTitle:@"选择客户" forState:UIControlStateNormal];
+            [_customerBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+            break;
+        }
+        case 3:{
+            [_salesmanBtn setTitle:@"对应业务员" forState:UIControlStateNormal];
+            [_salesmanBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+            break;
+        }
+        default:
+            break;
+    }
+}
 
+/**
+ 全部重置
+ */
+- (void)allReload{
+    [_startTimeBtn setTitle:@"开始日期" forState:UIControlStateNormal];
+    [_startTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    [_endTimeBtn setTitle:@"结束日期" forState:UIControlStateNormal];
+    [_endTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    [_customerBtn setTitle:@"选择客户" forState:UIControlStateNormal];
+    [_customerBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    [_salesmanBtn setTitle:@"对应业务员" forState:UIControlStateNormal];
+    [_salesmanBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+}
 
 
 @end

@@ -28,8 +28,14 @@
 #import "StasticeItem.h"
 #import "DatePickerView.h"
 #import "PGDatePickManager.h"
+#import "PGDatePickerHeader.h"
+//客户选择
+#import "ComCustomer.h"
+#import "CustomerSelecteView.h"
 
-@interface ReceivableViewController ()<UITableViewDelegate,UITableViewDataSource,PGDatePickerDelegate>
+
+
+@interface ReceivableViewController ()<UITableViewDelegate,UITableViewDataSource>
 /**
  左侧菜单
  */
@@ -41,15 +47,17 @@
 @property (nonatomic, strong) BaseTableView *ListTab;               //列表
 @property (nonatomic, strong) UIScrollView  *scrollView;
 @property (nonatomic, strong) BillCheckView *checkView;               //列表
-@property (nonatomic, strong) DatePickerView *datePickerView;               //列表
 /**
- 0：开始时间   1：结束时间
+ 客户
  */
-@property (nonatomic, assign) NSInteger      dateType;
+@property (nonatomic, strong) CustomerSelecteView *customerSelecteView;
 @end
 
 @implementation ReceivableViewController{
     NSInteger _selectedType;  //0:应收对账单/货品 1:应收对账单/单 2:应收统计表
+    NSString *_starTime;      //l开始时间
+    NSString *_endTime;       //结束时间
+    NSString *_customer;  //选择的客户
     NSMutableArray *_dataArr1;
     NSMutableArray *_dataArr2;
     NSMutableArray *_dataArr;
@@ -59,12 +67,21 @@
     [super viewDidLoad];
     _selectedType = 0;
     [self setToptitle];
+    [self initDatas];
     [self initUI];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showReceiveMenue:) name:@"ReceivebarSelected" object:nil];
+  
+}
+
+- (void)initDatas{
     _dataArr = [NSMutableArray arrayWithCapacity:0];
     _dataArr2 = [NSMutableArray arrayWithCapacity:0];
     _dataArr1 = [NSMutableArray arrayWithCapacity:0];
+    _starTime = @"";
+    _endTime = @"";
+    _customer= @"";
 }
+
 #pragma mark ====== initUI
 - (void)initUI{
     //搜索
@@ -77,8 +94,8 @@
     [self.MenueView showinView:self.view];
     WeakSelf(self);
      //搜索点击
-    self.searchView.returnBlock = ^(NSInteger tag) {
-        [weakself topBtnClickWithtag:tag];
+    self.searchView.returnBlock = ^(NSInteger tag,CGRect frame) {
+        [weakself topBtnClickWithtag:tag andFrame:frame];
     };
      //菜单点击
     self.MenueView.returnBlock = ^(NSInteger tag) {
@@ -86,6 +103,13 @@
         [weakself setToptitle];
         [weakself loadDate];
     };
+    self.customerSelecteView.returnBlock = ^(ComCustomer * _Nonnull comCusModel) {
+        _customer = comCusModel.name;
+        [weakself.searchView setTitle:comCusModel.name withTag:2];
+
+    };
+    
+    
 }
 
 - (void)loadDate{
@@ -116,33 +140,117 @@
     }
 }
 #pragma mark ====== 顶部按钮点击
--(void)topBtnClickWithtag:(NSInteger)tag{
+-(void)topBtnClickWithtag:(NSInteger)tag andFrame:(CGRect)frame{
+    DatePickerView *datepicker = [[DatePickerView alloc]init];
+    
     switch (tag) {
         case 0:{
-            _dateType = 0;
-            [self.datePickerView showView];
+            
+            datepicker.dateType = 1;
+            if (_starTime.length>0) {
+                [datepicker.datePicker setDate:[self returnDateWithDateStr:_starTime] animated:YES];
+            }
+            [datepicker showViewWithFrame:frame];
+            
             break;
         }
         case 1:{
-            _dateType = 1;
+            datepicker.dateType = 2;
+            if (_endTime.length>0) {
+                [datepicker.datePicker setDate:[self returnDateWithDateStr:_endTime] animated:YES];
+            }
+             [datepicker showViewWithFrame:frame];
+            break;
+        }
+        case 2:{
+            [self loadCustomerListWithTag:0];
+            break;
+        }
+        case 3:{
+            //按业务员，下版本添加
+            // [self loadCustomerListWithTag:1];
+            break;
+        }
+        case 4:{
+            //查询
+            [self  loadDate];
+            break;
+        }
+        case 5:{
+            //重置
+            _starTime = @"";
+            _endTime = @"";
+            _customer= @"";
+            [self  loadDate];
             break;
         }
         default:
             break;
     }
+    WeakSelf(self);
+
+    //日期选择
+    datepicker.returnBlock = ^(NSInteger dateType, NSString *dateStr) {
+        [weakself selectedDate:dateStr andtag:dateType];
+    };
     
 }
+#pragma mark ====== 属性选择（日期。客户。业务员）
+/**
+ 日期选择
+
+ @param dateStr 日期
+ @param tag 类型  1：开始时间   2：结束时间
+ */
+- (void)selectedDate:(NSString *)dateStr andtag:(NSInteger)tag{
+    switch (tag) {
+        case 1:{
+            if (dateStr.length<=0) {
+                //清除l开始日期
+                [self.searchView clearBtnTitleWithTag:0];
+            }else{
+                _starTime = dateStr;
+                [self.searchView setTitle:dateStr withTag:0];
+            }
+            break;
+        }
+        case 2:{
+            if (dateStr.length<=0) {
+                //清除结束日期
+                [self.searchView clearBtnTitleWithTag:1];
+            }else{
+                _endTime = dateStr;
+                [self.searchView setTitle:dateStr withTag:1];
+            }
+            break;
+        }
+       
+        default:
+            break;
+    }
+}
+
+
+
 
 #pragma mark ====== 应收对账单/货品
 - (void)loadBillListFromGoods
 {
     User *user = [[UserPL shareManager] getLoginUser];
-    NSDictionary *dic = @{@"companyId":user.defutecompanyId,@"key":@""};
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+                          @"orderDateStart":_starTime,
+                          @"orderDateEnd":_endTime,
+                          @"key":_customer};
+    [HUD showLoading:nil];
     [[HttpClient sharedHttpClient] requestGET:@"/finance/receivable/statement/sample/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
         _dataArr = [receivableGoods mj_objectArrayWithKeyValuesArray:returnValue[@"receivableCustomers"]];
         [self.ListTab reloadData];
+        if (_dataArr.count<=0) {
+            [HUD show:@"未查到相关数据"];
+        }
+         [HUD cancel];
     } andErrorBlock:^(NSString *msg) {
-        
+         [HUD cancel];
     }];   
 }
 
@@ -150,29 +258,66 @@
 #pragma mark ====== 应收对账单/单
 - (void)loadBillListFromBill{
     User *user = [[UserPL shareManager] getLoginUser];
-    NSDictionary *dic = @{@"companyId":user.defutecompanyId,@"key":@""};
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+                          @"orderDateStart":_starTime,
+                          @"orderDateEnd":_endTime,
+                          @"key":_customer};
+    [HUD showLoading:nil];
     [[HttpClient sharedHttpClient] requestGET:@"finance/receivable/statement/order/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
+         [HUD cancel];
         _dataArr1 = [ReceivableCustomers mj_objectArrayWithKeyValuesArray:returnValue[@"receivableCustomers"]];
         [self.ListTab reloadData];
+        if (_dataArr1.count<=0) {
+            [HUD show:@"未查到相关数据"];
+        }
     } andErrorBlock:^(NSString *msg) {
-        
+         [HUD cancel];
     }];
 
 }
 #pragma mark ====== 获取应收账款统计-按客户
 - (void)getStatisticeListFromCustomer{
     User *user = [[UserPL shareManager] getLoginUser];
-    NSDictionary *dic = @{@"companyId":user.defutecompanyId,@"key":@""};
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+                          @"orderDateStart":_starTime,
+                          @"orderDateEnd":_endTime,
+                          @"key":_customer};
+    [HUD showLoading:nil];
     [[HttpClient sharedHttpClient] requestGET:@"finance/receivable/statistics/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
+        [HUD cancel];
         _dataArr2 = [StasticeItem mj_objectArrayWithKeyValuesArray:returnValue[@"items"]];
         [self.ListTab reloadData];
+        if (_dataArr2.count<=0) {
+            [HUD show:@"未查到相关数据"];
+        }
     } andErrorBlock:^(NSString *msg) {
-        
+         [HUD cancel];
     }];
-    
-    
 }
 
+#pragma mark ====== 获取客户列表
+- (void)loadCustomerListWithTag:(NSInteger)tag{
+    User *user = [[UserPL shareManager] getLoginUser];
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+                          @"pageNo":@"1",
+                          @"pageSize":@"5000"
+                          };
+    [HUD showLoading:nil];
+    [[HttpClient sharedHttpClient] requestGET:@"contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        [HUD cancel];
+        NSMutableArray *dataArr = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
+        //tag : 1选择员工
+        if (tag ==1) {
+            self.customerSelecteView.SelectYype =1;
+
+        }
+        self.customerSelecteView.dataArr = dataArr;
+        [self.customerSelecteView showView];
+    } andErrorBlock:^(NSString *msg) {
+        [HUD cancel];
+    }];
+}
 
 //设置titlelab
 - (void)setToptitle{
@@ -199,6 +344,8 @@
     }
     
 }
+
+
 //通知xianshiMenue
 - (void)showReceiveMenue:(NSNotification *)notificaiton
 {
@@ -246,7 +393,7 @@
         receivableGoods *model = _dataArr[section];
         return model.items.count + 1;
     }
-    return _dataArr2.count;
+    return _dataArr2.count+1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -307,10 +454,13 @@
     return cell;
 }
 
-#pragma mark ====== 时间选择
--(void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents{
-    NSLog(@"%@",dateComponents);
+#pragma mark ======str转 date
+- (NSDate *)returnDateWithDateStr:(NSString *)dateStr{
     
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];//创建一个日期格式化器
+    dateFormatter.dateFormat=@"yyyy-MM-dd";//指定转date得日期格式化形式
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    return date;
 }
 
 #pragma mark ====== get
@@ -363,12 +513,12 @@
     return _checkView;
 }
 
--(DatePickerView *)datePickerView{
-    if (!_datePickerView) {
-        _datePickerView = [[DatePickerView alloc]init];
-        _datePickerView.datePicker.delegate = self;
+-(CustomerSelecteView *)customerSelecteView{
+    
+    if (!_customerSelecteView) {
+        _customerSelecteView = [[CustomerSelecteView alloc]init];
     }
-        return _datePickerView;
+    return _customerSelecteView;
 }
 
 

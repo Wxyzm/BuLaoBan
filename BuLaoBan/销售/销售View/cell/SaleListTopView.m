@@ -22,7 +22,7 @@
 
 
 - (void)setUP{
-    NSArray *titlearr = @[@"图片",@"编号/品名",@"颜色",@"单价",@"细码单",@"匹数",@"销货量",@"金额",@"操作"];
+    NSArray *titlearr = @[@"图片",@"编号/品名",@"颜色",@"单价",@"细码单",@"匹数",@"销货量",@"单位",@"金额",@"操作"];
     for (int i = 0; i<titlearr.count; i++) {
         UILabel *lab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(WhiteColorValue) font:APPFONT12 textAligment:NSTextAlignmentLeft andtext:titlearr[i]];
         [self addSubview:lab];
@@ -69,13 +69,13 @@
                 line.frame = CGRectMake(569.5, 0, 1, 40);
                 break;
             }
-//            case 8:{
-//                lab.frame = CGRectMake(580, 0, 40, 40);
-//                line.frame = CGRectMake(659.5, 0, 1, 40);
-//                break;
-//            }
             case 8:{
-                lab.frame = CGRectMake(670, 0, 40, 40);
+                lab.frame = CGRectMake(580, 0, 40, 40);
+                line.frame = CGRectMake(659.5, 0, 1, 40);
+                break;
+            }
+            case 9:{
+                lab.frame = CGRectMake(660, 0, 45, 40);
                 line.hidden = YES;
                 break;
             }

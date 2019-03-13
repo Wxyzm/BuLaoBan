@@ -205,7 +205,6 @@
     User *user = [[UserPL shareManager] getLoginUser];
     if (user.authorization.length>0) {
         [request setValue:user.authorization forHTTPHeaderField:@"authorization"];
-        
     }
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:paramDic options:0 error:&error];

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define NUMBERS @"0123456789."
+//#define NUMBERS @"0123456789."
 //加载的方式
 typedef NS_ENUM(NSInteger, LoadWayType) {
     START_LOAD_FIRST         = 1,
@@ -21,7 +21,6 @@ typedef NS_ENUM(NSInteger, LoadWayType) {
 @property (nonatomic, assign) BOOL    needHideNavBar;   //导航栏隐藏
 @property (nonatomic, assign) BOOL    isBlackStatusBar;  //statusbar是否显示黑色
 @property (nonatomic, strong) BaseScrollView    *backView;
-
 @property (nonatomic, assign) NSInteger         page;
 @property (nonatomic, strong) NSArray           *loadArray;
 @property (nonatomic, assign) LoadWayType       loadWay;    //加载的方式

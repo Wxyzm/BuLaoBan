@@ -7,64 +7,64 @@
 //
 
 #import "SaleViewController.h"
+//UI
 #import "DIYSearchKeyBoardView.h"
 #import "SaleHeaderView.h"
 #import "SaleCustomerView.h"
 #import "SaleListTopView.h"
 #import "SaleListCell.h"
+
 #import "SettlementViewController.h"  //结算
 #import "SaleHistoryController.h"     //销售历史
 //客户选择
 #import "ComCustomer.h"
 #import "CustomerSelecteView.h"
+//样品选择
+#import "SamplePL.h"
+#import "SampleSearchResultView.h"
+
+//首页数据model
+#import "SaleVcModel.h"
+#import "SaleSamModel.h"
 
 
 @interface SaleViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *ListTab;               //列表
+@property (nonatomic, strong) SaleHeaderView *HeaderView;           //顶部View
+@property (nonatomic, strong) DIYSearchKeyBoardView *KeyBoardView;  //键盘
+@property (nonatomic, strong) SaleCustomerView *CustomerView;       //客户、类型、仓库
+@property (nonatomic, strong) CustomerSelecteView *customerSelecteView;       //客户选择
+@property (nonatomic, strong) SampleSearchResultView *sampleSearchResultView; //样品选择
 
-/**
- 顶部View
- */
-@property (nonatomic, strong) SaleHeaderView *HeaderView;
-
-/**
- 键盘
- */
-@property (nonatomic, strong) DIYSearchKeyBoardView *KeyBoardView;
-
-/**
- 客户
- */
-@property (nonatomic, strong) SaleCustomerView *CustomerView;
-
-/**
- 数量
- */
-@property (nonatomic, strong) UILabel *numLab;
-
-/**
- 金额
- */
-@property (nonatomic, strong) UILabel *moneyLab;
-
-@property (nonatomic, strong) CustomerSelecteView *customerSelecteView;
-
-
+@property (nonatomic, strong) UILabel *numLab;                      //数量
+@property (nonatomic, strong) UILabel *moneyLab;                    //金额
 @end
 
-@implementation SaleViewController
+@implementation SaleViewController{
+    NSString *_SearchStr;        //搜索关键字
+    NSMutableArray *_dataArr;    //显示数据
+    NSMutableArray *_SearchArr;  //搜索出的数据
+    SaleVcModel *_model;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.needHideNavBar = YES;
     self.view.backgroundColor = UIColorFromRGB(BackColorValue);
+    [self initDatas];
     [self initUI];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+}
+
+- (void)initDatas{
+    _SearchStr = @"";
+    _dataArr = [NSMutableArray arrayWithCapacity:0];
+    _model = [[SaleVcModel alloc]init];
 }
 
 - (void)initUI{
@@ -102,22 +102,34 @@
     setBtn.layer.cornerRadius = 2;
     [setBtn addTarget:self action:@selector(setBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    
-    
     WeakSelf(self);
     //顶部view
     self.HeaderView.returnBlock = ^(NSInteger tag) {
         [weakself topBtnClickWithTag:tag];
     };
-    //客户选择
+    //获取客户列表
     self.CustomerView.returnBlock = ^(NSInteger tag) {
         [weakself customerBtnClickWithTag:tag];
     };
+    //选择客户
+    self.customerSelecteView.returnBlock = ^(ComCustomer * _Nonnull comCusModel) {
+      
+    };
+    //商品搜索
+    weakself.KeyBoardView.returnBlock = ^(NSString * _Nonnull searchTxt) {
+        _SearchStr = searchTxt;
+        [weakself loadGoodsList];
+    };
+    //选择商品
+    weakself.sampleSearchResultView.returnBlock = ^(Sample * _Nonnull SampleModel) {
+        if ([_dataArr containsObject:SampleModel]) {
+            [HUD show:@"该货品已添加过"];
+            return ;
+        }
+        [_dataArr addObject:SampleModel];
+        [self.ListTab reloadData];
+    };
 }
-
-
-
 
 #pragma mark ====== 顶部按钮点击 0:销售历史   1：s销售统计    2：挂单   3：取单
 /**
@@ -148,7 +160,6 @@
     }
 }
 
-
 - (void)customerBtnClickWithTag:(NSInteger)tag
 {
     if (tag == 0)
@@ -174,6 +185,8 @@
 - (void)setBtnClick{
     [self.navigationController pushViewController:[SettlementViewController new] animated:YES];
  }
+
+
 #pragma mark ====== j获取客户列表
 - (void)loadCustomerList{
     User *user = [[UserPL shareManager] getLoginUser];
@@ -190,13 +203,28 @@
         
     }];
 }
-
-
+#pragma mark ====== 获取货品列表
+- (void)loadGoodsList{
+    User *user = [[UserPL shareManager] getLoginUser];
+    NSDictionary *updic = @{@"searchType":@"0",
+                            @"companyId":user.defutecompanyId,
+                            @"key":_SearchStr,
+                            @"pageNo":@"1",
+                            @"pageSize":@"5000"
+                            };
+    [SamplePL Sample_sampleSamplesRegisterWithDic:updic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        NSMutableArray *reArr = [Sample mj_objectArrayWithKeyValuesArray:returnValue[@"samples"]];
+        self.sampleSearchResultView.dataArr = reArr;
+        [self.sampleSearchResultView showinView:self.view];
+    } andErrorBlock:^(NSString *msg) {
+    }];
+}
 
 #pragma mark ====== tableview
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -267,5 +295,12 @@
     return _customerSelecteView;
 }
 
+-(SampleSearchResultView *)sampleSearchResultView{
+    
+    if (!_sampleSearchResultView) {
+        _sampleSearchResultView = [[SampleSearchResultView alloc]init];
+    }
+    return _sampleSearchResultView;
+}
 
 @end

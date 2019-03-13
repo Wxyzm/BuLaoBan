@@ -9,7 +9,7 @@
 #import "DatePickerView.h"
 #import "PGDatePickManager.h"
 
-@interface DatePickerView ()
+@interface DatePickerView ()<PGDatePickerDelegate>
 
 @property (nonatomic, strong) UIButton *backButton;
 @property (nonatomic, strong) UIView      *sideView;
@@ -37,24 +37,73 @@
     _datePicker.frame = CGRectMake(0, 60, 300, 200);
     _datePicker.datePickerMode = PGDatePickerModeDate;
     _datePicker.rowHeight = 40;
+    _datePicker.delegate = self;
     _datePicker.autoSelected = YES;
     _datePicker.language = @"zh-Hans";
     [_sideView addSubview:_datePicker];
     
+    _titleLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 14, 80, 22)  textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentLeft andtext:@""];
+    [_sideView addSubview:_titleLab];
+    _dateLab = [BaseViewFactory labelWithFrame:CGRectMake(120, 14, 146, 22)  textColor:UIColorFromRGB(BlueColorValue) font:APPFONT16 textAligment:NSTextAlignmentRight andtext:@""];
+    [_sideView addSubview:_dateLab];
+    
+    UIImageView* rightIma = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"right"]];
+    [_sideView addSubview:rightIma];
+    rightIma.frame = CGRectMake(276, 19, 8, 13);
+    
+    _downBtn = [BaseViewFactory buttonWithFrame:CGRectMake(0, 270, 300, 50) font:APPFONT15 title:@"清空筛选条件" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(BackColorValue)];
+    [_sideView addSubview:_downBtn];
+    [_downBtn addTarget:self  action:@selector(downBtnClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
+#pragma mark ========= 清空选项
+
+- (void)downBtnClick{
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(_dateType, @"");
+    }
+    [self dismiss];
+}
+
+
+#pragma mark ====== 时间选择
+-(void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents{
+    NSLog(@"%@",dateComponents);
+    NSDate *date = [NSDate dateFromComponents:dateComponents];
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];//创建一个日期格式化器
+    dateFormatter.dateFormat=@"yyyy-MM-dd";//指定转date得日期格式化形式
+    NSString *dateStr= [dateFormatter stringFromDate:date];
+    _dateLab.text = dateStr;
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(_dateType, dateStr);
+    }
+}
+
+
+
+
 #pragma - mark public method
-- (void)showView
+- (void)showViewWithFrame:(CGRect)frame
 {
     
-    _sideView.frame =CGRectMake(ScreenWidth, 0, 300, 320);
+    if (_dateType ==1) {
+        _titleLab.text = @"开始日期";
+    }else{
+        _titleLab.text = @"结束日期";
+    }
+    frame.size.width =300;
+    frame.size.height =320;
+
+    _sideView.frame =frame;
     
     AppDelegate *app = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
     [app.splitViewController.view addSubview:self];
     _isShow = YES;
     [UIView animateWithDuration:0.2 animations:^{
-        _sideView.frame =CGRectMake(ScreenWidth-300, 0, 300, 320);
+        _sideView.frame =frame;
     }];
     
     
@@ -65,12 +114,18 @@
     if (!_isShow) return;
     _isShow = NO;
     [UIView animateWithDuration:0.2 animations:^{
-        _sideView.frame =CGRectMake(ScreenWidth, 0, 300, 320);
+
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
         _backButton.alpha = 0.3;
     }];
 }
+
+
+
+
+
+
 
 #pragma mark ========= get
 

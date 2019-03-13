@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SaleListCell : UITableViewCell
 
+@property (nonatomic, strong) Sample *sampleModel;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

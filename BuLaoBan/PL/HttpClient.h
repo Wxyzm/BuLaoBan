@@ -157,7 +157,14 @@ typedef void (^ErrorBlock) (NSString *msg);
 #pragma mark   ==========////////  Contact   ////////==========
 
 
+#pragma mark   ==========////////  Sell   ////////==========
 
+#pragma mark   ========== 获取销货单列表
+/**
+ 获取销货单列表
+ */
+- (void)selleGetSellDeliverWithReturnBlock:(ReturnBlock)returnBlock
+                             andErrorBlock:(ErrorBlock)errorBlock;
 
 
 

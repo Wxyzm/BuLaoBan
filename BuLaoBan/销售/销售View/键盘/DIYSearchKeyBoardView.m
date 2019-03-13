@@ -43,10 +43,8 @@
     _numTxt.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 12, 44)];
     [view addSubview:_numTxt];
     _numTxt.backgroundColor = UIColorFromRGB(WhiteColorValue);
-    
-//    UIView *topview = [BaseViewFactory viewWithFrame:CGRectMake(0, 0, 220, 60) color:UIColorFromRGB(0xbdbdbd)];
-//    [view addSubview:topview];
-    
+    [_numTxt addTarget:self
+                   action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
     _titleArr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"",@"0",@"-"];
     for (int i = 0; i<_titleArr.count; i++) {
@@ -67,11 +65,6 @@
     azbtn.tag = 1000 +12;
     [azbtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:azbtn];
-    
-    
-    
-    
-    
 }
 
 
@@ -86,16 +79,29 @@
         if (_numTxt.text.length>0) {
           _numTxt.text = [_numTxt.text substringToIndex:_numTxt.text.length - 1];
         }
-        
+        WeakSelf(self);
+        if (weakself.returnBlock) {
+            weakself.returnBlock(_numTxt.text);
+        }
     }else{
        //拼接
         _numTxt.text = [NSString stringWithFormat:@"%@%@",_numTxt.text,_titleArr[tag]];
-        
+        WeakSelf(self);
+        if (weakself.returnBlock) {
+            weakself.returnBlock(_numTxt.text);
+        }
     }
    
 }
 
-
+#pragma mark ====== textfieldDidChange
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(textField.text);
+    }
+}
 
 
 
