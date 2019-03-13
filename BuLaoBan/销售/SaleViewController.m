@@ -39,13 +39,16 @@
 
 @property (nonatomic, strong) UILabel *numLab;                      //数量
 @property (nonatomic, strong) UILabel *moneyLab;                    //金额
+
+@property (nonatomic, strong) SaleVcModel *model;                   //首页数据保存Model
+
 @end
 
 @implementation SaleViewController{
     NSString *_SearchStr;        //搜索关键字
     NSMutableArray *_dataArr;    //显示数据
     NSMutableArray *_SearchArr;  //搜索出的数据
-    SaleVcModel *_model;
+    
 }
 
 - (void)viewDidLoad {
@@ -113,7 +116,9 @@
     };
     //选择客户
     self.customerSelecteView.returnBlock = ^(ComCustomer * _Nonnull comCusModel) {
-      
+        weakself.model.comId = comCusModel.comId;
+        weakself.model.comName = comCusModel.name;
+        
     };
     //商品搜索
     weakself.KeyBoardView.returnBlock = ^(NSString * _Nonnull searchTxt) {
@@ -122,11 +127,13 @@
     };
     //选择商品
     weakself.sampleSearchResultView.returnBlock = ^(Sample * _Nonnull SampleModel) {
-        if ([_dataArr containsObject:SampleModel]) {
-            [HUD show:@"该货品已添加过"];
-            return ;
-        }
-        [_dataArr addObject:SampleModel];
+        SaleSamModel *samodel = [[SaleSamModel alloc]init];
+        samodel.urlStr = SampleModel.samplePicKey;
+        samodel.sampId = SampleModel.sampleId;
+        samodel.itemNo = SampleModel.itemNo;
+        samodel.name = SampleModel.name;
+        samodel.unit = SampleModel.primaryUnit;
+        [weakself.model.sampleList addObject:samodel];
         [self.ListTab reloadData];
     };
 }
@@ -224,7 +231,7 @@
 #pragma mark ====== tableview
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _dataArr.count;
+    return _model.sampleList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -237,6 +244,7 @@
     if (!cell) {
         cell = [[SaleListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    cell.model =  _model.sampleList[indexPath.row];
     return cell;
 }
 

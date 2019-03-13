@@ -75,7 +75,7 @@
                 break;
             }
             case 9:{
-                lab.frame = CGRectMake(660, 0, 45, 40);
+                lab.frame = CGRectMake(670, 0, 45, 40);
                 line.hidden = YES;
                 break;
             }

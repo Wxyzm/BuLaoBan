@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SaleSamModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SaleListCell : UITableViewCell
 
-@property (nonatomic, strong) Sample *sampleModel;
+@property (nonatomic, strong) SaleSamModel *model;
 
 
 

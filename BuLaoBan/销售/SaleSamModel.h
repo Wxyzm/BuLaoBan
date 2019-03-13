@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SaleSamModel : NSObject
 
+@property (nonatomic, copy) NSString *sampId;    //样品ID
 @property (nonatomic, copy) NSString *urlStr;    //样品图片
 @property (nonatomic, copy) NSString *name;      //名称
 @property (nonatomic, copy) NSString *itemNo;    //编号
@@ -21,11 +22,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *salesVol;  //销货量
 @property (nonatomic, copy) NSString *unit;      //单位
 @property (nonatomic, copy) NSString *money;     //金额
-
-
-
-
 @property (nonatomic, strong) NSArray *packingList; //细码单
+
+
+//输入总码数据则细码单无法输入，若输入细码单，则总码单是细码单算出来的
+@property (nonatomic, assign) BOOL caninput;     //是否手动输入（米数。匹数等）
+@property (nonatomic, assign) BOOL canselect;    //是否选择填写细码单
+
+
 
 
 @end

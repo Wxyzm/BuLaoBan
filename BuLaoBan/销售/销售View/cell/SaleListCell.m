@@ -7,7 +7,7 @@
 //
 
 #import "SaleListCell.h"
-
+#import "SaleSamModel.h"
 @interface SaleListCell ()<UITextFieldDelegate>
 
 /**
@@ -179,6 +179,20 @@
     }
     UIView *line1 = [BaseViewFactory viewWithFrame:CGRectMake(0, 49, 704, 1) color:UIColorFromRGB(LineColorValue)];
     [self.contentView addSubview:line1];
+    
+}
+
+-(void)setModel:(SaleSamModel *)model{
+    _model = model;
+    [_faceIma sd_setImageWithURL:[NSURL URLWithString:model.urlStr] placeholderImage:nil]; //图片
+    _numTxt.text = model.itemNo;  //变化
+    _nameTxt.text = model.name;   //名称
+    _colorTxt.text = model.color; //颜色
+    _unitPriceTxt.text = model.unitPrice;    //单价
+    _matchesNumTxt.text = model.pieces;      //匹数
+    _salesNumTxt.text = model.salesVol;      //销货量
+    _unitTxt.text = model.unit;              //单位
+    _amoutMoneyTxt.text = model.money;       //金额
     
 }
 
