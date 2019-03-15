@@ -26,7 +26,8 @@
 //首页数据model
 #import "SaleVcModel.h"
 #import "SaleSamModel.h"
-
+#import "PackingListView.h"//细码单填写View
+#import "PackListModel.h"  //细码单
 
 @interface SaleViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -36,6 +37,7 @@
 @property (nonatomic, strong) SaleCustomerView *CustomerView;       //客户、类型、仓库
 @property (nonatomic, strong) CustomerSelecteView *customerSelecteView;       //客户选择
 @property (nonatomic, strong) SampleSearchResultView *sampleSearchResultView; //样品选择
+@property (nonatomic, strong) PackingListView *packingListView;     //细码单填写
 
 @property (nonatomic, strong) UILabel *numLab;                      //数量
 @property (nonatomic, strong) UILabel *moneyLab;                    //金额
@@ -118,7 +120,7 @@
     self.customerSelecteView.returnBlock = ^(ComCustomer * _Nonnull comCusModel) {
         weakself.model.comId = comCusModel.comId;
         weakself.model.comName = comCusModel.name;
-        
+        [weakself.CustomerView.customerBtn setTitle:comCusModel.name forState:UIControlStateNormal];
     };
     //商品搜索
     weakself.KeyBoardView.returnBlock = ^(NSString * _Nonnull searchTxt) {
@@ -134,7 +136,11 @@
         samodel.name = SampleModel.name;
         samodel.unit = SampleModel.primaryUnit;
         [weakself.model.sampleList addObject:samodel];
-        [self.ListTab reloadData];
+        [weakself.ListTab reloadData];
+    };
+    //保存细码单
+    self.packingListView.returnBlock = ^(NSMutableArray * _Nonnull validArr) {
+        [weakself.ListTab reloadData];
     };
 }
 
@@ -190,7 +196,48 @@
  结算
  */
 - (void)setBtnClick{
-    [self.navigationController pushViewController:[SettlementViewController new] animated:YES];
+    if (_model.comId.length<=0) {
+        [HUD show:@"请选择客户"];
+        return;
+    }
+    if (_model.sampleList.count<=0) {
+        [HUD show:@"请选择货品"];
+        return;
+    }
+    for (int i = 0; i<_model.sampleList.count; i++) {
+        SaleSamModel *goodModel = _model.sampleList[i];
+        if (goodModel.color.length<=0) {
+            [HUD show:@"请输入货品颜色"];
+            return;
+        }
+        if (goodModel.unitPrice.length<=0) {
+            [HUD show:@"请输入货品单价"];
+            return;
+        }
+        if (goodModel.money.length<=0) {
+            [HUD show:@"请输入货品金额"];
+            return;
+        }
+        if (goodModel.packingList.count<=0) {
+            //手动填写匹数、m销货量
+            if (goodModel.pieces.length<=0) {
+                [HUD show:@"请输入货品匹数"];
+                return;
+            }
+            if (goodModel.salesVol.length<=0) {
+                [HUD show:@"请输入货品销货量"];
+                return;
+            }
+        }else{
+            //细码单填写
+            
+        }
+    }
+    
+    
+    SettlementViewController *setvc = [[SettlementViewController alloc]init];
+    setvc.model = _model;
+    [self.navigationController pushViewController:setvc animated:YES];
  }
 
 
@@ -245,6 +292,25 @@
         cell = [[SaleListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     cell.model =  _model.sampleList[indexPath.row];
+    cell.returnBlock = ^(SaleSamModel * _Nonnull model, NSInteger type) {
+      //添加细码单，删除该条书记
+        if (type==0) {
+            //删除
+            if ([_model.sampleList containsObject:model]) {
+                [_model.sampleList removeObject:model];
+                [self.ListTab reloadData];
+            }
+        }else if (type==1){
+            //添加细码单
+            self.packingListView.saleSamModel = model;
+            [self.packingListView showView];
+        }
+        else{
+         //输入完成
+            [self.ListTab reloadData];
+
+        }
+    };
     return cell;
 }
 
@@ -309,6 +375,14 @@
         _sampleSearchResultView = [[SampleSearchResultView alloc]init];
     }
     return _sampleSearchResultView;
+}
+
+-(PackingListView *)packingListView{
+    
+    if (!_packingListView) {
+        _packingListView = [[PackingListView alloc]init];
+    }
+    return _packingListView;
 }
 
 @end

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *salesVol;  //销货量
 @property (nonatomic, copy) NSString *unit;      //单位
 @property (nonatomic, copy) NSString *money;     //金额
-@property (nonatomic, strong) NSArray *packingList; //细码单
+@property (nonatomic, strong) NSMutableArray *packingList; //细码单
 
 
 //输入总码数据则细码单无法输入，若输入细码单，则总码单是细码单算出来的

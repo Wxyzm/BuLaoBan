@@ -15,7 +15,6 @@
     [self cancel];
     
     MBProgressHUD *hud = [MBProgressHUD sharedHUD];
-    
     [[UIApplication sharedApplication].keyWindow addSubview:hud];
     hud.labelText = message;
     [hud show:YES];

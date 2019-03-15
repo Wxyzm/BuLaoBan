@@ -7,10 +7,14 @@
 //
 
 #import "BaseViewController.h"
-
+@class SaleVcModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SettlementViewController : BaseViewController
+
+
+@property (nonatomic, strong) SaleVcModel *model;                   //首页数据保存Model
+
 
 @end
 

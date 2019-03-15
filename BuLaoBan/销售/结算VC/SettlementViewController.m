@@ -9,7 +9,7 @@
 #import "SettlementViewController.h"
 #import "SettlementInputCell.h"
 #import "SettleKeyBoardView.h"
-
+#import "SaleVcModel.h"
 #import "Settlement.h"
 
 @interface SettlementViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -39,8 +39,8 @@
 - (void)initData{
     _dataArr1 = [NSMutableArray arrayWithCapacity:0];
     _dataArr2 = [NSMutableArray arrayWithCapacity:0];
-    NSArray *titlearr1 = @[@"销货单号",@"业务日期",@"客户",@"业务员",@"货品数量",@"合计金额",@"其他费用",@"总计",@"备注"];
-    NSArray *valueArr1 = @[@"XS201712200001",@"2019-01-18",@"吉布纺织（欠款:500.00元)",@"小王",@"2款, 4匹, 100.00米",@"1000.00元",@"50.00元",@"1050.00元",@"备注"];
+    NSArray *titlearr1 = @[@"业务日期",@"客户",@"业务员",@"货品数量",@"合计金额",@"其他费用",@"总计",@"备注"];
+    NSArray *valueArr1 = @[@"2019-01-18",@"吉布纺织（欠款:500.00元)",@"小王",@"2款, 4匹, 100.00米",@"1000.00元",@"50.00元",@"1050.00元",@"备注"];
     NSMutableArray  *arr1 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *arr2 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *arr3 = [NSMutableArray arrayWithCapacity:0];

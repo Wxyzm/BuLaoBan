@@ -21,10 +21,8 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self initUI];
     }
-    
     return self;
 }
-
 
 - (void)initUI{
     
@@ -52,7 +50,6 @@
 
     }
     
-    
     _nameLab.sd_layout
     .leftSpaceToView(self.contentView, 16)
     .topEqualToView(self.contentView)
@@ -64,7 +61,6 @@
     .bottomEqualToView(self.contentView)
     .rightEqualToView(self.contentView)
     .heightIs(1);
-    
     
     if (Settlement.ValueType == ValueType_Input) {
         _rightIma.hidden = YES;
@@ -87,35 +83,24 @@
         .topEqualToView(self.contentView)
         .bottomEqualToView(self.contentView)
         .leftSpaceToView(_nameLab, 10);
-        
-       
     }else{
         _rightIma.hidden = YES;
 
     }
-    
-  
-    
-    
-    
 }
 
 
 /**
  修改字符串中数字颜色, 并返回对应富文本
- 
- @param color 数字颜色, 包括小数
+  @param color 数字颜色, 包括小数
  @param normalColor 默认颜色
  @return 结果富文本
  */
 - (NSMutableAttributedString *)modifyDigitalColor:(UIColor *)color normalColor:(UIColor *)normalColor aneText:(NSString *)text;
 {
     NSRegularExpression *regular = [NSRegularExpression regularExpressionWithPattern:@"([0-9]\\d*\\.?\\d*)" options:0 error:NULL];
-    
     NSArray<NSTextCheckingResult *> *ranges = [regular matchesInString:text options:0 range:NSMakeRange(0, [text length])];
-    
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName : normalColor}];
-    
     for (int i = 0; i < ranges.count; i++) {
         [attStr setAttributes:@{NSForegroundColorAttributeName : color} range:ranges[i].range];
     }

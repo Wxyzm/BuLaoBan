@@ -9,5 +9,14 @@
 #import "SaleSamModel.h"
 
 @implementation SaleSamModel
-
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        if (!_packingList) {
+            _packingList = [NSMutableArray arrayWithCapacity:0];
+        }
+        
+    }
+    return self;
+}
 @end

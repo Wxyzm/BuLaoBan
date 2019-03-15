@@ -12,6 +12,7 @@
 		0B2021652238D77700EAF565 /* PackingListDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2021642238D77700EAF565 /* PackingListDetail.m */; };
 		0B2021682238EE8C00EAF565 /* SaleVcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2021672238EE8C00EAF565 /* SaleVcModel.m */; };
 		0B20216B2238EF3900EAF565 /* SaleSamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B20216A2238EF3900EAF565 /* SaleSamModel.m */; };
+		0B33039C2239EA9C00B0688D /* PackingListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33039B2239EA9C00B0688D /* PackingListView.m */; };
 		0B4A24E52233450A00C3621D /* ReceivableCustomers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24E42233450A00C3621D /* ReceivableCustomers.m */; };
 		0B4A24E82233459D00C3621D /* ReceivableItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24E72233459D00C3621D /* ReceivableItems.m */; };
 		0B4A24F92233546300C3621D /* BillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24F72233546300C3621D /* BillCell.m */; };
@@ -26,6 +27,9 @@
 		0B5E54C1222F59F200F30346 /* PrinterModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54C0222F59F200F30346 /* PrinterModelView.m */; };
 		0B5E54C5222F723D00F30346 /* RightMenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54C4222F723D00F30346 /* RightMenueView.m */; };
 		0B5E54C9222FA79900F30346 /* UpImaPL.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54C8222FA79900F30346 /* UpImaPL.m */; };
+		0B5E57B32239EE3B0009D95B /* PacklistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E57B22239EE3B0009D95B /* PacklistCell.m */; };
+		0B5E57B62239FB220009D95B /* PackListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E57B52239FB220009D95B /* PackListModel.m */; };
+		0B5E57B9223A3E820009D95B /* PacKListDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E57B8223A3E820009D95B /* PacKListDataManager.m */; };
 		0B5F468D2230BFDA00C67EF5 /* GoodsWeightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F468C2230BFDA00C67EF5 /* GoodsWeightView.m */; };
 		0B5F46912230E6F300C67EF5 /* ComCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F46902230E6F300C67EF5 /* ComCustomer.m */; };
 		0B5F46942230F16900C67EF5 /* ComCustomerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F46932230F16900C67EF5 /* ComCustomerDetail.m */; };
@@ -227,6 +231,8 @@
 		0B2021672238EE8C00EAF565 /* SaleVcModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleVcModel.m; sourceTree = "<group>"; };
 		0B2021692238EF3900EAF565 /* SaleSamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleSamModel.h; sourceTree = "<group>"; };
 		0B20216A2238EF3900EAF565 /* SaleSamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleSamModel.m; sourceTree = "<group>"; };
+		0B33039A2239EA9C00B0688D /* PackingListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackingListView.h; sourceTree = "<group>"; };
+		0B33039B2239EA9C00B0688D /* PackingListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackingListView.m; sourceTree = "<group>"; };
 		0B4A24E32233450A00C3621D /* ReceivableCustomers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableCustomers.h; sourceTree = "<group>"; };
 		0B4A24E42233450A00C3621D /* ReceivableCustomers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivableCustomers.m; sourceTree = "<group>"; };
 		0B4A24E62233459D00C3621D /* ReceivableItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableItems.h; sourceTree = "<group>"; };
@@ -253,6 +259,12 @@
 		0B5E54C4222F723D00F30346 /* RightMenueView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightMenueView.m; sourceTree = "<group>"; };
 		0B5E54C7222FA79900F30346 /* UpImaPL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpImaPL.h; sourceTree = "<group>"; };
 		0B5E54C8222FA79900F30346 /* UpImaPL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpImaPL.m; sourceTree = "<group>"; };
+		0B5E57B12239EE3B0009D95B /* PacklistCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PacklistCell.h; sourceTree = "<group>"; };
+		0B5E57B22239EE3B0009D95B /* PacklistCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PacklistCell.m; sourceTree = "<group>"; };
+		0B5E57B42239FB220009D95B /* PackListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackListModel.h; sourceTree = "<group>"; };
+		0B5E57B52239FB220009D95B /* PackListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackListModel.m; sourceTree = "<group>"; };
+		0B5E57B7223A3E820009D95B /* PacKListDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PacKListDataManager.h; sourceTree = "<group>"; };
+		0B5E57B8223A3E820009D95B /* PacKListDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PacKListDataManager.m; sourceTree = "<group>"; };
 		0B5F468B2230BFDA00C67EF5 /* GoodsWeightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsWeightView.h; sourceTree = "<group>"; };
 		0B5F468C2230BFDA00C67EF5 /* GoodsWeightView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsWeightView.m; sourceTree = "<group>"; };
 		0B5F468F2230E6F300C67EF5 /* ComCustomer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComCustomer.h; sourceTree = "<group>"; };
@@ -642,6 +654,17 @@
 			path = Deliver;
 			sourceTree = "<group>";
 		};
+		0B3303992239EA6A00B0688D /* 细码单View */ = {
+			isa = PBXGroup;
+			children = (
+				0B33039A2239EA9C00B0688D /* PackingListView.h */,
+				0B33039B2239EA9C00B0688D /* PackingListView.m */,
+				0B5E57B12239EE3B0009D95B /* PacklistCell.h */,
+				0B5E57B22239EE3B0009D95B /* PacklistCell.m */,
+			);
+			path = "细码单View";
+			sourceTree = "<group>";
+		};
 		0B4A24E2223344EF00C3621D /* Receivable */ = {
 			isa = PBXGroup;
 			children = (
@@ -916,6 +939,10 @@
 				0B2021672238EE8C00EAF565 /* SaleVcModel.m */,
 				0B2021692238EF3900EAF565 /* SaleSamModel.h */,
 				0B20216A2238EF3900EAF565 /* SaleSamModel.m */,
+				0B5E57B42239FB220009D95B /* PackListModel.h */,
+				0B5E57B52239FB220009D95B /* PackListModel.m */,
+				0B5E57B7223A3E820009D95B /* PacKListDataManager.h */,
+				0B5E57B8223A3E820009D95B /* PacKListDataManager.m */,
 				186ECDFB221FD3BD0006F6C3 /* 结算VC */,
 				1870E10122265F9400D328BA /* 销售历史VC */,
 				188083A0221BCD25000CB7B9 /* 销售View */,
@@ -1159,6 +1186,7 @@
 		188083A0221BCD25000CB7B9 /* 销售View */ = {
 			isa = PBXGroup;
 			children = (
+				0B3303992239EA6A00B0688D /* 细码单View */,
 				188083A9221BE164000CB7B9 /* 客户View */,
 				188083A5221BDB13000CB7B9 /* 顶部View */,
 				0B5F46952230FEE700C67EF5 /* 选择客户View */,
@@ -1997,6 +2025,7 @@
 				189C1FE821F9928700C84CA4 /* UIImage+GIF.m in Sources */,
 				189C1FAB21F9927800C84CA4 /* AFHTTPRequestOperation.m in Sources */,
 				189C1FBA21F9927800C84CA4 /* UIRefreshControl+AFNetworking.m in Sources */,
+				0B5E57B9223A3E820009D95B /* PacKListDataManager.m in Sources */,
 				189C1FEB21F9928700C84CA4 /* UIImageView+HighlightedWebCache.m in Sources */,
 				189C1F1E21F9923C00C84CA4 /* MJRefreshConst.m in Sources */,
 				1827742F21FEEB52000F4E0F /* SaleViewController.m in Sources */,
@@ -2008,6 +2037,7 @@
 				189C1F1B21F9923C00C84CA4 /* MJRefreshNormalHeader.m in Sources */,
 				0B7E087722389407007E4E36 /* SampleSearchResultView.m in Sources */,
 				184D666C22100C0F00181590 /* TZGifPhotoPreviewController.m in Sources */,
+				0B33039C2239EA9C00B0688D /* PackingListView.m in Sources */,
 				180B63812226BFFD00578565 /* ReceiveCell.m in Sources */,
 				18A16D6622115AC40099767F /* AddGoodsView.m in Sources */,
 				1889FFE521F9EA3D00F29B8B /* HttpClient.m in Sources */,
@@ -2093,6 +2123,7 @@
 				189C1FB221F9927800C84CA4 /* AFURLResponseSerialization.m in Sources */,
 				18A16D6D221191000099767F /* Sample.m in Sources */,
 				189C1F1621F9923C00C84CA4 /* MJRefreshAutoStateFooter.m in Sources */,
+				0B5E57B62239FB220009D95B /* PackListModel.m in Sources */,
 				189C1FEA21F9928700C84CA4 /* UIImage+WebP.m in Sources */,
 				1827743821FEEBBB000F4E0F /* CustomerViewController.m in Sources */,
 				189C1F1C21F9923C00C84CA4 /* MJRefreshStateHeader.m in Sources */,
@@ -2102,6 +2133,7 @@
 				189C1FB521F9927800C84CA4 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				0B20215F2238D06300EAF565 /* Deliver.m in Sources */,
 				0B9BC32F222E704F00A4C083 /* StaffView.m in Sources */,
+				0B5E57B32239EE3B0009D95B /* PacklistCell.m in Sources */,
 				184D666B22100C0F00181590 /* TZAssetModel.m in Sources */,
 				1870E10C222669F100D328BA /* SaleHisListCell.m in Sources */,
 				189C1DB821F9881800C84CA4 /* AppDelegate.m in Sources */,
