@@ -49,6 +49,8 @@
 		0B9BC32B222E6A4300A4C083 /* StaffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC32A222E6A4300A4C083 /* StaffCell.m */; };
 		0B9BC32F222E704F00A4C083 /* StaffView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC32E222E704F00A4C083 /* StaffView.m */; };
 		0BC13E6D22377E370065C0A0 /* CustomerSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */; };
+		0BD61425223C8E7D00AC45B4 /* SettleVcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */; };
+		0BD61429223C9B6A00AC45B4 /* SettleMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61427223C9B6A00AC45B4 /* SettleMoneyCell.m */; };
 		18049AC92223DF670068C75C /* LBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049AC82223DF670068C75C /* LBTabBarController.m */; };
 		180B63792226B8AF00578565 /* BillCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B63782226B8AF00578565 /* BillCheckView.m */; };
 		180B63812226BFFD00578565 /* ReceiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B63802226BFFD00578565 /* ReceiveCell.m */; };
@@ -301,6 +303,10 @@
 		0B9BC32E222E704F00A4C083 /* StaffView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffView.m; sourceTree = "<group>"; };
 		0BC13E6B22377E370065C0A0 /* CustomerSelectedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerSelectedCell.h; sourceTree = "<group>"; };
 		0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerSelectedCell.m; sourceTree = "<group>"; };
+		0BD61423223C8E7D00AC45B4 /* SettleVcModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettleVcModel.h; sourceTree = "<group>"; };
+		0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettleVcModel.m; sourceTree = "<group>"; };
+		0BD61426223C9B6A00AC45B4 /* SettleMoneyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettleMoneyCell.h; sourceTree = "<group>"; };
+		0BD61427223C9B6A00AC45B4 /* SettleMoneyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettleMoneyCell.m; sourceTree = "<group>"; };
 		155A735819312D58DF46AE1F /* Pods_BuLaoBan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuLaoBan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18049AC72223DF670068C75C /* LBTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTabBarController.h; sourceTree = "<group>"; };
 		18049AC82223DF670068C75C /* LBTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTabBarController.m; sourceTree = "<group>"; };
@@ -879,6 +885,30 @@
 			path = "员工管理View";
 			sourceTree = "<group>";
 		};
+		0BD61421223C8E5300AC45B4 /* 页面model */ = {
+			isa = PBXGroup;
+			children = (
+				0B2021662238EE8C00EAF565 /* SaleVcModel.h */,
+				0B2021672238EE8C00EAF565 /* SaleVcModel.m */,
+				0B2021692238EF3900EAF565 /* SaleSamModel.h */,
+				0B20216A2238EF3900EAF565 /* SaleSamModel.m */,
+				0B5E57B42239FB220009D95B /* PackListModel.h */,
+				0B5E57B52239FB220009D95B /* PackListModel.m */,
+				0B5E57B7223A3E820009D95B /* PacKListDataManager.h */,
+				0B5E57B8223A3E820009D95B /* PacKListDataManager.m */,
+			);
+			path = "页面model";
+			sourceTree = "<group>";
+		};
+		0BD61422223C8E6800AC45B4 /* 页面model */ = {
+			isa = PBXGroup;
+			children = (
+				0BD61423223C8E7D00AC45B4 /* SettleVcModel.h */,
+				0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */,
+			);
+			path = "页面model";
+			sourceTree = "<group>";
+		};
 		180B63762226B87A00578565 /* 对账单统计View */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,19 +965,10 @@
 			children = (
 				1827742D21FEEB52000F4E0F /* SaleViewController.h */,
 				1827742E21FEEB52000F4E0F /* SaleViewController.m */,
-				0B2021662238EE8C00EAF565 /* SaleVcModel.h */,
-				0B2021672238EE8C00EAF565 /* SaleVcModel.m */,
-				0B2021692238EF3900EAF565 /* SaleSamModel.h */,
-				0B20216A2238EF3900EAF565 /* SaleSamModel.m */,
-				0B5E57B42239FB220009D95B /* PackListModel.h */,
-				0B5E57B52239FB220009D95B /* PackListModel.m */,
-				0B5E57B7223A3E820009D95B /* PacKListDataManager.h */,
-				0B5E57B8223A3E820009D95B /* PacKListDataManager.m */,
+				188083A0221BCD25000CB7B9 /* 销售View */,
+				0BD61421223C8E5300AC45B4 /* 页面model */,
 				186ECDFB221FD3BD0006F6C3 /* 结算VC */,
 				1870E10122265F9400D328BA /* 销售历史VC */,
-				188083A0221BCD25000CB7B9 /* 销售View */,
-				188A01C22223822F005B321F /* 结算View */,
-				1870E106222666D700D328BA /* 销售历史View */,
 			);
 			path = "销售";
 			sourceTree = "<group>";
@@ -1089,6 +1110,8 @@
 			children = (
 				186ECDFC221FD3FE0006F6C3 /* SettlementViewController.h */,
 				186ECDFD221FD3FE0006F6C3 /* SettlementViewController.m */,
+				188A01C22223822F005B321F /* 结算View */,
+				0BD61422223C8E6800AC45B4 /* 页面model */,
 			);
 			path = "结算VC";
 			sourceTree = "<group>";
@@ -1114,6 +1137,7 @@
 		1870E10122265F9400D328BA /* 销售历史VC */ = {
 			isa = PBXGroup;
 			children = (
+				1870E106222666D700D328BA /* 销售历史View */,
 				1870E10222265FBA00D328BA /* SaleHistoryController.h */,
 				1870E10322265FBA00D328BA /* SaleHistoryController.m */,
 			);
@@ -1270,6 +1294,8 @@
 			children = (
 				188A01C6222382CC005B321F /* SettlementInputCell.h */,
 				188A01C7222382CC005B321F /* SettlementInputCell.m */,
+				0BD61426223C9B6A00AC45B4 /* SettleMoneyCell.h */,
+				0BD61427223C9B6A00AC45B4 /* SettleMoneyCell.m */,
 				188A01CD2223D397005B321F /* 结算键盘 */,
 			);
 			path = "结算View";
@@ -1987,6 +2013,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BD61425223C8E7D00AC45B4 /* SettleVcModel.m in Sources */,
 				18A16D732211A83B0099767F /* picModel.m in Sources */,
 				189D51B7221CF4E2002AD8A3 /* SaleListTopView.m in Sources */,
 				189C1FE021F9928700C84CA4 /* SDImageCache.m in Sources */,
@@ -2127,6 +2154,7 @@
 				189C1FEA21F9928700C84CA4 /* UIImage+WebP.m in Sources */,
 				1827743821FEEBBB000F4E0F /* CustomerViewController.m in Sources */,
 				189C1F1C21F9923C00C84CA4 /* MJRefreshStateHeader.m in Sources */,
+				0BD61429223C9B6A00AC45B4 /* SettleMoneyCell.m in Sources */,
 				18CF0FD02212AE9000B8D9CC /* CompView.m in Sources */,
 				189C1FE921F9928700C84CA4 /* UIImage+MultiFormat.m in Sources */,
 				189C1F4021F9924E00C84CA4 /* NSObject+MJKeyValue.m in Sources */,

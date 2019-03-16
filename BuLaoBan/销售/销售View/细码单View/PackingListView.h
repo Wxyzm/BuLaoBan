@@ -10,7 +10,7 @@
 @class SaleSamModel;
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^PackingListViewSaveBlock)(NSMutableArray *validArr);
+typedef void(^PackingListViewSaveBlock)(SaleSamModel *saleSamModel);
 
 @interface PackingListView : UIView
 

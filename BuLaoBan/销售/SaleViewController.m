@@ -28,6 +28,7 @@
 #import "SaleSamModel.h"
 #import "PackingListView.h"//细码单填写View
 #import "PackListModel.h"  //细码单
+#import "SettleVcModel.h"  //结算页面model
 
 @interface SaleViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -43,6 +44,7 @@
 @property (nonatomic, strong) UILabel *moneyLab;                    //金额
 
 @property (nonatomic, strong) SaleVcModel *model;                   //首页数据保存Model
+@property (nonatomic, strong) SettleVcModel *settleModel;           //结算model
 
 @end
 
@@ -70,6 +72,7 @@
     _SearchStr = @"";
     _dataArr = [NSMutableArray arrayWithCapacity:0];
     _model = [[SaleVcModel alloc]init];
+    _settleModel = [[SettleVcModel alloc]init];
 }
 
 - (void)initUI{
@@ -90,14 +93,14 @@
 
     UILabel *numlab = [BaseViewFactory labelWithFrame:CGRectMake(10, 0, 50, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentLeft andtext:@"数量"];
     [StatisticsView addSubview:numlab];
-    _numLab  = [BaseViewFactory labelWithFrame:CGRectMake(50, 0, 160, 50) textColor:UIColorFromRGB(BlueColorValue) font:APPFONT14 textAligment:NSTextAlignmentRight andtext:@"2款, 4匹, 100.00米"];
+    _numLab  = [BaseViewFactory labelWithFrame:CGRectMake(50, 0, 160, 50) textColor:UIColorFromRGB(BlueColorValue) font:APPFONT14 textAligment:NSTextAlignmentRight andtext:@"0款, 0匹, 0.00米"];
     [StatisticsView addSubview:_numLab];
     UIView *line = [BaseViewFactory viewWithFrame:CGRectMake(10, 49, 200, 1) color:UIColorFromRGB(LineColorValue)];
     [StatisticsView addSubview:line];
 
     UILabel *moneylab = [BaseViewFactory labelWithFrame:CGRectMake(10, 50, 50, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentLeft andtext:@"金额"];
     [StatisticsView addSubview:moneylab];
-    _moneyLab  = [BaseViewFactory labelWithFrame:CGRectMake(50, 50, 160, 50) textColor:UIColorFromRGB(RedColorValue) font:APPFONT14 textAligment:NSTextAlignmentRight andtext:@"1000.00"];
+    _moneyLab  = [BaseViewFactory labelWithFrame:CGRectMake(50, 50, 160, 50) textColor:UIColorFromRGB(RedColorValue) font:APPFONT14 textAligment:NSTextAlignmentRight andtext:@"0.00"];
     [StatisticsView addSubview:_moneyLab];
     UIView *line1 = [BaseViewFactory viewWithFrame:CGRectMake(10, 99, 200, 1) color:UIColorFromRGB(LineColorValue)];
     [StatisticsView addSubview:line1];
@@ -120,6 +123,8 @@
     self.customerSelecteView.returnBlock = ^(ComCustomer * _Nonnull comCusModel) {
         weakself.model.comId = comCusModel.comId;
         weakself.model.comName = comCusModel.name;
+        weakself.settleModel.comId = comCusModel.comId;
+        weakself.settleModel.comName = comCusModel.name;
         [weakself.CustomerView.customerBtn setTitle:comCusModel.name forState:UIControlStateNormal];
     };
     //商品搜索
@@ -136,13 +141,22 @@
         samodel.name = SampleModel.name;
         samodel.unit = SampleModel.primaryUnit;
         [weakself.model.sampleList addObject:samodel];
-        [weakself.ListTab reloadData];
+        [weakself reloadDatasList];
     };
     //保存细码单
-    self.packingListView.returnBlock = ^(NSMutableArray * _Nonnull validArr) {
-        [weakself.ListTab reloadData];
+    self.packingListView.returnBlock = ^(SaleSamModel * _Nonnull saleSamModel) {
+        
+        if (saleSamModel.unitPrice.length>0) {
+            //计算总价
+            saleSamModel.money = [NSString stringWithFormat:@"%.2f",[saleSamModel.unitPrice floatValue] *saleSamModel.MeetTotal];
+        }else{
+            
+        }
+        [weakself reloadDatasList];
     };
 }
+
+
 
 #pragma mark ====== 顶部按钮点击 0:销售历史   1：s销售统计    2：挂单   3：取单
 /**
@@ -230,16 +244,53 @@
             }
         }else{
             //细码单填写
-            
         }
     }
     
     
+    
     SettlementViewController *setvc = [[SettlementViewController alloc]init];
-    setvc.model = _model;
+    setvc.model = _settleModel;
     [self.navigationController pushViewController:setvc animated:YES];
  }
 
+
+
+/**
+ 刷新列表数据
+ */
+- (void)reloadDatasList{
+    [self .ListTab reloadData];
+    //总米数
+    CGFloat meet = 0.00;
+    for (SaleSamModel *model in _model.sampleList) {
+        if ([model.salesVol floatValue]>0) {
+            meet += [model.salesVol floatValue];
+        }else if (model.MeetTotal>0){
+            meet += model.MeetTotal;
+        }
+    }
+    //总匹数
+    NSInteger pieces = 0;
+    for (SaleSamModel *model in _model.sampleList) {
+        if ([model.pieces integerValue]>0) {
+            pieces += [model.pieces integerValue];
+        }else if (model.piecesTotal>0){
+            pieces += model.piecesTotal;
+        }
+    }
+    _numLab.text = [NSString stringWithFormat:@"%ld款, %ld匹, %.2f米",_model.sampleList.count,pieces,meet];
+    //总金额
+    CGFloat money = 0.00;
+    for (SaleSamModel *model in _model.sampleList) {
+        money += [model.money floatValue];
+    }
+    _moneyLab.text = [NSString stringWithFormat:@"￥ %.2f",money];
+    _settleModel.styleNum = _model.sampleList.count;
+    _settleModel.pieceNum = pieces;
+    _settleModel.meetNum = meet;
+    _settleModel.goofsMoney = money;
+}
 
 #pragma mark ====== j获取客户列表
 - (void)loadCustomerList{
@@ -298,7 +349,7 @@
             //删除
             if ([_model.sampleList containsObject:model]) {
                 [_model.sampleList removeObject:model];
-                [self.ListTab reloadData];
+                [self reloadDatasList];
             }
         }else if (type==1){
             //添加细码单
@@ -307,8 +358,7 @@
         }
         else{
          //输入完成
-            [self.ListTab reloadData];
-
+            [self reloadDatasList];
         }
     };
     return cell;

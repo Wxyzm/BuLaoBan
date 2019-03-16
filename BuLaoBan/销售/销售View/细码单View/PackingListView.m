@@ -120,9 +120,13 @@
     //获取数据进一个数组
     NSMutableArray *valiarr = [_packManager getValidDatas];
     [_saleSamModel.packingList addObjectsFromArray:valiarr];
+    //总米数
+    _saleSamModel.MeetTotal = [_packManager getMeetTotal];
+    _saleSamModel.piecesTotal = [_packManager getReelTotal];
+
     WeakSelf(self);
     if (weakself.returnBlock) {
-        weakself.returnBlock(valiarr);
+        weakself.returnBlock(_saleSamModel);
     }
     [self dismiss];
 }
@@ -158,7 +162,6 @@
 
 //点击选页按钮
 - (void)pageBtnClick:(YLButton *)selectbtn{
-    
     _selectedIndex = selectbtn.tag - 1000;
     for (int i = 0; i<_pageBtnArr.count; i++) {
         YLButton *btn = _pageBtnArr[i];
@@ -256,7 +259,6 @@
         cell.packModel = dataArr[indexPath.row-1];
     }
     cell.InsertBlock = ^(PackListModel * _Nonnull oldModel) {
-       
         [_packManager insertOndDataaftermodel:oldModel];
         [self.ListTab reloadData];
         [self refreshBoomBtn];
@@ -301,7 +303,4 @@
     }
     return _ListTab;
 }
-
-
-
 @end

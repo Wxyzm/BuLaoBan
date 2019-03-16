@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *money;     //金额
 @property (nonatomic, strong) NSMutableArray *packingList; //细码单
 
+@property (nonatomic, assign) CGFloat MeetTotal;     //米数总计
+@property (nonatomic, assign) NSInteger piecesTotal;    //匹数总计
 
 //输入总码数据则细码单无法输入，若输入细码单，则总码单是细码单算出来的
 @property (nonatomic, assign) BOOL caninput;     //是否手动输入（米数。匹数等）

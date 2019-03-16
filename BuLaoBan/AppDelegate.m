@@ -25,11 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.backgroundColor = UIColorFromRGB(WhiteColorValue);
-//    LBNavigationController *lbVc = [[LBNavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
-//    //self.window.rootViewController=[[HomeRootViewController alloc]init];
-//    self.window.rootViewController=lbVc;
-//    [self.window makeKeyAndVisible];
+
     _mainTab = [[LBTabBarController alloc]init];
     _mainTab.selectedIndex = 1;
     //设置状态栏字体颜色
@@ -45,8 +41,8 @@
     [self.splitViewController setPresentsWithGesture:YES];
     self.splitViewController.viewControllers = @[masterNav,_mainTab];
     self.splitViewController.delegate = _detail;
-    self.window.rootViewController =
-    self.splitViewController;
+    LBNavigationController *lbVc = [[LBNavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
+    self.window.rootViewController = lbVc;
     self.splitViewController.maximumPrimaryColumnWidth = 100.0;
     
     [self.window makeKeyAndVisible];

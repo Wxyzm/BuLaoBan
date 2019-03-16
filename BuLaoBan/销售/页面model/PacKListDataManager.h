@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) NSInteger MaxpageNum;  //默认最多五页
 @property(nonatomic, strong) NSMutableArray *dataArr;  //传入数据
 
-
 //新增一页空数据
 - (void)addOnepageNewDatas;
 
@@ -38,20 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
 //获取数组中有效的数据
 - (NSMutableArray *)getValidDatas;
 
-
 /**
  *  将数组拆分成固定长度的子数组
  *  @param array 需要拆分的数组
  *  @param subSize 指定长度
  */
 - (NSArray*)splitArray: (NSArray*)array withSubSize : (int)subSize;
-
-
-//细码单数据
-//一页20条数据，最多5页
-//
-//
-
 
 @end
 

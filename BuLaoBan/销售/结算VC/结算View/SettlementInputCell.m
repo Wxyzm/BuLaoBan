@@ -25,7 +25,6 @@
 }
 
 - (void)initUI{
-    
     _nameLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentLeft andtext:@""];
     [self.contentView addSubview:_nameLab];
     
@@ -37,7 +36,6 @@
 
     _rightIma = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"right"]];
     [self.contentView addSubview:_rightIma];
-
 }
 
 -(void)setSettlement:(Settlement *)Settlement{
@@ -47,9 +45,7 @@
         _showLab.attributedText = [self modifyDigitalColor:UIColorFromRGB(RedColorValue) normalColor:UIColorFromRGB(BlackColorValue) aneText: Settlement.showValue];
     }else{
         _showLab.text = Settlement.showValue;
-
     }
-    
     _nameLab.sd_layout
     .leftSpaceToView(self.contentView, 16)
     .topEqualToView(self.contentView)
@@ -71,7 +67,6 @@
         .leftSpaceToView(_nameLab, 10);
     }else if (Settlement.ValueType == ValueType_Select){
         _rightIma.hidden = NO;
-
         _rightIma.sd_layout
         .rightSpaceToView(self.contentView, 16)
         .centerYEqualToView(self.contentView)
@@ -85,14 +80,13 @@
         .leftSpaceToView(_nameLab, 10);
     }else{
         _rightIma.hidden = YES;
-
     }
 }
 
 
 /**
  修改字符串中数字颜色, 并返回对应富文本
-  @param color 数字颜色, 包括小数
+ @param color 数字颜色, 包括小数
  @param normalColor 默认颜色
  @return 结果富文本
  */

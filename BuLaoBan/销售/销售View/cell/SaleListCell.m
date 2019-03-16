@@ -254,7 +254,6 @@
         //单价
         _model.unitPrice = _unitPriceTxt.text;
         [self setModelMoney];
-
     }else if (textField ==_matchesNumTxt){
         //匹数
         _model.pieces = _matchesNumTxt.text;
@@ -269,7 +268,6 @@
         //金额
         _model.money = _amoutMoneyTxt.text;
     }
-    
     WeakSelf(self);
     if (weakself.returnBlock) {
         weakself.returnBlock(_model, 2);
@@ -285,6 +283,9 @@
 - (void)setModelMoney{
     if (_model.unitPrice.length>0&&_model.salesVol.length) {
         _model.money = [NSString stringWithFormat:@"%.2f",[_model.unitPrice floatValue]*[_model.salesVol floatValue]];
+        _amoutMoneyTxt.text = _model.money;
+    }else if (_model.unitPrice.length>0&&_model.MeetTotal>0){
+        _model.money = [NSString stringWithFormat:@"%.2f",[_model.unitPrice floatValue]*_model.MeetTotal];
         _amoutMoneyTxt.text = _model.money;
     }
 }

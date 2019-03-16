@@ -9,7 +9,7 @@
 #import "SettlementViewController.h"
 #import "SettlementInputCell.h"
 #import "SettleKeyBoardView.h"
-#import "SaleVcModel.h"
+#import "SettleVcModel.h"
 #import "Settlement.h"
 
 @interface SettlementViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -37,10 +37,16 @@
 }
 
 - (void)initData{
+    NSDate *date=[NSDate date];
+    NSDateFormatter *format1=[[NSDateFormatter alloc] init];
+    [format1 setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr;
+    dateStr=[format1 stringFromDate:date];
+    
     _dataArr1 = [NSMutableArray arrayWithCapacity:0];
     _dataArr2 = [NSMutableArray arrayWithCapacity:0];
     NSArray *titlearr1 = @[@"业务日期",@"客户",@"业务员",@"货品数量",@"合计金额",@"其他费用",@"总计",@"备注"];
-    NSArray *valueArr1 = @[@"2019-01-18",@"吉布纺织（欠款:500.00元)",@"小王",@"2款, 4匹, 100.00米",@"1000.00元",@"50.00元",@"1050.00元",@"备注"];
+    NSArray *valueArr1 = @[dateStr,_model.comName,@"",[NSString stringWithFormat:@"%ld款, %ld匹, %.2f米",_model.styleNum,_model.pieceNum,_model.meetNum],[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"50.00元",@"1050.00元",@"备注"];
     NSMutableArray  *arr1 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *arr2 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *arr3 = [NSMutableArray arrayWithCapacity:0];
@@ -106,6 +112,7 @@
 
 
 - (void)initUI{
+    self.view.backgroundColor = UIColorFromRGB(BackColorValue);
     [self.view addSubview:self.ListTab];
     [self.view addSubview:self.settleTab];
     UIView *line = [BaseViewFactory viewWithFrame:CGRectMake(400, 0, 1, ScreenHeight-64) color:UIColorFromRGB(LineColorValue)];

@@ -209,12 +209,8 @@
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:paramDic options:0 error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    //  NSString * sendStr= [GlobalMethod dictionaryToJson:info];
-    //  NSData *data = [sendStr dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
-    [HUD showLoading:nil];
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [HUD cancel];
         if (error) {
             [HUD show:@"网络错误"];
             errorBlock(@"网络错误");
@@ -228,7 +224,6 @@
                     [HUD show:resultDic[@"message"]];
                     errorBlock(resultDic[@"message"]);
                 }
-                
                 returnBlock(resultDic);
             });
         }
@@ -269,7 +264,6 @@
             [HUD show:resultDic[@"message"]];
             errorBlock(resultDic[@"message"]);
         }
-        
         returnBlock(resultDic);
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
         if (error) {
@@ -277,7 +271,6 @@
             errorBlock(@"网络错误");
         }
     }];
-   
 }
 
 
@@ -287,7 +280,6 @@
     if (jsonString == nil) {
         return nil;
     }
-    
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     
@@ -297,7 +289,6 @@
     if(err) {
         return nil;
     }
-    
     return [GlobalMethod deleteEmpty:value];
 }
 
@@ -321,11 +312,7 @@
      }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          errorBlock(@"网络错误");
      }];
-    
     [_queue addOperation:operation];
-    
-    
-    
 }
 
 /**

@@ -102,18 +102,7 @@
                           @"userName":_infoModel.userName,
                           @"avatar":_infoModel.avatar,
                           @"email":_infoModel.email,
-                          @"weixin":_infoModel.weixin,
-                          @"position":_infoModel.position,
-                          @"address":_infoModel.address,
                           @"telephone":_infoModel.telephone,
-                          @"birthday":_infoModel.birthday,
-                          @"fax":_infoModel.fax,
-                          @"companyName":_infoModel.companyName,
-                          @"companyDesc":_infoModel.companyDesc,
-                          @"scope":_infoModel.scope,
-                          @"theodolite":_infoModel.theodolite,
-                          @"pics":[_infoModel.pics componentsJoinedByString:@","],
-                          @"visibleModules":[_infoModel.visibleModules componentsJoinedByString:@","]
                           };
 //    [_infoDic setValue:_infoModel.avatar forKey:@"avatar"];
 //    [_infoDic setValue:_infoModel.userName forKey:@"userName"];

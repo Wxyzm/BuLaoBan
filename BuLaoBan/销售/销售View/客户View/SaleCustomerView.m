@@ -24,14 +24,12 @@
     return self;
 }
 
-
 - (void)setUP{
     UILabel *numLab = [BaseViewFactory labelWithFrame:CGRectMake(0, 0, 52, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentRight andtext:@"客户*"];
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:@"客户*"];
     [attStr addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xFC3030) range:NSMakeRange(2, 1)];
     numLab.attributedText = attStr;
     [self addSubview:numLab];
-    
     
     _customerBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(55, 10, 150, 30) font:APPFONT13 title:@"选择客户" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [_customerBtn setTitleRect:CGRectMake(10, 0, 130, 30)];
@@ -42,10 +40,8 @@
     [_customerBtn addTarget:self action:@selector(customerBtnCLick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_customerBtn];
 
-    
     UILabel *kindLab = [BaseViewFactory labelWithFrame:CGRectMake(210, 0, 36, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentRight andtext:@"类型"];
     [self addSubview:kindLab];
-    
     
     _kindBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(257, 10, 150, 30) font:APPFONT13 title:@"" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [_kindBtn setTitleRect:CGRectMake(10, 0, 130, 30)];
