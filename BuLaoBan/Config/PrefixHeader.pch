@@ -29,7 +29,7 @@
 #import "HttpClient.h"
 #import "GlobalMethod.h"
 #import "NSString+MD5Extension.h"
-
+#import "IQKeyboardManager.h"
 
 
 #import "UIImageView+WebCache.h"

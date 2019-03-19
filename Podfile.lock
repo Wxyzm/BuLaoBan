@@ -3,6 +3,9 @@ PODS:
   - AlamofireObjectMapper (5.2.0):
     - Alamofire (~> 4.7)
     - ObjectMapper (~> 3.4)
+  - Bugtags (3.1.1):
+    - Bugtags/Core (= 3.1.1)
+  - Bugtags/Core (3.1.1)
   - IQKeyboardManager (5.0.7)
   - ObjectMapper (3.4.2)
   - PGDatePicker (2.6.9):
@@ -19,6 +22,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
+  - Bugtags
   - IQKeyboardManager
   - PGDatePicker
   - ReactiveCocoa (~> 2.5)
@@ -27,6 +31,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireObjectMapper
+    - Bugtags
     - IQKeyboardManager
     - ObjectMapper
     - PGDatePicker
@@ -36,12 +41,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  Bugtags: 7fe8938867b57cd2b5b04683f8a680a44d998a0c
   IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
   PGDatePicker: 88960f3760edac96219c10320f25536ad31d0f44
   PGPickerView: 037acfb132a4c8054fb43aaa59a5ff50c7f747f5
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
-PODFILE CHECKSUM: fbc7278e8bb1edbaf85e6166754a777fbdb96ac0
+PODFILE CHECKSUM: 3a45d3800bb981e05bfacf272ca35575adbc2387
 
 COCOAPODS: 1.5.3

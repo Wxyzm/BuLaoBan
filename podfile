@@ -3,7 +3,8 @@ use_frameworks!
 
 target 'BuLaoBan' do
     pod 'PGDatePicker'
-    pod 'Alamofire' 
+    pod 'Alamofire'
+    pod 'Bugtags'
     pod 'AlamofireObjectMapper'  
     pod 'ReactiveCocoa', '~> 2.5'
     pod 'IQKeyboardManager'

@@ -12,12 +12,18 @@
 #import "CustomerCell.h"
 #import "ComCustomer.h"
 
+#import "RightMenueView.h" //右侧菜单
+#import "CustomerAddView.h"
 
 @interface CustomerViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *ListTab;
 @property (nonatomic, strong) CustomerDetailView *detailView;
 
+/**
+ 编辑菜单
+ */
+@property (nonatomic, strong) RightMenueView*menueView;
 @end
 
 @implementation CustomerViewController{
@@ -38,7 +44,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    CustomerAddView *addview = [[CustomerAddView alloc]init];;
+    [self.view addSubview:addview];
 }
 
 - (void)initUI{
@@ -82,7 +89,8 @@
     
     UIView *line2 = [BaseViewFactory viewWithFrame:CGRectMake(300, 0, 1, ScreenHeight) color:UIColorFromRGB(LineColorValue)];
     [self.view addSubview:line2];
-    
+    //编辑
+    [self.view addSubview:self.menueView];
 }
 
 
@@ -155,8 +163,22 @@
 }
 //客户编辑
 - (void)changeBtnGoodsBtnClick{
-    
-    
+    WeakSelf(self);
+    [self.view bringSubviewToFront:self.menueView];
+    self.menueView.hidden = NO;
+    self.menueView.returnBlock = ^(NSInteger index) {
+        switch (index) {
+            case 0:{
+                break;
+            }
+            case 1:{
+                break;
+            }
+         
+            default:
+                break;
+        }
+    };
 }
 
 #pragma mark ====== tableviewdelegate
@@ -227,5 +249,13 @@
     return _ListTab;
 }
 
+-(RightMenueView *)menueView{
+    
+    if (!_menueView) {
+        NSArray *titleArr = @[@"编辑",@"删除"];
+        _menueView = [[RightMenueView alloc]initWithTitleArr:titleArr];
+    }
+    return _menueView;
+}
 
 @end

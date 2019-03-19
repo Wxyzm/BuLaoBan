@@ -13,6 +13,7 @@
 
 #import "DetailViewController.h"
 #import "ListViewController.h"
+#import <Bugtags/Bugtags.h>
 
 
 @interface AppDelegate ()
@@ -42,8 +43,12 @@
     self.splitViewController.viewControllers = @[masterNav,_mainTab];
     self.splitViewController.delegate = _detail;
     LBNavigationController *lbVc = [[LBNavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
-    self.window.rootViewController = lbVc;
+    
+    self.window.rootViewController =  self.splitViewController;
     self.splitViewController.maximumPrimaryColumnWidth = 100.0;
+    
+    [Bugtags startWithAppKey:@"a1bc1972953ced15a53bcd43caae981f" invocationEvent:BTGInvocationEventBubble];
+
     
     [self.window makeKeyAndVisible];
     return YES;

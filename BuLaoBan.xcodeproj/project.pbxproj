@@ -13,6 +13,7 @@
 		0B2021682238EE8C00EAF565 /* SaleVcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2021672238EE8C00EAF565 /* SaleVcModel.m */; };
 		0B20216B2238EF3900EAF565 /* SaleSamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B20216A2238EF3900EAF565 /* SaleSamModel.m */; };
 		0B33039C2239EA9C00B0688D /* PackingListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33039B2239EA9C00B0688D /* PackingListView.m */; };
+		0B348BFA2240CF4B004EE967 /* CustomerAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B348BF92240CF4B004EE967 /* CustomerAddView.m */; };
 		0B4A24E52233450A00C3621D /* ReceivableCustomers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24E42233450A00C3621D /* ReceivableCustomers.m */; };
 		0B4A24E82233459D00C3621D /* ReceivableItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24E72233459D00C3621D /* ReceivableItems.m */; };
 		0B4A24F92233546300C3621D /* BillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24F72233546300C3621D /* BillCell.m */; };
@@ -51,6 +52,7 @@
 		0BC13E6D22377E370065C0A0 /* CustomerSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */; };
 		0BD61425223C8E7D00AC45B4 /* SettleVcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */; };
 		0BD61429223C9B6A00AC45B4 /* SettleMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61427223C9B6A00AC45B4 /* SettleMoneyCell.m */; };
+		0BD770952240D6F3001D51F0 /* CustomerAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD770942240D6F3001D51F0 /* CustomerAddView.xib */; };
 		18049AC92223DF670068C75C /* LBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049AC82223DF670068C75C /* LBTabBarController.m */; };
 		180B63792226B8AF00578565 /* BillCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B63782226B8AF00578565 /* BillCheckView.m */; };
 		180B63812226BFFD00578565 /* ReceiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B63802226BFFD00578565 /* ReceiveCell.m */; };
@@ -235,6 +237,8 @@
 		0B20216A2238EF3900EAF565 /* SaleSamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleSamModel.m; sourceTree = "<group>"; };
 		0B33039A2239EA9C00B0688D /* PackingListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackingListView.h; sourceTree = "<group>"; };
 		0B33039B2239EA9C00B0688D /* PackingListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackingListView.m; sourceTree = "<group>"; };
+		0B348BF82240CF4B004EE967 /* CustomerAddView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerAddView.h; sourceTree = "<group>"; };
+		0B348BF92240CF4B004EE967 /* CustomerAddView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerAddView.m; sourceTree = "<group>"; };
 		0B4A24E32233450A00C3621D /* ReceivableCustomers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableCustomers.h; sourceTree = "<group>"; };
 		0B4A24E42233450A00C3621D /* ReceivableCustomers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivableCustomers.m; sourceTree = "<group>"; };
 		0B4A24E62233459D00C3621D /* ReceivableItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableItems.h; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 		0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettleVcModel.m; sourceTree = "<group>"; };
 		0BD61426223C9B6A00AC45B4 /* SettleMoneyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettleMoneyCell.h; sourceTree = "<group>"; };
 		0BD61427223C9B6A00AC45B4 /* SettleMoneyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettleMoneyCell.m; sourceTree = "<group>"; };
+		0BD770942240D6F3001D51F0 /* CustomerAddView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomerAddView.xib; sourceTree = "<group>"; };
 		155A735819312D58DF46AE1F /* Pods_BuLaoBan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuLaoBan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18049AC72223DF670068C75C /* LBTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTabBarController.h; sourceTree = "<group>"; };
 		18049AC82223DF670068C75C /* LBTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTabBarController.m; sourceTree = "<group>"; };
@@ -671,6 +676,16 @@
 			path = "细码单View";
 			sourceTree = "<group>";
 		};
+		0B348BF22240B997004EE967 /* 新增客户 */ = {
+			isa = PBXGroup;
+			children = (
+				0B348BF82240CF4B004EE967 /* CustomerAddView.h */,
+				0B348BF92240CF4B004EE967 /* CustomerAddView.m */,
+				0BD770942240D6F3001D51F0 /* CustomerAddView.xib */,
+			);
+			path = "新增客户";
+			sourceTree = "<group>";
+		};
 		0B4A24E2223344EF00C3621D /* Receivable */ = {
 			isa = PBXGroup;
 			children = (
@@ -1002,6 +1017,7 @@
 			children = (
 				1827743621FEEBBB000F4E0F /* CustomerViewController.h */,
 				1827743721FEEBBB000F4E0F /* CustomerViewController.m */,
+				0B348BF22240B997004EE967 /* 新增客户 */,
 				18D99F0C22114F5D00514AB4 /* view */,
 			);
 			path = "客户";
@@ -1829,6 +1845,7 @@
 				189C1DB021F9881800C84CA4 /* Frameworks */,
 				189C1DB121F9881800C84CA4 /* Resources */,
 				D85976E7089F1DDA689DD205 /* [CP] Embed Pods Frameworks */,
+				89C90B8280B07788AD0A336B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1930,6 +1947,7 @@
 				189C1F1D21F9923C00C84CA4 /* MJRefresh.bundle in Resources */,
 				0B776EAA223600990007DA02 /* StastisticCell.xib in Resources */,
 				189C1DC021F9882200C84CA4 /* Assets.xcassets in Resources */,
+				0BD770952240D6F3001D51F0 /* CustomerAddView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1970,6 +1988,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89C90B8280B07788AD0A336B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BuLaoBan/Pods-BuLaoBan-resources.sh",
+				"${PODS_ROOT}/Bugtags/Bugtags.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Bugtags.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BuLaoBan/Pods-BuLaoBan-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D85976E7089F1DDA689DD205 /* [CP] Embed Pods Frameworks */ = {
@@ -2128,6 +2168,7 @@
 				189C1FB621F9927800C84CA4 /* UIAlertView+AFNetworking.m in Sources */,
 				0B4A24F92233546300C3621D /* BillCell.m in Sources */,
 				18A16D702211A1CB0099767F /* SampleDetail.m in Sources */,
+				0B348BFA2240CF4B004EE967 /* CustomerAddView.m in Sources */,
 				189C1FE421F9928700C84CA4 /* SDWebImageDownloaderOperation.m in Sources */,
 				0B5E54BD222F50CC00F30346 /* LinkPrinterView.m in Sources */,
 				184D667022100C0F00181590 /* TZImagePickerController.m in Sources */,
