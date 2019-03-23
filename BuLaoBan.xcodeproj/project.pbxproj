@@ -14,6 +14,10 @@
 		0B20216B2238EF3900EAF565 /* SaleSamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B20216A2238EF3900EAF565 /* SaleSamModel.m */; };
 		0B33039C2239EA9C00B0688D /* PackingListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33039B2239EA9C00B0688D /* PackingListView.m */; };
 		0B348BFA2240CF4B004EE967 /* CustomerAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B348BF92240CF4B004EE967 /* CustomerAddView.m */; };
+		0B3C569A22420C4500C2B07B /* Participants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C569922420C4500C2B07B /* Participants.m */; };
+		0B3C569F2242277E00C2B07B /* CompanyUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C569E2242277E00C2B07B /* CompanyUsers.m */; };
+		0B3C56A822422FDC00C2B07B /* ManSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C56A622422FDC00C2B07B /* ManSelectCell.m */; };
+		0B3C56A922422FDC00C2B07B /* ManSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3C56A722422FDC00C2B07B /* ManSelectCell.xib */; };
 		0B4A24E52233450A00C3621D /* ReceivableCustomers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24E42233450A00C3621D /* ReceivableCustomers.m */; };
 		0B4A24E82233459D00C3621D /* ReceivableItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24E72233459D00C3621D /* ReceivableItems.m */; };
 		0B4A24F92233546300C3621D /* BillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24F72233546300C3621D /* BillCell.m */; };
@@ -49,10 +53,16 @@
 		0B9BC328222E601C00A4C083 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC327222E601C00A4C083 /* SettingCell.m */; };
 		0B9BC32B222E6A4300A4C083 /* StaffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC32A222E6A4300A4C083 /* StaffCell.m */; };
 		0B9BC32F222E704F00A4C083 /* StaffView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC32E222E704F00A4C083 /* StaffView.m */; };
+		0BB05E2E224615D8003A5A02 /* ReceiveBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB05E2D224615D8003A5A02 /* ReceiveBaseView.m */; };
 		0BC13E6D22377E370065C0A0 /* CustomerSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */; };
 		0BD61425223C8E7D00AC45B4 /* SettleVcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */; };
 		0BD61429223C9B6A00AC45B4 /* SettleMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61427223C9B6A00AC45B4 /* SettleMoneyCell.m */; };
 		0BD770952240D6F3001D51F0 /* CustomerAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD770942240D6F3001D51F0 /* CustomerAddView.xib */; };
+		0BEAD8172244BCA0005BA430 /* ReceivablesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEAD8162244BCA0005BA430 /* ReceivablesView.m */; };
+		0BEAD8192244BCBC005BA430 /* ReceivablesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEAD8182244BCBC005BA430 /* ReceivablesView.xib */; };
+		0BEAD81C2244D24B005BA430 /* AccountListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEAD81B2244D24B005BA430 /* AccountListCell.m */; };
+		0BEAD81F2244D6E9005BA430 /* AccountListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEAD81E2244D6E9005BA430 /* AccountListView.m */; };
+		0BEAD8222244DB8B005BA430 /* AccountEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEAD8212244DB8B005BA430 /* AccountEditView.m */; };
 		18049AC92223DF670068C75C /* LBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049AC82223DF670068C75C /* LBTabBarController.m */; };
 		180B63792226B8AF00578565 /* BillCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B63782226B8AF00578565 /* BillCheckView.m */; };
 		180B63812226BFFD00578565 /* ReceiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B63802226BFFD00578565 /* ReceiveCell.m */; };
@@ -239,6 +249,14 @@
 		0B33039B2239EA9C00B0688D /* PackingListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackingListView.m; sourceTree = "<group>"; };
 		0B348BF82240CF4B004EE967 /* CustomerAddView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerAddView.h; sourceTree = "<group>"; };
 		0B348BF92240CF4B004EE967 /* CustomerAddView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerAddView.m; sourceTree = "<group>"; };
+		0B3C569822420C4500C2B07B /* Participants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Participants.h; sourceTree = "<group>"; };
+		0B3C569922420C4500C2B07B /* Participants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Participants.m; sourceTree = "<group>"; };
+		0B3C569B22420EE500C2B07B /* Customerheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Customerheader.h; sourceTree = "<group>"; };
+		0B3C569D2242277E00C2B07B /* CompanyUsers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyUsers.h; sourceTree = "<group>"; };
+		0B3C569E2242277E00C2B07B /* CompanyUsers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyUsers.m; sourceTree = "<group>"; };
+		0B3C56A522422FDC00C2B07B /* ManSelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManSelectCell.h; sourceTree = "<group>"; };
+		0B3C56A622422FDC00C2B07B /* ManSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManSelectCell.m; sourceTree = "<group>"; };
+		0B3C56A722422FDC00C2B07B /* ManSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManSelectCell.xib; sourceTree = "<group>"; };
 		0B4A24E32233450A00C3621D /* ReceivableCustomers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableCustomers.h; sourceTree = "<group>"; };
 		0B4A24E42233450A00C3621D /* ReceivableCustomers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivableCustomers.m; sourceTree = "<group>"; };
 		0B4A24E62233459D00C3621D /* ReceivableItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableItems.h; sourceTree = "<group>"; };
@@ -305,6 +323,8 @@
 		0B9BC32A222E6A4300A4C083 /* StaffCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffCell.m; sourceTree = "<group>"; };
 		0B9BC32D222E704F00A4C083 /* StaffView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffView.h; sourceTree = "<group>"; };
 		0B9BC32E222E704F00A4C083 /* StaffView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffView.m; sourceTree = "<group>"; };
+		0BB05E2C224615D8003A5A02 /* ReceiveBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveBaseView.h; sourceTree = "<group>"; };
+		0BB05E2D224615D8003A5A02 /* ReceiveBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveBaseView.m; sourceTree = "<group>"; };
 		0BC13E6B22377E370065C0A0 /* CustomerSelectedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerSelectedCell.h; sourceTree = "<group>"; };
 		0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerSelectedCell.m; sourceTree = "<group>"; };
 		0BD61423223C8E7D00AC45B4 /* SettleVcModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettleVcModel.h; sourceTree = "<group>"; };
@@ -312,6 +332,15 @@
 		0BD61426223C9B6A00AC45B4 /* SettleMoneyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettleMoneyCell.h; sourceTree = "<group>"; };
 		0BD61427223C9B6A00AC45B4 /* SettleMoneyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettleMoneyCell.m; sourceTree = "<group>"; };
 		0BD770942240D6F3001D51F0 /* CustomerAddView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomerAddView.xib; sourceTree = "<group>"; };
+		0BEAD8152244BCA0005BA430 /* ReceivablesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivablesView.h; sourceTree = "<group>"; };
+		0BEAD8162244BCA0005BA430 /* ReceivablesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivablesView.m; sourceTree = "<group>"; };
+		0BEAD8182244BCBC005BA430 /* ReceivablesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceivablesView.xib; sourceTree = "<group>"; };
+		0BEAD81A2244D24B005BA430 /* AccountListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountListCell.h; sourceTree = "<group>"; };
+		0BEAD81B2244D24B005BA430 /* AccountListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountListCell.m; sourceTree = "<group>"; };
+		0BEAD81D2244D6E9005BA430 /* AccountListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountListView.h; sourceTree = "<group>"; };
+		0BEAD81E2244D6E9005BA430 /* AccountListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountListView.m; sourceTree = "<group>"; };
+		0BEAD8202244DB8B005BA430 /* AccountEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountEditView.h; sourceTree = "<group>"; };
+		0BEAD8212244DB8B005BA430 /* AccountEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountEditView.m; sourceTree = "<group>"; };
 		155A735819312D58DF46AE1F /* Pods_BuLaoBan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuLaoBan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18049AC72223DF670068C75C /* LBTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTabBarController.h; sourceTree = "<group>"; };
 		18049AC82223DF670068C75C /* LBTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTabBarController.m; sourceTree = "<group>"; };
@@ -682,8 +711,29 @@
 				0B348BF82240CF4B004EE967 /* CustomerAddView.h */,
 				0B348BF92240CF4B004EE967 /* CustomerAddView.m */,
 				0BD770942240D6F3001D51F0 /* CustomerAddView.xib */,
+				0B3C56A522422FDC00C2B07B /* ManSelectCell.h */,
+				0B3C56A622422FDC00C2B07B /* ManSelectCell.m */,
+				0B3C56A722422FDC00C2B07B /* ManSelectCell.xib */,
 			);
 			path = "新增客户";
+			sourceTree = "<group>";
+		};
+		0B3C569722420C2E00C2B07B /* Participants */ = {
+			isa = PBXGroup;
+			children = (
+				0B3C569822420C4500C2B07B /* Participants.h */,
+				0B3C569922420C4500C2B07B /* Participants.m */,
+			);
+			path = Participants;
+			sourceTree = "<group>";
+		};
+		0B3C569C2242276600C2B07B /* CompanyUsers */ = {
+			isa = PBXGroup;
+			children = (
+				0B3C569D2242277E00C2B07B /* CompanyUsers.h */,
+				0B3C569E2242277E00C2B07B /* CompanyUsers.m */,
+			);
+			path = CompanyUsers;
 			sourceTree = "<group>";
 		};
 		0B4A24E2223344EF00C3621D /* Receivable */ = {
@@ -924,6 +974,24 @@
 			path = "页面model";
 			sourceTree = "<group>";
 		};
+		0BEAD8142244BA96005BA430 /* 收款 */ = {
+			isa = PBXGroup;
+			children = (
+				0BB05E2C224615D8003A5A02 /* ReceiveBaseView.h */,
+				0BB05E2D224615D8003A5A02 /* ReceiveBaseView.m */,
+				0BEAD8152244BCA0005BA430 /* ReceivablesView.h */,
+				0BEAD8162244BCA0005BA430 /* ReceivablesView.m */,
+				0BEAD8182244BCBC005BA430 /* ReceivablesView.xib */,
+				0BEAD81D2244D6E9005BA430 /* AccountListView.h */,
+				0BEAD81E2244D6E9005BA430 /* AccountListView.m */,
+				0BEAD81A2244D24B005BA430 /* AccountListCell.h */,
+				0BEAD81B2244D24B005BA430 /* AccountListCell.m */,
+				0BEAD8202244DB8B005BA430 /* AccountEditView.h */,
+				0BEAD8212244DB8B005BA430 /* AccountEditView.m */,
+			);
+			path = "收款";
+			sourceTree = "<group>";
+		};
 		180B63762226B87A00578565 /* 对账单统计View */ = {
 			isa = PBXGroup;
 			children = (
@@ -955,6 +1023,8 @@
 		1827742121FEC13E000F4E0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B3C569C2242276600C2B07B /* CompanyUsers */,
+				0B3C569722420C2E00C2B07B /* Participants */,
 				0B20215C2238D05500EAF565 /* Deliver */,
 				0B4A24E2223344EF00C3621D /* Receivable */,
 				0B5F468E2230E6E000C67EF5 /* Customer */,
@@ -1017,6 +1087,8 @@
 			children = (
 				1827743621FEEBBB000F4E0F /* CustomerViewController.h */,
 				1827743721FEEBBB000F4E0F /* CustomerViewController.m */,
+				0B3C569B22420EE500C2B07B /* Customerheader.h */,
+				0BEAD8142244BA96005BA430 /* 收款 */,
 				0B348BF22240B997004EE967 /* 新增客户 */,
 				18D99F0C22114F5D00514AB4 /* view */,
 			);
@@ -1941,8 +2013,10 @@
 			files = (
 				0B776EA22235FBEB0007DA02 /* StastisticTopCell.xib in Resources */,
 				189C1FF221F9A0B200C84CA4 /* Images.xcassets in Resources */,
+				0B3C56A922422FDC00C2B07B /* ManSelectCell.xib in Resources */,
 				0B4A24FF223380C100C3621D /* BillTopView.xib in Resources */,
 				184D666F22100C0F00181590 /* TZImagePickerController.bundle in Resources */,
+				0BEAD8192244BCBC005BA430 /* ReceivablesView.xib in Resources */,
 				0B4A24FA2233546300C3621D /* BillCell.xib in Resources */,
 				189C1F1D21F9923C00C84CA4 /* MJRefresh.bundle in Resources */,
 				0B776EAA223600990007DA02 /* StastisticCell.xib in Resources */,
@@ -2055,6 +2129,7 @@
 			files = (
 				0BD61425223C8E7D00AC45B4 /* SettleVcModel.m in Sources */,
 				18A16D732211A83B0099767F /* picModel.m in Sources */,
+				0BEAD81F2244D6E9005BA430 /* AccountListView.m in Sources */,
 				189D51B7221CF4E2002AD8A3 /* SaleListTopView.m in Sources */,
 				189C1FE021F9928700C84CA4 /* SDImageCache.m in Sources */,
 				0B7E087A223899E9007E4E36 /* SampleSearchResultCell.m in Sources */,
@@ -2062,6 +2137,8 @@
 				1870E11222266FBB00D328BA /* SaleDetailView.m in Sources */,
 				0B5F46912230E6F300C67EF5 /* ComCustomer.m in Sources */,
 				0B2021682238EE8C00EAF565 /* SaleVcModel.m in Sources */,
+				0BEAD8172244BCA0005BA430 /* ReceivablesView.m in Sources */,
+				0B3C56A822422FDC00C2B07B /* ManSelectCell.m in Sources */,
 				0B5F468D2230BFDA00C67EF5 /* GoodsWeightView.m in Sources */,
 				184D667522100C0F00181590 /* TZProgressView.m in Sources */,
 				1827742521FEC166000F4E0F /* User.m in Sources */,
@@ -2073,6 +2150,7 @@
 				1827743521FEEB9E000F4E0F /* ReceivableViewController.m in Sources */,
 				187B94652213EA9B00E857D1 /* SettingViewController.m in Sources */,
 				189C1FAC21F9927800C84CA4 /* AFHTTPRequestOperationManager.m in Sources */,
+				0BB05E2E224615D8003A5A02 /* ReceiveBaseView.m in Sources */,
 				189C1FB721F9927800C84CA4 /* UIButton+AFNetworking.m in Sources */,
 				189C1FAF21F9927800C84CA4 /* AFSecurityPolicy.m in Sources */,
 				189C1F1021F9923C00C84CA4 /* MJRefreshBackFooter.m in Sources */,
@@ -2090,12 +2168,14 @@
 				189C1F1221F9923C00C84CA4 /* MJRefreshFooter.m in Sources */,
 				189C1FDF21F9928700C84CA4 /* NSData+ImageContentType.m in Sources */,
 				189C1FE821F9928700C84CA4 /* UIImage+GIF.m in Sources */,
+				0B3C569F2242277E00C2B07B /* CompanyUsers.m in Sources */,
 				189C1FAB21F9927800C84CA4 /* AFHTTPRequestOperation.m in Sources */,
 				189C1FBA21F9927800C84CA4 /* UIRefreshControl+AFNetworking.m in Sources */,
 				0B5E57B9223A3E820009D95B /* PacKListDataManager.m in Sources */,
 				189C1FEB21F9928700C84CA4 /* UIImageView+HighlightedWebCache.m in Sources */,
 				189C1F1E21F9923C00C84CA4 /* MJRefreshConst.m in Sources */,
 				1827742F21FEEB52000F4E0F /* SaleViewController.m in Sources */,
+				0B3C569A22420C4500C2B07B /* Participants.m in Sources */,
 				189C1E9D21F990BF00C84CA4 /* HUD.m in Sources */,
 				189C1F4121F9924E00C84CA4 /* NSObject+MJProperty.m in Sources */,
 				0B5E54C1222F59F200F30346 /* PrinterModelView.m in Sources */,
@@ -2138,6 +2218,7 @@
 				188A01C8222382CC005B321F /* SettlementInputCell.m in Sources */,
 				184D667222100C0F00181590 /* TZPhotoPickerController.m in Sources */,
 				189C1F1121F9923C00C84CA4 /* MJRefreshComponent.m in Sources */,
+				0BEAD8222244DB8B005BA430 /* AccountEditView.m in Sources */,
 				0B4A24E52233450A00C3621D /* ReceivableCustomers.m in Sources */,
 				189C1F3A21F9924E00C84CA4 /* MJFoundation.m in Sources */,
 				180B63792226B8AF00578565 /* BillCheckView.m in Sources */,
@@ -2222,6 +2303,7 @@
 				189C1DFE21F9904F00C84CA4 /* YLButton.m in Sources */,
 				189C1F0F21F9923C00C84CA4 /* MJRefreshAutoFooter.m in Sources */,
 				184D667622100C0F00181590 /* TZTestCell.m in Sources */,
+				0BEAD81C2244D24B005BA430 /* AccountListCell.m in Sources */,
 				1889FFF121F9F53700F29B8B /* NSString+MD5Extension.m in Sources */,
 				189C1DFD21F9904F00C84CA4 /* BaseScrollView.m in Sources */,
 				184D666A22100C0F00181590 /* TZAssetCell.m in Sources */,

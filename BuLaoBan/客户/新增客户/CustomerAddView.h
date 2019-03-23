@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 @class ComCustomerDetail;
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^CustomerAddViewReturnBtnClick)(NSInteger tag,ComCustomerDetail *model);
 
 @interface CustomerAddView : UIView
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
@@ -27,7 +28,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) YLButton *salerBtn;
 @property (nonatomic, strong) YLButton *spartakeBtn;
 
+/**
+ 0:保存  1：业务员  2：参与者
+ */
+@property (nonatomic, copy) CustomerAddViewReturnBtnClick returnBlock;
+
 @property(nonatomic,strong)ComCustomerDetail *model;
+@property(nonatomic,strong)NSMutableArray *parArr;   //参与者
+@property(nonatomic,strong)NSMutableArray *comArr;   //业务员
+
+/**
+ 类型   1参与者    2业务员
+ */
+@property(nonatomic,assign)NSInteger type;
+
+
+
+- (NSDictionary *)getSetUPDic;
+- (void)showTheView;
+- (void)dismiss;
 
 @end
 

@@ -171,7 +171,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入客户公司名称" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bcf-6D-s9v">
+                        <textField opaque="NO" tag="2000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入客户公司名称" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bcf-6D-s9v">
                             <rect key="frame" x="130" y="44" width="450" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="jNc-v0-xHu"/>
@@ -183,7 +183,7 @@
                                 <outlet property="delegate" destination="-1" id="Rq7-er-cEm"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入联系人姓名" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rad-Zf-ucc">
+                        <textField opaque="NO" tag="2001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入联系人姓名" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rad-Zf-ucc">
                             <rect key="frame" x="130" y="88" width="450" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="wPC-K4-gwl"/>
@@ -195,7 +195,7 @@
                                 <outlet property="delegate" destination="-1" id="MdA-XT-Ijp"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="atq-uR-O9a">
+                        <textField opaque="NO" tag="2002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="atq-uR-O9a">
                             <rect key="frame" x="130" y="132" width="450" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="adx-Ak-ngq"/>
@@ -207,7 +207,7 @@
                                 <outlet property="delegate" destination="-1" id="cH7-zu-Pq9"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入邮箱" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CEA-OR-GpZ">
+                        <textField opaque="NO" tag="2003" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入邮箱" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CEA-OR-GpZ">
                             <rect key="frame" x="130" y="176" width="450" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="S29-tw-8zv"/>
@@ -220,7 +220,7 @@
                                 <outlet property="delegate" destination="-1" id="Bek-gp-pL5"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入地址" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B0e-9p-nuY">
+                        <textField opaque="NO" tag="2004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入地址" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B0e-9p-nuY">
                             <rect key="frame" x="130" y="220" width="450" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="19q-ix-O2G"/>
@@ -233,7 +233,7 @@
                                 <outlet property="delegate" destination="-1" id="b1p-KX-cJf"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="元" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vBC-p8-DxW">
+                        <textField opaque="NO" tag="2005" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="元" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vBC-p8-DxW">
                             <rect key="frame" x="120" y="264" width="460" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="Uhn-Be-n9t"/>
@@ -246,7 +246,7 @@
                                 <outlet property="delegate" destination="-1" id="nCO-2C-Now"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入备注" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k9R-kR-97P">
+                        <textField opaque="NO" tag="2006" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入备注" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k9R-kR-97P">
                             <rect key="frame" x="130" y="396" width="450" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="4g5-36-j5d"/>

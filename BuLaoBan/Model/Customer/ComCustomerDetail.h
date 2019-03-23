@@ -120,12 +120,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *provinceName;
 
-
 /**
  备注
  */
 @property (nonatomic, copy) NSString *remark;
-
 
 /**
  业务员ID
@@ -146,7 +144,6 @@ NS_ASSUME_NONNULL_BEGIN
 shortName
  */
 @property (nonatomic, copy) NSString *shortName;
-
 
 /**
  固定电话

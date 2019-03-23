@@ -7,18 +7,15 @@
 //
 
 #import "CustomerViewController.h"
-#import "ComCustomerDetail.h"
-#import "CustomerDetailView.h"
-#import "CustomerCell.h"
-#import "ComCustomer.h"
-
-#import "RightMenueView.h" //右侧菜单
-#import "CustomerAddView.h"
+#import "Customerheader.h"
 
 @interface CustomerViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *ListTab;
 @property (nonatomic, strong) CustomerDetailView *detailView;
+@property (nonatomic, strong) CustomerAddView *addView;
+@property (nonatomic, strong) NSMutableArray *dataArr;
+@property (nonatomic, strong) ComCustomerDetail *detailModel;
 
 /**
  编辑菜单
@@ -29,7 +26,6 @@
 @implementation CustomerViewController{
     
     UITextField *_searchTxt;
-    NSMutableArray *_dataArr;
     
 }
 
@@ -43,9 +39,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
     [super viewWillAppear:animated];
-    CustomerAddView *addview = [[CustomerAddView alloc]init];;
-    [self.view addSubview:addview];
 }
 
 - (void)initUI{
@@ -86,11 +81,36 @@
     //详情View
     _detailView = [[CustomerDetailView alloc]initWithFrame:CGRectMake(300, 64, ScreenWidth-400, ScreenHeight-64)];;
     [self.view addSubview:_detailView];
-    
+
     UIView *line2 = [BaseViewFactory viewWithFrame:CGRectMake(300, 0, 1, ScreenHeight) color:UIColorFromRGB(LineColorValue)];
     [self.view addSubview:line2];
     //编辑
     [self.view addSubview:self.menueView];
+    
+#pragma mark ====== addView回调
+    WeakSelf(self);
+    self.addView.returnBlock = ^(NSInteger tag, ComCustomerDetail * _Nonnull model) {
+        //0:保存  1：业务员  2：参与者
+        switch (tag) {
+            case 0:{
+                //保存
+                NSDictionary *setDic = [weakself.addView getSetUPDic];
+                [weakself savecontactComWiyhDic:setDic ComCustomerDetail:model];
+                break;
+            }
+            case 1:{
+                [weakself getCompanyUsersWithComCustomerDetail:model];
+                break;
+            }
+            case 2:{
+                [weakself getCompanyparticipantsWithComCustomerDetail:model];
+                break;
+            }
+            default:
+                break;
+        }
+        
+    };
 }
 
 
@@ -129,36 +149,59 @@
         ComCustomerDetail *detailModel = [ComCustomerDetail mj_objectWithKeyValues:returnValue];
         detailModel.comId = customerId;
         _detailView.detailModel = detailModel;
-        
+        _detailModel = detailModel;
     } andErrorBlock:^(NSString *msg) {
     }];
-    
-    
 }
-//#pragma mark ======获取默认联系公司参与者
-//- (void)loadcompanyParticipantsWithComId:(ComCustomerDetail *)model{
-//    NSDictionary *dic = @{@"companyId":model.comId};
-//    [[HttpClient sharedHttpClient] requestPOST:@"contact/company/participants" Withdict:dic WithReturnBlock:^(id returnValue) {
-//        NSLog(@"%@",returnValue);
-//        model.defultparticipant = returnValue;
-//       // _detailView
-//    } andErrorBlock:^(NSString *msg) {
-//
-//    }];
-//}
 
+#pragma mark ====== 获取业务员
+- (void)getCompanyUsersWithComCustomerDetail:(ComCustomerDetail*)model{
+    NSDictionary *dic = @{@"pageNo":@"1",@"pageSize":@"5000",};
+    User *user = [[UserPL shareManager] getLoginUser];
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/users",user.defutecompanyId] Withdict:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        NSMutableArray * comArr = [CompanyUsers mj_objectArrayWithKeyValuesArray:returnValue[@"companyUsers"]];
+        self.addView.comArr = comArr;
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+#pragma mark ====== 获取参与者
+- (void)getCompanyparticipantsWithComCustomerDetail:(ComCustomerDetail*)model{
+    User *user = [[UserPL shareManager] getLoginUser];
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+                          @"nature":@"1"
+                          };
+    [[HttpClient sharedHttpClient] requestGET:@"contact/company/participants" Withdict:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        NSMutableArray * particModelArr = [Participants mj_objectArrayWithKeyValuesArray:returnValue[@"participants"]];
+        self.addView.parArr = particModelArr;
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+
+#pragma mark ====== 修改联系公司
+- (void)savecontactComWiyhDic:(NSDictionary *)dic ComCustomerDetail:(ComCustomerDetail*)model{
+    [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/contact/company/%@",model.comId] paramDic:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
 
 
 #pragma mark ====== 按钮点击
 //新增客户
 - (void)addNewCustomerBtnClick{
-    
+    [self.addView showTheView];
     
 }
 
 //收款
 - (void)acceptBtnClick{
-    
+    ReceivablesView *reVc = [[[NSBundle mainBundle] loadNibNamed:@"ReceivablesView" owner:self options:nil] lastObject];
+    [self.view addSubview:reVc];
     
 }
 //客户编辑
@@ -169,12 +212,17 @@
     self.menueView.returnBlock = ^(NSInteger index) {
         switch (index) {
             case 0:{
+                for (ComCustomer *customer in weakself.dataArr) {
+                    if (customer.isSelected == YES) {
+                        weakself.addView.model = weakself.detailModel;
+                    }
+                }
+                [weakself.addView showTheView];
                 break;
             }
             case 1:{
                 break;
             }
-         
             default:
                 break;
         }
@@ -197,8 +245,6 @@
     UIView *view = [BaseViewFactory viewWithFrame:CGRectMake(0, 0, 300, 48) color:UIColorFromRGB(BackColorValue)];
     UILabel *lab = [BaseViewFactory labelWithFrame:CGRectMake(12, 0, 276, 48) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:[NSString stringWithFormat:@"共%ld家客户",_dataArr.count]];
     [view addSubview:lab];
-//    UILabel *lab1 = [BaseViewFactory labelWithFrame:CGRectMake(100, 0, 187, 48) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentRight andtext:@"合计欠款：5000.00元"];
-//    [view addSubview:lab1];
     return view;
 }
 
@@ -256,6 +302,13 @@
         _menueView = [[RightMenueView alloc]initWithTitleArr:titleArr];
     }
     return _menueView;
+}
+
+-(CustomerAddView *)addView{
+    if (!_addView) {
+        _addView = [[CustomerAddView alloc]init];
+    }
+    return _addView;
 }
 
 @end

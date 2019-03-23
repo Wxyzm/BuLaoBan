@@ -17,16 +17,13 @@
 
 #pragma mark   ========== init
 
-
 + (HttpClient *)sharedHttpClient
 {
     static HttpClient *_sharedPHPHelper = nil;
-    
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         _sharedPHPHelper = [[self alloc] initWithBaseUrl:kbaseUrl];
     });
-    
     return _sharedPHPHelper;
 }
 
@@ -58,7 +55,6 @@
                 key = keyArray[i];
                 if (key.length)
                     [str appendString:[NSString stringWithFormat:@"&%@=%@",key,[info objectForKey:key]]];
-                
             }
             url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@%@%@",_baseUrl,urlStr?urlStr:@"",str] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
         } else {
@@ -68,15 +64,10 @@
     {
         NSString *URLWithString = [NSString stringWithFormat:@"%@%@",_baseUrl,urlStr?urlStr:@""];
         NSString *encodedString = (NSString *)
-        
         CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                  
                                                                   (CFStringRef)URLWithString,
-                                                                  
                                                                   (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
-                                                                  
                                                                   NULL,
-                                                                  
                                                                   kCFStringEncodingUTF8));
         url = [NSURL URLWithString:[encodedString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
     }
@@ -87,7 +78,6 @@
     [request setHTTPMethod:method];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
     [request setValue:@"" forHTTPHeaderField:@"Authorization"];
     [request setValue:@"iPad_APP" forHTTPHeaderField:@"os"];
     [request setValue:@"3.6" forHTTPHeaderField:@"app-version"];
@@ -95,9 +85,7 @@
     User *user = [[UserPL shareManager] getLoginUser];
     if (user.authorization.length>0) {
         [request setValue:user.authorization forHTTPHeaderField:@"authorization"];
-
     }
-    
 
     if ([method isEqualToString:@"POST"]) {
         NSArray *keyArray = [info allKeys];
@@ -105,9 +93,6 @@
             NSError *error;
             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:info options:0 error:&error];
             NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-          //  NSString * sendStr= [GlobalMethod dictionaryToJson:info];
-          //  NSData *data = [sendStr dataUsingEncoding:NSUTF8StringEncoding];
-            
             [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
             NSLog(@"%@",jsonString);
         }else{
@@ -144,7 +129,6 @@
          [HUD show:@"网络错误"];
          errorBlock(@"网络错误");
      }];
-    
     [_queue addOperation:operation];
 }
 
@@ -153,7 +137,6 @@
            Withdict:(NSDictionary *)dict
     WithReturnBlock:(ReturnBlock)returnBlock
       andErrorBlock:(ErrorBlock)errorBlock{
-    
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [self setRequestWithInfo:dict url:url method:@"POST" requset:request];
