@@ -8,7 +8,7 @@
 
 #import "AccountListView.h"
 #import "AccountListCell.h"
-
+#import "Accounts.h"
 @interface AccountListView ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) BaseTableView *listTab;
@@ -35,6 +35,7 @@
 - (void)setUP{
     
     UILabel *toplab= [BaseViewFactory labelWithFrame:CGRectMake(0, 0, 600, 44) textColor:UIColorFromRGB(WhiteColorValue) font:APPFONT(14) textAligment:NSTextAlignmentCenter andtext:@"选择账户"];
+    toplab.backgroundColor = UIColorFromRGB(BlueColorValue);
     [self addSubview:toplab];
     UIButton *addBtn = [BaseViewFactory setImagebuttonWithWidth:16 imagePath:@"Acc_add"];
     [addBtn addTarget:self action:@selector(addBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -49,25 +50,36 @@
     [self addSubview:self.listTab];
 }
 
+#pragma mark -- set
+-(void)setDataArr:(NSMutableArray *)dataArr{
+    _dataArr = dataArr;
+    [self.listTab reloadData];
+    
+}
 
 
 #pragma mark -- 按钮点击
 
 - (void)addBtnClick{
-    
-    
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(1,[Accounts new]);
+    }
     
     
 }
 
 - (void)closeBtnClick{
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(0,[Accounts new]);
+    }
     
     
 }
 
 #pragma mark -- tableview
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
     return _dataArr.count;
 }
 
@@ -83,11 +95,27 @@
     if (!cell) {
         cell = [[AccountListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    cell.account = _dataArr[indexPath.row];
+    WeakSelf(self);
+    cell.returnBlock = ^(Accounts * _Nonnull account)
+    {
+        if (weakself.returnBlock)
+        {
+            weakself.returnBlock(2,account);
+        }
+   
+    };
     return cell;
 }
 
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    WeakSelf(self);
+    if (weakself.returnBlock)
+    {
+        weakself.returnBlock(3,_dataArr[indexPath.row]);
+    }
+}
 
 
 #pragma mark -- get

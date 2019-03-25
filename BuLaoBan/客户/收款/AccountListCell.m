@@ -7,6 +7,7 @@
 //
 
 #import "AccountListCell.h"
+#import "Accounts.h"
 @interface AccountListCell ()
 
 
@@ -44,15 +45,31 @@
     _accKindLab = [BaseViewFactory labelWithFrame:CGRectMake(100, 34, 420, 13) textColor:UIColorFromRGB(0x797979) font:APPFONT12 textAligment:NSTextAlignmentRight andtext:@"账号类型："];
     [self.contentView addSubview:_accKindLab];
     
+    UIView *line = [BaseViewFactory viewWithFrame:CGRectMake(0, 59, 600, 1) color:UIColorFromRGB(BackColorValue)];
+    [self.contentView addSubview:line];
     
 }
 
 //编辑
 - (void)editBtnClick{
     
-    
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(_account);
+    }
     
 }
 
+
+-(void)setAccount:(Accounts *)account{
+    _account = account;
+    _accnameLab.text = account.accountName;
+    _accNumLab.text = account.accountNumber;
+    NSArray *titleArr = @[@"现金",@"银行",@"网络支付平台"];
+
+    _accKindLab.text =[NSString stringWithFormat:@"账号类型：%@",titleArr[[account.type intValue]-1]] ;
+    
+    
+}
 
 @end

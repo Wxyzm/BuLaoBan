@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ComCustomer;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ReceiveBaseView : UIView
+@property (nonatomic,strong) ComCustomer *commodel;   //用户信息
+
+@property (nonatomic,strong) NSMutableArray *listArr; //账户列表
+
+- (void)dismiss;
+- (void)showInView;
 
 @end
 

@@ -18,6 +18,7 @@
 #import "RightMenueView.h"       //右侧菜单
 #import "CustomerAddView.h"      //添加新客户
 #import "ReceivablesView.h"      //收款
-
+#import "Accounts.h"             //账户model
+#import "ReceiveBaseView.h"      //收款
 
 #endif /* Customerheader_h */

@@ -207,7 +207,7 @@
                     [HUD show:resultDic[@"message"]];
                     errorBlock(resultDic[@"message"]);
                 }
-                returnBlock(resultDic);
+              //  returnBlock(resultDic);
             });
         }
     }] resume];

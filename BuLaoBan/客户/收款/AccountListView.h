@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Accounts;
 NS_ASSUME_NONNULL_BEGIN
+
+typedef void(^AccountListViewReturnBlock)(NSInteger tag,Accounts *account);
+
 
 @interface AccountListView : UIView
 
 @property (nonatomic,strong) NSMutableArray *dataArr;;
 
+@property (nonatomic, copy) AccountListViewReturnBlock returnBlock;
 
 
 @end

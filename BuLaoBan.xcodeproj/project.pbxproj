@@ -28,6 +28,7 @@
 		0B4FC7A322339BC5001B335F /* BillTopCellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7A222339BC5001B335F /* BillTopCellCell.m */; };
 		0B4FC7A82233A361001B335F /* receivableGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7A72233A361001B335F /* receivableGoods.m */; };
 		0B4FC7AB2233A37C001B335F /* GoodsIteams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7AA2233A37C001B335F /* GoodsIteams.m */; };
+		0B5B3BC32248A66C0033A13B /* Accounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B3BC22248A66C0033A13B /* Accounts.m */; };
 		0B5E54BD222F50CC00F30346 /* LinkPrinterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54BC222F50CC00F30346 /* LinkPrinterView.m */; };
 		0B5E54C1222F59F200F30346 /* PrinterModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54C0222F59F200F30346 /* PrinterModelView.m */; };
 		0B5E54C5222F723D00F30346 /* RightMenueView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54C4222F723D00F30346 /* RightMenueView.m */; };
@@ -275,6 +276,8 @@
 		0B4FC7A72233A361001B335F /* receivableGoods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = receivableGoods.m; sourceTree = "<group>"; };
 		0B4FC7A92233A37C001B335F /* GoodsIteams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsIteams.h; sourceTree = "<group>"; };
 		0B4FC7AA2233A37C001B335F /* GoodsIteams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsIteams.m; sourceTree = "<group>"; };
+		0B5B3BC12248A66C0033A13B /* Accounts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Accounts.h; sourceTree = "<group>"; };
+		0B5B3BC22248A66C0033A13B /* Accounts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Accounts.m; sourceTree = "<group>"; };
 		0B5E54BB222F50CC00F30346 /* LinkPrinterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkPrinterView.h; sourceTree = "<group>"; };
 		0B5E54BC222F50CC00F30346 /* LinkPrinterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkPrinterView.m; sourceTree = "<group>"; };
 		0B5E54BF222F59F200F30346 /* PrinterModelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrinterModelView.h; sourceTree = "<group>"; };
@@ -807,6 +810,15 @@
 			path = "统计cell";
 			sourceTree = "<group>";
 		};
+		0B5B3BC02248A6590033A13B /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				0B5B3BC12248A66C0033A13B /* Accounts.h */,
+				0B5B3BC22248A66C0033A13B /* Accounts.m */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		0B5E54BA222F50A900F30346 /* 链接打印机View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1023,6 +1035,7 @@
 		1827742121FEC13E000F4E0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B5B3BC02248A6590033A13B /* Account */,
 				0B3C569C2242276600C2B07B /* CompanyUsers */,
 				0B3C569722420C2E00C2B07B /* Participants */,
 				0B20215C2238D05500EAF565 /* Deliver */,
@@ -2144,6 +2157,7 @@
 				1827742521FEC166000F4E0F /* User.m in Sources */,
 				189C1FB921F9927800C84CA4 /* UIProgressView+AFNetworking.m in Sources */,
 				189C1F1521F9923C00C84CA4 /* MJRefreshAutoNormalFooter.m in Sources */,
+				0B5B3BC32248A66C0033A13B /* Accounts.m in Sources */,
 				18501A4D2227BDE800AEF25E /* MineInfoView.m in Sources */,
 				18A16D69221165820099767F /* AddGoodsHomeView.m in Sources */,
 				0B776EAE223604180007DA02 /* ReceivePL.m in Sources */,

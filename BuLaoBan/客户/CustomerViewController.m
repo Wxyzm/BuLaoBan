@@ -12,10 +12,23 @@
 @interface CustomerViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *ListTab;
-@property (nonatomic, strong) CustomerDetailView *detailView;
-@property (nonatomic, strong) CustomerAddView *addView;
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @property (nonatomic, strong) ComCustomerDetail *detailModel;
+
+/**
+ 新增View
+ */
+@property (nonatomic, strong) CustomerAddView *addView;
+
+/**
+ s详情View
+ */
+@property (nonatomic, strong) CustomerDetailView *detailView;
+
+/**
+ 收款View
+ */
+@property (nonatomic, strong) ReceiveBaseView *receiveView;
 
 /**
  编辑菜单
@@ -189,20 +202,38 @@
         
     }];
 }
+#pragma mark ======  获取公司账户列表
+- (void)loadComAccountList{
+    ComCustomer *selectcustomer;
+    for (ComCustomer *customer in _dataArr) {
+        if (customer.isSelected) {
+            selectcustomer = customer;
+        }
+    }
+    if (!selectcustomer) {
+        return;
+    }
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/account",selectcustomer.comId] Withdict:nil WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        NSMutableArray *listArr = [Accounts mj_objectArrayWithKeyValuesArray:returnValue[@"accounts"]];
+        self.receiveView.commodel = selectcustomer;
+        self.receiveView.listArr = listArr;
+        [self.receiveView showInView];
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
 
 
 #pragma mark ====== 按钮点击
 //新增客户
 - (void)addNewCustomerBtnClick{
     [self.addView showTheView];
-    
 }
 
 //收款
 - (void)acceptBtnClick{
-    ReceivablesView *reVc = [[[NSBundle mainBundle] loadNibNamed:@"ReceivablesView" owner:self options:nil] lastObject];
-    [self.view addSubview:reVc];
-    
+    [self loadComAccountList];
 }
 //客户编辑
 - (void)changeBtnGoodsBtnClick{
@@ -311,4 +342,10 @@
     return _addView;
 }
 
+-(ReceiveBaseView *)receiveView{
+    if (!_receiveView) {
+        _receiveView = [[ReceiveBaseView alloc]init];
+    }
+    return _receiveView;
+}
 @end
