@@ -9,6 +9,7 @@
 #import "SaleListCell.h"
 #import "SaleSamModel.h"
 #import "IQKeyboardManager.h"
+#import "DeliveDetails.h"
 
 @interface SaleListCell ()<UITextFieldDelegate>
 
@@ -213,9 +214,38 @@
         _matchesNumTxt.userInteractionEnabled = YES;
         _salesNumTxt.userInteractionEnabled = YES;
     }
-    
-    
 }
+
+
+-(void)setDeliveDetails:(DeliveDetails *)deliveDetails{
+    _deliveDetails = deliveDetails;
+    [_faceIma sd_setImageWithURL:[NSURL URLWithString:deliveDetails.samplePicKey] placeholderImage:nil]; //图片
+    _numTxt.text = deliveDetails.itemNo;  //编号
+    _nameTxt.text = deliveDetails.name;   //名称
+    _colorTxt.text = deliveDetails.colorName; //颜色
+    _unitPriceTxt.text = deliveDetails.unitPrice;    //单价
+    _matchesNumTxt.text = deliveDetails.packageNum;      //匹数
+    _salesNumTxt.text = deliveDetails.num;      //销货量
+    _unitTxt.text = deliveDetails.numUnit;              //单位
+    _amoutMoneyTxt.text = deliveDetails.price;       //金额
+    
+    _numTxt.userInteractionEnabled = NO;
+    _nameTxt.userInteractionEnabled = NO;
+    _colorTxt.userInteractionEnabled = NO;
+    _unitPriceTxt.userInteractionEnabled = NO;
+    _matchesNumTxt.userInteractionEnabled = NO;
+    _salesNumTxt.userInteractionEnabled = NO;
+    _unitTxt.userInteractionEnabled = NO;
+    _amoutMoneyTxt.userInteractionEnabled = NO;
+
+    if (deliveDetails.packingList.length>0) {
+        //若新增了细码单，则无法输入米数和匹数销货量，且总码单是细码单算出来的（匹数和米数）
+        [_codeListBtn setTitle:@"查看" forState:UIControlStateNormal];
+    }else{
+        [_codeListBtn setTitle:@"添加" forState:UIControlStateNormal];
+    }
+}
+
 
 
 #pragma mark==== 按钮点击

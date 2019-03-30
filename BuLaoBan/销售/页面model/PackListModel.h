@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSInteger keyboardshodReturn;    //
 
+@property (nonatomic,assign) BOOL noInput;    //是否允许输入，默认No是可以输入
 
 @end
 

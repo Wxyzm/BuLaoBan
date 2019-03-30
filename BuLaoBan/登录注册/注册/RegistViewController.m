@@ -68,7 +68,7 @@
     [self.view  addSubview:registBtn];
     [registBtn addTarget:self action:@selector(registBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:@"注册即表示同意《布老板用户协议》"];
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:@"注册即表示同意《布管家用户协议》"];
     [AttributedStr addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0x20A0FF) range:NSMakeRange(7, 9)];
     UILabel *xieyilab = [BaseViewFactory labelWithFrame:CGRectMake(0, 424, ScreenWidth, 18) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT12 textAligment:NSTextAlignmentCenter andtext:@""];
     [self.view addSubview:xieyilab];

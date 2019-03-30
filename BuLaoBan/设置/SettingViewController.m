@@ -11,6 +11,7 @@
 #import "StaffView.h"        //员工管理View
 #import "LinkPrinterView.h"  //链接打印机View
 #import "PrinterModelView.h" //打印模板设置
+#import "CompanyUsers.h"     //员工
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -31,6 +32,8 @@
  */
 @property (nonatomic, strong) PrinterModelView *modelView;
 
+@property (nonatomic,strong) NSMutableArray *userArr;
+
 
 @end
 
@@ -48,7 +51,9 @@
     self.view.backgroundColor = UIColorFromRGB(BackColorValue);
     _selectIndex = 0;
     _viewArr = [NSMutableArray arrayWithCapacity:0];
+    _userArr = [NSMutableArray arrayWithCapacity:0];
     [self initUI];
+    [self loadcompanysUsersList];
 }
 
 - (void)initUI{
@@ -84,6 +89,9 @@
     
     UIView *line2 = [BaseViewFactory viewWithFrame:CGRectMake(299.5, 0, 1, ScreenHeight) color:UIColorFromRGB(LineColorValue)];
     [self.view addSubview:line2];
+    
+    [self setRightbtnTitle];
+
 }
 
 
@@ -94,6 +102,26 @@
     
     
 }
+#pragma mark ====  获取员工列表
+
+- (void)loadcompanysUsersList{
+    
+    User *user = [[UserPL shareManager] getLoginUser];
+    NSDictionary *dic = @{@"pageNo":@"1",
+                          @"pageSize":@"5000",
+                          @"":@""
+                          };
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/users",user.defutecompanyId] Withdict:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        _userArr = [CompanyUsers mj_objectArrayWithKeyValuesArray:returnValue[@"companyUsers"]];
+        self.staffView.dataArr = _userArr;
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+    
+    
+}
+
 
 #pragma mark ====== tableviewdelegate
 
@@ -176,6 +204,10 @@
          _selectIndex = indexPath.row;
         _titleLab.text = arr[_selectIndex];
         [self setViewShowandHidden];
+        if (_selectIndex ==0) {
+            //员工管理
+            [self loadcompanysUsersList];
+        }
     }
     [self.ListTab reloadData];
 
@@ -191,8 +223,30 @@
     }
     UIView *showview = _viewArr[_selectIndex];
     showview.hidden = NO;
+    [self setRightbtnTitle];
+}
+
+- (void)setRightbtnTitle{
+    if (_selectIndex ==0) {
+        [_saveBtn setTitle:@"邀请员工" forState:UIControlStateNormal];
+        _saveBtn.frame =  CGRectMake(ScreenWidth-200, 20, 80, 43);
+
+    }else if (_selectIndex ==1){
+        _saveBtn.frame =  CGRectMake(ScreenWidth-160, 20, 40, 43);
+        [_saveBtn setTitle:@"刷新" forState:UIControlStateNormal];
+    }else if (_selectIndex ==2){
+        _saveBtn.frame =  CGRectMake(ScreenWidth-160, 20, 40, 43);
+        [_saveBtn setTitle:@"刷新" forState:UIControlStateNormal];
+    }else{
+        _saveBtn.frame =  CGRectMake(ScreenWidth-160, 20, 40, 43);
+        [_saveBtn setTitle:@"" forState:UIControlStateNormal];
+    }
+    
+    
     
 }
+
+
 
 #pragma mark ====== get
 

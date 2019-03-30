@@ -194,14 +194,14 @@
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error) {
+            if (error) {
             [HUD show:@"网络错误"];
             errorBlock(@"网络错误");
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
               NSDictionary *resultDic = [NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
                 if ([resultDic[@"code"] intValue]==200) {
-                    [HUD show:resultDic[@"message"]];
+                  //  [HUD show:resultDic[@"message"]];
                     returnBlock(resultDic);
                 }else{
                     [HUD show:resultDic[@"message"]];
@@ -238,8 +238,10 @@
         [manager.requestSerializer setValue:user.authorization forHTTPHeaderField:@"authorization"];
     }
     
+    [HUD showLoading:nil];
     [manager DELETE:[NSString stringWithFormat:@"%@%@",_baseUrl,urlStr] parameters:paramDic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSDictionary *resultDic = [NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
+        [HUD cancel];
         if ([resultDic[@"code"] intValue]==200) {
             [HUD show:@"删除成功"];
             returnBlock(resultDic);
@@ -249,6 +251,7 @@
         }
         returnBlock(resultDic);
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+         [HUD cancel];
         if (error) {
             [HUD show:@"网络错误"];
             errorBlock(@"网络错误");

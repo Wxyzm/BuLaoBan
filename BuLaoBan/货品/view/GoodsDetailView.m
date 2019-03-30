@@ -9,6 +9,7 @@
 #import "GoodsDetailView.h"
 #import "SampleDetail.h"
 #import "picModel.h"
+#import "HUPhotoBrowser.h"
 @interface GoodsDetailView ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 
@@ -128,6 +129,17 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    
+    //查看大图
+    NSMutableArray *imageArr = [NSMutableArray arrayWithCapacity:0];
+    for (picModel *model in _picArr) {
+        [imageArr addObject:model.showImage];
+    }
+    if (imageArr.count<=0) {
+        return ;
+    }
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:imageArr[indexPath.row]];
+    [HUPhotoBrowser showFromImageView:imageView withImages:imageArr placeholderImage:nil atIndex:indexPath.row dismiss:nil];
+    
 }
 
 

@@ -43,8 +43,14 @@
     self.splitViewController.viewControllers = @[masterNav,_mainTab];
     self.splitViewController.delegate = _detail;
     LBNavigationController *lbVc = [[LBNavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
+    User *user = [[UserPL shareManager] getLoginUser];
+    if (user.userId.length>0) {
+        self.window.rootViewController = self.splitViewController;
+    }else{
+        self.window.rootViewController = lbVc;
+
+    }
     
-    self.window.rootViewController =  self.splitViewController;
     self.splitViewController.maximumPrimaryColumnWidth = 100.0;
     
     [Bugtags startWithAppKey:@"a1bc1972953ced15a53bcd43caae981f" invocationEvent:BTGInvocationEventBubble];

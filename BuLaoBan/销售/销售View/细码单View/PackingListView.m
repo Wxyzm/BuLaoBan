@@ -12,6 +12,7 @@
 #import "PacKListDataManager.h"
 #import "IQKeyboardManager.h"
 #import "SaleSamModel.h"
+#import "DeliveDetails.h"
 @interface PackingListView ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic, strong) UIButton      *backButton;
@@ -186,6 +187,60 @@
     [self refreshBoomBtn];
     [self.ListTab reloadData];
 }
+
+-(void)setDeliveDetails:(DeliveDetails *)deliveDetails{
+    _deliveDetails = deliveDetails;
+    [_packManager.dataArr removeAllObjects];
+    NSDictionary *dic = [HttpClient valueWithJsonString:deliveDetails.packingList];
+    if (!dic) {
+        return;
+    }
+    NSArray *deArr = [dic objectForKey:@"rowTr"];
+    if (deArr.count<=0) {
+        [_packManager addOnepageNewDatas];
+    }else{
+        NSMutableArray *theDataArr = [NSMutableArray arrayWithCapacity:0];
+        for (int i = 0; i<deArr.count; i++) {
+            NSArray *strArr = deArr[i];
+            if (strArr.count==10) {
+                PackListModel *model = [[PackListModel alloc]init];
+                model.dyelot = strArr[2];
+                model.reel = strArr[1];
+                model.meet = strArr[4];
+                model.noInput = YES;
+                [theDataArr addObject:model];
+                PackListModel *model1 = [[PackListModel alloc]init];
+                model1.dyelot = strArr[7];
+                model1.reel = strArr[6];
+                model1.meet = strArr[9];
+                model1.noInput = YES;
+                [theDataArr addObject:model1];
+                
+            }else if (strArr.count==8){
+                PackListModel *model = [[PackListModel alloc]init];
+                model.dyelot = strArr[1];
+                model.reel = strArr[0];
+                model.meet = strArr[3];
+                model.noInput = YES;
+                [theDataArr addObject:model];
+                PackListModel *model1 = [[PackListModel alloc]init];
+                model1.dyelot = strArr[5];
+                model1.reel = strArr[4];
+                model1.meet = strArr[7];
+                model1.noInput = YES;
+                [theDataArr addObject:model1];
+            }
+          
+        }
+        [_packManager sortWithdatasArr:theDataArr];
+
+    }
+    [self setToolLabText];
+    [self refreshBoomBtn];
+    [self.ListTab reloadData];
+    
+}
+
 
 #pragma - mark =========== 当键盘退出 对数据从新排序
 - (void)keyboardWillHide:(NSNotification *)notification

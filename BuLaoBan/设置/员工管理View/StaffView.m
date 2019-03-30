@@ -64,11 +64,16 @@
     [self addSubview:self.ListTab];
     
 }
+-(void)setDataArr:(NSMutableArray *)dataArr{
+    _dataArr = dataArr;
+    [self.ListTab reloadData];
+    
+}
 
 
 #pragma mark ====== Tabdelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return _dataArr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -81,6 +86,7 @@
     if (!cell) {
         cell = [[StaffCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    cell.model = _dataArr[indexPath.row];
     int a = indexPath.row % 2;
     if (a ==0) {
         cell.contentView.backgroundColor = UIColorFromRGB(WhiteColorValue);

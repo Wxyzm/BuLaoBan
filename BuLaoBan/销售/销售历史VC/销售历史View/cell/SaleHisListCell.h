@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SellOrderDeliver;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SaleHisListCell : UITableViewCell
+
+@property (nonatomic,strong) SellOrderDeliver *model;
 
 
 

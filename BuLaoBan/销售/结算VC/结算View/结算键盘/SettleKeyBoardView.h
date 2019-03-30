@@ -14,7 +14,7 @@ typedef void(^SettleKeyBoardViewReturnBlock)(NSString *selectStr);
 
 @interface SettleKeyBoardView : UIView
 
-@property (nonatomic, assign) SettleKeyBoardViewReturnBlock returnBlock;      //标题
+@property (nonatomic, copy) SettleKeyBoardViewReturnBlock returnBlock;      //标题
 
 @end
 

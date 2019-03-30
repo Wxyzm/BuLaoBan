@@ -9,6 +9,7 @@
 #import "AddGoodsView.h"
 #import "picModel.h"
 #import "UpImaPL.h"
+#import "HUPhotoBrowser.h"
 
 @interface AddGoodsView ()<UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,TZImagePickerControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate>
 
@@ -19,12 +20,9 @@
 
 @implementation AddGoodsView{
     
-    UITextField *_numberTxt;  //货品编号
     UITextField *_nameTxt;    //货品名称
     UITextField *_specTxt;    //规格
-    UILabel *_componentLab;  //成分
-    UILabel *_widthLab;      //门幅
-    UILabel *_weightLab;     //克重
+ 
     UILabel *_unitLab;       //单位
     NSMutableArray *_photosArr; //照片
 }
@@ -166,6 +164,13 @@
 #pragma mark ========== set
 -(void)setSampleModel:(SampleDetail *)sampleModel{
     _sampleModel = sampleModel;
+    if (_sampleModel.itemNo.length>0) {
+        //编辑时无法改变
+        _numberTxt.userInteractionEnabled = NO;
+    }else{
+        //新增时可以改变
+        _numberTxt.userInteractionEnabled = YES;
+    }
     _numberTxt.text = sampleModel.itemNo.length>0?sampleModel.itemNo:@"";
     _nameTxt.text = sampleModel.name.length>0?sampleModel.name:@"";
     _componentLab.text = sampleModel.component.length>0?sampleModel.component:@"选择";
@@ -203,25 +208,50 @@
 #pragma mark ========== 保存
 - (void)saveAllInfo
 {
-    if (_isNew) {
-        //新增
+    if (_numberTxt.text.length<=0) {
+        [HUD show:@"请输入货品编号"];
+        return;
     }
     
     if (_photosArr.count>0) {
-        NSDictionary *paDic = @{@"bizType":@"11",
-                                @"bizId":_sampleModel.sampleId
-                                };
+        NSDictionary *paDic;
+        if (_sampleModel.sampleId.length>0) {
+            paDic = @{@"bizType":@"11",
+                        @"bizId":_sampleModel.sampleId
+                        };
+        }else{
+            User *tuser = [[UserPL shareManager] getLoginUser];
+            paDic =@{@"bizType":@"10",
+                     @"bizId":tuser.defutecompanyId
+                     };
+        }
+        
         NSMutableArray *upArr = [NSMutableArray arrayWithCapacity:0];
+        NSMutableArray *upmdoelArr = [NSMutableArray arrayWithCapacity:0];
+
         for (picModel *model in _photosArr) {
             if (model.sampleDocKey.length<=0) {
                 [upArr addObject:model.showImage];
+                [upmdoelArr addObject:model];
+
             }
+        }
+        if (upArr.count<=0) {
+            if (_sampleModel.sampleId.length<=0) {
+                //新增
+                [self addNewSampleWithPicArr:[NSArray array]];
+
+            }else{
+                //编辑
+                 [self changeSampleWithPicArr:[NSArray array]];
+            }
+            return;
         }
         [UpImaPL UpImaPLupImgArr:upArr WithTypeDic:paDic WithReturnBlock:^(id returnValue) {
             NSArray *picIdsArr = returnValue[@"picIds"];
             NSArray *picKeysArr = returnValue[@"picKeys"];
-            for (int i = 0; i<upArr.count; i++) {
-                picModel *model = upArr[i];
+            for (int i = 0; i<upmdoelArr.count; i++) {
+                picModel *model = upmdoelArr[i];
                 if (i<picIdsArr.count) {
                     model.docId =picIdsArr[i];
                 }
@@ -229,16 +259,120 @@
                     model.sampleDocKey = picKeysArr[i];
                 }
             }
-            
-            
+            if (_sampleModel.sampleId.length<=0) {
+                //新增
+                [self addNewSampleWithPicArr:_photosArr];
+            }else{
+                //编辑
+                [self changeSampleWithPicArr:_photosArr];
+            }
             
         } andErrorBlock:^(NSString *msg) {
             
         }];
-        
-        
     }
+}
+/*
+ UITextField *_numberTxt;  //货品编号
+ UITextField *_nameTxt;    //货品名称
+ UITextField *_specTxt;    //规格
+ UILabel *_componentLab;  //成分
+ UILabel *_widthLab;      //门幅
+ UILabel *_weightLab;     //克重
+ UILabel *_unitLab;       //单位
+ NSMutableArray *_photosArr; //照片
+ _sampleModel = sampleModel;
+ _numberTxt.text = sampleModel.itemNo.length>0?sampleModel.itemNo:@"";
+ _nameTxt.text = sampleModel.name.length>0?sampleModel.name:@"";
+ _componentLab.text = sampleModel.component.length>0?sampleModel.component:@"选择";
+ _widthLab.text = sampleModel.width.length>0?sampleModel.width:@"选择";
+ _weightLab.text = sampleModel.weight.length>0?sampleModel.weight:@"选择";
+ _specTxt.text = sampleModel.specification.length>0?sampleModel.specification:@"";
+ _unitLab.text = sampleModel.primaryUnit.length>0?sampleModel.primaryUnit:@"";
+ */
+#pragma mark ==========修改样品
+- (void)changeSampleWithPicArr:(NSArray *)picUrlArr{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    [dic setValue:_sampleModel.companyId forKey:@"companyId"];
+    if (_nameTxt.text.length>0) {
+        [dic setValue:_nameTxt.text forKey:@"name"];
+    }
+//    if (_numberTxt.text.length>0) {
+//        [dic setValue:_numberTxt.text forKey:@"itemNo"];
+//    }
+    if (_componentLab.text.length>0) {
+        [dic setValue:_componentLab.text forKey:@"component"];
+    }
+    if (_widthLab.text.length>0) {
+        [dic setValue:_widthLab.text forKey:@"width"];
+    }
+    if (_weightLab.text.length>0) {
+        [dic setValue:_weightLab.text forKey:@"weight"];
+    }
+    if (_specTxt.text.length>0) {
+        [dic setValue:_specTxt.text forKey:@"specification"];
+    }
+    if (picUrlArr.count>0) {
+        NSMutableArray *urlArr = [NSMutableArray arrayWithCapacity:0];
+        for (int i = 0; i<picUrlArr.count; i++) {
+            picModel *model = picUrlArr[i];
+            [urlArr addObject:model.docId];
+        }
+        NSString *urlstr = [urlArr componentsJoinedByString:@","];
+        NSDictionary *urldic = @{@"roleType":@"1",@"picIds":urlstr};
+        NSArray *arr = @[urldic];
+        [dic setValue:arr forKey:@"pics"];
+    }
+    [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/samples/%@",_sampleModel.sampleId] paramDic:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        [HUD show:@"修改成功"];
+
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
     
+   
+}
+#pragma mark ==========新增样品
+- (void)addNewSampleWithPicArr:(NSArray *)picUrlArr{
+    User *tuser = [[UserPL shareManager] getLoginUser];
+
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    [dic setValue:tuser.defutecompanyId forKey:@"companyId"];
+    if (_nameTxt.text.length>0) {
+        [dic setValue:_nameTxt.text forKey:@"name"];
+    }
+        if (_numberTxt.text.length>0) {
+            [dic setValue:_numberTxt.text forKey:@"itemNo"];
+        }
+    if (_componentLab.text.length>0) {
+        [dic setValue:_componentLab.text forKey:@"component"];
+    }
+    if (_widthLab.text.length>0) {
+        [dic setValue:_widthLab.text forKey:@"width"];
+    }
+    if (_weightLab.text.length>0) {
+        [dic setValue:_weightLab.text forKey:@"weight"];
+    }
+    if (_specTxt.text.length>0) {
+        [dic setValue:_specTxt.text forKey:@"specification"];
+    }
+    if (picUrlArr.count>0) {
+        NSMutableArray *urlArr = [NSMutableArray arrayWithCapacity:0];
+        for (int i = 0; i<picUrlArr.count; i++) {
+            picModel *model = picUrlArr[i];
+            [urlArr addObject:model.docId];
+        }
+        NSString *urlstr = [urlArr componentsJoinedByString:@","];
+        NSDictionary *urldic = @{@"roleType":@"1",@"picIds":urlstr};
+        NSArray *arr = @[urldic];
+        [dic setValue:arr forKey:@"pics"];
+    }
+    [[HttpClient sharedHttpClient] requestPOST:@"/samples" Withdict:dic WithReturnBlock:^(id returnValue) {
+        [HUD show:@"新增成功"];
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
     
 }
 
@@ -261,7 +395,6 @@
         cell.imageView.image = model.showImage;
         cell.deleteBtn.hidden = NO;
     }
-    
     cell.gifLable.hidden = YES;
     cell.deleteBtn.tag = indexPath.row;
     [cell.deleteBtn addTarget:self action:@selector(deleteBtnClik:) forControlEvents:UIControlEventTouchUpInside];
@@ -270,17 +403,24 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    
         if (indexPath.row ==_photosArr.count) {
             UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"去相册选择",@"取消", nil];
-
             UIWindow   *alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
             alertWindow.rootViewController = [[UIViewController alloc] init];
             alertWindow.windowLevel = UIWindowLevelAlert + 1;
             [alertWindow makeKeyAndVisible];
             [sheet showInView:alertWindow.rootViewController.view];
-
-
+        }else{
+            //查看大图
+            NSMutableArray *imageArr = [NSMutableArray arrayWithCapacity:0];
+            for (picModel *model in _photosArr) {
+                [imageArr addObject:model.showImage];
+            }
+            if (imageArr.count<=0) {
+                return ;
+            }
+            UIImageView *imageView = [[UIImageView alloc]initWithImage:imageArr[indexPath.row]];
+            [HUPhotoBrowser showFromImageView:imageView withImages:imageArr placeholderImage:nil atIndex:indexPath.row dismiss:nil];
         }
 }
 

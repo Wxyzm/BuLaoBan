@@ -39,6 +39,7 @@
 
     _salerBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(100, 308, 480, 44) font:APPFONT13 title:@"" titleColor:UIColorFromRGB(BlackColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [_salerBtn setImage:[UIImage imageNamed:@"down_chose"] forState:UIControlStateNormal];
+    [_salerBtn setTitle:@"选择" forState:UIControlStateNormal];
     _salerBtn.titleLabel.textAlignment = NSTextAlignmentRight;
     [_salerBtn setTitleRect:CGRectMake(0, 0, 465, 44)];
     [_salerBtn setImageRect:CGRectMake(470, 20, 14, 14)];
@@ -47,6 +48,8 @@
     _spartakeBtn= [BaseViewFactory ylButtonWithFrame:CGRectMake(100, 352, 480, 44) font:APPFONT13 title:@"" titleColor:UIColorFromRGB(BlackColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [_spartakeBtn setImage:[UIImage imageNamed:@"down_chose"] forState:UIControlStateNormal];
     _spartakeBtn.titleLabel.textAlignment = NSTextAlignmentRight;
+    [_spartakeBtn setTitle:@"选择" forState:UIControlStateNormal];
+
     [_spartakeBtn setTitleRect:CGRectMake(0, 0, 465, 44)];
     [_spartakeBtn setImageRect:CGRectMake(470, 20, 14, 14)];
     [self.showView addSubview:_spartakeBtn];
@@ -200,6 +203,11 @@
 - (NSDictionary *)getSetUPDic{
     NSMutableDictionary *setDic = [[NSMutableDictionary alloc]init];
     [setDic setValue:_comNameTxt.text forKey:@"name"];
+    if (_model.nature.length>0) {
+        [setDic setValue:_model.nature forKey:@"nature"];
+    }else{
+        [setDic setValue:@"2" forKey:@"nature"];
+    }
     //联系人
     if (_linkManTxt.text.length>0) {
         [setDic setValue:_linkManTxt.text forKey:@"manager"];
@@ -221,9 +229,30 @@
         [setDic setValue:_memoTxt.text forKey:@"remark"];
     }
     [setDic setValue:_model.salesman forKey:@"salesman"];
+    User *user = [[UserPL shareManager] getLoginUser];
+    
+    if (!_model.comId) {
+        [setDic setValue:user.defutecompanyId forKey:@"companyId"];
 
+    }
+    
     return setDic;
 }
+
+- (void)clearAllInfo{
+    _model = [ComCustomerDetail new];
+    _comNameTxt.text = @"";
+    _linkManTxt.text = @"";
+    _phoneTxt.text = @"";
+    _mailTxt.text = @"";
+    _adressTxt.text = @"";
+    _moneyTxt.text = @"";
+    [_salerBtn setTitle:@"选择" forState:UIControlStateNormal];
+    [_spartakeBtn setTitle:@"选择" forState:UIControlStateNormal];
+    _memoTxt.text = @"";
+}
+
+
 
 #pragma - mark UITableView
 

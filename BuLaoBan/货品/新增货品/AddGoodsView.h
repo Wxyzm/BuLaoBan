@@ -19,9 +19,11 @@ typedef void(^AddGoodsViewChoseBlock)(NSInteger btnTag);
  */
 @property (nonatomic, copy) AddGoodsViewChoseBlock choseBlock;
 @property (nonatomic, strong) SampleDetail *sampleModel;
+@property (nonatomic,strong)UITextField *numberTxt;  //货品编号
 
-@property (nonatomic, assign) BOOL isNew;
-
+@property (nonatomic,strong) UILabel *componentLab; //成分
+@property (nonatomic,strong) UILabel *widthLab;     //门幅
+@property (nonatomic,strong) UILabel *weightLab;    //克重
 
 
 @end

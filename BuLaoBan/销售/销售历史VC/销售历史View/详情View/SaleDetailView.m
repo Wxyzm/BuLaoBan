@@ -9,11 +9,14 @@
 #import "SaleDetailView.h"
 #import "SaleListTopView.h"
 #import "SaleListCell.h"
-
+#import "SellOrderDeliverDetail.h"
+#import "PackingListView.h"//细码单填写View
+#import "DeliveDetails.h"
 @interface SaleDetailView ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *ListTab;               //列表
 
+@property (nonatomic, strong) PackingListView *packingListView;     //细码单填写
 
 @end
 
@@ -22,7 +25,7 @@
     UILabel *_nameLab;  //名称
     UILabel *_memoLab;  //备注
     UILabel *_totolLab; //合计
-
+    NSMutableArray *_dataArr;
     NSMutableArray *_labArr; //其余属性
 
 }
@@ -32,6 +35,7 @@
     if (self) {
         self.backgroundColor = UIColorFromRGB(WhiteColorValue);
         _labArr = [NSMutableArray arrayWithCapacity:0];
+        _dataArr = [NSMutableArray arrayWithCapacity:0];
         [self initUI];
     }
     return self;
@@ -70,6 +74,28 @@
     [self addSubview:self.ListTab];
     
 }
+
+-(void)setModel:(SellOrderDeliverDetail *)model{
+    _model = model;
+    NSArray *titleArr = @[@"单号：",@"本单应收：",@"日期：",@"本单已收：",@"业务员：",@"本单欠款：",@"类型：",@"结算账户："];
+    NSString *money = [NSString stringWithFormat:@"%.2f",[model.receivablePrice floatValue]- [model.receiptPrice floatValue]];
+    NSString *kind = [model.type intValue]==0?@"剪样":@"大货";
+    NSArray *valueArr = @[model.deliverNo,model.receivablePrice,model.deliverDate,model.receiptPrice,model.sellerName,money,kind,model.customerName];
+
+    for (int i = 0; i<_labArr.count; i++) {
+        UILabel *lab = _labArr[i];
+        lab.text = [NSString stringWithFormat:@"%@%@",titleArr[i],valueArr[i]];
+    }
+    
+    [_dataArr removeAllObjects];
+    [_dataArr addObjectsFromArray:model.details];
+    [self.ListTab reloadData];
+}
+
+
+
+
+
 #pragma mark ====== tableview
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -85,11 +111,12 @@
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 50;
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -98,6 +125,18 @@
     if (!cell) {
         cell = [[SaleListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
+    cell.deliveDetails = _dataArr[indexPath.row];
+    cell.returnBlock = ^(SaleSamModel * _Nonnull model, NSInteger type) {
+        if (type==1){
+            //添加细码单
+            DeliveDetails *model =  _dataArr[indexPath.row];
+            if (model.packingList.length>0) {
+                self.packingListView.deliveDetails = model;
+                [self.packingListView showView];
+            }
+        }
+        
+    };
     return cell;
 }
 
@@ -121,5 +160,11 @@
     return _ListTab;
     
 }
-
+-(PackingListView *)packingListView{
+    
+    if (!_packingListView) {
+        _packingListView = [[PackingListView alloc]init];
+    }
+    return _packingListView;
+}
 @end

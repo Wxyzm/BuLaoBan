@@ -125,6 +125,9 @@
         weakself.model.comName = comCusModel.name;
         weakself.settleModel.comId = comCusModel.comId;
         weakself.settleModel.comName = comCusModel.name;
+        weakself.settleModel.sellerName = comCusModel.salesmanName;
+        weakself.settleModel.sellerId = comCusModel.salesman;
+
         [weakself.CustomerView.customerBtn setTitle:comCusModel.name forState:UIControlStateNormal];
     };
     //商品搜索

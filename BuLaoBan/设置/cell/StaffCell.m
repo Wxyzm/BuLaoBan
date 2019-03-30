@@ -7,7 +7,7 @@
 //
 
 #import "StaffCell.h"
-
+#import "CompanyUsers.h"
 @implementation StaffCell{
     
     UIImageView *_faceIma;
@@ -35,13 +35,13 @@
     _faceIma.layer.cornerRadius = 2;
     _faceIma.backgroundColor = UIColorFromRGB(BackColorValue);
     
-    _nameLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT12 textAligment:NSTextAlignmentCenter andtext:@"张三"];
+    _nameLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT12 textAligment:NSTextAlignmentCenter andtext:@""];
     [self.contentView addSubview:_nameLab];
 
-    _phoneLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT12 textAligment:NSTextAlignmentCenter andtext:@"13088623546"];
+    _phoneLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT12 textAligment:NSTextAlignmentCenter andtext:@""];
     [self.contentView addSubview:_phoneLab];
     
-    _positionLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT12 textAligment:NSTextAlignmentCenter andtext:@"所有者"];
+    _positionLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT12 textAligment:NSTextAlignmentCenter andtext:@""];
     [self.contentView addSubview:_positionLab];
     
     _doBtn = [BaseViewFactory buttonWithFrame:CGRectZero font:APPFONT12 title:@"转移" titleColor:UIColorFromRGB(BlackColorValue) backColor:[UIColor clearColor]];
@@ -72,4 +72,15 @@
     .heightIs(50);
     
 }
+
+-(void)setModel:(CompanyUsers *)model{
+    _model = model;
+    _nameLab.text = model.name;
+    _phoneLab.text = model.mobile;
+    _positionLab.text = model.roleName;
+    [_faceIma sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:nil];
+
+    
+}
+
 @end

@@ -13,9 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AddGoodsHomeView : UIView
 
 @property (nonatomic, strong) SampleDetail *sampleDetail;
-
-
-
 - (void)showView;
 - (void)dismiss;
 

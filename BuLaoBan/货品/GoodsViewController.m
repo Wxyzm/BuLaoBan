@@ -178,7 +178,7 @@
     if (!_addView) {
         _addView = [[AddGoodsHomeView alloc]init];
     }
-  //  _addView.sampleDetail = _detailView.sampledetail;
+    _addView.sampleDetail =[[SampleDetail alloc] init];
     [_addView showView];
     
 }

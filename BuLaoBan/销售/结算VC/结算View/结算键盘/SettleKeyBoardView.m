@@ -75,7 +75,7 @@
     }
     else{
         //拼接
-        weakself.returnBlock(@"_titleArr[tag]");
+        weakself.returnBlock(_titleArr[tag]);
     }
     
 }

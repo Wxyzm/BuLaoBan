@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, ValueType) {
     ValueType_Input         = 1,
     ValueType_Select        = 2,
-    ValueType_Memo          = 3
+    ValueType_Money        = 3,
+    ValueType_Memo          = 4
 };
 
 @interface Settlement : NSObject

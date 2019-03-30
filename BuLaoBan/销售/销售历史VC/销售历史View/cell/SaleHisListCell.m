@@ -7,6 +7,7 @@
 //
 
 #import "SaleHisListCell.h"
+#import "SellOrderDeliver.h"
 
 @interface SaleHisListCell ()<UITextFieldDelegate>
 
@@ -53,5 +54,19 @@
     [self.contentView addSubview:line];
 
 }
+
+- (void)setModel:(SellOrderDeliver *)model{
+    _model = model;
+    _nameLab.text = model.customerName;
+    _numberLab.text = [NSString stringWithFormat:@"单号：%@",model.deliverNo];
+    _dateLab.text = [NSString stringWithFormat:@"日期：%@",model.leadTime];
+    if (model.selected) {
+        self.contentView.backgroundColor = UIColorFromRGB(0xeff6f9);
+    }else{
+        self.contentView.backgroundColor = UIColorFromRGB(WhiteColorValue);
+        
+    }
+}
+
 
 @end

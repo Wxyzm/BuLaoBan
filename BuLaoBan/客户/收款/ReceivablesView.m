@@ -97,10 +97,12 @@
                           @"sellerId":_commodel.salesman,                //业务员ID*
                           @"companyAccountId":_account.companyAccountId, //公司账户ID*
                           @"companyCurrencyId":_commodel.companyCurrencyId,       //币别Id*(默认从客户带过来)
+                          @"isPrePayment":@"1",  //是否是预收款
                           @"receiptAmount":[NSString stringWithFormat:@"%.2f",[_MoneyTxt.text floatValue]]            //收款金额
                           };
     [[HttpClient sharedHttpClient] requestPOST:@"/finance/receipt" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
+        [HUD show:@"收款成功"];
         WeakSelf(self);
         if (weakself.returnBlock) {
             weakself.returnBlock(2);

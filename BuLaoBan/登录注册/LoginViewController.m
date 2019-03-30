@@ -44,7 +44,7 @@
     
     
     NSLog(@"%f,%f",ScreenWidth,ScreenHeight);
-    UILabel *topLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(20) textAligment:NSTextAlignmentCenter andtext:@"布老板"];
+    UILabel *topLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(20) textAligment:NSTextAlignmentCenter andtext:@"布管家"];
     [self.view addSubview:topLab];
     User *user = [[UserPL shareManager] getLoginUser];
 

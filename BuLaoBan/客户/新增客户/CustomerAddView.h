@@ -37,13 +37,16 @@ typedef void(^CustomerAddViewReturnBtnClick)(NSInteger tag,ComCustomerDetail *mo
 @property(nonatomic,strong)NSMutableArray *parArr;   //参与者
 @property(nonatomic,strong)NSMutableArray *comArr;   //业务员
 
+
 /**
  类型   1参与者    2业务员
  */
 @property(nonatomic,assign)NSInteger type;
 
+//新增时清除显示
+- (void)clearAllInfo;
 
-
+//获取上传信息
 - (NSDictionary *)getSetUPDic;
 - (void)showTheView;
 - (void)dismiss;

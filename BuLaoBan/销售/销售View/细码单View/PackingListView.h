@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class SaleSamModel;
+@class DeliveDetails;
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^PackingListViewSaveBlock)(SaleSamModel *saleSamModel);
@@ -15,6 +16,9 @@ typedef void(^PackingListViewSaveBlock)(SaleSamModel *saleSamModel);
 @interface PackingListView : UIView
 
 @property (nonatomic, strong) SaleSamModel    *saleSamModel;
+@property (nonatomic, strong) DeliveDetails   *deliveDetails;
+
+
 
 @property (nonatomic, copy) PackingListViewSaveBlock returnBlock;
 

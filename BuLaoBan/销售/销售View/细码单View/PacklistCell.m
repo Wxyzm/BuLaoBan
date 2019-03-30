@@ -70,7 +70,11 @@
     _dyelotTxt.text = packModel.dyelot;
     _reelTxt.text = packModel.reel;
     _meetTxt.text = packModel.meet;
-    
+    if (packModel.noInput) {
+        self.userInteractionEnabled = NO;
+    }else{
+        self.userInteractionEnabled = YES;
+    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

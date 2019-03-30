@@ -83,12 +83,15 @@
     UIView *backView = [BaseViewFactory viewWithFrame:CGRectMake(0, 64,300 , 56) color:UIColorFromRGB(LineColorValue)];
     [self.view addSubview:backView];
     
-    _searchTxt = [BaseViewFactory textFieldWithFrame:CGRectMake(10, 10, 200, 36) font:APPFONT14 placeholder:@"输入客户名称/电话" textColor:UIColorFromRGB(BlackColorValue) placeholderColor:UIColorFromRGB(0x858585) delegate:self];
+    _searchTxt = [BaseViewFactory textFieldWithFrame:CGRectMake(10, 10, 280, 36) font:APPFONT14 placeholder:@"输入客户名称/电话" textColor:UIColorFromRGB(BlackColorValue) placeholderColor:UIColorFromRGB(0x858585) delegate:self];
+    _searchTxt.returnKeyType = UIReturnKeyDone;
     _searchTxt.backgroundColor = UIColorFromRGB(WhiteColorValue);
     _searchTxt.leftViewMode = UITextFieldViewModeAlways;
     _searchTxt.layer.cornerRadius = 2;
     _searchTxt.leftView = [BaseViewFactory viewWithFrame:CGRectMake(0, 0, 12, 36) color:[UIColor clearColor]];
     [backView addSubview:_searchTxt];
+    
+  
     
     [self.view addSubview:self.ListTab];
     //详情View
@@ -108,14 +111,23 @@
             case 0:{
                 //保存
                 NSDictionary *setDic = [weakself.addView getSetUPDic];
-                [weakself savecontactComWiyhDic:setDic ComCustomerDetail:model];
+                if (model.comId.length<=0) {
+                    //新增
+                    [weakself addcontactComWiyhDic:setDic];
+                }else{
+                    //编辑
+                    [weakself savecontactComWiyhDic:setDic ComCustomerDetail:model];
+
+                }
                 break;
             }
             case 1:{
+                //1：业务员
                 [weakself getCompanyUsersWithComCustomerDetail:model];
                 break;
             }
             case 2:{
+                //参与者
                 [weakself getCompanyparticipantsWithComCustomerDetail:model];
                 break;
             }
@@ -132,8 +144,9 @@
 - (void)loadCustomerList{
     User *user = [[UserPL shareManager] getLoginUser];
     NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+                          @"key":_searchTxt.text.length>0?_searchTxt.text:@"",
                           @"pageNo":@"1",
-                          @"pageSize":@"1000"
+                          @"pageSize":@"5000"
                           };
     [[HttpClient sharedHttpClient] requestGET:@"contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
@@ -198,10 +211,43 @@
 - (void)savecontactComWiyhDic:(NSDictionary *)dic ComCustomerDetail:(ComCustomerDetail*)model{
     [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/contact/company/%@",model.comId] paramDic:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
+        [HUD show:@"修改成功"];
+        [self.addView dismiss];
+        [self reloadList];
     } andErrorBlock:^(NSString *msg) {
         
     }];
 }
+#pragma mark ====== 添加联系公司
+- (void)addcontactComWiyhDic:(NSDictionary *)dic{
+    [[HttpClient sharedHttpClient] requestPOST:@"/contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
+        [HUD show:@"添加成功"];
+        [self.addView dismiss];
+        [self reloadList];
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+#pragma mark ======  删除联系公司
+- (void)DeleteCurrentcontactCom{
+    ComCustomer *selectcustomer;
+    for (ComCustomer *customer in _dataArr) {
+        if (customer.isSelected) {
+            selectcustomer = customer;
+        }
+    }
+    if (!selectcustomer) {
+        return;
+    }
+    [[HttpClient sharedHttpClient]requestDeleteWithURLStr:[NSString stringWithFormat:@"/contact/company/%@",selectcustomer.comId] paramDic:nil WithReturnBlock:^(id returnValue) {
+        [self reloadList];
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+    
+    
+}
+
 #pragma mark ======  获取公司账户列表
 - (void)loadComAccountList{
     ComCustomer *selectcustomer;
@@ -226,8 +272,12 @@
 
 
 #pragma mark ====== 按钮点击
+
+
+
 //新增客户
 - (void)addNewCustomerBtnClick{
+    [self.addView clearAllInfo];
     [self.addView showTheView];
 }
 
@@ -252,6 +302,18 @@
                 break;
             }
             case 1:{
+               
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定删除该联系人？" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    [weakself DeleteCurrentcontactCom];
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:NULL];
+                [alert addAction:action];
+                [alert addAction:cancelAction];
+                UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+                popPresenter.sourceView = weakself.view;
+                popPresenter.sourceRect = weakself.view.bounds;
+                [weakself presentViewController:alert animated:YES completion:nil];
                 break;
             }
             default:
@@ -307,6 +369,19 @@
     [self loadCustomerDetailWithCustomereId:customer.comId];
     
 }
+
+#pragma mark ====== textFielddelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if (textField ==_searchTxt) {
+        [_searchTxt resignFirstResponder];
+        [self loadCustomerList];
+    }
+    
+    return YES;
+}
+
+
 #pragma mark ====== get
 
 -(BaseTableView *)ListTab{

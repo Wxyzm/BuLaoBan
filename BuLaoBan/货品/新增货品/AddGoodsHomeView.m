@@ -57,20 +57,10 @@
         UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
         tapGr.cancelsTouchesInView = NO;
         [self addGestureRecognizer:tapGr];
-#pragma mark -键盘弹出添加监听事件
-//        // 键盘出现的通知
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//        // 键盘消失的通知
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
         [self setUp];
     }
     return self;
     
-}
-
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)setUp{
@@ -93,7 +83,6 @@
     self.goodsComView.choseBlock = ^(NSString * _Nonnull comp) {
         [weakself chosecomponentWithStr:comp];
     };
-   
     self.goodsWidthView.choseBlock = ^(NSString * _Nonnull width) {
         [weakself choseWidthWithStr:width];
     };
@@ -109,7 +98,7 @@
 }
 
 
-#pragma mark ========= 属性
+#pragma mark ========= 属性 按钮点击
 
 /**
  按钮点击
@@ -151,7 +140,6 @@
  成分
  */
 - (void)chosecomponentWithStr:(NSString *)comp{
-    
     //关闭   保存
     if (comp.length<=0) {
         //关闭 确定
@@ -160,9 +148,7 @@
         }
         self.addGoodsView.hidden = NO;
     }else{
-        _sampleDetail.component = comp;
-        self.addGoodsView.sampleModel = _sampleDetail;
-        
+        self.addGoodsView.componentLab.text = comp;
     }
 }
 
@@ -178,11 +164,8 @@
         }
         self.addGoodsView.hidden = NO;
     }else{
-        _sampleDetail.width = widthStr;
-        self.addGoodsView.sampleModel = _sampleDetail;
-        
+        self.addGoodsView.widthLab.text = widthStr;
     }
-    
 }
 /**
  克重
@@ -196,9 +179,7 @@
         }
         self.addGoodsView.hidden = NO;
     }else{
-        _sampleDetail.weight = weightStr;
-        self.addGoodsView.sampleModel = _sampleDetail;
-        
+        self.addGoodsView.weightLab.text = weightStr;
     }
    
 }
@@ -215,17 +196,12 @@
     [UIView animateWithDuration:0.2 animations:^{
        
     }];
-    
-    
 }
 
 - (void)dismiss
 {
     if (!_isShow) return;
-    
     _isShow = NO;
-    
-    
     [UIView animateWithDuration:0.2 animations:^{
       
     } completion:^(BOOL finished) {
@@ -240,39 +216,6 @@
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
-#pragma mark -键盘监听方法
-- (void)keyboardWillShow:(NSNotification *)notification
-{
-    NSDictionary *userInfo = notification.userInfo;
-   // CGRect frame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];//键盘动画结束时的frame
-    NSTimeInterval timeInterval = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];//动画持续时间
-    UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];//动画曲线类型
-    //your animation code
- //   __weak typeof(self) weakself = self;
-    [UIView setAnimationCurve:curve];
-    [UIView animateWithDuration:timeInterval animations:^{
-        //code
-        self.frame = CGRectMake(0, -60, ScreenWidth, ScreenHeight);
-
-    }];
-
-}
-- (void)keyboardWillBeHiden:(NSNotification *)notification
-{
-    NSDictionary *userInfo = notification.userInfo;
-  //  CGRect frame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];//键盘动画结束时的frame
-    NSTimeInterval timeInterval = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];//动画持续时间
-    UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];//动画曲线类型
-    //your animation code
-  //  __weak typeof(self) weakself = self;
-    [UIView setAnimationCurve:curve];
-    [UIView animateWithDuration:timeInterval animations:^{
-        //code
-        self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-
-    }];
-}
-
 #pragma mark ========= get
 
 - (UIButton *)backButton
@@ -281,7 +224,6 @@
         _backButton = [[UIButton alloc] initWithFrame:self.bounds];
         _backButton.backgroundColor = [UIColor blackColor];
         _backButton.alpha = 0.3;
-        //        [_backButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backButton;
 }
@@ -320,7 +262,6 @@
         
     }
     return _goodsWeightView;
-    
     
 }
 
