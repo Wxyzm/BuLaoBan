@@ -20,6 +20,7 @@
 		0B44DFF4224B0B31008F0741 /* SellOrderDeliver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B44DFF3224B0B31008F0741 /* SellOrderDeliver.m */; };
 		0B44DFF7224B3D09008F0741 /* SellOrderDeliverDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B44DFF6224B3D09008F0741 /* SellOrderDeliverDetail.m */; };
 		0B44DFFA224B4346008F0741 /* DeliveDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B44DFF9224B4346008F0741 /* DeliveDetails.m */; };
+		0B460E672251B641002352E1 /* TopSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B460E662251B641002352E1 /* TopSearchView.m */; };
 		0B4A24E52233450A00C3621D /* ReceivableCustomers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24E42233450A00C3621D /* ReceivableCustomers.m */; };
 		0B4A24E82233459D00C3621D /* ReceivableItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24E72233459D00C3621D /* ReceivableItems.m */; };
 		0B4A24F92233546300C3621D /* BillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A24F72233546300C3621D /* BillCell.m */; };
@@ -272,6 +273,8 @@
 		0B44DFF8224B4346008F0741 /* DeliveDetails.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeliveDetails.h; sourceTree = "<group>"; };
 		0B44DFF9224B4346008F0741 /* DeliveDetails.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeliveDetails.m; sourceTree = "<group>"; };
 		0B44DFFB224B44D2008F0741 /* SaleHistHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleHistHeader.h; sourceTree = "<group>"; };
+		0B460E652251B641002352E1 /* TopSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopSearchView.h; sourceTree = "<group>"; };
+		0B460E662251B641002352E1 /* TopSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopSearchView.m; sourceTree = "<group>"; };
 		0B4A24E32233450A00C3621D /* ReceivableCustomers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableCustomers.h; sourceTree = "<group>"; };
 		0B4A24E42233450A00C3621D /* ReceivableCustomers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivableCustomers.m; sourceTree = "<group>"; };
 		0B4A24E62233459D00C3621D /* ReceivableItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivableItems.h; sourceTree = "<group>"; };
@@ -773,6 +776,15 @@
 			path = sellOrderDeliver;
 			sourceTree = "<group>";
 		};
+		0B460E642251B61D002352E1 /* 高级搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				0B460E652251B641002352E1 /* TopSearchView.h */,
+				0B460E662251B641002352E1 /* TopSearchView.m */,
+			);
+			path = "高级搜索";
+			sourceTree = "<group>";
+		};
 		0B4A24E2223344EF00C3621D /* Receivable */ = {
 			isa = PBXGroup;
 			children = (
@@ -1162,6 +1174,7 @@
 			children = (
 				1827743021FEEB7A000F4E0F /* GoodsViewController.h */,
 				1827743121FEEB7A000F4E0F /* GoodsViewController.m */,
+				0B460E642251B61D002352E1 /* 高级搜索 */,
 				18A16D6322115AA40099767F /* 新增货品 */,
 				18F43BA2220FEBCF0089168E /* view */,
 			);
@@ -2269,6 +2282,7 @@
 				189C1E9D21F990BF00C84CA4 /* HUD.m in Sources */,
 				189C1F4121F9924E00C84CA4 /* NSObject+MJProperty.m in Sources */,
 				0B5E54C1222F59F200F30346 /* PrinterModelView.m in Sources */,
+				0B460E672251B641002352E1 /* TopSearchView.m in Sources */,
 				188A01D02223D3C5005B321F /* SettleKeyBoardView.m in Sources */,
 				189C1F3B21F9924E00C84CA4 /* MJProperty.m in Sources */,
 				189C1F1B21F9923C00C84CA4 /* MJRefreshNormalHeader.m in Sources */,

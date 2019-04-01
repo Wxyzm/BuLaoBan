@@ -20,6 +20,7 @@ typedef void(^AddGoodsViewChoseBlock)(NSInteger btnTag);
 @property (nonatomic, copy) AddGoodsViewChoseBlock choseBlock;
 @property (nonatomic, strong) SampleDetail *sampleModel;
 @property (nonatomic,strong)UITextField *numberTxt;  //货品编号
+@property (nonatomic,assign) BOOL isCopy;   //是否是复制新增
 
 @property (nonatomic,strong) UILabel *componentLab; //成分
 @property (nonatomic,strong) UILabel *widthLab;     //门幅

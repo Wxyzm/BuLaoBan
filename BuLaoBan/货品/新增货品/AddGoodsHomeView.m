@@ -94,6 +94,7 @@
 
 -(void)setSampleDetail:(SampleDetail *)sampleDetail{
     _sampleDetail = sampleDetail;
+    self.addGoodsView.isCopy = _isCopy;
     self.addGoodsView.sampleModel = sampleDetail;
 }
 

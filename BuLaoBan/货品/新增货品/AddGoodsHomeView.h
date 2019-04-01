@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddGoodsHomeView : UIView
 
+@property (nonatomic,assign) BOOL isCopy;   //是否是复制新增
+
+
 @property (nonatomic, strong) SampleDetail *sampleDetail;
 - (void)showView;
 - (void)dismiss;

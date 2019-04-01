@@ -9,6 +9,7 @@
 #import "GoodsViewController.h"
 #import "RightMenueView.h" //右侧菜单
 
+#import "TopSearchView.h" //高级搜索
 
 #import "AddGoodsHomeView.h" //新增首页
 #import "GoodsSearchView.h"  //搜索
@@ -30,6 +31,7 @@
  */
 @property (nonatomic, strong) RightMenueView*menueView;
 
+@property (nonatomic, strong)TopSearchView *searchView;
 @end
 
 @implementation GoodsViewController{
@@ -45,6 +47,11 @@
     [self initUI];
     self.loadWay = START_LOAD_FIRST;
     [self loadgoodsList];
+    //刷新
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshdetail:)
+                                                 name:@"refreshDetail" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshList:)
+                                                 name:@"refreshList" object:nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -74,7 +81,7 @@
     
     //w搜索View
     GoodsSearchView *searchView = [[GoodsSearchView alloc]initWithFrame:CGRectMake(0, 64, 300, 56)];
-    [topView addSubview:searchView];
+    [self.view addSubview:searchView];
     
     [self.view addSubview:self.ListTab];
     //详情View
@@ -86,27 +93,53 @@
     
     //编辑
     [self.view addSubview:self.menueView];
-    
+    WeakSelf(self);
     //高级搜索
     searchView.returnBlock = ^(NSString * _Nonnull searchtxt) {
-        
+        [self.searchView showView];
     };
+    self.searchView.returnBlock = ^(NSDictionary * _Nonnull keyDic) {
+        if (keyDic) {
+            [weakself topSearchLoadGoodsListWithDic:keyDic];
+        }
+    };
+    
+}
+
+#pragma mark ==== 高级搜索获取货品列表
+
+- (void)topSearchLoadGoodsListWithDic:(NSDictionary *)keyDic{
+    User *user = [[UserPL shareManager] getLoginUser];
+    self.loadWay = START_LOAD_FIRST;
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+                          @"pageSize":@"5000",
+                          @"pageNo":@"1",
+                          @"orderByType":@"2",
+                          @"searchMap":keyDic
+                          };
+    [[HttpClient sharedHttpClient] requestPOST:@"/samples/search" Withdict:dic WithReturnBlock:^(id returnValue) {
+        NSArray *arr = [Sample mj_objectArrayWithKeyValuesArray:returnValue[@"samples"]];
+        [self loadSuccessWithArr:arr];
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
     
     
 }
 
 #pragma mark ==== 上拉加载下拉刷新
 
-- (void)reloadList{
+- (void)reloadList{ 
     self.page =1;
     self.loadWay = RELOAD_DADTAS;
+    
     [self loadgoodsList];
 }
 
 - (void)loadMoreDatas{
     self.loadWay = LOAD_MORE_DATAS;
     self.page +=1;
-
+   
     [self loadgoodsList];
 }
 #pragma mark ==== 获取货品列表
@@ -178,6 +211,7 @@
     if (!_addView) {
         _addView = [[AddGoodsHomeView alloc]init];
     }
+    _addView.isCopy = NO;
     _addView.sampleDetail =[[SampleDetail alloc] init];
     [_addView showView];
     
@@ -199,7 +233,17 @@
                 break;
             }
             case 2:{
-                [weakself deleteGoods];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定删除该货品？" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    [weakself deleteGoods];
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:NULL];
+                [alert addAction:action];
+                [alert addAction:cancelAction];
+                UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+                popPresenter.sourceView = weakself.view;
+                popPresenter.sourceRect = weakself.view.bounds;
+                [weakself presentViewController:alert animated:YES completion:nil];
                 break;
             }
             default:
@@ -217,6 +261,7 @@
         if (!_addView) {
             _addView = [[AddGoodsHomeView alloc]init];
         }
+        _addView.isCopy = NO;
         _addView.sampleDetail = _detailView.sampledetail;
         [_addView showView];
     
@@ -240,8 +285,45 @@
  复制新增
  */
 - (void)copyAndNewGoods{
+    if (!_addView) {
+        _addView = [[AddGoodsHomeView alloc]init];
+    }
+    _addView.isCopy = YES;
+    _addView.sampleDetail = _detailView.sampledetail;
+    [_addView showView];
+}
+#pragma mark ======== 通知:
+
+
+/**
+ 刷新详情
+ @param notificaition notificaition description
+ */
+- (void)refreshdetail:(NSNotification*)notificaition{
+
+    NSString *sampleID = @"";
+    NSDictionary *dic = notificaition.userInfo;
+    for (Sample *sample in _dataArr) {
+        if (sample.isSelected) {
+            sample.name = [dic objectForKey:@"name"]?[dic objectForKey:@"name"]:@"";
+            sampleID = sample.sampleId;
+        }
+    }
+    [self reloadList];
+    if (sampleID.length>0) {
+        [self loadGoodsDetailWithSampleId:sampleID];
+
+    }
     
-    
+}
+
+/**
+ 刷新列表
+
+ @param notificaition notificaition description
+ */
+- (void)refreshList:(NSNotification*)notificaition{
+    [self reloadList];
 }
 
 
@@ -320,6 +402,13 @@
         _menueView = [[RightMenueView alloc]initWithTitleArr:titleArr];
     }
     return _menueView;
+}
+
+-(TopSearchView *)searchView{
+    if (!_searchView) {
+        _searchView = [[TopSearchView alloc]init];
+    }
+    return _searchView;
 }
 
 @end
