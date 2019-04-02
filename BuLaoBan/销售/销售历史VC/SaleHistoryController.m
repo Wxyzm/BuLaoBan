@@ -8,6 +8,7 @@
 
 #import "SaleHistoryController.h"
 #import "SaleHistHeader.h"
+#import "ReceiveBaseView.h"      //收款
 
 @interface SaleHistoryController ()<UITableViewDelegate,UITableViewDataSource>
 

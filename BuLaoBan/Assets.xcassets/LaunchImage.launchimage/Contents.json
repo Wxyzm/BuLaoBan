@@ -3,7 +3,7 @@
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
-      "filename" : "768-1024.png",
+      "filename" : "iPad_meitu_1.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "1x"
@@ -11,7 +11,7 @@
     {
       "orientation" : "landscape",
       "idiom" : "ipad",
-      "filename" : "1536-2048.png",
+      "filename" : "iPad.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"
