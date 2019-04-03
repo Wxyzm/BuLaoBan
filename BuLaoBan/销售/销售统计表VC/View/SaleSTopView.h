@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^SaleSTopViewReturnBlock)(NSInteger tag);
+
 @interface SaleSTopView : UIView
+
+@property (nonatomic,copy) SaleSTopViewReturnBlock returnBlock;
 
 @end
 

@@ -167,6 +167,11 @@
 
 - (void)topBtnCLick:(UIButton *)btn{
     _selectedIndex = btn.tag - 1000;
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(_selectedIndex);
+    }
+    
     for (UIButton *theBtn in _topBtnArr) {
         theBtn.backgroundColor = UIColorFromRGB(WhiteColorValue);
         [theBtn setTitleColor:UIColorFromRGB(BlackColorValue) forState:UIControlStateNormal];
