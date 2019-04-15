@@ -16,7 +16,7 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
-    
+    _MoneyTxt.userInteractionEnabled = NO;
     [_closeBtn addTarget:self action:@selector(closebtnClick) forControlEvents:UIControlEventTouchUpInside];
     [_saveBtn addTarget:self action:@selector(savebtnClick) forControlEvents:UIControlEventTouchUpInside];
 
@@ -39,6 +39,7 @@
 -(void)setCommodel:(ComCustomer *)commodel{
     _commodel = commodel;
     _nameLab.text = commodel.name;
+    _arreLab.text = commodel.receivableAmount;
 }
 
 -(void)setAccount:(Accounts *)account{

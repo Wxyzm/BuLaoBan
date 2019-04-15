@@ -21,7 +21,10 @@
         if ([dic[@"code"] intValue]==200) {
             returnBlock(dic);
         }else{
-            [HUD show:dic[@"message"]];
+           [HUD show:dic[@"message"]];
+                 if ([dic[@"code"] intValue]==401) {
+                     [[UserPL shareManager] logout];
+                 }
             errorBlock(dic[@"message"]);
         }
     } andErrorBlock:^(NSString *msg) {

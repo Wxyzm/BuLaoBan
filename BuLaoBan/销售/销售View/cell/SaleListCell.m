@@ -254,10 +254,10 @@
  添加细码单
  */
 - (void)codeListBtnClick{
-    if (_model.salesVol.length>0||_model.pieces.length) {
-        [HUD show:@"输入匹数或销货量后无法添加细码单"];
-        return;
-    }
+//    if (_model.salesVol.length>0||_model.pieces.length) {
+//        [HUD show:@"输入匹数或销货量后无法添加细码单"];
+//        return;
+//    }
     WeakSelf(self);
     if (weakself.returnBlock) {
         weakself.returnBlock(_model, 1);

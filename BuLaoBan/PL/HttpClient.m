@@ -8,15 +8,12 @@
 
 #import "HttpClient.h"
 @implementation HttpClient
-
 {
     NSOperationQueue *_queue;
     NSString         *_baseUrl;
 }
 
-
 #pragma mark   ========== init
-
 + (HttpClient *)sharedHttpClient
 {
     static HttpClient *_sharedPHPHelper = nil;
@@ -26,8 +23,6 @@
     });
     return _sharedPHPHelper;
 }
-
-
 - (instancetype)initWithBaseUrl:(NSString *)baseUrl
 {
     self = [super init];
@@ -37,7 +32,6 @@
     }
     return self;
 }
-
 #pragma mark   ========== get  post
 
 //获取request
@@ -71,7 +65,6 @@
                                                                   kCFStringEncodingUTF8));
         url = [NSURL URLWithString:[encodedString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
     }
-    
     [request setURL:url];
     [request setCachePolicy:NSURLRequestUseProtocolCachePolicy];
     [request setTimeoutInterval:NET_TIME_OUT];
@@ -86,7 +79,6 @@
     if (user.authorization.length>0) {
         [request setValue:user.authorization forHTTPHeaderField:@"authorization"];
     }
-
     if ([method isEqualToString:@"POST"]) {
         NSArray *keyArray = [info allKeys];
         if (keyArray.count >0) {
@@ -121,7 +113,10 @@
              if ([dic[@"code"] intValue]==200) {
                  returnBlock(dic);
              }else{
-                 [HUD show:dic[@"message"]];
+                [HUD show:dic[@"message"]];
+                 if ([dic[@"code"] intValue]==401) {
+                     [[UserPL shareManager] logout];
+                 }
                  errorBlock(dic[@"message"]);
              }
          });
@@ -144,6 +139,7 @@
     [HUD showLoading:nil];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
+          [HUD cancel];
          dispatch_async(dispatch_get_main_queue(), ^{
              [HUD cancel];
              NSString *str = operation.responseString;
@@ -151,7 +147,10 @@
              if ([dic[@"code"] intValue]==200) {
                  returnBlock(dic);
              }else{
-                 [HUD show:dic[@"message"]];
+                [HUD show:dic[@"message"]];
+                 if ([dic[@"code"] intValue]==401) {
+                     [[UserPL shareManager] logout];
+                 }
                  errorBlock(dic[@"message"]);
              }
          });
@@ -160,13 +159,8 @@
          [HUD show:@"网络错误"];
          errorBlock(@"网络错误");
      }];
-    
     [_queue addOperation:operation];
 }
-
-
-
-
 
 //PUT 请求
 - (void)requestPUTWithURLStr:(NSString *)urlStr
@@ -201,17 +195,14 @@
             dispatch_async(dispatch_get_main_queue(), ^{
               NSDictionary *resultDic = [NSJSONSerialization  JSONObjectWithData:data options:0 error:nil];
                 if ([resultDic[@"code"] intValue]==200) {
-                  //  [HUD show:resultDic[@"message"]];
                     returnBlock(resultDic);
                 }else{
                     [HUD show:resultDic[@"message"]];
                     errorBlock(resultDic[@"message"]);
                 }
-              //  returnBlock(resultDic);
             });
         }
     }] resume];
- 
 }
 
 
@@ -237,7 +228,6 @@
     if (user.authorization.length>0) {
         [manager.requestSerializer setValue:user.authorization forHTTPHeaderField:@"authorization"];
     }
-    
     [HUD showLoading:nil];
     [manager DELETE:[NSString stringWithFormat:@"%@%@",_baseUrl,urlStr] parameters:paramDic success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSDictionary *resultDic = [NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
@@ -259,7 +249,6 @@
     }];
 }
 
-
 //json解析
 + (id)valueWithJsonString:(NSString *)jsonString {
     
@@ -268,7 +257,6 @@
     }
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
-    
     id value = [NSJSONSerialization JSONObjectWithData:jsonData
                                                options:NSJSONReadingMutableContainers
                                                  error:&err];
@@ -545,13 +533,5 @@
     
     [_queue addOperation:operation];
 }
-
-
-
-
-
-
-
-
 
 @end

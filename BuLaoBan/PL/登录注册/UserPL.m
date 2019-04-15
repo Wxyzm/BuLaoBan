@@ -80,7 +80,10 @@ static UserPL *sharedManager = nil;
         if ([dic[@"code"] intValue]==200) {
             returnBlock(dic);
         }else{
-            [HUD show:dic[@"message"]];
+           [HUD show:dic[@"message"]];
+                 if ([dic[@"code"] intValue]==401) {
+                     [[UserPL shareManager] logout];
+                 }
             errorBlock(dic[@"message"]);
         }
     } andErrorBlock:^(NSString *msg) {
@@ -102,7 +105,10 @@ static UserPL *sharedManager = nil;
         if ([dic[@"code"] intValue]==200) {
             returnBlock(dic);
         }else{
-            [HUD show:dic[@"message"]];
+           [HUD show:dic[@"message"]];
+                 if ([dic[@"code"] intValue]==401) {
+                     [[UserPL shareManager] logout];
+                 }
             errorBlock(dic[@"message"]);
         }
     } andErrorBlock:^(NSString *msg) {
@@ -123,7 +129,10 @@ static UserPL *sharedManager = nil;
         if ([dic[@"code"] intValue]==200) {
             returnBlock(dic);
         }else{
-            [HUD show:dic[@"message"]];
+           [HUD show:dic[@"message"]];
+                 if ([dic[@"code"] intValue]==401) {
+                     [[UserPL shareManager] logout];
+                 }
             errorBlock(dic[@"message"]);
         }
     } andErrorBlock:^(NSString *msg) {
@@ -144,7 +153,10 @@ static UserPL *sharedManager = nil;
         if ([dic[@"code"] intValue]==200) {
             returnBlock(dic);
         }else{
-            [HUD show:dic[@"message"]];
+           [HUD show:dic[@"message"]];
+                 if ([dic[@"code"] intValue]==401) {
+                     [[UserPL shareManager] logout];
+                 }
             errorBlock(dic[@"message"]);
         }
     } andErrorBlock:^(NSString *msg) {
@@ -171,7 +183,10 @@ static UserPL *sharedManager = nil;
             [self writeUser];
             returnBlock(dic);
         }else{
-            [HUD show:dic[@"message"]];
+           [HUD show:dic[@"message"]];
+                 if ([dic[@"code"] intValue]==401) {
+                     [[UserPL shareManager] logout];
+                 }
             errorBlock(dic[@"message"]);
         }
     } andErrorBlock:^(NSString *msg) {
@@ -228,7 +243,8 @@ static UserPL *sharedManager = nil;
     _user.defutecompanyName = @"";
 
     [self writeUser];
-    [self showLoginView];
+    [self performSelector:@selector(showLoginView) withObject:nil afterDelay:1.5];
+ //   [self showLoginView];
 }
 
 /**

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SaleSCustomer;
+@class SaleSSeller;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SaleSCustomerListCell : UITableViewCell
@@ -16,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *numberLab;
 @property (weak, nonatomic) IBOutlet UILabel *unitLab;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLab;
+
+@property (nonatomic,strong) SaleSCustomer *customerModel;
+@property (nonatomic,strong) SaleSSeller *sellerModel;
 
 @end
 

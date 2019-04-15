@@ -27,6 +27,8 @@
 
 - (void)setUP{
     _searchTxt = [BaseViewFactory textFieldWithFrame:CGRectMake(10, 10, 200, 36) font:APPFONT14 placeholder:@"输入货品编号/名称" textColor:UIColorFromRGB(BlackColorValue) placeholderColor:UIColorFromRGB(0x858585) delegate:self];
+    [_searchTxt addTarget:self
+                   action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     _searchTxt.backgroundColor = UIColorFromRGB(WhiteColorValue);
     _searchTxt.leftViewMode = UITextFieldViewModeAlways;
     _searchTxt.layer.cornerRadius = 2;
@@ -46,8 +48,17 @@
 - (void)seacrchBtnClick{
     WeakSelf(self);
     if (weakself.returnBlock) {
+        weakself.returnBlock(@"detailSearch");
+    }
+}
+
+#pragma mark ====== textfieldDelegate
+- (void)textFieldDidChange:(UITextField *)textField{
+    WeakSelf(self);
+    if (weakself.returnBlock) {
         weakself.returnBlock(_searchTxt.text.length>0?_searchTxt.text:@"");
     }
+    
 }
 
 @end

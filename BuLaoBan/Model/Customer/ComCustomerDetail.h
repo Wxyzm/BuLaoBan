@@ -154,8 +154,14 @@ shortName
 
 @property (nonatomic, strong) NSDictionary *defultparticipant;
 
+@property (nonatomic, copy) NSString *ParticiUserName;
+@property (nonatomic, copy) NSString *ParticiUserID;
 
 
+/**
+ 欠款
+ */
+@property (nonatomic, copy) NSString *receivableAmount;
 
 
 

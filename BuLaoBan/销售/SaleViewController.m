@@ -38,6 +38,8 @@
     [super viewDidLoad];
     self.needHideNavBar = YES;
     self.view.backgroundColor = UIColorFromRGB(BackColorValue);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadtheList) name:@"deliverSuccess" object:nil];
+
     [self initDatas];
     [self initUI];
 }
@@ -52,6 +54,14 @@
     _dataArr = [NSMutableArray arrayWithCapacity:0];
     _model = [[SaleVcModel alloc]init];
     _settleModel = [[SettleVcModel alloc]init];
+}
+
+- (void)reloadtheList{
+    [_dataArr removeAllObjects];
+    _model = [[SaleVcModel alloc]init];
+    _settleModel = [[SettleVcModel alloc]init];
+    [self.CustomerView.customerBtn setTitle:@"选择客户" forState:UIControlStateNormal];
+    [self.ListTab reloadData];
 }
 
 - (void)initUI{
@@ -231,7 +241,9 @@
         }
     }
     
-    
+    //添加商品
+    [_settleModel.packListArr removeAllObjects];
+    [_settleModel.packListArr addObjectsFromArray:_model.sampleList];
     
     SettlementViewController *setvc = [[SettlementViewController alloc]init];
     setvc.model = _settleModel;

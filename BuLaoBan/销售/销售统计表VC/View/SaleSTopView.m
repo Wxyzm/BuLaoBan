@@ -7,7 +7,7 @@
 //
 
 #import "SaleSTopView.h"
-
+#import "Statics.h"
 @interface SaleSTopView()<UITextFieldDelegate>
 /**
  开始时间
@@ -23,8 +23,6 @@
  货号
  */
 @property (nonatomic, strong) UIView    *numberView;
-@property (nonatomic, strong) UITextField  *numberTxt;
-
 
 /**
  客户
@@ -37,10 +35,8 @@
  */
 @property (nonatomic, strong) UIView    *saleManView;
 @property (nonatomic, strong) YLButton  *saleManBtn;
-
 @property (nonatomic, strong) UIButton  *searchBtn;
 @property (nonatomic, strong) UIButton  *resetBtn;
-
 @property (nonatomic, strong) UILabel  *moneyLab;      //销货金额
 @property (nonatomic, strong) UILabel  *numberLab;     //销货次数
 @property (nonatomic, strong) UILabel  *cusNumberLab;  //客户数量
@@ -129,10 +125,13 @@
     
     _searchBtn = [BaseViewFactory buttonWithFrame:CGRectZero font:APPFONT13 title:@"查询" titleColor:UIColorFromRGB(WhiteColorValue) backColor:UIColorFromRGB(BlueColorValue)];
     _searchBtn.layer.cornerRadius = 2;
+    [_searchBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:_searchBtn];
 
     _resetBtn= [BaseViewFactory buttonWithFrame:CGRectZero font:APPFONT13 title:@"重置" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(0xf5f5f5)];
     _resetBtn.layer.cornerRadius = 2;
+    [_resetBtn addTarget:self action:@selector(resetBtnClick) forControlEvents:UIControlEventTouchUpInside];
+
     [backView addSubview:_resetBtn];
     //设置头部显示标签
     [self showSelectedView];
@@ -184,18 +183,92 @@
 
 
 - (void)dateBtnCLick:(UIButton *)btn{
-    
+    NSInteger Tag = btn.tag-2000;
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(Tag+3);
+    }
     
 }
-
+//开始时间
 - (void)startTimeBtnClick{
-    
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(6);
+    }
+}
+//结束时间
+- (void)endTimeBtnClick{
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(7);
+    }
+}
+//选择客户
+- (void)customerBtnClick{
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(8);
+    }
+}
+//选择销售
+- (void)saleManBtnClick{
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(9);
+    }
 }
 
-- (void)endTimeBtnClick{
-    
+//查询
+- (void)searchBtnClick{
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(10);
+    }
     
 }
+//重置
+- (void)resetBtnClick{
+    [self resetAllInfo];
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(11);
+    }
+}
+
+- (void)resetAllInfo{
+    [_startTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    [_startTimeBtn setTitle:@"开始日期" forState:UIControlStateNormal];
+    [_endTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    [_endTimeBtn setTitle:@"结束日期" forState:UIControlStateNormal];
+    _numberTxt.text = @"";
+    [_customerBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    [_saleManBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    [_customerBtn setTitle:@"选择客户" forState:UIControlStateNormal];
+    [_saleManBtn setTitle:@"选择销售" forState:UIControlStateNormal];
+
+}
+
+#pragma mark ====== set
+
+-(void)setStatics:(Statics *)statics{
+    _statics = statics;
+    if (statics.sellPrice.count>0) {
+        CGFloat money = 0.00;
+        for (NSDictionary *dic in statics.sellPrice) {
+            money+= [dic[@"value"] floatValue];
+        }
+        _moneyLab.text = [NSString stringWithFormat:@"￥ %.2f",money];
+
+    }else{
+        _moneyLab.text = @"￥ 0.00";
+    }
+    _numberLab.text = statics.sellTimes;
+    _cusNumberLab.text = statics.customerCount;
+    _unitNumberLab.text = statics.sampleCount;
+
+}
+
 #pragma mark ====== 展示View
 
 /**
@@ -228,6 +301,55 @@
     }
 }
 
+/**
+ 设置按钮标题
+ 
+ @param tag 6:开始日期 7:结束日期 8:客户 9：业务员
+ */
+- (void)setTitle:(NSString *)title withTag:(NSInteger)tag{
+    switch (tag) {
+        case 6:{
+            if (title.length<=0) {
+                [_startTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+                [_startTimeBtn setTitle:@"开始日期" forState:UIControlStateNormal];
+                [_endTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+                [_endTimeBtn setTitle:@"结束日期" forState:UIControlStateNormal];
+            }else{
+                [_startTimeBtn setTitle:title forState:UIControlStateNormal];
+                [_startTimeBtn setTitleColor:UIColorFromRGB(BlueColorValue) forState:UIControlStateNormal];
+            }
+           
+            break;
+        }
+        case 7:{
+            if (title.length<=0) {
+                [_endTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+                [_endTimeBtn setTitle:@"结束日期" forState:UIControlStateNormal];
+            }else{
+                [_endTimeBtn setTitle:title forState:UIControlStateNormal];
+                [_endTimeBtn setTitleColor:UIColorFromRGB(BlueColorValue) forState:UIControlStateNormal];
+            }
+           
+            break;
+        }
+        case 8:{
+            [_customerBtn setTitle:title forState:UIControlStateNormal];
+            [_customerBtn setTitleColor:UIColorFromRGB(BlueColorValue) forState:UIControlStateNormal];
+            break;
+        }
+        case 9:{
+            [_saleManBtn setTitle:title forState:UIControlStateNormal];
+            [_saleManBtn setTitleColor:UIColorFromRGB(BlueColorValue) forState:UIControlStateNormal];
+            break;
+        }
+        default:
+            break;
+    }
+    
+    
+}
+
+
 #pragma mark --- get
 -(UIView *)numberView{
     if (!_numberView) {
@@ -237,7 +359,7 @@
         [_numberView addSubview:_numberTxt];
         _numberTxt.layer.borderWidth = 1;
         _numberTxt.layer.borderColor = UIColorFromRGB(LineColorValue).CGColor;
-        _numberTxt.text = @"选择客户";
+       // _numberTxt.text = @"选择客户";
         _numberTxt.leftViewMode = UITextFieldViewModeAlways;
         _numberTxt.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 30)];
         UILabel *nameLab = [BaseViewFactory labelWithFrame:CGRectMake(0, 0, 30, 30) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:@"货号"];
@@ -264,6 +386,7 @@
         _customerBtn.layer.borderColor = UIColorFromRGB(LineColorValue).CGColor;
         [_customerView addSubview:_customerBtn];
         [_customerBtn setTitle:@"选择客户" forState:UIControlStateNormal];
+        [_customerBtn addTarget:self action:@selector(customerBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _customerView;
@@ -284,7 +407,8 @@
         _saleManBtn.layer.borderWidth = 1;
         _saleManBtn.layer.borderColor = UIColorFromRGB(LineColorValue).CGColor;
         [_saleManView addSubview:_saleManBtn];
-        [_saleManBtn setTitle:@"选择客户" forState:UIControlStateNormal];
+        [_saleManBtn setTitle:@"选择销售" forState:UIControlStateNormal];
+        [_saleManBtn addTarget:self action:@selector(saleManBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
     }
     

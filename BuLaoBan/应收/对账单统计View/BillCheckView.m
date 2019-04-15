@@ -28,12 +28,12 @@
 - (void)setUp{
     CGFloat Width = (ScreenWidth -400)/3;
     
-    _totalLab =  [BaseViewFactory labelWithFrame:CGRectMake(0, 29, Width, 20) textColor:UIColorFromRGB(RedColorValue) font:APPFONT16 textAligment:NSTextAlignmentCenter andtext:@"¥ 12000.00"];
+    _totalLab =  [BaseViewFactory labelWithFrame:CGRectMake(0, 29, Width, 20) textColor:UIColorFromRGB(RedColorValue) font:APPFONT16 textAligment:NSTextAlignmentCenter andtext:@"¥ 0.00"];
     [self addSubview:_totalLab];
     
-    _acceptedLab =  [BaseViewFactory labelWithFrame:CGRectMake(Width, 29, Width, 20) textColor:UIColorFromRGB(RedColorValue) font:APPFONT16 textAligment:NSTextAlignmentCenter andtext:@"¥ 4000.00"];
+    _acceptedLab =  [BaseViewFactory labelWithFrame:CGRectMake(Width, 29, Width, 20) textColor:UIColorFromRGB(RedColorValue) font:APPFONT16 textAligment:NSTextAlignmentCenter andtext:@"¥ 0.00"];
     [self addSubview:_acceptedLab];
-    _surplusLab =  [BaseViewFactory labelWithFrame:CGRectMake(Width*2, 29, Width, 20) textColor:UIColorFromRGB(RedColorValue) font:APPFONT16 textAligment:NSTextAlignmentCenter andtext:@"¥ 8000.00"];
+    _surplusLab =  [BaseViewFactory labelWithFrame:CGRectMake(Width*2, 29, Width, 20) textColor:UIColorFromRGB(RedColorValue) font:APPFONT16 textAligment:NSTextAlignmentCenter andtext:@"¥ 0.00"];
     [self addSubview:_surplusLab];
     
     NSArray *titleArr = @[@"应收金额",@"已收金额",@"应收余额"];
@@ -49,7 +49,26 @@
    
 }
 
+-(void)setBillDic:(NSDictionary *)billDic{
+    _billDic = billDic;
+    //应收金额
+    _totalLab.text = [NSString stringWithFormat:@"¥ %.2f",[billDic[@"receivableAmount"] floatValue]];
+    //已收金额
+    _acceptedLab.text = [NSString stringWithFormat:@"¥ %.2f",[billDic[@"receiptAmount"] floatValue]];
+    //应收余额
+    _surplusLab.text = [NSString stringWithFormat:@"¥ %.2f",[billDic[@"receivableAmount"] floatValue] -[billDic[@"receiptAmount"] floatValue]];
+    
+}
 
-
+-(void)setItemDic:(NSDictionary *)itemDic{
+    _itemDic = itemDic;
+    //应收金额
+    _totalLab.text = [NSString stringWithFormat:@"¥ %.2f",[itemDic[@"receivableAmountCurrent"] floatValue]];
+    //已收金额
+    _acceptedLab.text = [NSString stringWithFormat:@"¥ %.2f",[itemDic[@"receiptAmountCurrent"] floatValue]];
+    //应收余额
+    _surplusLab.text = [NSString stringWithFormat:@"¥ %.2f",[itemDic[@"receivableAmountCurrent"] floatValue] -[itemDic[@"receiptAmountCurrent"] floatValue]];
+    
+}
 
 @end

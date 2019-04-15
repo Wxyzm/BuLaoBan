@@ -24,6 +24,7 @@ typedef void(^CustomerAddViewReturnBtnClick)(NSInteger tag,ComCustomerDetail *mo
 @property (weak, nonatomic) IBOutlet UITextField *adressTxt;
 @property (weak, nonatomic) IBOutlet UITextField *moneyTxt;
 @property (weak, nonatomic) IBOutlet UITextField *memoTxt;
+@property (weak, nonatomic) IBOutlet UILabel *topLab;
 
 @property (nonatomic, strong) YLButton *salerBtn;
 @property (nonatomic, strong) YLButton *spartakeBtn;
@@ -48,6 +49,8 @@ typedef void(^CustomerAddViewReturnBtnClick)(NSInteger tag,ComCustomerDetail *mo
 
 //获取上传信息
 - (NSDictionary *)getSetUPDic;
+//获取参与者
+- (id)GetParticiDic;
 - (void)showTheView;
 - (void)dismiss;
 

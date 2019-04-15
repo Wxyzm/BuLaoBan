@@ -72,6 +72,8 @@
         
     }else if (tag ==13){
         weakself.returnBlock(@"-");
+    }else if (tag ==14){
+        weakself.returnBlock(@"set");
     }
     else{
         //拼接

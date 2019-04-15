@@ -9,6 +9,7 @@
 #import "CustomerSelecteView.h"
 #import "ComCustomer.h"
 #import "CustomerSelectedCell.h"
+#import "AddCustomerView.h" //新增
 
 @interface CustomerSelecteView ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -17,6 +18,8 @@
 @property (nonatomic, strong) UIView      *sideView;
 
 @property (nonatomic, strong) BaseTableView *ListTab;               //列表
+
+@property (nonatomic, strong) AddCustomerView *addView;               //新增
 
 @end
 
@@ -28,7 +31,8 @@
 
     UITextField *_searchTxt;
     BOOL        _isShow;
-    
+    UILabel *lab;
+    UIButton *addBtn;
 }
 
 -(instancetype)init{
@@ -51,23 +55,23 @@
     [self addtopView];
     [self addSearChTxt];
     [_sideView addSubview:self.ListTab];
-
     
     
 }
 
 #pragma mark ========= 添加搜索
 - (void)addtopView{
-    UILabel *lab = [BaseViewFactory labelWithFrame:CGRectMake(16, 20, 100, 44)
+     lab= [BaseViewFactory labelWithFrame:CGRectMake(16, 20, 100, 44)
                                          textColor:UIColorFromRGB(BlackColorValue)
                                               font:APPFONT17
                                       textAligment:NSTextAlignmentLeft
                                            andtext:@"客户列表"];
     [_sideView addSubview:lab];
-    UIButton *addBtn = [BaseViewFactory buttonWithFrame:CGRectMake(216, 20, 84, 44)
+     addBtn= [BaseViewFactory buttonWithFrame:CGRectMake(216, 20, 84, 44)
                                                    font:APPFONT15 title:@"新增客户"
                                              titleColor:UIColorFromRGB(BlueColorValue)
                                               backColor:UIColorFromRGB(WhiteColorValue)];
+    [addBtn addTarget:self action:@selector(addBtnCLick) forControlEvents:UIControlEventTouchUpInside];
     [_sideView addSubview:addBtn];
 }
 - (void)addSearChTxt{
@@ -91,6 +95,12 @@
     
 }
 
+-(void)setSelectYype:(NSInteger)SelectYype{
+    _SelectYype = SelectYype;
+    _searchTxt.placeholder = @"输入销售名称/电话";
+    addBtn.hidden = YES;
+    lab.text = @"销售列表";
+}
 
 
 #pragma mark ========= tableview
@@ -154,6 +164,41 @@
     }
     [self dismiss];
 }
+
+#pragma mark ====== addBtnCLick
+
+//新增
+- (void)addBtnCLick{
+    [self.addView showinView:self];
+    WeakSelf(self);
+    self.addView.returnBlock = ^(NSInteger tag) {
+        if (tag ==0) {
+            //新增完成
+            [weakself loadCustomerList];
+        }
+    };
+}
+
+#pragma mark ====== j获取客户列表
+- (void)loadCustomerList{
+    User *user = [[UserPL shareManager] getLoginUser];
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+                          @"pageNo":@"1",
+                          @"pageSize":@"5000"
+                          };
+    [HUD showLoading:nil];
+    [[HttpClient sharedHttpClient] requestGET:@"contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        [HUD cancel];
+        NSMutableArray *dataArr = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
+        self.dataArr = dataArr;
+        [self.ListTab reloadData];
+    } andErrorBlock:^(NSString *msg) {
+        [HUD cancel];
+    }];
+}
+
+
 
 
 #pragma mark ====== textfieldDelegate
@@ -272,7 +317,12 @@
     return _ListTab;
 }
 
-
+-(AddCustomerView *)addView{
+    if (!_addView) {
+        _addView = [[AddCustomerView alloc]init];
+    }
+    return _addView;
+}
 
 
 @end

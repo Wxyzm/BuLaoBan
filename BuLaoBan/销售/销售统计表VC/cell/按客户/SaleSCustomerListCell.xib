@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="KGk-i7-Jjw" customClass="SaleSCustomerListCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="40" id="KGk-i7-Jjw" customClass="SaleSCustomerListCell">
             <rect key="frame" x="0.0" y="0.0" width="924" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -72,14 +72,23 @@
                         <color key="textColor" red="0.98823529409999999" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wv2-Xw-Pqa">
+                        <rect key="frame" x="0.0" y="38.5" width="924" height="1"/>
+                        <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="AxC-Ht-7qZ"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="uVt-dQ-sqc" firstAttribute="leading" secondItem="DNr-qe-T32" secondAttribute="trailing" constant="10" id="2Qm-f8-OJ3"/>
                     <constraint firstAttribute="trailing" secondItem="B1E-cU-cnl" secondAttribute="trailing" constant="10" id="2YI-F0-PPl"/>
                     <constraint firstItem="6uN-oL-bt1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="3oI-sC-QHl"/>
                     <constraint firstItem="6uN-oL-bt1" firstAttribute="leading" secondItem="tSF-Zl-iRv" secondAttribute="trailing" constant="10" id="68F-Va-GyV"/>
+                    <constraint firstAttribute="bottom" secondItem="Wv2-Xw-Pqa" secondAttribute="bottom" id="6kd-Bn-fbl"/>
                     <constraint firstItem="DNr-qe-T32" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="Czu-qc-2CX"/>
                     <constraint firstItem="LUx-4E-Uo2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Eh1-Lo-vjK"/>
+                    <constraint firstItem="Wv2-Xw-Pqa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FOI-m2-Z4F"/>
                     <constraint firstAttribute="bottom" secondItem="DNr-qe-T32" secondAttribute="bottom" id="Fd8-1O-VLU"/>
                     <constraint firstItem="tSF-Zl-iRv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GTM-H2-vqZ"/>
                     <constraint firstItem="6uN-oL-bt1" firstAttribute="leading" secondItem="GgZ-a1-GDo" secondAttribute="trailing" constant="200" id="GrG-Pw-561"/>
@@ -105,6 +114,7 @@
                     <constraint firstItem="ciA-Fc-vpq" firstAttribute="leading" secondItem="LUx-4E-Uo2" secondAttribute="trailing" constant="10" id="obS-nz-dT5"/>
                     <constraint firstAttribute="bottom" secondItem="6uN-oL-bt1" secondAttribute="bottom" id="oiK-wJ-sSv"/>
                     <constraint firstItem="uVt-dQ-sqc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="250" id="pEH-xe-NhO"/>
+                    <constraint firstAttribute="trailing" secondItem="Wv2-Xw-Pqa" secondAttribute="trailing" id="qfL-BP-XYO"/>
                     <constraint firstItem="B1E-cU-cnl" firstAttribute="leading" secondItem="ciA-Fc-vpq" secondAttribute="trailing" constant="26" id="uOo-pq-gnT"/>
                 </constraints>
             </tableViewCellContentView>

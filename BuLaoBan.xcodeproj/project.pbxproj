@@ -18,6 +18,9 @@
 		0B20216B2238EF3900EAF565 /* SaleSamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B20216A2238EF3900EAF565 /* SaleSamModel.m */; };
 		0B33039C2239EA9C00B0688D /* PackingListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33039B2239EA9C00B0688D /* PackingListView.m */; };
 		0B348BFA2240CF4B004EE967 /* CustomerAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B348BF92240CF4B004EE967 /* CustomerAddView.m */; };
+		0B35F6AA2259C53C006D4ABF /* AddCustomerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35F6A92259C53C006D4ABF /* AddCustomerView.m */; };
+		0B35F6AD2259C55A006D4ABF /* AddCusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35F6AC2259C55A006D4ABF /* AddCusCell.m */; };
+		0B35F6B02259D01D006D4ABF /* AddCusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35F6AF2259D01D006D4ABF /* AddCusModel.m */; };
 		0B3C569A22420C4500C2B07B /* Participants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C569922420C4500C2B07B /* Participants.m */; };
 		0B3C56A822422FDC00C2B07B /* ManSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C56A622422FDC00C2B07B /* ManSelectCell.m */; };
 		0B3C56A922422FDC00C2B07B /* ManSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3C56A722422FDC00C2B07B /* ManSelectCell.xib */; };
@@ -47,6 +50,7 @@
 		0B5F46912230E6F300C67EF5 /* ComCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F46902230E6F300C67EF5 /* ComCustomer.m */; };
 		0B5F46942230F16900C67EF5 /* ComCustomerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F46932230F16900C67EF5 /* ComCustomerDetail.m */; };
 		0B5F46982230FEFC00C67EF5 /* CustomerSelecteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F46972230FEFC00C67EF5 /* CustomerSelecteView.m */; };
+		0B631B7C22558BD1009C1A35 /* Statics.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B631B7B22558BD1009C1A35 /* Statics.m */; };
 		0B776EA12235FBEB0007DA02 /* StastisticTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B776E9F2235FBEB0007DA02 /* StastisticTopCell.m */; };
 		0B776EA22235FBEB0007DA02 /* StastisticTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B776EA02235FBEB0007DA02 /* StastisticTopCell.xib */; };
 		0B776EA9223600990007DA02 /* StastisticCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B776EA7223600990007DA02 /* StastisticCell.m */; };
@@ -281,6 +285,12 @@
 		0B33039B2239EA9C00B0688D /* PackingListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackingListView.m; sourceTree = "<group>"; };
 		0B348BF82240CF4B004EE967 /* CustomerAddView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerAddView.h; sourceTree = "<group>"; };
 		0B348BF92240CF4B004EE967 /* CustomerAddView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerAddView.m; sourceTree = "<group>"; };
+		0B35F6A82259C53C006D4ABF /* AddCustomerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCustomerView.h; sourceTree = "<group>"; };
+		0B35F6A92259C53C006D4ABF /* AddCustomerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCustomerView.m; sourceTree = "<group>"; };
+		0B35F6AB2259C55A006D4ABF /* AddCusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCusCell.h; sourceTree = "<group>"; };
+		0B35F6AC2259C55A006D4ABF /* AddCusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCusCell.m; sourceTree = "<group>"; };
+		0B35F6AE2259D01D006D4ABF /* AddCusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCusModel.h; sourceTree = "<group>"; };
+		0B35F6AF2259D01D006D4ABF /* AddCusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCusModel.m; sourceTree = "<group>"; };
 		0B3C569822420C4500C2B07B /* Participants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Participants.h; sourceTree = "<group>"; };
 		0B3C569922420C4500C2B07B /* Participants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Participants.m; sourceTree = "<group>"; };
 		0B3C569B22420EE500C2B07B /* Customerheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Customerheader.h; sourceTree = "<group>"; };
@@ -338,6 +348,8 @@
 		0B5F46932230F16900C67EF5 /* ComCustomerDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComCustomerDetail.m; sourceTree = "<group>"; };
 		0B5F46962230FEFC00C67EF5 /* CustomerSelecteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerSelecteView.h; sourceTree = "<group>"; };
 		0B5F46972230FEFC00C67EF5 /* CustomerSelecteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerSelecteView.m; sourceTree = "<group>"; };
+		0B631B7A22558BD1009C1A35 /* Statics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Statics.h; sourceTree = "<group>"; };
+		0B631B7B22558BD1009C1A35 /* Statics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Statics.m; sourceTree = "<group>"; };
 		0B776E9E2235FBEB0007DA02 /* StastisticTopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StastisticTopCell.h; sourceTree = "<group>"; };
 		0B776E9F2235FBEB0007DA02 /* StastisticTopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StastisticTopCell.m; sourceTree = "<group>"; };
 		0B776EA02235FBEB0007DA02 /* StastisticTopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StastisticTopCell.xib; sourceTree = "<group>"; };
@@ -833,6 +845,19 @@
 			path = "新增客户";
 			sourceTree = "<group>";
 		};
+		0B35F6A72259C512006D4ABF /* 新增客户 */ = {
+			isa = PBXGroup;
+			children = (
+				0B35F6A82259C53C006D4ABF /* AddCustomerView.h */,
+				0B35F6A92259C53C006D4ABF /* AddCustomerView.m */,
+				0B35F6AB2259C55A006D4ABF /* AddCusCell.h */,
+				0B35F6AC2259C55A006D4ABF /* AddCusCell.m */,
+				0B35F6AE2259D01D006D4ABF /* AddCusModel.h */,
+				0B35F6AF2259D01D006D4ABF /* AddCusModel.m */,
+			);
+			path = "新增客户";
+			sourceTree = "<group>";
+		};
 		0B3C569722420C2E00C2B07B /* Participants */ = {
 			isa = PBXGroup;
 			children = (
@@ -1005,6 +1030,7 @@
 			children = (
 				0B5F46962230FEFC00C67EF5 /* CustomerSelecteView.h */,
 				0B5F46972230FEFC00C67EF5 /* CustomerSelecteView.m */,
+				0B35F6A72259C512006D4ABF /* 新增客户 */,
 				0BC13E6B22377E370065C0A0 /* CustomerSelectedCell.h */,
 				0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */,
 			);
@@ -1171,6 +1197,8 @@
 				0BE389E32254B0B2002F7348 /* SaleSCustomer.m */,
 				0BE389E52254B13C002F7348 /* SaleSSeller.h */,
 				0BE389E62254B13C002F7348 /* SaleSSeller.m */,
+				0B631B7A22558BD1009C1A35 /* Statics.h */,
+				0B631B7B22558BD1009C1A35 /* Statics.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2342,6 +2370,7 @@
 				0BD61425223C8E7D00AC45B4 /* SettleVcModel.m in Sources */,
 				18A16D732211A83B0099767F /* picModel.m in Sources */,
 				0BDDA3D5224CA6EF000FC1ED /* UIImageView+HUWebImage.m in Sources */,
+				0B631B7C22558BD1009C1A35 /* Statics.m in Sources */,
 				0BEAD81F2244D6E9005BA430 /* AccountListView.m in Sources */,
 				189D51B7221CF4E2002AD8A3 /* SaleListTopView.m in Sources */,
 				0BE389CE22549EA7002F7348 /* SaleSGoodsTopCell.m in Sources */,
@@ -2469,6 +2498,7 @@
 				189C1FAD21F9927800C84CA4 /* AFHTTPSessionManager.m in Sources */,
 				0B5E54C9222FA79900F30346 /* UpImaPL.m in Sources */,
 				189C1FEC21F9928700C84CA4 /* UIImageView+WebCache.m in Sources */,
+				0B35F6AD2259C55A006D4ABF /* AddCusCell.m in Sources */,
 				0B5F46942230F16900C67EF5 /* ComCustomerDetail.m in Sources */,
 				189C1FB621F9927800C84CA4 /* UIAlertView+AFNetworking.m in Sources */,
 				0B4A24F92233546300C3621D /* BillCell.m in Sources */,
@@ -2529,6 +2559,7 @@
 				186B84DB21FEF2810017E070 /* MenueView.m in Sources */,
 				189C1FAE21F9927800C84CA4 /* AFNetworkReachabilityManager.m in Sources */,
 				0B5E54C5222F723D00F30346 /* RightMenueView.m in Sources */,
+				0B35F6AA2259C53C006D4ABF /* AddCustomerView.m in Sources */,
 				189C1DFE21F9904F00C84CA4 /* YLButton.m in Sources */,
 				189C1F0F21F9923C00C84CA4 /* MJRefreshAutoFooter.m in Sources */,
 				184D667622100C0F00181590 /* TZTestCell.m in Sources */,
@@ -2552,6 +2583,7 @@
 				1827742821FECBA7000F4E0F /* UserPL.m in Sources */,
 				189C1F2021F9923C00C84CA4 /* UIScrollView+MJExtension.m in Sources */,
 				184D666822100C0F00181590 /* LxGridViewFlowLayout.m in Sources */,
+				0B35F6B02259D01D006D4ABF /* AddCusModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

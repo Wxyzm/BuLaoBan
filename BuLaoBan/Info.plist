@@ -4,12 +4,6 @@
 <dict>
 	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>布管家需要访问相册上传图片您是否允许打开相册？</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>布管家需要访问相册上传图片您是否允许打开相册？</string>
-	<key>NSCameraUsageDescription</key>
-	<string>布管家需要访问相机拍照上传图片您是否允许打开相册？</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
@@ -35,6 +29,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>布管家需要访问相机拍照上传图片您是否允许打开相册？</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>布管家需要访问相册上传图片您是否允许打开相册？</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>布管家需要访问相册上传图片您是否允许打开相册？</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -46,6 +46,7 @@
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 </dict>
 </plist>

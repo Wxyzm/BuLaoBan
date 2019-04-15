@@ -46,6 +46,7 @@
     _kindBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(257, 10, 150, 30) font:APPFONT13 title:@"" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [_kindBtn setTitleRect:CGRectMake(10, 0, 130, 30)];
     [_kindBtn setImageRect:CGRectMake(128, 10, 10, 6)];
+    [_kindBtn setTitle:@"大货" forState:UIControlStateNormal];
     _kindBtn.layer.cornerRadius = 2;
     _kindBtn.layer.borderColor = UIColorFromRGB(LineColorValue).CGColor;
     _kindBtn.layer.borderWidth = 1;

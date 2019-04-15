@@ -17,6 +17,8 @@ typedef void(^GoodsWeightViewChoseBlock)(NSString *weight);
  @""：关闭   ：保存
  */
 @property (nonatomic, copy) GoodsWeightViewChoseBlock choseBlock;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

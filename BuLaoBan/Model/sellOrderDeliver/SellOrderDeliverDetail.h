@@ -57,6 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *receivablePrice;
 
 /**
+ 预收款
+ */
+@property (nonatomic,copy) NSString *depositPrice;
+
+/**
  收款金额
  */
 @property (nonatomic,copy) NSString *receiptPrice;

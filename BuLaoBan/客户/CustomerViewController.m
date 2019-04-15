@@ -52,7 +52,6 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
     [super viewWillAppear:animated];
 }
 
@@ -79,7 +78,6 @@
     [changeBtn addTarget:self action:@selector(changeBtnGoodsBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:changeBtn];
     
-    
     UIView *backView = [BaseViewFactory viewWithFrame:CGRectMake(0, 64,300 , 56) color:UIColorFromRGB(LineColorValue)];
     [self.view addSubview:backView];
     
@@ -90,8 +88,6 @@
     _searchTxt.layer.cornerRadius = 2;
     _searchTxt.leftView = [BaseViewFactory viewWithFrame:CGRectMake(0, 0, 12, 36) color:[UIColor clearColor]];
     [backView addSubview:_searchTxt];
-    
-  
     
     [self.view addSubview:self.ListTab];
     //详情View
@@ -117,7 +113,6 @@
                 }else{
                     //编辑
                     [weakself savecontactComWiyhDic:setDic ComCustomerDetail:model];
-
                 }
                 break;
             }
@@ -134,23 +129,31 @@
             default:
                 break;
         }
-        
     };
 }
-
-
 
 #pragma mark ====== 获取列表
 - (void)loadCustomerList{
     User *user = [[UserPL shareManager] getLoginUser];
     NSDictionary *dic = @{@"companyId":user.defutecompanyId,
-                          @"key":_searchTxt.text.length>0?_searchTxt.text:@"",
                           @"pageNo":@"1",
                           @"pageSize":@"5000"
                           };
     [[HttpClient sharedHttpClient] requestGET:@"contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         _dataArr = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
+        NSArray *allArr  = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
+        if (_searchTxt.text.length>0) {
+            //搜索条件
+            [_dataArr removeAllObjects];
+            for (ComCustomer *model in allArr) {
+                if ([model.name containsString:_searchTxt.text]||[model.telephone containsString:_searchTxt.text]) {
+                    if (![_dataArr containsObject:model]) {
+                        [_dataArr addObject:model];
+                    }
+                }
+            }
+        }
         if (_dataArr.count>0) {
             ComCustomer *Customer = _dataArr[0];
             Customer.isSelected = YES;
@@ -211,6 +214,7 @@
 - (void)savecontactComWiyhDic:(NSDictionary *)dic ComCustomerDetail:(ComCustomerDetail*)model{
     [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/contact/company/%@",model.comId] paramDic:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
+        [self changeParticiWithID:model.comId];
         [HUD show:@"修改成功"];
         [self.addView dismiss];
         [self reloadList];
@@ -222,12 +226,29 @@
 - (void)addcontactComWiyhDic:(NSDictionary *)dic{
     [[HttpClient sharedHttpClient] requestPOST:@"/contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
         [HUD show:@"添加成功"];
+        [self changeParticiWithID:returnValue[@"contactCompanyId"]];
         [self.addView dismiss];
         [self reloadList];
     } andErrorBlock:^(NSString *msg) {
         
     }];
 }
+
+#pragma mark ====== 修改参与者
+- (void)changeParticiWithID:(NSString *)comID{
+    if (![self.addView GetParticiDic]) {
+        return;
+    }
+    NSDictionary *dic = [self.addView GetParticiDic];
+    [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/contact/company/%@/participants",comID] paramDic:dic WithReturnBlock:^(id returnValue) {
+        
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+   
+}
+
+
 #pragma mark ======  删除联系公司
 - (void)DeleteCurrentcontactCom{
     ComCustomer *selectcustomer;
@@ -244,8 +265,6 @@
     } andErrorBlock:^(NSString *msg) {
         
     }];
-    
-    
 }
 
 #pragma mark ======  获取公司账户列表
@@ -261,6 +280,7 @@
     }
     [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/account",selectcustomer.comId] Withdict:nil WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
+        selectcustomer.receivableAmount = _detailView.detailModel.receivableAmount;
         NSMutableArray *listArr = [Accounts mj_objectArrayWithKeyValuesArray:returnValue[@"accounts"]];
         self.receiveView.commodel = selectcustomer;
         self.receiveView.listArr = listArr;
@@ -272,9 +292,6 @@
 
 
 #pragma mark ====== 按钮点击
-
-
-
 //新增客户
 - (void)addNewCustomerBtnClick{
     [self.addView clearAllInfo];

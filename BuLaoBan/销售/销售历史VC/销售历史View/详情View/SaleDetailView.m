@@ -69,7 +69,7 @@
     UILabel *detaillab  = [BaseViewFactory labelWithFrame:CGRectMake(16, 230, 200, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(16) textAligment:NSTextAlignmentLeft andtext:@"货品明细"];
     [self addSubview:detaillab];
     
-    _totolLab = [BaseViewFactory labelWithFrame:CGRectMake(100, 230, Width-116, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentRight andtext:@"合计：2款, 4匹, 100.00米，"];
+    _totolLab = [BaseViewFactory labelWithFrame:CGRectMake(100, 230, Width-116, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentRight andtext:@"合计：0款, 0匹, 0.00米，"];
     [self addSubview:_totolLab];
     [self addSubview:self.ListTab];
     
@@ -77,18 +77,27 @@
 
 -(void)setModel:(SellOrderDeliverDetail *)model{
     _model = model;
+    NSString *receivablePrice = [NSString stringWithFormat:@"%.2f",[model.depositPrice floatValue]+[model.receivablePrice floatValue]];
     NSArray *titleArr = @[@"单号：",@"本单应收：",@"日期：",@"本单已收：",@"业务员：",@"本单欠款：",@"类型：",@"结算账户："];
     NSString *money = [NSString stringWithFormat:@"%.2f",[model.receivablePrice floatValue]- [model.receiptPrice floatValue]];
     NSString *kind = [model.type intValue]==0?@"剪样":@"大货";
-    NSArray *valueArr = @[model.deliverNo,model.receivablePrice,model.deliverDate,model.receiptPrice,model.sellerName,money,kind,model.customerName];
+    NSArray *valueArr = @[model.deliverNo,receivablePrice,model.deliverDate,model.depositPrice,model.sellerName,money,kind,model.customerName];
 
     for (int i = 0; i<_labArr.count; i++) {
         UILabel *lab = _labArr[i];
         lab.text = [NSString stringWithFormat:@"%@%@",titleArr[i],valueArr[i]];
     }
     
+    
     [_dataArr removeAllObjects];
     [_dataArr addObjectsFromArray:model.details];
+    int a = 0;
+    float b = 0.00;
+    for (DeliveDetails *tmodel in _dataArr) {
+        a +=[tmodel.packageNum intValue];
+        b+=[tmodel.num floatValue];
+    }
+    _totolLab.text = [NSString stringWithFormat:@"合计：%ld款, %d匹, %.2f米，",_dataArr.count,a,b];
     [self.ListTab reloadData];
 }
 

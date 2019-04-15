@@ -51,6 +51,8 @@
  客户
  */
 @property (nonatomic, strong) CustomerSelecteView *customerSelecteView;
+@property (nonatomic, strong) DatePickerView *datepicker;
+
 @end
 
 @implementation ReceivableViewController{
@@ -141,25 +143,27 @@
 }
 #pragma mark ====== 顶部按钮点击
 -(void)topBtnClickWithtag:(NSInteger)tag andFrame:(CGRect)frame{
-    DatePickerView *datepicker = [[DatePickerView alloc]init];
+    if (!_datepicker) {
+        _datepicker = [[DatePickerView alloc]init];
+    }
     
     switch (tag) {
         case 0:{
             
-            datepicker.dateType = 1;
-            if (_starTime.length>0) {
-                [datepicker.datePicker setDate:[self returnDateWithDateStr:_starTime] animated:YES];
-            }
-            [datepicker showViewWithFrame:frame];
+            _datepicker.dateType = 1;
+//            if (_starTime.length>0) {
+//                [_datepicker.datePicker setDate:[self returnDateWithDateStr:_starTime] animated:YES];
+//            }
+            [_datepicker showViewWithFrame:frame];
             
             break;
         }
         case 1:{
-            datepicker.dateType = 2;
-            if (_endTime.length>0) {
-                [datepicker.datePicker setDate:[self returnDateWithDateStr:_endTime] animated:YES];
-            }
-             [datepicker showViewWithFrame:frame];
+            _datepicker.dateType = 2;
+//            if (_endTime.length>0) {
+//                [datepicker.datePicker setDate:[self returnDateWithDateStr:_endTime] animated:YES];
+//            }
+             [_datepicker showViewWithFrame:frame];
             break;
         }
         case 2:{
@@ -190,7 +194,7 @@
     WeakSelf(self);
 
     //日期选择
-    datepicker.returnBlock = ^(NSInteger dateType, NSString *dateStr) {
+    _datepicker.returnBlock = ^(NSInteger dateType, NSString *dateStr) {
         [weakself selectedDate:dateStr andtag:dateType];
     };
     
@@ -244,6 +248,8 @@
     [HUD showLoading:nil];
     [[HttpClient sharedHttpClient] requestGET:@"/finance/receivable/statement/sample/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
         _dataArr = [receivableGoods mj_objectArrayWithKeyValuesArray:returnValue[@"receivableCustomers"]];
+        self.checkView.billDic = returnValue;
+
         [self.ListTab reloadData];
         if (_dataArr.count<=0) {
             [HUD show:@"未查到相关数据"];
@@ -266,6 +272,7 @@
     [[HttpClient sharedHttpClient] requestGET:@"finance/receivable/statement/order/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
          [HUD cancel];
         _dataArr1 = [ReceivableCustomers mj_objectArrayWithKeyValuesArray:returnValue[@"receivableCustomers"]];
+        self.checkView.billDic = returnValue;
         [self.ListTab reloadData];
         if (_dataArr1.count<=0) {
             [HUD show:@"未查到相关数据"];
@@ -286,6 +293,7 @@
     [[HttpClient sharedHttpClient] requestGET:@"finance/receivable/statistics/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
         [HUD cancel];
         _dataArr2 = [StasticeItem mj_objectArrayWithKeyValuesArray:returnValue[@"items"]];
+        self.checkView.itemDic = returnValue;
         [self.ListTab reloadData];
         if (_dataArr2.count<=0) {
             [HUD show:@"未查到相关数据"];

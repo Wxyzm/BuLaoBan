@@ -119,11 +119,23 @@
 #pragma mark =========保存数据
 - (void)saveAllDatas{
     //获取数据进一个数组
+    [self endEditing:YES];
+
     NSMutableArray *valiarr = [_packManager getValidDatas];
+    for (PackListModel *model in valiarr) {
+        if (model.dyelot.length>0&&model.meet.length<=0) {
+            [HUD show:[NSString stringWithFormat:@"米数不能为空"]];
+            return;
+        }
+    }
+    
+    [_saleSamModel.packingList removeAllObjects];
     [_saleSamModel.packingList addObjectsFromArray:valiarr];
     //总米数
     _saleSamModel.MeetTotal = [_packManager getMeetTotal];
     _saleSamModel.piecesTotal = [_packManager getReelTotal];
+    _saleSamModel.salesVol = [NSString stringWithFormat:@"%.2f",_saleSamModel.MeetTotal];
+    _saleSamModel.pieces = [NSString stringWithFormat:@"%d",[[NSString stringWithFormat:@"%ld",(long)_saleSamModel.piecesTotal] intValue]];
 
     WeakSelf(self);
     if (weakself.returnBlock) {
@@ -181,6 +193,12 @@
     if (saleSamModel.packingList.count<=0) {
         [_packManager addOnepageNewDatas];
     }else{
+        int a = saleSamModel.packingList.count%20;
+        if (a>0) {
+            for (int i = 0; i<(20-a); i++) {
+                [saleSamModel.packingList addObject:[[PackListModel alloc]init]];
+            }
+        }
         [_packManager sortWithdatasArr:saleSamModel.packingList];
     }
     [self setToolLabText];
@@ -230,10 +248,8 @@
                 model1.noInput = YES;
                 [theDataArr addObject:model1];
             }
-          
         }
         [_packManager sortWithdatasArr:theDataArr];
-
     }
     [self setToolLabText];
     [self refreshBoomBtn];
@@ -331,6 +347,10 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self endEditing:YES];
 }
+
+
+
+
 #pragma mark ========= get
 
 - (UIButton *)backButton

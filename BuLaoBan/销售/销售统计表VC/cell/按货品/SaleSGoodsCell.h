@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class SaleSSample;
 
 @interface SaleSGoodsCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *faceIma;
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *unitLab;
 @property (weak, nonatomic) IBOutlet UILabel *customerNumLab;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLab;
+@property (nonatomic,strong) SaleSSample *sampleModel;
 
 @end
 

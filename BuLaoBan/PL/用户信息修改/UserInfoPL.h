@@ -20,12 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)Profile_profileGetUserAccountInfoWithReturnBlock:(ReturnBlock)returnBlock
                                            andErrorBlock:(ErrorBlock)errorBlock;
 
-
-
-
-
-
-
 @end
 
 NS_ASSUME_NONNULL_END

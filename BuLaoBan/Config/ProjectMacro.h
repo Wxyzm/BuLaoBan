@@ -127,8 +127,8 @@
 #define PageSize          @"10"    //分页加载时  每页的数量
 #define NET_TIME_OUT      20
 
-#define kbaseUrl        @"https://buguanjia.com/api/"      //接口
-//#define kbaseUrl        @"http://smartdove.iask.in:17946/api"      //接口
+//#define kbaseUrl        @"https://buguanjia.com/api/"      //接口
+#define kbaseUrl        @"http://smartdovedev.iask.in:17946/api"      //接口
 
 
 

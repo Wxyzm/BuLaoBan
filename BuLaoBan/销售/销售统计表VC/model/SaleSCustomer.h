@@ -15,27 +15,27 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  客户ID
  */
-@property (nonatomic,strong) NSMutableArray *customerId;
+@property (nonatomic,copy) NSString  *customerId;
 
 /**
  客户名称
  */
-@property (nonatomic,strong) NSMutableArray *customerName;
+@property (nonatomic,copy) NSString  *customerName;
 
 /**
  联系电话
  */
-@property (nonatomic,strong) NSMutableArray *customerMobile;
+@property (nonatomic,copy) NSString  *customerMobile;
 
 /**
  销售次数
  */
-@property (nonatomic,strong) NSMutableArray *sellTimes;
+@property (nonatomic,copy) NSString  *sellTimes;
 
 /**
  销售样品款数
  */
-@property (nonatomic,strong) NSMutableArray *sellSampleCount;
+@property (nonatomic,copy) NSString  *sellSampleCount;
 
 /**
  销售数量

@@ -308,22 +308,38 @@
 - (void)changeSampleWithPicArr:(NSArray *)picUrlArr{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setValue:_sampleModel.companyId forKey:@"companyId"];
+    NSMutableDictionary *attrdic = [[NSMutableDictionary alloc]init];
+    if (_numberTxt.text.length>0) {
+        [attrdic setValue:_numberTxt.text forKey:@"1"];
+    }else{
+        [attrdic setValue:@"" forKey:@"1"];
+    }
     if (_nameTxt.text.length>0) {
-        [dic setValue:_nameTxt.text forKey:@"name"];
+        [attrdic setValue:_nameTxt.text forKey:@"2"];
+    }else{
+        [attrdic setValue:@"" forKey:@"2"];
     }
-
-    if (_componentLab.text.length>0) {
-        [dic setValue:_componentLab.text forKey:@"component"];
+    if (_componentLab.text.length>0&&![_componentLab.text isEqualToString:@"选择"]) {
+        [attrdic setValue:_componentLab.text forKey:@"3"];
+    }else{
+        [attrdic setValue:@"" forKey:@"3"];
     }
-    if (_widthLab.text.length>0) {
-        [dic setValue:_widthLab.text forKey:@"width"];
+    if (_widthLab.text.length>0&&![_widthLab.text isEqualToString:@"选择"]) {
+        [attrdic setValue:_widthLab.text forKey:@"4"];
+    }else{
+        [attrdic setValue:@"" forKey:@"4"];
     }
-    if (_weightLab.text.length>0) {
-        [dic setValue:_weightLab.text forKey:@"weight"];
+    if (_weightLab.text.length>0&&![_weightLab.text isEqualToString:@"选择"]) {
+        [attrdic setValue:_weightLab.text forKey:@"5"];
+    }else{
+        [attrdic setValue:@"" forKey:@"5"];
     }
     if (_specTxt.text.length>0) {
-        [dic setValue:_specTxt.text forKey:@"specification"];
+        [attrdic setValue:_specTxt.text forKey:@"6"];
+    }else{
+        [attrdic setValue:@"" forKey:@"6"];
     }
+    [dic setValue:attrdic forKey:@"customAttribute"];
     if (picUrlArr.count>0) {
         NSMutableArray *urlArr = [NSMutableArray arrayWithCapacity:0];
         for (int i = 0; i<picUrlArr.count; i++) {
@@ -331,7 +347,7 @@
             [urlArr addObject:model.docId];
         }
         NSString *urlstr = [urlArr componentsJoinedByString:@","];
-        NSDictionary *urldic = @{@"roleType":@"1",@"picIds":urlstr};
+        NSDictionary *urldic = @{@"roleType":@"0",@"picIds":urlstr};
         NSArray *arr = @[urldic];
         [dic setValue:arr forKey:@"pics"];
     }
@@ -353,24 +369,39 @@
     User *tuser = [[UserPL shareManager] getLoginUser];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setValue:tuser.defutecompanyId forKey:@"companyId"];
+    NSMutableDictionary *attrdic = [[NSMutableDictionary alloc]init];
+    if (_numberTxt.text.length>0) {
+        [attrdic setValue:_numberTxt.text forKey:@"1"];
+    }else{
+        [attrdic setValue:@"" forKey:@"1"];
+    }
     if (_nameTxt.text.length>0) {
-        [dic setValue:_nameTxt.text forKey:@"name"];
+        [attrdic setValue:_nameTxt.text forKey:@"2"];
+    }else{
+        [attrdic setValue:@"" forKey:@"2"];
     }
-        if (_numberTxt.text.length>0) {
-            [dic setValue:_numberTxt.text forKey:@"itemNo"];
-        }
-    if (_componentLab.text.length>0) {
-        [dic setValue:_componentLab.text forKey:@"component"];
+    if (_componentLab.text.length>0&&![_componentLab.text isEqualToString:@"选择"]) {
+        [attrdic setValue:_componentLab.text forKey:@"3"];
+    }else{
+        [attrdic setValue:@"" forKey:@"3"];
     }
-    if (_widthLab.text.length>0) {
-        [dic setValue:_widthLab.text forKey:@"width"];
+    if (_widthLab.text.length>0&&![_widthLab.text isEqualToString:@"选择"]) {
+        [attrdic setValue:_widthLab.text forKey:@"4"];
+    }else{
+        [attrdic setValue:@"" forKey:@"4"];
     }
-    if (_weightLab.text.length>0) {
-        [dic setValue:_weightLab.text forKey:@"weight"];
+    if (_weightLab.text.length>0&&![_weightLab.text isEqualToString:@"选择"]) {
+        [attrdic setValue:_weightLab.text forKey:@"5"];
+    }else{
+        [attrdic setValue:@"" forKey:@"5"];
     }
     if (_specTxt.text.length>0) {
-        [dic setValue:_specTxt.text forKey:@"specification"];
+        [attrdic setValue:_specTxt.text forKey:@"6"];
+    }else{
+        [attrdic setValue:@"" forKey:@"6"];
     }
+    [dic setValue:attrdic forKey:@"customAttribute"];
+
     if (picUrlArr.count>0) {
         NSMutableArray *urlArr = [NSMutableArray arrayWithCapacity:0];
         for (int i = 0; i<picUrlArr.count; i++) {
@@ -378,7 +409,7 @@
             [urlArr addObject:model.docId];
         }
         NSString *urlstr = [urlArr componentsJoinedByString:@","];
-        NSDictionary *urldic = @{@"roleType":@"1",@"picIds":urlstr};
+        NSDictionary *urldic = @{@"roleType":@"0",@"picIds":urlstr};
         NSArray *arr = @[urldic];
         [dic setValue:arr forKey:@"pics"];
     }

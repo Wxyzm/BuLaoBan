@@ -42,7 +42,7 @@
     UIView *backView = [BaseViewFactory viewWithFrame:CGRectMake(0, 56, 300, 48) color:UIColorFromRGB(BackColorValue)];
     [self addSubview:backView];
     
-    _numLab = [BaseViewFactory labelWithFrame:CGRectMake(10, 0, 280, 48) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:@"共10条单据"];
+    _numLab = [BaseViewFactory labelWithFrame:CGRectMake(10, 0, 280, 48) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:@"共0条单据"];
     [backView addSubview:_numLab];
     
 }

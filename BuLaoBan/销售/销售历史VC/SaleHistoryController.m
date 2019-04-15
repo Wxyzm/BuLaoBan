@@ -115,7 +115,8 @@
 - (void)getSellList{
     User *user = [[UserPL shareManager] getLoginUser];
     NSDictionary *dic= @{@"pageNo":[NSString stringWithFormat:@"%ld",self.page],
-                         @"pageSize":@"50",
+                         @"pageSize":@"2000",
+                         @"settleStatus":@"1",
                          @"companyId":user.defutecompanyId
                          };
     [[HttpClient sharedHttpClient] requestGET:@"/sell/deliver" Withdict:dic WithReturnBlock:^(id returnValue) {
@@ -184,12 +185,10 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
     return self.searchView;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     return 60;
 }
 
@@ -205,7 +204,6 @@
         cell = [[SaleHisListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     cell.model = _dataArr[indexPath.row];
-   
     return cell;
 }
 
@@ -241,16 +239,13 @@
 }
 
 -(SaleDetailView *)detailView{
-    
     if (!_detailView) {
         _detailView = [[SaleDetailView alloc]initWithFrame:CGRectMake(300, 64, ScreenWidth-400, ScreenHeight-64)];
     }
     return _detailView;
 }
 
-
 -(SaleHistorySearchView *)searchView{
-    
     if (!_searchView) {
         _searchView = [[SaleHistorySearchView alloc]initWithFrame:CGRectMake(0, 0, 300, 104)];
     }

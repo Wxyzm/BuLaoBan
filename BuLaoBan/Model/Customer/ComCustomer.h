@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ComCustomer : UIView
 
 /**
+ 员工ID
+ */
+@property (nonatomic,copy) NSString *companyUserId;
+
+/**
  联系公司ID
  */
 @property (nonatomic, copy) NSString *comId;
@@ -101,6 +106,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *email;
 
+/**
+ 欠款
+ */
+@property (nonatomic, copy) NSString *receivableAmount;
 
 
 @property (nonatomic, assign) BOOL isSelected;

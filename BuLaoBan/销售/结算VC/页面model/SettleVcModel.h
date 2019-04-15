@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *sellerId;    //业务员Id
 @property (nonatomic, copy) NSString *sellerName;  //业务员姓名
 
+
+@property (nonatomic,strong) NSMutableArray *packListArr; //选择的货品
+
+
 @property (nonatomic, assign) NSInteger styleNum;     //总款式
 @property (nonatomic, assign) NSInteger pieceNum;     //总匹数
 @property (nonatomic, assign) float meetNum;      //总米数

@@ -96,7 +96,12 @@
     WeakSelf(self);
     //高级搜索
     searchView.returnBlock = ^(NSString * _Nonnull searchtxt) {
-        [self.searchView showView];
+        if ([searchtxt isEqualToString:@"detailSearch"]) {
+            [self.searchView showView];
+        }else{
+            NSDictionary *dic = @{@"2":searchtxt};
+            [weakself topSearchLoadGoodsListWithDic:dic];
+        }
     };
     self.searchView.returnBlock = ^(NSDictionary * _Nonnull keyDic) {
         if (keyDic) {
@@ -165,7 +170,33 @@
     [HUD showLoading:nil];
     [SamplePL Sample_sampleSamplesDetailWithsampleId:sampleId WithReturnBlock:^(id returnValue) {
         NSLog(@"样品详情=====%@",returnValue);
-        SampleDetail *deModel = [SampleDetail mj_objectWithKeyValues:returnValue[@"sample"]];
+        NSDictionary *samDic = returnValue[@"sample"];
+        NSArray *attArr = samDic[@"attributes"];
+        SampleDetail *deModel = [SampleDetail mj_objectWithKeyValues:samDic];
+        for (int i = 0; i<attArr.count; i++) {
+            NSDictionary *dic = attArr[i];
+            if ([dic[@"attributeId"] intValue]==1) {
+                //编号
+                deModel.itemNo = dic[@"value"]?dic[@"value"]:@"";
+            }else if ([dic[@"attributeId"] intValue]==2){
+                //名称
+                 deModel.name = dic[@"value"]?dic[@"value"]:@"";
+            }else if ([dic[@"attributeId"] intValue]==3){
+                //成分
+                deModel.component = dic[@"value"]?dic[@"value"]:@"";
+            }else if ([dic[@"attributeId"] intValue]==4){
+                //门幅
+                deModel.width = dic[@"value"]?dic[@"value"]:@"";
+            }else if ([dic[@"attributeId"] intValue]==5){
+                //克重
+                deModel.weight = dic[@"value"]?dic[@"value"]:@"";
+            }else if ([dic[@"attributeId"] intValue]==6){
+                //规格
+                deModel.specification = dic[@"value"]?dic[@"value"]:@"";
+            }else if ([dic[@"attributeId"] intValue]==7){
+                //分类
+            }
+        }
         _detailView.sampledetail = deModel;
         [HUD cancel];
     } andErrorBlock:^(NSString *msg) {
@@ -187,9 +218,14 @@
     if (self.loadWay == START_LOAD_FIRST || self.loadWay == RELOAD_DADTAS) {
         [_dataArr  removeAllObjects];
         if (arr.count>0) {
+            _detailView.hidden = NO;
+
             Sample *sample = arr[0];
             sample.isSelected = YES;
             [self loadGoodsDetailWithSampleId:sample.sampleId];
+        }else{
+            //无数据
+            _detailView.hidden = YES;
         }
     }
     [_dataArr addObjectsFromArray:arr];
@@ -341,7 +377,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UIView *view = [BaseViewFactory viewWithFrame:CGRectMake(0, 0, 300, 48) color:UIColorFromRGB(BackColorValue)];
-    UILabel *lab = [BaseViewFactory labelWithFrame:CGRectMake(12, 0, 276, 48) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:@"共20个货品"];
+    UILabel *lab = [BaseViewFactory labelWithFrame:CGRectMake(12, 0, 276, 48) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:[NSString stringWithFormat:@"共%ld个货品",_dataArr.count]];
     [view addSubview:lab];
     return view;
 }

@@ -82,12 +82,15 @@
 
 -(void)setModel:(ComCustomerDetail *)model{
     _model = model;
+    _topLab.text = @"编辑客户";
+    _moneyTxt.userInteractionEnabled = NO;
+
     _comNameTxt.text = model.name;
     _linkManTxt.text = model.manager;
     _phoneTxt.text = model.telephone;
     _mailTxt.text = model.email;
     _adressTxt.text = model.address;
- //   _moneyTxt.text = model
+    _moneyTxt.text = model.receivableAmount;
     _memoTxt.text = model.remark;
     [_salerBtn setTitle:model.salesmanName forState:UIControlStateNormal];
     if (model.participants.count>0) {
@@ -147,7 +150,6 @@
         default:
             break;
     }
-    
     WeakSelf(self);
     if (weakself.returnBlock) {
         weakself.returnBlock(btn.tag-1000, _model);
@@ -171,8 +173,6 @@
     [UIView animateWithDuration:0.2 animations:^{
         
     }];
-    
-    
 }
 
 - (void)dismiss
@@ -228,19 +228,32 @@
     if (_memoTxt.text.length>0) {
         [setDic setValue:_memoTxt.text forKey:@"remark"];
     }
+   
+    
     [setDic setValue:_model.salesman forKey:@"salesman"];
     User *user = [[UserPL shareManager] getLoginUser];
     
     if (!_model.comId) {
         [setDic setValue:user.defutecompanyId forKey:@"companyId"];
-
+        //期初欠款
+        if (_moneyTxt.text.length>0) {
+            [setDic setValue:_moneyTxt.text forKey:@"receivableAmount"];
+        }
     }
-    
     return setDic;
+}
+
+- (id)GetParticiDic{
+    if ( _model.ParticiUserID.length>0) {
+        return @{@"type":@"1",@"userIds":_model.ParticiUserID,@"groupIds":@""};
+    }
+    return nil;
 }
 
 - (void)clearAllInfo{
     _model = [ComCustomerDetail new];
+    _topLab.text = @"新增客户";
+    _moneyTxt.userInteractionEnabled = YES;
     _comNameTxt.text = @"";
     _linkManTxt.text = @"";
     _phoneTxt.text = @"";
@@ -307,34 +320,26 @@
         cell.companyUsers  = _comArr[indexPath.row];
     }else{
         cell.participants = _parArr[indexPath.row];
-
     }
     return cell;
 
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (_type == 1) {
-      //   1参与者
-        
+       //1参与者
         CompanyUsers *comUser = _comArr[indexPath.row];
         _model.salesmanName = comUser.name;
         _model.salesman = comUser.userId;
         [_salerBtn setTitle:comUser.name forState:UIControlStateNormal];
-
     }else{
         //2业务员
         Participants *Partici = _parArr[indexPath.row];
-//        NSDictionary *dic = @{@"avatar":@"",
-//                              @"":@"",
-//                              @"":@""
-//                              };
-    
+        _model.ParticiUserID = Partici.userId;
+        _model.ParticiUserName = Partici.userName;
+        [_spartakeBtn setTitle:Partici.userName forState:UIControlStateNormal];
     }
     [self closeBtnClick];
-    
-    
 }
 
 

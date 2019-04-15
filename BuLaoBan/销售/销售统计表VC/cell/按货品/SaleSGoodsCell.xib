@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SaleSGoodsCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="SaleSGoodsCell">
             <rect key="frame" x="0.0" y="0.0" width="924" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -116,6 +116,13 @@
                         <color key="textColor" red="0.98823529409999999" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhh-rt-O1R">
+                        <rect key="frame" x="0.0" y="48.5" width="924" height="1"/>
+                        <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="ffX-sF-bYi"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="fIp-Ag-NrY" firstAttribute="leading" secondItem="1Dc-2F-QeO" secondAttribute="trailing" constant="100" id="00V-ij-ZuA"/>
@@ -130,6 +137,7 @@
                     <constraint firstItem="JFQ-UG-bN3" firstAttribute="leading" secondItem="fIp-Ag-NrY" secondAttribute="trailing" constant="20" id="Cmp-4a-Igt"/>
                     <constraint firstItem="cYM-wp-vtL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Jp9-Hs-2yl"/>
                     <constraint firstAttribute="bottom" secondItem="tIC-ak-rf1" secondAttribute="bottom" id="Kcq-yA-AIY"/>
+                    <constraint firstAttribute="bottom" secondItem="Hhh-rt-O1R" secondAttribute="bottom" id="Lv5-wq-sG0"/>
                     <constraint firstItem="fIp-Ag-NrY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="M3i-SN-PIF"/>
                     <constraint firstItem="qGx-Fx-bvr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="NBE-LO-0yg"/>
                     <constraint firstAttribute="bottom" secondItem="QrR-AI-b2Q" secondAttribute="bottom" id="NoZ-Hm-dTb"/>
@@ -137,6 +145,7 @@
                     <constraint firstAttribute="bottom" secondItem="hfE-UU-jOD" secondAttribute="bottom" id="Nsh-4y-Bgg"/>
                     <constraint firstItem="hlq-cg-ANr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Pno-H4-xpr"/>
                     <constraint firstItem="hlq-cg-ANr" firstAttribute="leading" secondItem="1Dc-2F-QeO" secondAttribute="trailing" constant="17" id="Q6J-c5-7hE"/>
+                    <constraint firstAttribute="trailing" secondItem="Hhh-rt-O1R" secondAttribute="trailing" id="QOh-P3-gRd"/>
                     <constraint firstItem="NlI-e4-7yE" firstAttribute="leading" secondItem="QrR-AI-b2Q" secondAttribute="trailing" constant="20" id="SVA-wh-xDn"/>
                     <constraint firstItem="nlC-DH-zEO" firstAttribute="leading" secondItem="vsV-f2-Nxv" secondAttribute="trailing" constant="10" id="Sgx-YA-HTf"/>
                     <constraint firstItem="1Dc-2F-QeO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="VPi-Ik-9gz"/>
@@ -163,6 +172,7 @@
                     <constraint firstAttribute="bottom" secondItem="5dy-rT-7Q2" secondAttribute="bottom" id="ndq-nG-s7r"/>
                     <constraint firstAttribute="bottom" secondItem="qGx-Fx-bvr" secondAttribute="bottom" id="nsQ-XN-31d"/>
                     <constraint firstItem="vsV-f2-Nxv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oNx-OA-o2k"/>
+                    <constraint firstItem="Hhh-rt-O1R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oZp-aU-4ot"/>
                     <constraint firstItem="hfE-UU-jOD" firstAttribute="leading" secondItem="NlI-e4-7yE" secondAttribute="trailing" constant="10" id="pCk-kB-rgx"/>
                     <constraint firstItem="QrR-AI-b2Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="r9H-gW-fMI"/>
                     <constraint firstItem="Waq-Zw-5Re" firstAttribute="leading" secondItem="hfE-UU-jOD" secondAttribute="trailing" constant="100" id="skQ-y4-Teq"/>
@@ -181,7 +191,7 @@
                 <outlet property="saleNumberLab" destination="JFQ-UG-bN3" id="Ela-AC-rEq"/>
                 <outlet property="unitLab" destination="NlI-e4-7yE" id="oAh-Gy-Ysr"/>
             </connections>
-            <point key="canvasLocation" x="713" y="0.0"/>
+            <point key="canvasLocation" x="377" y="-1"/>
         </tableViewCell>
     </objects>
 </document>

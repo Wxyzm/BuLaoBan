@@ -158,16 +158,19 @@
             return;
         }
     }
+    NSString *pwd = _infoArr[2];
     NSDictionary *dic =@{@"mobile":_infoArr[0],
-                         @"password":_infoArr[2],
+                         @"password":pwd.hu_md5,
                          @"userName":_infoArr[1],
-                         @"checkCode":_infoArr[3],
+                         @"checkCode":_infoArr[4],
                          @"platType":@"",
                          @"unionId":@"",
                          @"openAccount":@"",
                          @"avatar":@"",
                          };
     [[UserPL shareManager] userAccountRegisterWithDic:dic WithReturnBlock:^(id returnValue) {
+        [HUD show:@"注册成功"];
+        [self.navigationController popToRootViewControllerAnimated:YES];
         
     } andErrorBlock:^(NSString *msg) {
         
