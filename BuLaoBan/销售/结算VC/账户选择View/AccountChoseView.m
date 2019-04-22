@@ -1,33 +1,27 @@
 //
-//  ReceiveBaseView.m
+//  AccountChoseView.m
 //  BuLaoBan
 //
-//  Created by souxiuyun on 2019/3/23.
+//  Created by souxiuyun on 2019/4/16.
 //  Copyright © 2019 XX. All rights reserved.
 //
 
-#import "ReceiveBaseView.h"
-#import "ReceivablesView.h"
+#import "AccountChoseView.h"
 #import "AccountListView.h"
 #import "AccountEditView.h"
-#import "ComCustomer.h"
 #import "Accounts.h"
-@interface ReceiveBaseView ()
 
-@property (nonatomic, strong) UIButton      *backButton;
-@property (nonatomic, strong) ReceivablesView  *receView;
-@property (nonatomic, strong) AccountListView  *listView;
-@property (nonatomic, strong) AccountEditView  *editView;
-@property (nonatomic, strong) NSMutableArray  *viewArr;;
-
-@end
-
-
-@implementation ReceiveBaseView{
+@interface AccountChoseView(){
     BOOL _isShow;
 }
 
+@property (nonatomic, strong) UIButton      *backButton;
+@property (nonatomic, strong) AccountListView  *listView;
+@property (nonatomic, strong) AccountEditView  *editView;
 
+@end
+
+@implementation AccountChoseView
 
 -(instancetype)init{
     self = [super init];
@@ -40,48 +34,37 @@
 }
 - (void)setUP{
     [self addSubview:self.backButton];
-    [self addSubview:self.receView];
     [self addSubview:self.listView];
     [self addSubview:self.editView];
-  
-    _viewArr = [NSMutableArray arrayWithObjects:self.receView,self.listView,self.editView, nil];
-    //收款界面
     WeakSelf(self);
-    weakself.receView.returnBlock = ^(NSInteger tag) {
-        if (tag ==0||tag ==2) {
-            //关闭
-            [weakself dismiss];
-        }else{
-            //选择账户
-            [weakself showViewWithTag:1];
-
-        }
-    };
-      //账户选择界面
+    //账户选择界面
     weakself.listView.returnBlock = ^(NSInteger tag, Accounts * _Nonnull account) {
+        weakself.listView.hidden = YES;
+
         if (tag ==0) {
             //关闭
-            self.editView.account = account;
-            [weakself showViewWithTag:0];
+            [weakself dismiss];
         }else if (tag ==1){
             //新增
             self.editView.account = account;
-            [weakself showViewWithTag:2];
+            weakself.editView.hidden = NO;
+
         }else if (tag ==2)
         {
             //编辑
             self.editView.account = account;
-            [weakself showViewWithTag:2];
+            weakself.editView.hidden = NO;
         }
         else if (tag ==3){
-             //选中
-            self.receView.account = account;
-            [weakself showViewWithTag:0];
-
+            //选中
+            if (weakself.returnBlock) {
+                weakself.returnBlock(account);
+            }
+            [weakself dismiss];
         }
-        
     };
-   //新增编辑
+    
+    //新增编辑
     weakself.editView.returnBlock = ^(NSInteger tag, Accounts * _Nonnull account) {
         if (tag ==0) {
             //关闭
@@ -90,48 +73,19 @@
             [self loadComAccountList];
         }else if (tag ==2){
             //编辑
-             [self loadComAccountList];
+            [self loadComAccountList];
         }
-        [weakself showViewWithTag:1];
-
+        weakself.listView.hidden = NO;
+        weakself.editView.hidden = YES;
     };
     
     
 }
 
-
-
-- (void)showViewWithTag:(NSInteger )tag{
-    
-    for (UIView *view in _viewArr) {
-        view.hidden = YES;
-    }
-    UIView *shview = _viewArr[tag];
-    shview.hidden = NO;
-}
-
-
-#pragma mark ========= set
--(void)setCommodel:(ComCustomer *)commodel{
-    _commodel = commodel;
-    //收款view赋值
-    self.receView.commodel = commodel;
-    self.editView.comId = _commodel.comId;
-    self.editView.companyCurrencyId = _commodel.companyCurrencyId;
-}
-
--(void)setListArr:(NSMutableArray *)listArr{
-    _listArr = listArr;
-    self.listView.dataArr = listArr;
-    
-}
-
-#pragma mark ========= 获取列表
 #pragma mark ======  获取公司账户列表
 - (void)loadComAccountList{
     User  *user = [[UserPL shareManager] getLoginUser];
-    
-    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/account",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
+        [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/account",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         NSMutableArray *listArr = [Accounts mj_objectArrayWithKeyValuesArray:returnValue[@"accounts"]];
         self.listArr = listArr;
@@ -139,11 +93,12 @@
     } andErrorBlock:^(NSString *msg) {
         
     }];
-    
-    
 }
 
-
+-(void)setListArr:(NSMutableArray *)listArr{
+    _listArr  = listArr;
+    self.listView.dataArr = listArr;
+}
 
 #pragma mark ========= menthod
 
@@ -156,21 +111,19 @@
         [self removeFromSuperview];
         _backButton.alpha = 0.3;
     }];
-    
-    
 }
 
 - (void)showInView{
     AppDelegate *app = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
     [app.splitViewController.view addSubview:self];
     _isShow = YES;
+    self.listView.hidden = NO;
     [UIView animateWithDuration:0.2 animations:^{
         
     }];
 }
 
 #pragma mark ========= get
-
 - (UIButton *)backButton
 {
     if (!_backButton) {
@@ -181,21 +134,9 @@
     return _backButton;
 }
 
--(ReceivablesView *)receView{
-    
-    if (!_receView) {
-        _receView = [[[NSBundle mainBundle] loadNibNamed:@"ReceivablesView" owner:self options:nil] lastObject];
-        _receView.frame = CGRectMake((ScreenWidth/2)-300, (ScreenHeight/2)-150, 600, 300);
-    }
-    
-    return _receView;
-}
-
 -(AccountListView *)listView{
     if (!_listView) {
         _listView = [[AccountListView alloc]initWithFrame:CGRectMake((ScreenWidth/2)-300, (ScreenHeight/2)-150, 600, 300)];
-        _listView.hidden = YES;
-
     }
     return _listView;
 }
@@ -204,10 +145,10 @@
     if (!_editView) {
         _editView = [[AccountEditView alloc]initWithFrame:CGRectMake((ScreenWidth/2)-300, (ScreenHeight/2)-140, 600, 280)];
         _editView.hidden = YES;
-
     }
     return _editView;
 }
+
 
 
 @end

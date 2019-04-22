@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SettleVcModel : NSObject
 
+
+@property (nonatomic, copy) NSString *sellOrderId;     //销售单ID
+
 //com
 @property (nonatomic, copy) NSString *comName;     //客户名称
 @property (nonatomic, copy) NSString *comId;       //客户ID
@@ -39,7 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *haveAcc;       //本单已收
 @property (nonatomic, copy) NSString *oweAcc;        //本单欠款
 @property (nonatomic, copy) NSString *actualAcc;     //实收金额
-
 @property (nonatomic, copy) NSString *paytype;       //结算账户
 
 

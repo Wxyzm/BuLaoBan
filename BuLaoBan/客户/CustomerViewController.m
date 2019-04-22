@@ -261,6 +261,7 @@
         return;
     }
     [[HttpClient sharedHttpClient]requestDeleteWithURLStr:[NSString stringWithFormat:@"/contact/company/%@",selectcustomer.comId] paramDic:nil WithReturnBlock:^(id returnValue) {
+         [HUD show:@"删除成功"];
         [self reloadList];
     } andErrorBlock:^(NSString *msg) {
         
@@ -278,7 +279,8 @@
     if (!selectcustomer) {
         return;
     }
-    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/account",selectcustomer.comId] Withdict:nil WithReturnBlock:^(id returnValue) {
+    User  *user = [[UserPL shareManager] getLoginUser];
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/account",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         selectcustomer.receivableAmount = _detailView.detailModel.receivableAmount;
         NSMutableArray *listArr = [Accounts mj_objectArrayWithKeyValuesArray:returnValue[@"accounts"]];

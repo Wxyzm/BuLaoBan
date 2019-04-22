@@ -33,5 +33,9 @@
 #import "PackListModel.h"  //细码单
 #import "SettleVcModel.h"  //结算页面model
 
+#import "SellOrderDeliver.h" //取单model
+#import "GetDelView.h"       //取单View
+#import "SellOrderDeliverDetail.h"//详情model
+
 
 #endif /* SaleHeader_h */

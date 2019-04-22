@@ -31,7 +31,6 @@
 
 - (void)initUI{
     
-    
     UIView *faceImaView = [BaseViewFactory viewWithFrame:CGRectZero color:UIColorFromRGB(BackColorValue)];
     faceImaView.layer.cornerRadius = 40;
     [self.view addSubview:faceImaView];
@@ -40,8 +39,6 @@
     _faceIma.clipsToBounds = YES;
     _faceIma.layer.cornerRadius = 30;
     _faceIma.backgroundColor = UIColorFromRGB(BlueColorValue);
-    
-    
     
     NSLog(@"%f,%f",ScreenWidth,ScreenHeight);
     UILabel *topLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(20) textAligment:NSTextAlignmentCenter andtext:@"布管家"];
@@ -101,7 +98,6 @@
     [threeView addSubview:xwBtn];
     [xwBtn addTarget:self action:@selector(WXBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
-    
     threeView.sd_layout
     .bottomSpaceToView(self.view, 108)
     .widthIs(400)
@@ -159,7 +155,6 @@
         [HUD show:@"请输密码"];
         return;
     }
-    
     User *user = [[User alloc]init];
     user.account = _phoneTxt.text;
     user.password =_passWTxt.text.hu_md5;
@@ -169,21 +164,15 @@
     } andErrorBlock:^(NSString *msg) {
         [HUD show:msg];
     }];
-
- 
-    
 }
 
 - (void)loadUserCompanyID{
-    
     [[UserPL shareManager] userAccountGetComIdAndComNameWithReturnBlock:^(id returnValue) {
          [HUD show:@"登录成功"];
         [self performSelector:@selector(gotoHomeVC) withObject:nil afterDelay:0.5];
     } andErrorBlock:^(NSString *msg) {
         
     }];
-    
-
 }
 
 - (void)gotoHomeVC{
@@ -225,7 +214,6 @@
 }
 
 - (UIView *)leftViewWithImageName:(NSString *)imagename{
-    
     UIView *leftView = [BaseViewFactory viewWithFrame:CGRectMake(0, 0, 52, 40) color:UIColorFromRGB(WhiteColorValue)];
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:imagename]];
     [leftView addSubview:imageView];

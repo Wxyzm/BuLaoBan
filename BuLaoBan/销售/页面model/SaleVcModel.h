@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class SellOrderDeliverDetail;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SaleVcModel : NSObject
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *sampleList;    //样品列表
 
 
-
+- (void)getDataWithSellOrderDeliverDetail:(SellOrderDeliverDetail *)detailModel;
 
 @end
 

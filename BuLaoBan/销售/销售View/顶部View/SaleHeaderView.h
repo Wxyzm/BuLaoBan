@@ -22,6 +22,8 @@ typedef void(^SaleHeaderViewBtnBlock)(NSInteger tag);
  */
 @property (nonatomic, copy) SaleHeaderViewBtnBlock returnBlock;
 
+//设置取单按钮数量
+- (void)setgetBtnNumber:(NSInteger)number;
 
 @end
 

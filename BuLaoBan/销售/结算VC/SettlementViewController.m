@@ -14,6 +14,8 @@
 #import "SettleMoneyCell.h"
 #import "SaleSamModel.h"
 #import "PackListModel.h"
+#import "Accounts.h"
+#import "AccountChoseView.h"
 
 @interface SettlementViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -27,6 +29,8 @@
 @property (nonatomic, assign)BOOL isHaveDian;
 @property (nonatomic, strong)NSMutableArray *dataArr1;    //左侧dataarr
 @property (nonatomic, strong)NSMutableArray *dataArr2;    //右侧dataarr
+@property (nonatomic, strong) AccountChoseView  *choseView;
+@property (nonatomic, strong)  Accounts *selectAccount;
 
 @end
 
@@ -34,6 +38,7 @@
 
     UISwitch *_mprintSwitch;
     UITextView *_memoTxt;
+   
 }
 
 - (void)viewDidLoad {
@@ -55,7 +60,7 @@
     _dataArr1 = [NSMutableArray arrayWithCapacity:0];
     _dataArr2 = [NSMutableArray arrayWithCapacity:0];
     NSArray *titlearr1 = @[@"业务日期",@"客户",@"业务员",@"货品数量",@"合计金额",@"其他费用",@"总计",@"备注"];
-    NSArray *valueArr1 = @[dateStr,_model.comName,_model.sellerName,[NSString stringWithFormat:@"%ld款, %ld匹, %.2f米",_model.styleNum,_model.pieceNum,_model.meetNum],[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"",[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"备注"];
+    NSArray *valueArr1 = @[dateStr,_model.comName,_model.sellerName?_model.sellerName:@"",[NSString stringWithFormat:@"%ld款, %ld匹, %.2f米",_model.styleNum,_model.pieceNum,_model.meetNum],[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"",[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"备注"];
     NSMutableArray  *arr1 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *arr2 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *arr3 = [NSMutableArray arrayWithCapacity:0];
@@ -133,13 +138,11 @@
     [self.view addSubview:_keyBoardView];
     WeakSelf(self);
     _keyBoardView.returnBlock = ^(NSString * _Nonnull selectStr) {
-        
         if ([selectStr isEqualToString:@"set"]) {
             //结算
             [weakself setAllInfo];
             return ;
         }
-        
         if ([_accStr rangeOfString:@"."].location == NSNotFound)
         {
             weakself.isHaveDian = NO;
@@ -169,7 +172,6 @@
                     }else{
                         //text中有小数点
                     }
-                    
                 }else{
                     if (weakself.isHaveDian) {//存在小数点
                         //判断小数点的位数
@@ -204,11 +206,20 @@
         [HUD show:@"请输入实收金额"];
         return;
     }
+    if (!_selectAccount) {
+        [HUD show:@"请选择结算账户"];
+        return;
+    }
     NSLog(@"%@",_model);
     User *user = [[UserPL shareManager] getLoginUser];
     NSMutableDictionary *setDic= [[NSMutableDictionary alloc]init];
     //公司ID*
     [setDic setObject:user.defutecompanyId forKey:@"companyId"];
+    //销售单ID
+    if (_model.sellOrderId.length>0) {
+        [setDic setObject:_model.sellOrderId forKey:@"sellOrderId"];
+        
+    }
     //发货日期*
     [setDic setObject:_model.date forKey:@"deliverDate"];
     //备注
@@ -234,6 +245,8 @@
     [setDic setObject:@"1" forKey:@"settleStatus"];
     //仓库ID*
     [setDic setObject:@"" forKey:@"warehouseId"];
+    //公司账户ID
+    [setDic setObject:_selectAccount.companyAccountId forKey:@"companyAccountId"];
 
     
     NSMutableArray *details = [NSMutableArray arrayWithCapacity:0];
@@ -257,8 +270,6 @@
         [packingListDetailDic setObject:[NSString stringWithFormat:@"%.2f",[samodel.salesVol floatValue]] forKey:@"quantity"];
         [packingListDetailDic setObject:samodel.unit forKey:@"quantityUnit"];
         [packingListDetail addObject:packingListDetailDic];
-        
-        
         
         
         //details
@@ -294,8 +305,6 @@
         //[samDic setObject: forKey:@"foreignPrice"];
         if (samodel.packingList.count>0)
         {
-            
-            
             NSMutableDictionary *packDic = [[NSMutableDictionary alloc]init];
             [packDic setObject:user.defutecompanyName forKey:@"title"];
             [packDic setObject:@"" forKey:@"subTitle"];
@@ -386,30 +395,7 @@
     } andErrorBlock:^(NSString *msg) {
         
     }];
-    
-    
 }
-
-/*
- @property (nonatomic, copy) NSString *sampId;    //样品ID
- @property (nonatomic, copy) NSString *urlStr;    //样品图片
- @property (nonatomic, copy) NSString *name;      //名称
- @property (nonatomic, copy) NSString *itemNo;    //编号
- @property (nonatomic, copy) NSString *color;     //颜色
- @property (nonatomic, copy) NSString *unitPrice; //单价
- @property (nonatomic, copy) NSString *pieces;    //匹数
- @property (nonatomic, copy) NSString *salesVol;  //销货量
- @property (nonatomic, copy) NSString *unit;      //单位
- @property (nonatomic, copy) NSString *money;     //金额
- @property (nonatomic, strong) NSMutableArray *packingList; //细码单
- 
- @property (nonatomic, assign) CGFloat MeetTotal;     //米数总计
- @property (nonatomic, assign) NSInteger piecesTotal;    //匹数总计
- 
- //输入总码数据则细码单无法输入，若输入细码单，则总码单是细码单算出来的
- @property (nonatomic, assign) BOOL caninput;     //是否手动输入（米数。匹数等）
- @property (nonatomic, assign) BOOL canselect;    //是否选择填写细码单
- */
 
 #pragma mark -- 将数组拆分成固定长度
 /**
@@ -436,20 +422,11 @@
             [arr1 addObject:[array objectAtIndex:j]];
             j +=1;
         }
-        //注意，此处是特例：将未满subSize的数组用model补齐
-        //        for (int i = 0; i<subSize; i++) {
-        //            if (arr1.count<=subSize) {
-        //                PackListModel *model = [[PackListModel alloc]init];
-        //                [arr1 addObject:model];
-        //            }
-        //        }
-        
         //将子数组添加到保存子数组的数组中
         [arr addObject:[arr1 mutableCopy]];
     }
     return[arr mutableCopy];
 }
-
 
 #pragma mark ====== tableviewdelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -532,7 +509,6 @@
         Settlement *model = dataArr[indexPath.row];
         if (model.ValueType == ValueType_Memo) {
             //备注
-            
             static NSString *leftCellid = @"memoCellid";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:leftCellid];
             if (!cell) {
@@ -542,9 +518,7 @@
                 [cell.contentView addSubview:memoLab];
                 _memoTxt = [[UITextView alloc]initWithFrame:CGRectMake(16, 40, 368, 80)];
                 [cell.contentView addSubview:_memoTxt];
-
             }
-          
             return cell;
         }else if (model.ValueType == ValueType_Money){
             //其他费用
@@ -620,6 +594,51 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == self.ListTab)
+    {
+        
+        
+    }
+    else if (tableView == self.settleTab)
+    {
+     //右侧按钮
+        if (indexPath.section == 0)
+        {
+            if (indexPath.row ==3)
+            {
+                //账户选择
+                [self loadComAccountList];
+            }
+        }
+    }
+}
+
+#pragma mark ======  获取公司账户列表
+- (void)loadComAccountList{
+    User  *user = [[UserPL shareManager] getLoginUser];
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/account",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        NSMutableArray *listArr = [Accounts mj_objectArrayWithKeyValuesArray:returnValue[@"accounts"]];
+        self.choseView.listArr = listArr;
+        [self.choseView showInView];
+        WeakSelf(self);
+        self.choseView.returnBlock = ^(Accounts * _Nonnull model) {
+            weakself.selectAccount = model;
+            NSArray *allArr = weakself.dataArr2[0];
+            Settlement *settleModel = allArr[3];
+            settleModel.showValue = model.accountName;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.settleTab reloadData];
+            });
+        };
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+
+
+
 #pragma mark ====== 设置显示
 - (void)setShowLab{
     NSArray *arr1 = _dataArr1[1];
@@ -653,7 +672,6 @@
     //欠款赋值
     qkModel.showValue =  [NSString stringWithFormat:@"%.2f元",[ysModel.showValue floatValue] -[shouldModel.showValue floatValue]];
     _model.oweAcc = qkModel.showValue;
-    
 //    //输入金额完成
 //    if ([model.title isEqualToString:@"其他费用"]) {
 //        //总计
@@ -678,8 +696,6 @@
 #pragma mark ====== get
 
 -(BaseTableView *)ListTab{
-    
-    
     if (!_ListTab) {
         _ListTab = [[BaseTableView alloc] initWithFrame:CGRectMake(0, 0, 400, ScreenHeight-64) style:UITableViewStylePlain];
         _ListTab.delegate = self;
@@ -695,13 +711,10 @@
         }
     }
     return _ListTab;
-    
 }
 
 
 -(BaseTableView *)settleTab{
-    
-    
     if (!_settleTab) {
         _settleTab = [[BaseTableView alloc] initWithFrame:CGRectMake(400, 0, 524, ScreenHeight-64-374) style:UITableViewStylePlain];
         _settleTab.delegate = self;
@@ -716,9 +729,14 @@
         }
     }
     return _settleTab;
-    
 }
 
+-(AccountChoseView *)choseView{
+    if (!_choseView) {
+        _choseView = [[AccountChoseView alloc]init];
+    }
+    return _choseView;
+}
 
 
 @end

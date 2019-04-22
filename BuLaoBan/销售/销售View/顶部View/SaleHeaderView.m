@@ -56,6 +56,10 @@
 
 }
 
+-(void)setgetBtnNumber:(NSInteger)number{
+    [_getBtn setTitle:[NSString stringWithFormat:@"取单(%ld)",number] forState:UIControlStateNormal];
+    
+}
 
 
 /**

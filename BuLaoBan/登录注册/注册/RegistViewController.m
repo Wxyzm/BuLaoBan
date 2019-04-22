@@ -27,6 +27,7 @@
     self .title = @"注册";
     [self setBarBackBtnWithImage:nil];
     [self initUI];
+    [self imaYzmBtnClick];
 }
 
 - (void)initUI{
@@ -47,7 +48,7 @@
     _infoArr = [NSMutableArray arrayWithCapacity:0];
     NSArray *imageNameArr = @[@"phone",@"name",@"password",@"yanzm",@"yanzm"];
     _plaArr =@[@"输入手机号",@"输入用户名",@"输入密码",@"输入图片验证码",@"输入手机验证码"];
-    
+    _codeIma = [[UIImageView alloc]initWithFrame:CGRectMake(250, 5, 70, 30)];
     for (int i = 0; i<5; i++) {
         UIView *txtView = [self textFieldWithFrame:CGRectMake(52, 0, 200, 40) font:APPFONT14 placeholder:_plaArr[i] textColor:UIColorFromRGB(BlackColorValue) placeholderColor:UIColorFromRGB(LitterBlackColorValue) delegate:self imageName:imageNameArr[i] andTag:1000+i];
         txtView.frame = CGRectMake(ScreenWidth/2-200, 60+56*i, 400, 40);
@@ -59,7 +60,8 @@
         }else if (i==3){
             [txtView addSubview:_imaYzmBtn];
             _imaYzmBtn.frame = CGRectMake(328, 0, 62, 40);
-            
+            [txtView addSubview:_codeIma];
+
         }
     }
     
@@ -80,9 +82,7 @@
     xieyiBtn.frame = CGRectMake(ScreenWidth/2-200, 424, 400, 18);
     
     
-    _codeIma = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
-    [self.view addSubview:_codeIma];
-
+  
 }
 
 

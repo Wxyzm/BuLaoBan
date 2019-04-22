@@ -105,9 +105,11 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [self setRequestWithInfo:dict url:url method:@"GET" requset:request];
     AFHTTPRequestOperation * operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
+    [HUD showLoading:nil];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          dispatch_async(dispatch_get_main_queue(), ^{
+             [HUD cancel];
              NSString *str = operation.responseString;
              NSDictionary *dic = [HttpClient valueWithJsonString:str];
              if ([dic[@"code"] intValue]==200) {
@@ -121,6 +123,7 @@
              }
          });
      }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         [HUD cancel];
          [HUD show:@"网络错误"];
          errorBlock(@"网络错误");
      }];
@@ -233,7 +236,7 @@
         NSDictionary *resultDic = [NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
         [HUD cancel];
         if ([resultDic[@"code"] intValue]==200) {
-            [HUD show:@"删除成功"];
+           // [HUD show:@"删除成功"];
             returnBlock(resultDic);
         }else{
             [HUD show:resultDic[@"message"]];

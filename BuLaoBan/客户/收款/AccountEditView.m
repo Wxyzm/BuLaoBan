@@ -112,10 +112,11 @@
     }
     if (_account.accountName) {
         //修改
-        [self changeAccount];
+        [self getUsercompanyCurrencyIdWithTag:2];
+
     }else{
         //新增
-        [self addNewAccount];
+        [self getUsercompanyCurrencyIdWithTag:1];
     }
    
 }
@@ -159,17 +160,18 @@
 /**
  新增
  */
-- (void)addNewAccount{
+- (void)addNewAccountWithId:(NSString *)companyCurrencyId{
     NSString *type;
     if ([_typeBtn.titleLabel.text isEqualToString:@"现金"]) {
         type = @"1";
-    }else if ([_typeBtn.titleLabel.text isEqualToString:@"现金"]){
+    }else if ([_typeBtn.titleLabel.text isEqualToString:@"银行"]){
         type = @"2";
     }else{
         type = @"3";
     }
     WeakSelf(self);
-    NSDictionary *dic = @{@"companyId":_comId,@"accountName":_nameTxt.text,@"accountNumber":_numberTxt.text,@"companyCurrencyId":_companyCurrencyId,@"type":type};
+    User *user = [[UserPL shareManager] getLoginUser];
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,@"accountName":_nameTxt.text,@"accountNumber":_numberTxt.text,@"companyCurrencyId":companyCurrencyId,@"type":type};
     [[HttpClient sharedHttpClient] requestPOST:@"/companys/account" Withdict:dic WithReturnBlock:^(id returnValue) {
         [HUD show:@"添加成功"];
         if (weakself.returnBlock) {
@@ -179,25 +181,54 @@
     } andErrorBlock:^(NSString *msg) {
         
     }];
+}
+
+- (void)getUsercompanyCurrencyIdWithTag:(NSInteger)tag{
+    User *user = [[UserPL shareManager] getLoginUser];
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/currency",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
+        NSArray *currArr = returnValue[@"currencies"];
+        if (currArr.count<0) {
+            [HUD show:@"获取货币种类失败"];
+            return ;
+        }
+        NSDictionary *dic;
+        for (NSDictionary *cuDic in currArr) {
+            if ([cuDic[@"currencyName"] isEqualToString:@"人民币"]) {
+                dic = cuDic;
+            }
+        }
+        if (tag == 1) {
+            //新增
+            [self addNewAccountWithId:dic[@"companyCurrencyId"]];
+        }else{
+            //n编辑
+            [self changeAccountWithId:dic[@"companyCurrencyId"]];
+        }
+        
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
     
     
 }
 
+
+
 /**
  修改
  */
-- (void)changeAccount{
+- (void)changeAccountWithId:(NSString *)companyCurrencyId{
     NSString *type;
     if ([_typeBtn.titleLabel.text isEqualToString:@"现金"]) {
         type = @"1";
-    }else if ([_typeBtn.titleLabel.text isEqualToString:@"现金"]){
+    }else if ([_typeBtn.titleLabel.text isEqualToString:@"银行"]){
         type = @"2";
     }else{
         type = @"3";
     }
     WeakSelf(self);
 
-    NSDictionary *dic = @{@"accountName":_nameTxt.text,@"accountNumber":_numberTxt.text,@"companyCurrencyId":_companyCurrencyId,@"type":type};
+    NSDictionary *dic = @{@"accountName":_nameTxt.text,@"accountNumber":_numberTxt.text,@"companyCurrencyId":companyCurrencyId,@"type":type};
     [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/companys/account/%@",_account.companyAccountId] paramDic:dic WithReturnBlock:^(id returnValue) {
          [HUD show:@"修改成功"];
         if (weakself.returnBlock) {

@@ -308,6 +308,7 @@
  */
 - (void)deleteGoods{
     [[HttpClient sharedHttpClient] requestDeleteWithURLStr:[NSString stringWithFormat:@"samples/%@",_detailView.sampledetail.sampleId] paramDic:nil WithReturnBlock:^(id returnValue) {
+         [HUD show:@"删除成功"];
         [self reloadList];
     } andErrorBlock:^(NSString *msg) {
         
