@@ -20,10 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.needHideNavBar = YES;
-    self.view.backgroundColor = [UIColor orangeColor];
     _menueView = [[MenueView alloc]initWithFrame:CGRectMake(0, 0, 100, ScreenHeight)];
     [self.view addSubview:_menueView];
-    
+    self.view.backgroundColor = [UIColor orangeColor];
+
     WeakSelf(self);
     _menueView.returnBlock = ^(NSInteger index) {
         [weakself changeChildViewController:index];
