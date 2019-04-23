@@ -18,6 +18,13 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - UMCCommon (2.0.0)
+  - UMCSecurityPlugins (1.0.6)
+  - UMCShare/Core (6.9.5):
+    - UMCCommon
+  - UMCShare/UI (6.9.5):
+    - UMCCommon
+    - UMCShare/Core
 
 DEPENDENCIES:
   - Alamofire
@@ -26,6 +33,9 @@ DEPENDENCIES:
   - IQKeyboardManager
   - PGDatePicker
   - ReactiveCocoa (~> 2.5)
+  - UMCCommon
+  - UMCSecurityPlugins
+  - UMCShare/UI
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -37,6 +47,9 @@ SPEC REPOS:
     - PGDatePicker
     - PGPickerView
     - ReactiveCocoa
+    - UMCCommon
+    - UMCSecurityPlugins
+    - UMCShare
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -47,7 +60,10 @@ SPEC CHECKSUMS:
   PGDatePicker: 88960f3760edac96219c10320f25536ad31d0f44
   PGPickerView: 037acfb132a4c8054fb43aaa59a5ff50c7f747f5
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  UMCCommon: 79b5a614c958db367113eed5740109d9a98e1223
+  UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
+  UMCShare: 552b29753f1b4da87b51d96545ed19e6263df397
 
-PODFILE CHECKSUM: 3a45d3800bb981e05bfacf272ca35575adbc2387
+PODFILE CHECKSUM: f52171ba693e375cb6699b1fd97b0bec9a8dc284
 
 COCOAPODS: 1.5.3

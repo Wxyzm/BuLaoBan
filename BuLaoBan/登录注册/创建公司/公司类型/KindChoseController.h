@@ -13,6 +13,7 @@ typedef void(^KindChoseControllerReturnBlock)(NSInteger index);
 
 @interface KindChoseController : BaseViewController
 
+//回调
 @property (nonatomic,copy) KindChoseControllerReturnBlock returnBlock;
 
 

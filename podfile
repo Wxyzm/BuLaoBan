@@ -8,4 +8,7 @@ target 'BuLaoBan' do
     pod 'AlamofireObjectMapper'  
     pod 'ReactiveCocoa', '~> 2.5'
     pod 'IQKeyboardManager'
+    pod 'UMCCommon'
+    pod 'UMCSecurityPlugins'
+    pod 'UMCShare/UI'
 end

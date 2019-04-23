@@ -45,17 +45,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     WeakSelf(self);
     if (weakself.returnBlock) {
         weakself.returnBlock(indexPath.row+1);
     }
-    
 }
 
 
 #pragma mark ====== get
-
 -(BaseTableView *)ListTab{
     if (!_ListTab) {
         _ListTab = [[BaseTableView alloc] initWithFrame:CGRectMake(0, 120, 300, ScreenHeight-64) style:UITableViewStylePlain];
@@ -63,8 +60,6 @@
         _ListTab.dataSource = self;
         _ListTab.backgroundColor = UIColorFromRGB(BackColorValue);
         _ListTab.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _ListTab.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadList)];
-        
         if (@available(iOS 11.0, *)) {
             _ListTab.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {

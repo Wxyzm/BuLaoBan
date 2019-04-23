@@ -15,6 +15,11 @@
 #import "ListViewController.h"
 #import <Bugtags/Bugtags.h>
 
+//微信
+#import "WXApi.h"
+#import "WXApiManager.h"
+
+
 
 @interface AppDelegate ()
 
@@ -24,6 +29,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    
+    //初始化微信
+    [WXApi registerApp:WXID
+       withDescription:WXSECRET];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
@@ -54,10 +65,26 @@
     self.splitViewController.maximumPrimaryColumnWidth = 100.0;
     
     [Bugtags startWithAppKey:@"a1bc1972953ced15a53bcd43caae981f" invocationEvent:BTGInvocationEventBubble];
-
-    
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+
+
+//初始化友盟SDK
+- (void)initUmSDK:(NSDictionary *)launchOpions
+{
+    
+    
+}
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
 }
 
 

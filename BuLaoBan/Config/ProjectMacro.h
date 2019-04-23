@@ -10,7 +10,10 @@
 #define ProjectMacro_h
 
 #define PAGE_SIZE_NUMBER  @"20"
-
+//友盟key
+#define UmKey               @"5cbea5b00cafb23046000e33"
+#define WXID               @"wx68d30c2c9a9e2381"
+#define WXSECRET               @"6918a54f39695fdd7a8bd28bae8f39fa"
 
 // 获取屏幕高度.
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height

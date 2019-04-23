@@ -9,8 +9,9 @@
 #import "LoginViewController.h"
 #import "RegistViewController.h"    //注册
 #import "ForgetPwdViewController.h" //忘记密码
+#import "WXApiManager.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<WXAuthDelegate>
 
 @end
 
@@ -208,10 +209,50 @@
  微信登录
  */
 - (void)WXBtnClick{
-    
-   
-    
+    [[WXApiManager sharedManager] sendAuthRequestWithController:self
+                                                       delegate:self];
 }
+
+#pragma mark - WXAuthDelegate
+- (void)wxAuthSucceed:(NSString *)code {
+//    [ADUserInfo currentUser].authCode = code;
+//    ADShowActivity(self.view);
+//    [[ADNetworkEngine sharedEngine] wxLoginForAuthCode:code
+//                                        WithCompletion:^(ADWXLoginResp *resp) {
+//                                            [self handleWXLoginResponse:resp];
+//                                        }];
+    NSDictionary *dic = @{@"platCode":code,
+                          @"platType":@"1",
+                          };
+    [[HttpClient sharedHttpClient] requestPOST:@"user/account/platform/login" Withdict:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+
+- (void)wxAuthDenied {
+    [HUD show:@"授权失败"];
+}
+
+
+/*
+ city = "\U7ecd\U5174";
+ country = "\U4e2d\U56fd";
+ headimgurl = "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eq0icoHSN71mWjkLO5NIc9bhVgbakKXQ3gbmngRSjyKzZd74xqcwwqzWdjurBU31UicianBJ2AmiaJaQA/132";
+ language = "zh_CN";
+ nickname = "\U6211\U60f3\U517b\U53ea\U732b";
+ openid = oZoD9wQX1zx4HzGicPA7FvsJdMpE;
+ privilege =     (
+ );
+ province = "\U6d59\U6c5f";
+ sex = 1;
+ unionid = o8arXswvpIJDmiy4X6IGRnbNmQ1Q;
+ */
+
+
+
+
 
 - (UIView *)leftViewWithImageName:(NSString *)imagename{
     UIView *leftView = [BaseViewFactory viewWithFrame:CGRectMake(0, 0, 52, 40) color:UIColorFromRGB(WhiteColorValue)];
