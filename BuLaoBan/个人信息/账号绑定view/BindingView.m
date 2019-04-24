@@ -43,6 +43,15 @@
     
 }
 
+- (void)WxIsBind:(BOOL)isBind{
+    if (isBind) {
+        _statuslab.textColor = UIColorFromRGB(BlackColorValue);
+        _statuslab.text = @"已绑定";
+    }else{
+        _statuslab.textColor = UIColorFromRGB(0x858585);
+        _statuslab.text = @"未绑定";
+    }
+}
 
 
 

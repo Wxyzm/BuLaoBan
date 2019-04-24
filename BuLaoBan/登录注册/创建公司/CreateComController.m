@@ -25,6 +25,7 @@
     [super viewDidLoad];
     [self setBarBackBtnWithImage:nil];
     self.title = @"创建公司";
+    self.view.backgroundColor = UIColorFromRGB(BackColorValue);
     [self initUI];
 }
 
@@ -34,11 +35,13 @@
     
     NSArray *titleArr = @[@"公司全称*",@"公司类型",@"联系人",@"手机号码"];
     for (int i = 0; i<4; i++) {
-        UILabel *namelab = [BaseViewFactory labelWithFrame:CGRectMake(30, 0, 200, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentLeft andtext:@""];
+        UILabel *namelab = [BaseViewFactory labelWithFrame:CGRectMake(30, 50*i, 200, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentLeft andtext:@""];
         [topView addSubview:namelab];
+        
         if (i==0) {
             namelab.attributedText = [self modifyDigitalColor:UIColorFromRGB(RedColorValue) normalColor:UIColorFromRGB(BlackColorValue) aneText:titleArr[i]];
         }else{
+            namelab.text = titleArr[i];
             UIView *line = [BaseViewFactory viewWithFrame:CGRectMake(30, 50*i-0.5, ScreenWidth-60, 1) color:UIColorFromRGB(BackColorValue)];
             [topView addSubview:line];
             
@@ -78,9 +81,7 @@
     kindVc.returnBlock = ^(NSInteger index) {
         kind = index;
     };
-    
-    [self.navigationController pushViewController:kindVc animated:YES];
-    
+    [self.navigationController pushViewController:kindVc animated:YES];    
 }
 
 
@@ -107,7 +108,12 @@
     }
     [[HttpClient sharedHttpClient] requestPOST:@"/companys" Withdict:setDic WithReturnBlock:^(id returnValue) {
         [HUD show:@"创建成功"];
-        
+        User *user = [[UserPL shareManager] getLoginUser];
+        user.defutecompanyName = _comNameTxt.text;
+        user.defutecompanyId = returnValue[@"companyId"];
+        [[UserPL shareManager] setUserData:user];
+        [[UserPL shareManager] writeUser];
+        [[UserPL shareManager] showHomeViewController];
     } andErrorBlock:^(NSString *msg) {
         
     }];

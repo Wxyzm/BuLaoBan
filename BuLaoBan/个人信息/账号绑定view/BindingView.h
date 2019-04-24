@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BindingView : UIView
 
+- (void)WxIsBind:(BOOL)isBind;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -69,6 +69,38 @@ static UserPL *sharedManager = nil;
 };
 
 /**
+ 微信登录
+ */
+- (void)userWXLoginWithDic:(NSDictionary *)upDic
+           WithReturnBlock:(PLReturnValueBlock)returnBlock
+             andErrorBlock:(PLErrorCodeBlock)errorBlock{
+    [[HttpClient sharedHttpClient] requestPOST:@"user/account/platform/login" Withdict:upDic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        NSString *authorization = returnValue[@"authorization"];
+        if (authorization.length>0) {
+            //已绑定
+            User *user = [User mj_objectWithKeyValues:returnValue];
+            user.account = @"";
+            user.password =  @"";
+            [self setUser:user];
+            [self writeUser];
+            returnBlock(@"");
+        }else{
+            //未绑定
+            [HUD show:@"当前微信账号未绑定，请账号登录绑定"];
+            errorBlock(@"当前微信账号未绑定，请账号登录绑定");
+        }
+        
+    } andErrorBlock:^(NSString *msg) {
+         errorBlock(msg);
+    }];
+    
+    
+}
+
+
+
+/**
  退出登录
  */
 - (void)userAccountLoginoutWithDic:(NSDictionary *)upDic

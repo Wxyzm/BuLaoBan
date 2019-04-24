@@ -97,10 +97,7 @@
     }
     //先登录，再绑定
     [HUD showLoading:nil];
-    NSString *pwd = _infoArr[2];
-    
-
-    
+    NSString *pwd = _infoArr[2];   
 }
 
 #pragma mark ======== 创建View

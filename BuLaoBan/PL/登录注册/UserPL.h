@@ -24,6 +24,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)userAccountLoginWithReturnBlock:(PLReturnValueBlock)returnBlock
                           andErrorBlock:(PLErrorCodeBlock)errorBlock;
 
+
+/**
+ 微信登录
+ */
+- (void)userWXLoginWithDic:(NSDictionary *)upDic
+           WithReturnBlock:(PLReturnValueBlock)returnBlock
+             andErrorBlock:(PLErrorCodeBlock)errorBlock;
+
+
+
+
 /**
  退出登录
  */

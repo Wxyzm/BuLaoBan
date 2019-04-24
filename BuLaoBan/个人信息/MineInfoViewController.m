@@ -12,8 +12,9 @@
 #import "MineInfoView.h"
 #import "UserInfoPL.h"
 #import "UserInfoModel.h"
+#import "WXApiManager.h"
 
-@interface MineInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MineInfoViewController ()<UITableViewDelegate,UITableViewDataSource,WXAuthDelegate>
 
 @property (nonatomic, strong) BaseTableView *ListTab;
 @property (nonatomic, strong) ChangePwdView *changePwdView;
@@ -26,6 +27,7 @@
     
     NSInteger _selectIndex;
     UIButton *_saveBtn;
+    BOOL   _WxIsBind;
 }
 
 - (void)viewDidLoad {
@@ -33,6 +35,7 @@
     self.needHideNavBar = YES;
     self.view.backgroundColor = UIColorFromRGB(BackColorValue);
     _selectIndex = 0;
+    _WxIsBind = NO;
     [self initUI];
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -135,7 +138,74 @@
         
     }];
 }
+#pragma mark ====== 获取微信账号绑定信息
+- (void)loadWXAccountBind{
+    [[HttpClient sharedHttpClient] requestGET:@"/user/account/platform" Withdict:nil WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        NSArray *accArr = returnValue[@"platform"];
+        if (accArr.count>0) {
+            for (NSDictionary *dic in accArr) {
+                if ([dic[@"platType"] intValue]==1) {
+                    //微信
+                    if ([dic[@"isBind"] intValue]==1) {
+                        [self.bindingView WxIsBind:YES];
+                        _WxIsBind = YES;
 
+                    }else{
+                        [self.bindingView WxIsBind:NO];
+                        _WxIsBind = NO;
+
+                    }
+                }
+            }
+        }
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+
+#pragma mark ====== 绑定解绑
+- (void)bindBtnClick{
+    if (_WxIsBind) {
+        //解绑
+        [self closeWx];
+    }else{
+        //绑定
+        [[WXApiManager sharedManager] sendAuthRequestWithController:self
+                                                           delegate:self];
+    }
+}
+
+#pragma mark - WXAuthDelegate
+- (void)wxAuthSucceed:(NSString *)code {
+    NSDictionary *dic = @{@"platCode":code,
+                          @"platType":@"1",
+                          };
+    [[HttpClient sharedHttpClient] requestPOST:@"/user/account/platform/bind" Withdict:dic WithReturnBlock:^(id returnValue) {
+        [HUD show:@"绑定成功"];
+        _WxIsBind = YES;
+        [self.bindingView WxIsBind:YES];
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+
+- (void)wxAuthDenied {
+    [HUD show:@"授权失败"];
+}
+
+- (void)closeWx{
+    NSDictionary *dic = @{
+                          @"platType":@"1",
+                          };
+    [[HttpClient sharedHttpClient] requestPOST:@"/user/account/platform/unbind" Withdict:dic WithReturnBlock:^(id returnValue) {
+        [HUD show:@"微信已解绑"];
+        _WxIsBind = NO;
+        [self.bindingView WxIsBind:NO];
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
 
 
 
@@ -242,12 +312,14 @@
     }else{
         if (indexPath.row ==0) {
             [self loaduserDatas];
+        }else if (indexPath.row ==1){
+            //微信
+            [self loadWXAccountBind];
         }
         
         
     }
     _selectIndex = indexPath.row;
-    
     [self setShowView];
     [self.ListTab reloadData];
 
@@ -293,6 +365,10 @@
     if (!_bindingView) {
         _bindingView = [[BindingView alloc]initWithFrame:CGRectMake(300, 64,  ScreenWidth-400, 50)];
         _bindingView.hidden = YES;
+        UIButton *bindBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_bindingView addSubview:bindBtn];
+        bindBtn.frame = CGRectMake(0, 0, ScreenWidth-400, 50);
+        [bindBtn addTarget:self action:@selector(bindBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _bindingView;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "IdentityController.h"
+#import "CreateComController.h"
 
 @interface IdentityController ()
 
@@ -38,9 +39,8 @@
 }
 
 - (void)bossBtnClick{
-    
-    
-    
+    CreateComController *crVc = [[CreateComController alloc]init];
+    [self.navigationController pushViewController:crVc animated:YES];
 }
 
 

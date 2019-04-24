@@ -147,22 +147,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/AppDelegate.m"
-            timestampString = "577703645.19036"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
             timestampString = "577614094.936002"
             startingColumnNumber = "9223372036854775807"
@@ -772,11 +756,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/PL/&#x767b;&#x5f55;&#x6ce8;&#x518c;/UserPL.m"
-            timestampString = "576754554.013603"
+            timestampString = "577787978.1424741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-userAccountCheckCodeWithDic:WithReturnBlock:andErrorBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -788,11 +772,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/PL/&#x767b;&#x5f55;&#x6ce8;&#x518c;/UserPL.m"
-            timestampString = "576754554.013672"
+            timestampString = "577787978.142536"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-userAccountCheckCodeWithDic:WithReturnBlock:andErrorBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1124,11 +1108,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/PL/&#x767b;&#x5f55;&#x6ce8;&#x518c;/UserPL.m"
-            timestampString = "576754554.014716"
+            timestampString = "577787978.1427979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "-showLoginView"
             landmarkType = "7">
          </BreakpointContent>
@@ -1328,7 +1312,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/PL/HttpClient.m"
@@ -1460,7 +1444,7 @@
                   moduleName = "BuLaoBan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E9%94%80%E5%94%AE/%E7%BB%93%E7%AE%97VC/%E8%B4%A6%E6%88%B7%E9%80%89%E6%8B%A9View/AccountChoseView.m"
-                  timestampString = "577703645.659871"
+                  timestampString = "577787978.431336"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
@@ -1475,7 +1459,7 @@
                   moduleName = "BuLaoBan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E9%94%80%E5%94%AE/%E7%BB%93%E7%AE%97VC/%E8%B4%A6%E6%88%B7%E9%80%89%E6%8B%A9View/AccountChoseView.m"
-                  timestampString = "577703645.6612279"
+                  timestampString = "577787978.432729"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
@@ -1760,7 +1744,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/PL/HttpClient.m"
@@ -1770,6 +1754,86 @@
             startingLineNumber = "141"
             endingLineNumber = "141"
             landmarkName = "-requestPOST:Withdict:WithReturnBlock:andErrorBlock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/MineInfoViewController.m"
+            timestampString = "577787978.1433001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "-loadWXAccountBind"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x767b;&#x5f55;&#x6ce8;&#x518c;/LoginViewController.m"
+            timestampString = "577787978.14334"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "-loadUserCompanyID"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[LoginViewController loadUserCompanyID]_block_invoke"
+                  moduleName = "BuLaoBan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/LoginViewController.m"
+                  timestampString = "577787902.0709"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "416">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[LoginViewController loadUserCompanyID]_block_invoke_2"
+                  moduleName = "BuLaoBan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/LoginViewController.m"
+                  timestampString = "577787902.072337"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x767b;&#x5f55;&#x6ce8;&#x518c;/&#x521b;&#x5efa;&#x516c;&#x53f8;/CreateComController.m"
+            timestampString = "577787978.143378"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-setBtnCLick"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

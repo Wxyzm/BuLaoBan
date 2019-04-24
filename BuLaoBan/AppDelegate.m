@@ -56,14 +56,17 @@
     LBNavigationController *lbVc = [[LBNavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
     User *user = [[UserPL shareManager] getLoginUser];
     if (user.userId.length>0) {
-        self.window.rootViewController = self.splitViewController;
+        if ([user.defutecompanyName isEqualToString:@"示例样品间"]) {
+            self.window.rootViewController = lbVc;
+        }else{
+            //选择角色
+            self.window.rootViewController = lbVc;
+        }
     }else{
         self.window.rootViewController = lbVc;
-
     }
     
     self.splitViewController.maximumPrimaryColumnWidth = 100.0;
-    
     [Bugtags startWithAppKey:@"a1bc1972953ced15a53bcd43caae981f" invocationEvent:BTGInvocationEventBubble];
     [self.window makeKeyAndVisible];
     return YES;
@@ -71,12 +74,7 @@
 
 
 
-//初始化友盟SDK
-- (void)initUmSDK:(NSDictionary *)launchOpions
-{
-    
-    
-}
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
