@@ -70,22 +70,21 @@
     UIButton *setBtn = [BaseViewFactory buttonWithFrame:CGRectMake(ScreenWidth/2-200, 400, 400, 40) font:APPFONT18 title:@"确定" titleColor:UIColorFromRGB(WhiteColorValue) backColor:UIColorFromRGB(BlueColorValue)];
     setBtn.layer.cornerRadius = 20;
     [setBtn addTarget:self action:@selector(setBtnCLick) forControlEvents:UIControlEventTouchUpInside];
-    [topView addSubview:setBtn];
+    [self.view addSubview:setBtn];
 
 }
-
 
 - (void)kindBtnClick{
     
     KindChoseController *kindVc = [[KindChoseController alloc]init];
     kindVc.returnBlock = ^(NSInteger index) {
         kind = index;
+        NSArray *titlrArr = @[@"供应商",@"客户",@"其他"];
+        [_kindBtn setTitle:titlrArr[index -1] forState:UIControlStateNormal];
+        [_kindBtn setTitleColor:UIColorFromRGB(BlackColorValue) forState:UIControlStateNormal];
     };
     [self.navigationController pushViewController:kindVc animated:YES];    
 }
-
-
-
 
 //提交
 - (void)setBtnCLick{
@@ -117,14 +116,8 @@
     } andErrorBlock:^(NSString *msg) {
         
     }];
-    
-    
-    
+ 
 }
-
-
-
-
 
 
 /**
@@ -133,7 +126,7 @@
 @param normalColor 默认颜色
 @return 结果富文本
 */
-- (NSMutableAttributedString *)modifyDigitalColor:(UIColor *)color normalColor:(UIColor *)normalColor aneText:(NSString *)text;
+- (NSMutableAttributedString *)modifyDigitalColor:(UIColor *)color normalColor:(UIColor *)normalColor aneText:(NSString *)text
 {
     NSRegularExpression *regular = [NSRegularExpression regularExpressionWithPattern:@"([0-9]\\d*\\.?\\d*)" options:0 error:NULL];
     NSArray<NSTextCheckingResult *> *ranges = [regular matchesInString:text options:0 range:NSMakeRange(0, [text length])];

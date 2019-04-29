@@ -236,13 +236,11 @@
         NSDictionary *resultDic = [NSJSONSerialization  JSONObjectWithData:responseObject options:0 error:nil];
         [HUD cancel];
         if ([resultDic[@"code"] intValue]==200) {
-           // [HUD show:@"删除成功"];
             returnBlock(resultDic);
         }else{
             [HUD show:resultDic[@"message"]];
             errorBlock(resultDic[@"message"]);
         }
-        returnBlock(resultDic);
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
          [HUD cancel];
         if (error) {

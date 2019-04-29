@@ -78,14 +78,12 @@
         UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:returnValue[@"user"]];
         self.mineInfoView.infoModel = model;
         self.mineInfoView.infoDic = returnValue[@"user"];
+        NSDictionary *dic = @{@"avatar":returnValue[@"user"][@"avatar"]};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"faceHaveChange" object:dic];
     } andErrorBlock:^(NSString *msg) {
         
     }];
-    
 }
-
-
-
 
 #pragma mark ==== 保存
 
@@ -113,16 +111,14 @@
         }
         default:
             break;
-    }
-    
-    
-    
+    } 
 }
 #pragma mark ==== 个人资料保存
 - (void)saveInfoWithDic:(NSDictionary *)dic{
     [[HttpClient sharedHttpClient] requestPUTWithURLStr:@"user/account" paramDic:dic WithReturnBlock:^(id returnValue) {
         [HUD show:@"信息已保存"];
-        
+        [self loaduserDatas];
+
     } andErrorBlock:^(NSString *msg) {
         
     }];

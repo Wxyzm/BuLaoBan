@@ -8,6 +8,7 @@
 
 #import "IdentityController.h"
 #import "CreateComController.h"
+#import "InviteController.h"
 
 @interface IdentityController ()
 
@@ -24,6 +25,7 @@
 
 - (void)setUP{
     YLButton *bossBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(ScreenWidth/2-220, 180, 120, 162) font:APPFONT16 title:@"我是老板" titleColor:UIColorFromRGB(BlackColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
+    bossBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [bossBtn setImageRect:CGRectMake(0, 0, 120, 120)];
     [bossBtn setTitleRect:CGRectMake(0, 140, 120, 22)];
     [bossBtn setImage:[UIImage imageNamed:@"boss"] forState:UIControlStateNormal];
@@ -35,6 +37,8 @@
     [sellerBtn setTitleRect:CGRectMake(0, 140, 120, 22)];
     [sellerBtn setImage:[UIImage imageNamed:@"seller"] forState:UIControlStateNormal];
     [self.view addSubview:sellerBtn];
+    sellerBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+
     [sellerBtn addTarget:self action:@selector(sellerBtnClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -45,9 +49,8 @@
 
 
 - (void)sellerBtnClick{
-    
-    
-    
+    InviteController*crVc = [[InviteController alloc]init];
+    [self.navigationController pushViewController:crVc animated:YES];
 }
 
 @end

@@ -107,6 +107,14 @@
     }
 }
 
+- (void)refreshWithOutSelected{
+    for (UIButton *allBtn in _BtnArr) {
+        allBtn.selected = NO;
+        [allBtn setTitleColor:UIColorFromRGB(BlackColorValue) forState:UIControlStateNormal];
+        allBtn.backgroundColor = UIColorFromRGB(WhiteColorValue);
+        allBtn.layer.borderWidth = 1;
+    }
 
+}
 
 @end

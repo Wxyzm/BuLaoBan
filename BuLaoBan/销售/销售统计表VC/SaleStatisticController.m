@@ -36,6 +36,8 @@
 @implementation SaleStatisticController{
     
     NSInteger _index;
+    NSInteger _topIndex;    //顶部三个按钮
+
     NSString *_starTime;      //l开始时间
     NSString *_endTime;       //结束时间
     NSMutableArray *_dataArr1;
@@ -57,6 +59,7 @@
 
 - (void)initDatas{
     _index = 0;
+    _topIndex = 0;
     _dataArr1 = [NSMutableArray arrayWithCapacity:0];
     _dataArr2 = [NSMutableArray arrayWithCapacity:0];
     _dataArr3 = [NSMutableArray arrayWithCapacity:0];
@@ -85,22 +88,26 @@
     };
     
     self.topView.returnBlock = ^(NSInteger tag) {
+        
         _index = tag;
         switch (tag) {
             case 0:
             {
+                _topIndex = tag;
                 //按货品
                 [weakself statisticsList];
                 break;
             }
             case 1:
             {
+                 _topIndex = tag;
                  //按客户
                 [weakself statisticscustomerList];
                 break;
             }
             case 2:
             {
+                 _topIndex = tag;
                  //按业务员
                  [weakself statisticssellerList];
                 break;
@@ -177,9 +184,9 @@
             case 10:
             {
                 //查询
-                if (_index==0) {
+                if (_topIndex==0) {
                     [weakself statisticsList];
-                }else if (_index==1){
+                }else if (_topIndex==1){
                     [weakself statisticscustomerList];
                 }else{
                     [weakself statisticssellerList];
@@ -404,13 +411,13 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (_index==0) {
+    if (_topIndex==0) {
         SaleSGoodsTopCell * cell= (SaleSGoodsTopCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"SaleSGoodsTopCell" owner:self options:nil]  lastObject];
         
         return cell.contentView;
     }
     SaleSCustomerCell*cell= (SaleSCustomerCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"SaleSCustomerCell" owner:self options:nil]  lastObject];
-    if (_index ==1) {
+    if (_topIndex ==1) {
         cell.nameLab.text = @"客户";
     }else{
         cell.nameLab.text = @"销售";
@@ -420,23 +427,23 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (_index==0) {
+    if (_topIndex==0) {
         return _dataArr1.count;
-    }else if (_index==1){
+    }else if (_topIndex==1){
         return _dataArr2.count;
     }
     return _dataArr3.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_index==0) {
+    if (_topIndex==0) {
         return 50;
     }
     return 40;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_index==0) {
+    if (_topIndex==0) {
         SaleSGoodsCell *cell = (SaleSGoodsCell *)[tableView dequeueReusableCellWithIdentifier:@"SaleSGoodsCellID"];
         if (cell == nil) {
             cell= (SaleSGoodsCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"SaleSGoodsCell" owner:self options:nil]  lastObject];
@@ -450,7 +457,7 @@
     if (cell == nil) {
         cell= (SaleSCustomerListCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"SaleSCustomerListCell" owner:self options:nil]  lastObject];
     }
-    if (_index ==1) {
+    if (_topIndex ==1) {
         cell.customerModel = _dataArr2[indexPath.row];
     }else{
         cell.sellerModel = _dataArr3[indexPath.row];

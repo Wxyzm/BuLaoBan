@@ -37,5 +37,6 @@
 #import "GetDelView.h"       //取单View
 #import "SellOrderDeliverDetail.h"//详情model
 
+#import "TypeChoseView.h"   //类型
 
 #endif /* SaleHeader_h */

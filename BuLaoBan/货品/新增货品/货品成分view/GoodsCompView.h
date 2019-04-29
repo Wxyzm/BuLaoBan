@@ -19,6 +19,8 @@ typedef void(^GoodsCompViewChoseBlock)(NSString *comp);
  */
 @property (nonatomic, copy) GoodsCompViewChoseBlock choseBlock;
 
+- (void)refreshWithOutSelected;
+
 @end
 
 NS_ASSUME_NONNULL_END

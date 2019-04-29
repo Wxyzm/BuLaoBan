@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"公司类型";
+    [self setBarBackBtnWithImage:nil];
     [self.view addSubview:self.ListTab];
 }
 
@@ -49,13 +50,14 @@
     if (weakself.returnBlock) {
         weakself.returnBlock(indexPath.row+1);
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 #pragma mark ====== get
 -(BaseTableView *)ListTab{
     if (!_ListTab) {
-        _ListTab = [[BaseTableView alloc] initWithFrame:CGRectMake(0, 120, 300, ScreenHeight-64) style:UITableViewStylePlain];
+        _ListTab = [[BaseTableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64) style:UITableViewStylePlain];
         _ListTab.delegate = self;
         _ListTab.dataSource = self;
         _ListTab.backgroundColor = UIColorFromRGB(BackColorValue);

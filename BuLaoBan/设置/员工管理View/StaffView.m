@@ -8,10 +8,16 @@
 
 #import "StaffView.h"
 #import "StaffCell.h"
+#import "StaffOperaView.h"   //员工编辑
 
 @interface StaffView()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *ListTab;
+
+/**
+ 编辑员工
+ */
+@property (nonatomic, strong)StaffOperaView *OperaView;
 
 
 
@@ -59,15 +65,11 @@
                 break;
         }
     }
-    
-    
     [self addSubview:self.ListTab];
-    
 }
 -(void)setDataArr:(NSMutableArray *)dataArr{
     _dataArr = dataArr;
     [self.ListTab reloadData];
-    
 }
 
 
@@ -87,13 +89,12 @@
         cell = [[StaffCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     cell.model = _dataArr[indexPath.row];
-    int a = indexPath.row % 2;
-    if (a ==0) {
-        cell.contentView.backgroundColor = UIColorFromRGB(WhiteColorValue);
-    }else{
-        cell.contentView.backgroundColor = UIColorFromRGB(BackColorValue);
-
-    }
+    WeakSelf(self);
+    cell.SettingBlock = ^(CompanyUsers * _Nonnull model) {
+      //员工设置
+        weakself.OperaView.model = model;
+        [weakself.OperaView showView];
+    };
     return cell;
 }
 
@@ -113,6 +114,12 @@
         }
     }
     return _ListTab;
+}
+- (StaffOperaView *)OperaView{
+    if (!_OperaView) {
+        _OperaView = [[StaffOperaView alloc]init];
+    }
+    return _OperaView;
 }
 
 @end

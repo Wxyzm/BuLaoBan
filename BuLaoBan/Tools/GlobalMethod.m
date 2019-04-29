@@ -383,4 +383,16 @@
     return [string isEqualToString:filter];
     
 }
+
++ (NSMutableAttributedString *)modifyDigitalColor:(UIColor *)color normalColor:(UIColor *)normalColor aneText:(NSString *)text
+{
+    NSRegularExpression *regular = [NSRegularExpression regularExpressionWithPattern:@"([0-9]\\d*\\.?\\d*)" options:0 error:NULL];
+    NSArray<NSTextCheckingResult *> *ranges = [regular matchesInString:text options:0 range:NSMakeRange(0, [text length])];
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName : normalColor}];
+    for (int i = 0; i < ranges.count; i++) {
+        [attStr setAttributes:@{NSForegroundColorAttributeName : color} range:ranges[i].range];
+    }
+    return attStr;
+}
+
 @end

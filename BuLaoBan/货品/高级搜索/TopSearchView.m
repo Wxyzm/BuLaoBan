@@ -29,7 +29,7 @@
     YLButton *_haveImaBtn;
     YLButton *_noImaBtn;
     BOOL _isShow;
-    BOOL _isHaveIma;
+    NSInteger _isHaveIma;   //0:无要求  1：有图  2：无图
 }
 
 -(instancetype)init{
@@ -37,7 +37,7 @@
     if (self) {
         self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
         self.backgroundColor = [UIColor clearColor];
-        _isHaveIma = YES;
+        _isHaveIma = 0;
         [self setUP];
     }
     return self;
@@ -93,7 +93,7 @@
     _haveImaBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(116, 164, 51, 40) font:APPFONT13 title:@"有图" titleColor:UIColorFromRGB(0xbdbdbd) backColor:UIColorFromRGB(WhiteColorValue)];
     [_haveImaBtn setImageRect:CGRectMake(8, 14, 12, 12)];
     [_haveImaBtn setTitleRect:CGRectMake(23, 0, 28, 40)];
-    [_haveImaBtn setImage:[UIImage imageNamed:@"image_select"] forState:UIControlStateNormal];
+    [_haveImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
     [_sideView addSubview:_haveImaBtn];
     [_haveImaBtn addTarget:self action:@selector(haveImaBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
@@ -127,7 +127,7 @@
     [_sideView addSubview:searchBtn];
 
     
-    UIButton *resetBtn = [BaseViewFactory buttonWithFrame:CGRectMake(480, 228, 30, 40) font:APPFONT14 title:@"查询" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
+    UIButton *resetBtn = [BaseViewFactory buttonWithFrame:CGRectMake(480, 228, 30, 40) font:APPFONT14 title:@"重置" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [_sideView addSubview:resetBtn];
     [resetBtn addTarget:self action:@selector(resetBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
@@ -137,17 +137,35 @@
 #pragma - m按钮点击
 
 - (void)haveImaBtnClick{
-    _isHaveIma = YES;
-    [_haveImaBtn setImage:[UIImage imageNamed:@"image_select"] forState:UIControlStateNormal];
-    [_noImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
+    if (_isHaveIma == 0||_isHaveIma == 2) {
+        //有图
+        _isHaveIma = 1;
+        [_haveImaBtn setImage:[UIImage imageNamed:@"image_select"] forState:UIControlStateNormal];
+        [_noImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
+    }else{
+        //无要求
+        _isHaveIma = 0;
+        [_haveImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
+        [_noImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
+    }
+    
+   
 
     
 }
 
 - (void)noImaBtnClick{
-    _isHaveIma = NO;
-    [_noImaBtn setImage:[UIImage imageNamed:@"image_select"] forState:UIControlStateNormal];
-    [_haveImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
+    if (_isHaveIma == 0||_isHaveIma == 1) {
+        //有图
+        _isHaveIma = 2;
+        [_haveImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
+        [_noImaBtn setImage:[UIImage imageNamed:@"image_select"] forState:UIControlStateNormal];
+    }else{
+        //无要求
+        _isHaveIma = 0;
+        [_haveImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
+        [_noImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)searchBtnClick{
@@ -173,10 +191,10 @@
     if (_weightMaxTxt.text.length>0) {
         [setDic setValue:_weightMaxTxt.text forKey:@"weightMax"];
     }
-    if (_isHaveIma) {
+    if (_isHaveIma==1) {
         [setDic setValue:@"1" forKey:@"havePics"];
-    }else{
-        [setDic setValue:@"2" forKey:@"havePics"];
+    }else if (_isHaveIma==2){
+        [setDic setValue:@"0" forKey:@"havePics"];
     }
     WeakSelf(self);
     if (weakself.returnBlock) {
@@ -197,8 +215,8 @@
     _widthMaxTxt.text = @"";
     _weightMinTxt.text = @"";
     _weightMaxTxt.text = @"";
-    _isHaveIma = YES;
-    [_haveImaBtn setImage:[UIImage imageNamed:@"image_select"] forState:UIControlStateNormal];
+    _isHaveIma = 0;
+    [_haveImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
     [_noImaBtn setImage:[UIImage imageNamed:@"image_unselect"] forState:UIControlStateNormal];
 }
 

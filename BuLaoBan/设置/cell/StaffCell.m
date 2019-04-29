@@ -44,9 +44,9 @@
     _positionLab = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT12 textAligment:NSTextAlignmentCenter andtext:@""];
     [self.contentView addSubview:_positionLab];
     
-    _doBtn = [BaseViewFactory buttonWithFrame:CGRectZero font:APPFONT12 title:@"转移" titleColor:UIColorFromRGB(BlackColorValue) backColor:[UIColor clearColor]];
+    _doBtn = [BaseViewFactory buttonWithFrame:CGRectZero font:APPFONT12 title:@"设置" titleColor:UIColorFromRGB(BlueColorValue) backColor:[UIColor clearColor]];
     [self.contentView addSubview:_doBtn];
-    
+    [_doBtn addTarget:self action:@selector(settingBtnCLick) forControlEvents:UIControlEventTouchUpInside];
     _nameLab.sd_layout
     .leftSpaceToView(_faceIma, 22)
     .centerYEqualToView(_faceIma)
@@ -73,14 +73,22 @@
     
 }
 
+
+- (void)settingBtnCLick{
+    WeakSelf(self);
+    if (weakself.SettingBlock) {
+        weakself.SettingBlock(_model);
+    }
+}
+
+
+
 -(void)setModel:(CompanyUsers *)model{
     _model = model;
     _nameLab.text = model.name;
     _phoneLab.text = model.mobile;
     _positionLab.text = model.roleName;
     [_faceIma sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:nil];
-
-    
 }
 
 @end

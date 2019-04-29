@@ -30,21 +30,20 @@
     };
 }
 
+- (void)showSaleView{
+    [self changeChildViewController:1];
+    [_menueView setSelected:0];
+}
+
+
 - (void)changeChildViewController:(NSInteger)sign {
     //获取详细控制器
-//    UINavigationController *detailNAV = [self.splitViewController.viewControllers lastObject];
-//    [detailNAV popToRootViewControllerAnimated:YES];
-//    DetailViewController *detatilVC = (DetailViewController*)[detailNAV viewControllers][0];
-//    [detatilVC changeChildViewController:sign];
+
     AppDelegate *app = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
-  //  UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if (sign == 2) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReceivebarSelected" object:nil];
-
     }
     app.mainTab.selectedIndex  = sign;
-    
-    
 }
 
 @end

@@ -47,7 +47,6 @@
     LBNavigationController *masterNav = [[LBNavigationController alloc]initWithRootViewController:_list];
     //模型界面
     self.detail = [[DetailViewController alloc]init];
-   // LBNavigationController *detailNav = [[LBNavigationController alloc]initWithRootViewController:_detail];
     //合成splitviewcontroller
     self.splitViewController = [[UISplitViewController alloc]init];
     [self.splitViewController setPresentsWithGesture:YES];
@@ -57,10 +56,11 @@
     User *user = [[UserPL shareManager] getLoginUser];
     if (user.userId.length>0) {
         if ([user.defutecompanyName isEqualToString:@"示例样品间"]) {
+             //选择角色
             self.window.rootViewController = lbVc;
         }else{
-            //选择角色
-            self.window.rootViewController = lbVc;
+           
+            self.window.rootViewController = self.splitViewController;
         }
     }else{
         self.window.rootViewController = lbVc;

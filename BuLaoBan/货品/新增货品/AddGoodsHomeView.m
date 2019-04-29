@@ -117,15 +117,19 @@
         }
         case 1:{
             self.goodsComView.hidden = NO;
+            [self.goodsComView refreshWithOutSelected];
             break;
         }
         case 2:{
             self.goodsWidthView.hidden = NO;
+            [self.goodsWidthView refreshWithOutSelected];
 
             break;
         }
         case 3:{
             self.goodsWeightView.hidden = NO;
+            [self.goodsWeightView refreshWithOutSelected];
+
             break;
         }
         case 5:{

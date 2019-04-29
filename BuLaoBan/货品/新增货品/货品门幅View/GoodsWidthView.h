@@ -21,6 +21,9 @@ typedef void(^GoodsWidthViewChoseBlock)(NSString *width);
  @""：关闭   1
  */
 @property (nonatomic, copy) GoodsWidthViewChoseBlock choseBlock;
+
+- (void)refreshWithOutSelected;
+
 @end
 
 NS_ASSUME_NONNULL_END

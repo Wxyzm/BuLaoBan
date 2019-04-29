@@ -10,6 +10,9 @@
 #import "LoginViewController.h"
 #import "LBNavigationController.h"
 #import "HomeRootViewController.h"
+#import "ListViewController.h"
+#import "LBTabBarController.h"
+#import "DetailViewController.h"
 @interface UserPL()
 @property (nonatomic,strong)User *user;
 
@@ -296,10 +299,22 @@ static UserPL *sharedManager = nil;
  */
 - (void)showHomeViewController {
     AppDelegate *app = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
-    app.window.rootViewController =
-    app.splitViewController;
+    app.mainTab = [[LBTabBarController alloc]init];
+    app.mainTab.selectedIndex = 1;
+    //列表界面
+    app.list = [[ListViewController alloc]init];
+    LBNavigationController *masterNav = [[LBNavigationController alloc]initWithRootViewController:app.list];
+    //模型界面
+    app.detail = [[DetailViewController alloc]init];
+    //合成splitviewcontroller
+    app.splitViewController = [[UISplitViewController alloc]init];
+    [app.splitViewController setPresentsWithGesture:YES];
+    app.splitViewController.viewControllers = @[masterNav,app.mainTab];
+    app.splitViewController.delegate =  app.detail;
     app.splitViewController.maximumPrimaryColumnWidth = 100.0;
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    window.rootViewController = app.splitViewController;
+
     [window makeKeyAndVisible];
 }
 

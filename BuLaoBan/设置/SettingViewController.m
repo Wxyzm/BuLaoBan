@@ -12,11 +12,11 @@
 #import "LinkPrinterView.h"  //链接打印机View
 #import "PrinterModelView.h" //打印模板设置
 #import "CompanyUsers.h"     //员工
+#import "StaffInvitationView.h"//邀请员工
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *ListTab;
-
 /**
  员工管理
  */
@@ -31,6 +31,11 @@
  打印模板
  */
 @property (nonatomic, strong) PrinterModelView *modelView;
+
+/**
+ 邀请员工
+ */
+@property (nonatomic, strong) StaffInvitationView *invitationView;
 
 @property (nonatomic,strong) NSMutableArray *userArr;
 
@@ -52,6 +57,7 @@
     _selectIndex = 0;
     _viewArr = [NSMutableArray arrayWithCapacity:0];
     _userArr = [NSMutableArray arrayWithCapacity:0];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadcompanysUsersList) name:@"StaffShouldRefresh" object:nil];
     [self initUI];
     [self loadcompanysUsersList];
 }
@@ -99,7 +105,10 @@
  右侧按钮点击
  */
 - (void)rightBtnGoodsBtnClick{
-    
+    if (_selectIndex ==0) {
+        //邀请员工
+        [self.invitationView showView];
+    }
     
 }
 #pragma mark ====  获取员工列表
@@ -118,8 +127,6 @@
     } andErrorBlock:^(NSString *msg) {
         
     }];
-    
-    
 }
 
 
@@ -170,9 +177,7 @@
             cell.contentView.backgroundColor = UIColorFromRGB(0xEFF6F9);
         }else{
             cell.contentView.backgroundColor = UIColorFromRGB(WhiteColorValue);
-            
         }
-
     }else if (indexPath.section == 1){
         cell.nameLab.text = @"关于我们";
         cell.lineView.hidden = YES;
@@ -180,7 +185,6 @@
             cell.contentView.backgroundColor = UIColorFromRGB(0xEFF6F9);
         }else{
             cell.contentView.backgroundColor = UIColorFromRGB(WhiteColorValue);
-            
         }
     }else{
         cell.nameLab.text = @"清空缓存";
@@ -189,11 +193,8 @@
             cell.contentView.backgroundColor = UIColorFromRGB(0xEFF6F9);
         }else{
             cell.contentView.backgroundColor = UIColorFromRGB(WhiteColorValue);
-            
         }
     }
-    
-    
     return cell;
 }
 
@@ -210,7 +211,6 @@
         }
     }
     [self.ListTab reloadData];
-
 }
 
 #pragma mark === 设置显示隐藏
@@ -241,12 +241,7 @@
         _saveBtn.frame =  CGRectMake(ScreenWidth-160, 20, 40, 43);
         [_saveBtn setTitle:@"" forState:UIControlStateNormal];
     }
-    
-    
-    
 }
-
-
 
 #pragma mark ====== get
 
@@ -269,7 +264,6 @@
     if (!_staffView) {
         _staffView  = [[StaffView alloc]initWithFrame:CGRectMake(300, 64, ScreenWidth-400, ScreenHeight-64)];
     }
-    
     return _staffView;
 }
 
@@ -279,7 +273,6 @@
         _linkView = [[LinkPrinterView alloc]initWithFrame:CGRectMake(300, 64, ScreenWidth-400, ScreenHeight-64)];
         _linkView.hidden = YES;
     }
-    
     return _linkView;
 }
 
@@ -289,6 +282,13 @@
         _modelView.hidden = YES;
     }
     return _modelView;
+}
+
+-(StaffInvitationView *)invitationView{
+    if (!_invitationView) {
+        _invitationView = [[StaffInvitationView alloc]init];
+    }
+    return _invitationView;
 }
 
 

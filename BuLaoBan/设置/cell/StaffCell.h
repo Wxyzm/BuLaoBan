@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 @class CompanyUsers;
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^StaffCellSettingBlock)(CompanyUsers *model);
 @interface StaffCell : UITableViewCell
 
 @property (nonatomic,strong) CompanyUsers *model;;
 
-
+@property (nonatomic,copy) StaffCellSettingBlock SettingBlock;
 
 
 @end

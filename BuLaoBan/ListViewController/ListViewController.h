@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ListViewController : BaseViewController
 
+- (void)showSaleView;
+
 @end
 
 NS_ASSUME_NONNULL_END

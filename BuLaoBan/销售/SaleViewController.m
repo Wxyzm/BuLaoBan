@@ -18,7 +18,8 @@
 @property (nonatomic, strong) CustomerSelecteView *customerSelecteView;       //客户选择
 @property (nonatomic, strong) SampleSearchResultView *sampleSearchResultView; //样品选择
 @property (nonatomic, strong) PackingListView *packingListView;     //细码单填写
-@property (nonatomic, strong) GetDelView *delView;     //取单View
+@property (nonatomic, strong) GetDelView *delView;                  //取单View
+@property (nonatomic, strong) TypeChoseView *typeView;              //剪样大货
 
 @property (nonatomic, strong) UILabel *numLab;                      //数量
 @property (nonatomic, strong) UILabel *moneyLab;                    //金额
@@ -113,12 +114,17 @@
         [weakself.CustomerView.customerBtn setTitle:comCusModel.name forState:UIControlStateNormal];
     };
     //商品搜索
-    weakself.KeyBoardView.returnBlock = ^(NSString * _Nonnull searchTxt) {
+    self.KeyBoardView.returnBlock = ^(NSString * _Nonnull searchTxt) {
         _SearchStr = searchTxt;
-        [weakself loadGoodsList];
+        if (_SearchStr.length<=0) {
+            [weakself.sampleSearchResultView dismiss];
+        }else{
+            [weakself loadGoodsList];
+
+        }
     };
     //选择商品
-    weakself.sampleSearchResultView.returnBlock = ^(Sample * _Nonnull SampleModel) {
+    self.sampleSearchResultView.returnBlock = ^(Sample * _Nonnull SampleModel) {
         SaleSamModel *samodel = [[SaleSamModel alloc]init];
         samodel.urlStr = SampleModel.samplePicKey;
         samodel.sampId = SampleModel.sampleId;
@@ -138,6 +144,19 @@
         }
         [weakself reloadDatasList];
     };
+    self.typeView.returnBlock = ^(NSInteger index) {
+        if (index ==0) {
+            weakself.model.type = @"0";
+            [weakself.CustomerView.kindBtn setTitle:@"剪样" forState:UIControlStateNormal];
+
+        }else{
+            weakself.model.type = @"1";
+            [weakself.CustomerView.kindBtn setTitle:@"大货" forState:UIControlStateNormal];
+
+        }
+        
+    };
+    
 }
 
 
@@ -183,6 +202,7 @@
     }else if (tag == 1)
     {
         //选择类型
+        [self.typeView showInView];
         
     }else if (tag == 2)
     {
@@ -743,5 +763,14 @@
     }
     return _delView;
 }
+
+-(TypeChoseView *)typeView{
+    if (!_typeView) {
+        _typeView = [[TypeChoseView alloc]init];
+    }
+    
+    return _typeView;
+}
+
 
 @end

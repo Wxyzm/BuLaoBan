@@ -18,6 +18,7 @@ typedef void(^GoodsWeightViewChoseBlock)(NSString *weight);
  */
 @property (nonatomic, copy) GoodsWeightViewChoseBlock choseBlock;
 
+- (void)refreshWithOutSelected;
 
 @end
 

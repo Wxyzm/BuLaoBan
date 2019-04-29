@@ -21,6 +21,8 @@
         self.backgroundColor = UIColorFromRGB(WhiteColorValue);
         _btnArr = [NSMutableArray arrayWithCapacity:0];
         [self setUP];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setFaceIma:) name:@"faceHaveChange" object:nil];
+
     }
     
     return self;
@@ -58,6 +60,10 @@
     _faceIma.clipsToBounds = YES;
     _faceIma.layer.cornerRadius = 25;
     _faceIma.backgroundColor = UIColorFromRGB(BackColorValue);
+    User *user = [[UserPL shareManager] getLoginUser];
+    if (user.avatar) {
+        [_faceIma sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:nil];
+    }
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:btn];
@@ -95,8 +101,24 @@
     }
 }
 
+- (void)setSelected:(NSInteger)selected{
+    for (YLButton *leftBtn in _btnArr) {
+        leftBtn.on = NO;
+        leftBtn.backgroundColor = UIColorFromRGB(WhiteColorValue);
+            }
+    
+    YLButton *seBtn = _btnArr[selected];
+    seBtn.backgroundColor = UIColorFromRGB(BackColorValue);
+ 
+}
 
-
+- (void)setFaceIma:(NSNotification *)nofit{
+    NSDictionary *dic = nofit.object;
+    User *user = [[UserPL shareManager] getLoginUser];
+    if (user.avatar) {
+        [_faceIma sd_setImageWithURL:[NSURL URLWithString:dic[@"avatar"]?dic[@"avatar"]:user.avatar] placeholderImage:nil];
+    }
+}
 
 
 @end

@@ -151,18 +151,12 @@
         case 0:{
             
             _datepicker.dateType = 1;
-//            if (_starTime.length>0) {
-//                [_datepicker.datePicker setDate:[self returnDateWithDateStr:_starTime] animated:YES];
-//            }
             [_datepicker showViewWithFrame:frame];
             
             break;
         }
         case 1:{
             _datepicker.dateType = 2;
-//            if (_endTime.length>0) {
-//                [datepicker.datePicker setDate:[self returnDateWithDateStr:_endTime] animated:YES];
-//            }
              [_datepicker showViewWithFrame:frame];
             break;
         }
@@ -318,7 +312,6 @@
         //tag : 1选择员工
         if (tag ==1) {
             self.customerSelecteView.SelectYype =1;
-
         }
         self.customerSelecteView.dataArr = dataArr;
         [self.customerSelecteView showView];
@@ -337,14 +330,12 @@
 - (void)setTableViewTopSHow{
     switch (_selectedType) {
         case 0:{
-            
             break;
         }
         case 1:{
             break;
         }
         case 2:{
-            
             break;
         }
         default:

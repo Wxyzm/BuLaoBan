@@ -104,5 +104,14 @@
 +(BOOL)isOnlyhasNumberAndpointWithString:(NSString *)string andcondition:(NSString *)condition;
 
 
+#pragma mark -修改字符串中数字颜色, 并返回对应富文本
+/**
+ 修改字符串中数字颜色, 并返回对应富文本
+ @param color 数字颜色, 包括小数
+ @param normalColor 默认颜色
+ @return 结果富文本
+ */
++ (NSMutableAttributedString *)modifyDigitalColor:(UIColor *)color normalColor:(UIColor *)normalColor aneText:(NSString *)text;
+
 
 @end

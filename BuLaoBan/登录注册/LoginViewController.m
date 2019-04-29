@@ -28,10 +28,7 @@
     self.needHideNavBar = YES;
     self.view.backgroundColor = UIColorFromRGB(WhiteColorValue);
     [self initUI];
-    
 }
-
-
 - (void)initUI{
     
     UIView *faceImaView = [BaseViewFactory viewWithFrame:CGRectZero color:UIColorFromRGB(BackColorValue)];
@@ -188,20 +185,12 @@
     [[UserPL shareManager] showHomeViewController];
 }
 
-
-
-/*
- mobile = 18757520227;
- password = 54C782DCDAAF0CFA26DE4FE6FA8704A1;
- */
-
 /**
  注册
  */
 - (void)registBtnClick{
     RegistViewController *reVc = [[RegistViewController alloc]init];
     [self.navigationController pushViewController:reVc animated:YES];
-    
 }
 
 /**
@@ -236,7 +225,6 @@
 - (void)wxAuthDenied {
     [HUD show:@"授权失败"];
 }
-
 
 - (UIView *)leftViewWithImageName:(NSString *)imagename{
     UIView *leftView = [BaseViewFactory viewWithFrame:CGRectMake(0, 0, 52, 40) color:UIColorFromRGB(WhiteColorValue)];

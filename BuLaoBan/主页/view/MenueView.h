@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy, nonatomic) MenueViewReturnBlock returnBlock;
 
+- (void)setSelected:(NSInteger)selected;
+
 @end
 
 NS_ASSUME_NONNULL_END
