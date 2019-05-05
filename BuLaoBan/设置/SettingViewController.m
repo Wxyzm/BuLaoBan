@@ -13,6 +13,8 @@
 #import "PrinterModelView.h" //打印模板设置
 #import "CompanyUsers.h"     //员工
 #import "StaffInvitationView.h"//邀请员工
+#import "OpenAccMView.h"     //启用应收
+#import "AboutMeView.h"       //关于
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -36,6 +38,10 @@
  邀请员工
  */
 @property (nonatomic, strong) StaffInvitationView *invitationView;
+@property (nonatomic, strong) AboutMeView *aboutView;
+
+@property (nonatomic, strong) OpenAccMView *openView;
+
 
 @property (nonatomic,strong) NSMutableArray *userArr;
 
@@ -79,6 +85,20 @@
     _saveBtn = [BaseViewFactory buttonWithFrame:CGRectMake(ScreenWidth-160, 20, 40, 43) font:APPFONT15 title:@"保存" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [_saveBtn addTarget:self action:@selector(rightBtnGoodsBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:_saveBtn];
+    
+    UIView *boomView = [BaseViewFactory viewWithFrame:CGRectMake(0, ScreenHeight-50, 300, 50) color:UIColorFromRGB(WhiteColorValue)];
+    [self.view addSubview:boomView];
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+
+
+
+    
+    UILabel *lab = [BaseViewFactory labelWithFrame:CGRectMake(16, 0, 268, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentLeft andtext:[NSString stringWithFormat:@"当前版本 V%@",app_Version]];
+    [boomView addSubview:lab];
     //左侧列表
     [self.view addSubview:self.ListTab];
    
@@ -92,12 +112,20 @@
     //模板View
     [self.view addSubview:self.modelView];
     [_viewArr addObject:self.modelView];
+    //应收View
+    [self.view addSubview:self.openView];
+    [_viewArr addObject:self.openView];
     
+    [self.view addSubview:self.aboutView];
+    [_viewArr addObject:self.aboutView];
+
     UIView *line2 = [BaseViewFactory viewWithFrame:CGRectMake(299.5, 0, 1, ScreenHeight) color:UIColorFromRGB(LineColorValue)];
     [self.view addSubview:line2];
     
     [self setRightbtnTitle];
 
+    
+    
 }
 
 
@@ -120,14 +148,30 @@
                           @"pageSize":@"5000",
                           @"":@""
                           };
+    [HUD showLoading:nil];
+
     [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/users",user.defutecompanyId] Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
+        [HUD cancel];
         _userArr = [CompanyUsers mj_objectArrayWithKeyValuesArray:returnValue[@"companyUsers"]];
         self.staffView.dataArr = _userArr;
     } andErrorBlock:^(NSString *msg) {
-        
+        [HUD cancel];
     }];
 }
+
+#pragma mark ====  获取样品间基础设置
+- (void)getComSetting{
+    User *user = [[UserPL shareManager] getLoginUser];
+    [HUD showLoading:nil];
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/settings",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
+        self.openView.infoDic = returnValue;
+        [HUD cancel];
+    } andErrorBlock:^(NSString *msg) {
+        [HUD cancel];
+    }];
+}
+
 
 
 #pragma mark ====== tableviewdelegate
@@ -204,17 +248,40 @@
         NSArray *arr = @[@"员工管理",@"连接打印机",@"打印模版设置",@"应收启用月份"];
          _selectIndex = indexPath.row;
         _titleLab.text = arr[_selectIndex];
-        [self setViewShowandHidden];
-        if (_selectIndex ==0) {
-            //员工管理
-            [self loadcompanysUsersList];
-        }
+        
+    }else if (indexPath.section==1){
+        _selectIndex = 4;
+        _titleLab.text = @"关于我们";
+
+    }else if (indexPath.section==2){
+        _selectIndex = 5;
+        _titleLab.text = @"清除缓存";
+
+        [HUD showLoading:@"正在清除"];
+        [[SDImageCache sharedImageCache] clearMemory];
+        [self performSelector:@selector(cancaleHUD) withObject:nil afterDelay:1.5];
+    }
+    
+    [self setViewShowandHidden];
+    if (_selectIndex ==0) {
+        //员工管理
+        [self loadcompanysUsersList];
+    }else if (_selectIndex ==3){
+        //应收
+        [self getComSetting];
     }
     [self.ListTab reloadData];
 }
 
+- (void)cancaleHUD{
+    [HUD cancel];
+    [HUD show:@"缓存已清除"];
+}
+
 #pragma mark === 设置显示隐藏
 - (void)setViewShowandHidden{
+    [self setRightbtnTitle];
+
     for (UIView *view in _viewArr) {
         view.hidden = YES;
     }
@@ -223,7 +290,6 @@
     }
     UIView *showview = _viewArr[_selectIndex];
     showview.hidden = NO;
-    [self setRightbtnTitle];
 }
 
 - (void)setRightbtnTitle{
@@ -252,6 +318,7 @@
         _ListTab.dataSource = self;
         _ListTab.backgroundColor = UIColorFromRGB(BackColorValue);
         _ListTab.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
         if (@available(iOS 11.0, *)) {
             _ListTab.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
@@ -291,5 +358,25 @@
     return _invitationView;
 }
 
+-(OpenAccMView *)openView{
+    
+    if (!_openView) {
+        _openView = [[OpenAccMView alloc]init];
+        _openView.hidden = YES;
+
+    }
+    
+    return _openView;
+}
+
+-(AboutMeView *)aboutView{
+    if (!_aboutView) {
+        _aboutView = [[AboutMeView alloc]init];
+        _aboutView.hidden = YES;
+
+    }
+    
+    return _aboutView;
+}
 
 @end

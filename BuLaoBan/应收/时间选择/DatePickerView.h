@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel           *dateLab;
 @property (nonatomic, strong) UIButton          *downBtn;
 /**
-  1：开始时间   2：结束时间
+  1：开始时间   2：结束时间   3：年月
  */
 @property (nonatomic, assign) NSInteger      dateType;
 

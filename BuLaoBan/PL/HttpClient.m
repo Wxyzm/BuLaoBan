@@ -73,8 +73,15 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"" forHTTPHeaderField:@"Authorization"];
     [request setValue:@"iPad_APP" forHTTPHeaderField:@"os"];
-    [request setValue:@"3.6" forHTTPHeaderField:@"app-version"];
-    [request setValue:@"12.1" forHTTPHeaderField:@"os-version"];
+    
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+        [request setValue:[infoDictionary objectForKey:@"CFBundleShortVersionString"] forHTTPHeaderField:@"app-version"];
+    NSString *version= [UIDevice currentDevice].systemVersion;
+    [request setValue:version forHTTPHeaderField:@"os-version"];
+    
+    
     User *user = [[UserPL shareManager] getLoginUser];
     if (user.authorization.length>0) {
         [request setValue:user.authorization forHTTPHeaderField:@"authorization"];
@@ -180,8 +187,11 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"" forHTTPHeaderField:@"Authorization"];
     [request setValue:@"iPad_APP" forHTTPHeaderField:@"os"];
-    [request setValue:@"3.6" forHTTPHeaderField:@"app-version"];
-    [request setValue:@"12.1" forHTTPHeaderField:@"os-version"];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    [request setValue:[infoDictionary objectForKey:@"CFBundleShortVersionString"] forHTTPHeaderField:@"app-version"];
+    NSString *version= [UIDevice currentDevice].systemVersion;
+    [request setValue:version forHTTPHeaderField:@"os-version"];
     User *user = [[UserPL shareManager] getLoginUser];
     if (user.authorization.length>0) {
         [request setValue:user.authorization forHTTPHeaderField:@"authorization"];
@@ -225,8 +235,11 @@
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [manager.requestSerializer setValue:@"" forHTTPHeaderField:@"Authorization"];
     [manager.requestSerializer setValue:@"iPad_APP" forHTTPHeaderField:@"os"];
-    [manager.requestSerializer setValue:@"3.6" forHTTPHeaderField:@"app-version"];
-    [manager.requestSerializer setValue:@"12.1" forHTTPHeaderField:@"os-version"];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    [manager.requestSerializer  setValue:[infoDictionary objectForKey:@"CFBundleShortVersionString"] forHTTPHeaderField:@"app-version"];
+    NSString *version= [UIDevice currentDevice].systemVersion;
+    [manager.requestSerializer  setValue:version forHTTPHeaderField:@"os-version"];
     User *user = [[UserPL shareManager] getLoginUser];
     if (user.authorization.length>0) {
         [manager.requestSerializer setValue:user.authorization forHTTPHeaderField:@"authorization"];

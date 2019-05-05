@@ -33,6 +33,8 @@
 		0B2493262273004E00B213EC /* AccInvView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2493252273004E00B213EC /* AccInvView.m */; };
 		0B33039C2239EA9C00B0688D /* PackingListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33039B2239EA9C00B0688D /* PackingListView.m */; };
 		0B348BFA2240CF4B004EE967 /* CustomerAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B348BF92240CF4B004EE967 /* CustomerAddView.m */; };
+		0B34ED73227E827000139290 /* AboutMeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B34ED72227E827000139290 /* AboutMeView.m */; };
+		0B34ED76227EACE900139290 /* AbContCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B34ED75227EACE900139290 /* AbContCell.m */; };
 		0B35F6AA2259C53C006D4ABF /* AddCustomerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35F6A92259C53C006D4ABF /* AddCustomerView.m */; };
 		0B35F6AD2259C55A006D4ABF /* AddCusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35F6AC2259C55A006D4ABF /* AddCusCell.m */; };
 		0B35F6B02259D01D006D4ABF /* AddCusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35F6AF2259D01D006D4ABF /* AddCusModel.m */; };
@@ -82,6 +84,7 @@
 		0B9BC32F222E704F00A4C083 /* StaffView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC32E222E704F00A4C083 /* StaffView.m */; };
 		0BA79B78227188A50095B005 /* StaffOperaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA79B77227188A50095B005 /* StaffOperaView.m */; };
 		0BB05E2E224615D8003A5A02 /* ReceiveBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB05E2D224615D8003A5A02 /* ReceiveBaseView.m */; };
+		0BB088A7227D287B0021738A /* OpenAccMView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB088A6227D287B0021738A /* OpenAccMView.m */; };
 		0BB0F42F22741F300051B78E /* TypeChoseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0F42E22741F300051B78E /* TypeChoseView.m */; };
 		0BC13E6D22377E370065C0A0 /* CustomerSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */; };
 		0BC26992226DBDDD00A0AC68 /* KindChoseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC26991226DBDDD00A0AC68 /* KindChoseController.m */; };
@@ -335,6 +338,10 @@
 		0B33039B2239EA9C00B0688D /* PackingListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackingListView.m; sourceTree = "<group>"; };
 		0B348BF82240CF4B004EE967 /* CustomerAddView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerAddView.h; sourceTree = "<group>"; };
 		0B348BF92240CF4B004EE967 /* CustomerAddView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerAddView.m; sourceTree = "<group>"; };
+		0B34ED71227E827000139290 /* AboutMeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutMeView.h; sourceTree = "<group>"; };
+		0B34ED72227E827000139290 /* AboutMeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutMeView.m; sourceTree = "<group>"; };
+		0B34ED74227EACE900139290 /* AbContCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbContCell.h; sourceTree = "<group>"; };
+		0B34ED75227EACE900139290 /* AbContCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbContCell.m; sourceTree = "<group>"; };
 		0B35F6A82259C53C006D4ABF /* AddCustomerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCustomerView.h; sourceTree = "<group>"; };
 		0B35F6A92259C53C006D4ABF /* AddCustomerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCustomerView.m; sourceTree = "<group>"; };
 		0B35F6AB2259C55A006D4ABF /* AddCusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCusCell.h; sourceTree = "<group>"; };
@@ -430,6 +437,8 @@
 		0BA79B77227188A50095B005 /* StaffOperaView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffOperaView.m; sourceTree = "<group>"; };
 		0BB05E2C224615D8003A5A02 /* ReceiveBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveBaseView.h; sourceTree = "<group>"; };
 		0BB05E2D224615D8003A5A02 /* ReceiveBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveBaseView.m; sourceTree = "<group>"; };
+		0BB088A5227D287B0021738A /* OpenAccMView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenAccMView.h; sourceTree = "<group>"; };
+		0BB088A6227D287B0021738A /* OpenAccMView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenAccMView.m; sourceTree = "<group>"; };
 		0BB0F42D22741F300051B78E /* TypeChoseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeChoseView.h; sourceTree = "<group>"; };
 		0BB0F42E22741F300051B78E /* TypeChoseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeChoseView.m; sourceTree = "<group>"; };
 		0BC13E6B22377E370065C0A0 /* CustomerSelectedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerSelectedCell.h; sourceTree = "<group>"; };
@@ -990,6 +999,17 @@
 			path = "新增客户";
 			sourceTree = "<group>";
 		};
+		0B34ED70227E824E00139290 /* 关于我们View */ = {
+			isa = PBXGroup;
+			children = (
+				0B34ED71227E827000139290 /* AboutMeView.h */,
+				0B34ED72227E827000139290 /* AboutMeView.m */,
+				0B34ED74227EACE900139290 /* AbContCell.h */,
+				0B34ED75227EACE900139290 /* AbContCell.m */,
+			);
+			path = "关于我们View";
+			sourceTree = "<group>";
+		};
 		0B35F6A72259C512006D4ABF /* 新增客户 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1261,6 +1281,15 @@
 				0B24931C2272E4E900B213EC /* 邀请员工 */,
 			);
 			path = "员工管理View";
+			sourceTree = "<group>";
+		};
+		0BB088A4227D28610021738A /* 启用应收月份View */ = {
+			isa = PBXGroup;
+			children = (
+				0BB088A5227D287B0021738A /* OpenAccMView.h */,
+				0BB088A6227D287B0021738A /* OpenAccMView.m */,
+			);
+			path = "启用应收月份View";
 			sourceTree = "<group>";
 		};
 		0BB0F42C22741F1F0051B78E /* 类型选择 */ = {
@@ -1707,9 +1736,11 @@
 			children = (
 				187B94632213EA9B00E857D1 /* SettingViewController.h */,
 				187B94642213EA9B00E857D1 /* SettingViewController.m */,
-				0B5E54BE222F59DF00F30346 /* 打印模板View */,
-				0B5E54BA222F50A900F30346 /* 链接打印机View */,
 				0B9BC32C222E703800A4C083 /* 员工管理View */,
+				0B5E54BA222F50A900F30346 /* 链接打印机View */,
+				0B5E54BE222F59DF00F30346 /* 打印模板View */,
+				0BB088A4227D28610021738A /* 启用应收月份View */,
+				0B34ED70227E824E00139290 /* 关于我们View */,
 				0B9BC325222E5FEF00A4C083 /* cell */,
 			);
 			path = "设置";
@@ -2611,6 +2642,7 @@
 				0B9BC32B222E6A4300A4C083 /* StaffCell.m in Sources */,
 				189C1F1221F9923C00C84CA4 /* MJRefreshFooter.m in Sources */,
 				189C1FDF21F9928700C84CA4 /* NSData+ImageContentType.m in Sources */,
+				0B34ED76227EACE900139290 /* AbContCell.m in Sources */,
 				0B2493262273004E00B213EC /* AccInvView.m in Sources */,
 				189C1FE821F9928700C84CA4 /* UIImage+GIF.m in Sources */,
 				189C1FAB21F9927800C84CA4 /* AFHTTPRequestOperation.m in Sources */,
@@ -2729,6 +2761,7 @@
 				18F43BB0220FFBBB0089168E /* GoodsListCell.m in Sources */,
 				18CF0FD42212B02100B8D9CC /* Component.m in Sources */,
 				189C1EDF21F9920800C84CA4 /* UIView+SDAutoLayout.m in Sources */,
+				0BB088A7227D287B0021738A /* OpenAccMView.m in Sources */,
 				1870E109222666F700D328BA /* SaleHistorySearchView.m in Sources */,
 				189C1FE521F9928700C84CA4 /* SDWebImageManager.m in Sources */,
 				0B0D4B4F2269AFC3005B517D /* CreateComController.m in Sources */,
@@ -2764,6 +2797,7 @@
 				189C1FB421F9927800C84CA4 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				1870E10422265FBA00D328BA /* SaleHistoryController.m in Sources */,
 				1889FFE121F9E09A00F29B8B /* ForgetPwdViewController.m in Sources */,
+				0B34ED73227E827000139290 /* AboutMeView.m in Sources */,
 				189C1FB121F9927800C84CA4 /* AFURLRequestSerialization.m in Sources */,
 				188083AC221BE172000CB7B9 /* SaleCustomerView.m in Sources */,
 				0B776EA9223600990007DA02 /* StastisticCell.m in Sources */,

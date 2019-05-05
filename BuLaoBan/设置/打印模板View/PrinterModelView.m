@@ -56,7 +56,6 @@
         SettingCell *cell= [tableView dequeueReusableCellWithIdentifier:SettingCellid];
         if (!cell) {
             cell = [[SettingCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SettingCellid];
-            
         }
         cell.nameLab.text = titltArr[indexPath.row];
         cell.nameLab.font = APPFONT13;
@@ -95,10 +94,7 @@
     return cell;
 }
 
-
-
 #pragma mark ====== get
-
 -(BaseTableView *)ListTab{
     if (!_ListTab) {
         _ListTab = [[BaseTableView alloc] initWithFrame:CGRectMake(0, 0, self.width, ScreenHeight-64) style:UITableViewStylePlain];
@@ -113,8 +109,4 @@
     }
     return _ListTab;
 }
-
-
-
-
 @end

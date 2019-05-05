@@ -74,6 +74,9 @@
     NSDate *date = [NSDate dateFromComponents:dateComponents];
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];//创建一个日期格式化器
     dateFormatter.dateFormat=@"yyyy-MM-dd";//指定转date得日期格式化形式
+    if (_dateType == 3) {
+        dateFormatter.dateFormat=@"yyyy-MM";//指定转date得日期格式化形式
+    }
     NSString *dateStr= [dateFormatter stringFromDate:date];
     _dateLab.text = dateStr;
     WeakSelf(self);
@@ -122,7 +125,13 @@
 }
 
 
-
+-(void)setDateType:(NSInteger)dateType{
+    _dateType = dateType;
+    if (dateType == 3) {
+        _datePicker.datePickerMode =  PGDatePickerModeYearAndMonth;
+    }
+    
+}
 
 
 

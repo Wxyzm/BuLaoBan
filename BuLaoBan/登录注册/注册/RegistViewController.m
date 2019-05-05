@@ -20,6 +20,8 @@
     UIButton *_messYzmBtn;      //手机验证码
     NSArray *_plaArr;
     UIImageView *_codeIma;
+    NSTimer         *_myTimer;              //计时器
+    NSInteger       _second;                //计时秒数
 }
 
 - (void)viewDidLoad {
@@ -110,10 +112,47 @@
                           };
     [[UserPL shareManager] userAccountCheckCodeWithDic:dic WithReturnBlock:^(id returnValue) {
         [HUD show:@"短信发送成功，请注意查收"];
+          [self timerStart];
     } andErrorBlock:^(NSString *msg) {
         [HUD show:msg];
     }];
     
+}
+//倒计时
+- (void)timerStart
+{
+    _second = 60;
+    [self endTimer];
+    [_messYzmBtn setTitle:[NSString stringWithFormat:@"%02ds后再获取",(int)_second] forState:UIControlStateNormal];
+    _myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scrollTimer) userInfo:nil repeats:YES];
+}
+
+
+//计时时钟 每秒刷新
+- (void)scrollTimer
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (--_second > 0){
+            NSString *message = [NSString stringWithFormat:@"%02ds后再获取",(int)_second];
+            [_messYzmBtn setTitle:message forState:UIControlStateNormal];
+            _messYzmBtn.userInteractionEnabled = NO;
+            
+        } else {
+            //关闭定时器
+            _messYzmBtn.userInteractionEnabled = YES;
+            _messYzmBtn.titleLabel.alpha = 1;
+            [_messYzmBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+            [_myTimer invalidate];
+            _myTimer = nil;
+        }
+    });
+}
+
+- (void)endTimer
+{
+    
+    [_myTimer invalidate];
+    _myTimer = nil;
 }
 
 /**
