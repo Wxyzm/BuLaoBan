@@ -11,14 +11,10 @@
 #import "SellOrderDeliver.h"
 
 @interface GetDelView ()<UITableViewDelegate,UITableViewDataSource>
-
 @property (nonatomic, strong) UIButton      *backButton;
 @property (nonatomic, strong) UIView        *sideView;
-@property (nonatomic, strong) BaseTableView *ListTab;               //列表
-
-
+@property (nonatomic, strong) BaseTableView *ListTab;               //列表-
 @end
-
 
 @implementation GetDelView{
     BOOL _isShow;
@@ -30,7 +26,6 @@
          self.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
         [self setup];
     }
-    
     return self;
 }
 
@@ -53,13 +48,11 @@
 -(void)setDataArr:(NSMutableArray *)dataArr{
     _dataArr = dataArr;
     [self.ListTab reloadData];
-    
 }
 
 #pragma mark ========= tableview
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _dataArr.count;
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -98,8 +91,6 @@
         [self removeFromSuperview];
         _backButton.alpha = 0.3;
     }];
-    
-    
 }
 
 - (void)showInView{

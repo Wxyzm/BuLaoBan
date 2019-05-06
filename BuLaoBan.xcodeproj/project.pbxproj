@@ -31,6 +31,9 @@
 		0B24931F2272E50600B213EC /* StaffInvitationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B24931E2272E50600B213EC /* StaffInvitationView.m */; };
 		0B2493232272F28500B213EC /* InviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2493222272F28500B213EC /* InviteController.m */; };
 		0B2493262273004E00B213EC /* AccInvView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2493252273004E00B213EC /* AccInvView.m */; };
+		0B2E66A8227FCE8100F0C043 /* Warehouses.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E66A7227FCE8100F0C043 /* Warehouses.m */; };
+		0B2E66AC22800E2100F0C043 /* WarehouseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E66AB22800E2100F0C043 /* WarehouseView.m */; };
+		0B2E66AF22800EAF00F0C043 /* WareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E66AE22800EAF00F0C043 /* WareCell.m */; };
 		0B33039C2239EA9C00B0688D /* PackingListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B33039B2239EA9C00B0688D /* PackingListView.m */; };
 		0B348BFA2240CF4B004EE967 /* CustomerAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B348BF92240CF4B004EE967 /* CustomerAddView.m */; };
 		0B34ED73227E827000139290 /* AboutMeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B34ED72227E827000139290 /* AboutMeView.m */; };
@@ -334,6 +337,12 @@
 		0B2493222272F28500B213EC /* InviteController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteController.m; sourceTree = "<group>"; };
 		0B2493242273004E00B213EC /* AccInvView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccInvView.h; sourceTree = "<group>"; };
 		0B2493252273004E00B213EC /* AccInvView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccInvView.m; sourceTree = "<group>"; };
+		0B2E66A6227FCE8100F0C043 /* Warehouses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Warehouses.h; sourceTree = "<group>"; };
+		0B2E66A7227FCE8100F0C043 /* Warehouses.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Warehouses.m; sourceTree = "<group>"; };
+		0B2E66AA22800E2100F0C043 /* WarehouseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WarehouseView.h; sourceTree = "<group>"; };
+		0B2E66AB22800E2100F0C043 /* WarehouseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WarehouseView.m; sourceTree = "<group>"; };
+		0B2E66AD22800EAF00F0C043 /* WareCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WareCell.h; sourceTree = "<group>"; };
+		0B2E66AE22800EAF00F0C043 /* WareCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WareCell.m; sourceTree = "<group>"; };
 		0B33039A2239EA9C00B0688D /* PackingListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PackingListView.h; sourceTree = "<group>"; };
 		0B33039B2239EA9C00B0688D /* PackingListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PackingListView.m; sourceTree = "<group>"; };
 		0B348BF82240CF4B004EE967 /* CustomerAddView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerAddView.h; sourceTree = "<group>"; };
@@ -975,6 +984,26 @@
 			path = "公司邀请";
 			sourceTree = "<group>";
 		};
+		0B2E66A5227FCE7300F0C043 /* warehouses */ = {
+			isa = PBXGroup;
+			children = (
+				0B2E66A6227FCE8100F0C043 /* Warehouses.h */,
+				0B2E66A7227FCE8100F0C043 /* Warehouses.m */,
+			);
+			path = warehouses;
+			sourceTree = "<group>";
+		};
+		0B2E66A922800E0100F0C043 /* 仓库View */ = {
+			isa = PBXGroup;
+			children = (
+				0B2E66AA22800E2100F0C043 /* WarehouseView.h */,
+				0B2E66AB22800E2100F0C043 /* WarehouseView.m */,
+				0B2E66AD22800EAF00F0C043 /* WareCell.h */,
+				0B2E66AE22800EAF00F0C043 /* WareCell.m */,
+			);
+			path = "仓库View";
+			sourceTree = "<group>";
+		};
 		0B3303992239EA6A00B0688D /* 细码单View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1465,6 +1494,7 @@
 		1827742121FEC13E000F4E0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B2E66A5227FCE7300F0C043 /* warehouses */,
 				0BDDA3E4224CD892000FC1ED /* companyUsers */,
 				0B44DFF1224B0B1A008F0741 /* sellOrderDeliver */,
 				0B5B3BC02248A6590033A13B /* Account */,
@@ -1749,6 +1779,7 @@
 		188083A0221BCD25000CB7B9 /* 销售View */ = {
 			isa = PBXGroup;
 			children = (
+				0B2E66A922800E0100F0C043 /* 仓库View */,
 				0BB0F42C22741F1F0051B78E /* 类型选择 */,
 				0B18735F2267120D00B8C384 /* 取单View */,
 				0BEBB7992265C38500798617 /* 选择货品种类View */,
@@ -2634,6 +2665,7 @@
 				0B776F002236340C0007DA02 /* DatePickerView.m in Sources */,
 				189C1F1421F9923C00C84CA4 /* MJRefreshAutoGifFooter.m in Sources */,
 				189C1FE621F9928700C84CA4 /* SDWebImagePrefetcher.m in Sources */,
+				0B2E66AC22800E2100F0C043 /* WarehouseView.m in Sources */,
 				0B4FC7AB2233A37C001B335F /* GoodsIteams.m in Sources */,
 				189C1F1821F9923C00C84CA4 /* MJRefreshBackNormalFooter.m in Sources */,
 				186ECDFE221FD3FE0006F6C3 /* SettlementViewController.m in Sources */,
@@ -2698,6 +2730,7 @@
 				0B1C18D5226F0C9B00808209 /* WXApiManager.m in Sources */,
 				0BE389E42254B0B2002F7348 /* SaleSCustomer.m in Sources */,
 				189C1F2121F9923C00C84CA4 /* UIScrollView+MJRefresh.m in Sources */,
+				0B2E66AF22800EAF00F0C043 /* WareCell.m in Sources */,
 				189C1F3E21F9924E00C84CA4 /* NSObject+MJClass.m in Sources */,
 				186B84D721FEF25A0017E070 /* HomeRootViewController.m in Sources */,
 				0B0D4B4B22699CFC005B517D /* IdentityController.m in Sources */,
@@ -2742,6 +2775,7 @@
 				0B5F46942230F16900C67EF5 /* ComCustomerDetail.m in Sources */,
 				189C1FB621F9927800C84CA4 /* UIAlertView+AFNetworking.m in Sources */,
 				0B4A24F92233546300C3621D /* BillCell.m in Sources */,
+				0B2E66A8227FCE8100F0C043 /* Warehouses.m in Sources */,
 				0B02AAD022535BF90098DE1F /* SaleSGoodsCell.m in Sources */,
 				18A16D702211A1CB0099767F /* SampleDetail.m in Sources */,
 				0B348BFA2240CF4B004EE967 /* CustomerAddView.m in Sources */,

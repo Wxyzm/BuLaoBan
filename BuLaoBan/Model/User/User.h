@@ -43,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *authorization;
 
 
+
 @property (nonatomic, copy) NSString *defutecompanyId;
 @property (nonatomic, copy) NSString *defutecompanyName;
 

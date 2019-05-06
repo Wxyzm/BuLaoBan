@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *actualAcc;     //实收金额
 @property (nonatomic, copy) NSString *paytype;       //结算账户
 
+@property (nonatomic, copy) NSString *wareID;       //仓库ID
 
 
 

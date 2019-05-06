@@ -97,7 +97,7 @@
     [_dataArr1 addObject:arr3];
 
     NSArray *titlearr2 = @[@"本单应收",@"本单已收",@"本单欠款",@"结算账户",@"实收金额",@"开单后打印"];
-    NSArray *valueArr2 = @[[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"0.00元",[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"支付宝",@"元",@""];
+    NSArray *valueArr2 = @[[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"0.00元",[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"请选择",@"元",@""];
     NSMutableArray  *tarr1 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *tarr2 = [NSMutableArray arrayWithCapacity:0];
 
@@ -244,7 +244,7 @@
     //结算状态【0：挂单 1：结算】
     [setDic setObject:@"1" forKey:@"settleStatus"];
     //仓库ID*
-    [setDic setObject:@"" forKey:@"warehouseId"];
+    [setDic setObject:_model.wareID.length>0?_model.wareID:@"" forKey:@"warehouseId"];
     //公司账户ID
     [setDic setObject:_selectAccount.companyAccountId forKey:@"companyAccountId"];
 

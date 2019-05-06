@@ -38,5 +38,7 @@
 #import "SellOrderDeliverDetail.h"//详情model
 
 #import "TypeChoseView.h"   //类型
+#import "Warehouses.h"      //仓库
+#import "WarehouseView.h"   //仓库View
 
 #endif /* SaleHeader_h */

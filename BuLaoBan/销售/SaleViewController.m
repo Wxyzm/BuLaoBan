@@ -27,6 +27,8 @@
 @property (nonatomic, strong) SaleVcModel *model;                   //首页数据保存Model
 @property (nonatomic, strong) SettleVcModel *settleModel;           //结算model
 
+@property (nonatomic, strong) WarehouseView *wareView;
+
 @end
 
 @implementation SaleViewController{
@@ -49,6 +51,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self getComSetting];
     
 }
 
@@ -113,6 +116,11 @@
         weakself.settleModel.sellerId = comCusModel.salesman;
         [weakself.CustomerView.customerBtn setTitle:comCusModel.name forState:UIControlStateNormal];
     };
+    //选择仓库
+    self.wareView.wareBlock = ^(Warehouses * _Nonnull model) {
+        [weakself.CustomerView.wareBtn setTitle:model.warehouseName forState:UIControlStateNormal];
+        weakself.settleModel.wareID = model.warehouseId;
+    };
     //商品搜索
     self.KeyBoardView.returnBlock = ^(NSString * _Nonnull searchTxt) {
         _SearchStr = searchTxt;
@@ -120,7 +128,6 @@
             [weakself.sampleSearchResultView dismiss];
         }else{
             [weakself loadGoodsList];
-
         }
     };
     //选择商品
@@ -152,9 +159,7 @@
         }else{
             weakself.model.type = @"1";
             [weakself.CustomerView.kindBtn setTitle:@"大货" forState:UIControlStateNormal];
-
         }
-        
     };
     
 }
@@ -208,6 +213,11 @@
     {
         //扫码
         
+    }
+    else if (tag == 3)
+    {
+        //仓库
+        [self loadWarehousesList];
     }
 }
 
@@ -332,6 +342,48 @@
     } andErrorBlock:^(NSString *msg) {
     }];
 }
+#pragma mark ====== 获取仓库列表
+- (void)loadWarehousesList{
+    User *user = [[UserPL shareManager] getLoginUser];
+    NSDictionary *updic = @{@"searchType":@"1",
+                            @"companyId":user.defutecompanyId,
+                            @"pageNo":@"1",
+                            @"pageSize":@"5000"
+                            };
+    [[HttpClient sharedHttpClient] requestGET:@"/warehouse" Withdict:updic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        NSMutableArray *daraarr = [Warehouses mj_objectArrayWithKeyValuesArray:returnValue[@"warehouses"]];
+        if (daraarr.count<=0) {
+            [HUD show:@"未获取到仓库"];
+            return ;
+        }
+        self.wareView.dataArr = daraarr;
+        [self.wareView showInView];
+        
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+#pragma mark ====  获取样品间基础设置
+- (void)getComSetting{
+    User *user = [[UserPL shareManager] getLoginUser];
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/settings",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
+        NSString *str = returnValue[@"sellInventoryReduce"];
+        if (!str) {
+            return ;
+        }
+        if ([str intValue]==1) {
+            //扣减
+            [self.CustomerView wareBtnIsshow:YES];
+        }else{
+            //不扣减
+            [self.CustomerView wareBtnIsshow:NO];
+
+        }
+    } andErrorBlock:^(NSString *msg) {
+    }];
+}
+
 #pragma mark ====== 挂单
 - (void)putOrders{
     
@@ -772,5 +824,11 @@
     return _typeView;
 }
 
+-(WarehouseView *)wareView{
+    if (!_wareView) {
+        _wareView = [[WarehouseView alloc]init];
+    }
+    return _wareView;
+}
 
 @end
