@@ -562,9 +562,9 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:btnCellid];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.contentView.backgroundColor = UIColorFromRGB(BackColorValue);
-            UILabel *showLab = [BaseViewFactory labelWithFrame:CGRectMake(253, 0, 180, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentRight andtext:@"开单后打印"];
-            [cell.contentView addSubview:showLab];
-            _mprintSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(454, 10, 52, 31)];
+//            UILabel *showLab = [BaseViewFactory labelWithFrame:CGRectMake(253, 0, 180, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentRight andtext:@"开单后打印"];
+//            [cell.contentView addSubview:showLab];
+//            _mprintSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(454, 10, 52, 31)];
             [cell.contentView addSubview:_mprintSwitch];
 
         }

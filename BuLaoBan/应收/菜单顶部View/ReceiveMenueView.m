@@ -40,7 +40,7 @@
     _sideView.layer.borderColor = UIColorFromRGB(LineColorValue).CGColor;
     _sideView.layer.borderWidth = 1;
     [self addSubview:_sideView];
-    NSArray *titleArr = @[@"应收对账单/货品",@"应收对账单/单",@"应收统计表"];
+    NSArray *titleArr = @[@"应收对账单/货品",@"应收对账单/单据",@"应收款统计表"];
     for (int i = 0; i<titleArr.count; i++) {
         YLButton *btn = [YLButton buttonWithbackgroundColor:UIColorFromRGB(WhiteColorValue) titlecolor:UIColorFromRGB(BlackColorValue) cornerRadius:0 andtarget:self action:@selector(typeBtnCLick:) titleFont:APPFONT14 title:titleArr[i]];
         btn.frame = CGRectMake(0, 40*i, 200, 40);

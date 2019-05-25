@@ -106,12 +106,12 @@
     [self.view addSubview:self.staffView];
     [_viewArr addObject:self.staffView];
 
-    //打印链接View
-    [self.view addSubview:self.linkView];
-    [_viewArr addObject:self.linkView];
-    //模板View
-    [self.view addSubview:self.modelView];
-    [_viewArr addObject:self.modelView];
+//    //打印链接View
+//    [self.view addSubview:self.linkView];
+//    [_viewArr addObject:self.linkView];
+//    //模板View
+//    [self.view addSubview:self.modelView];
+//    [_viewArr addObject:self.modelView];
     //应收View
     [self.view addSubview:self.openView];
     [_viewArr addObject:self.openView];
@@ -198,7 +198,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
-        return 4;
+        return 2;
     }
     return 1;
 }
@@ -214,7 +214,7 @@
         cell =[[SettingCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     if (indexPath.section == 0) {
-        NSArray *arr = @[@"员工管理",@"连接打印机",@"打印模版设置",@"应收启用月份"];
+        NSArray *arr = @[@"员工管理",@"应收启用月份"];
         cell.nameLab.text = arr[indexPath.row];
         cell.lineView.hidden = NO;
         if (indexPath.row == _selectIndex) {
@@ -245,7 +245,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0)
     {
-        NSArray *arr = @[@"员工管理",@"连接打印机",@"打印模版设置",@"应收启用月份"];
+        NSArray *arr = @[@"员工管理",@"应收启用月份"];
          _selectIndex = indexPath.row;
         _titleLab.text = arr[_selectIndex];
         

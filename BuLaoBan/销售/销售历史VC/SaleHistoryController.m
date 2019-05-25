@@ -9,6 +9,7 @@
 #import "SaleHistoryController.h"
 #import "SaleHistHeader.h"
 #import "ReceiveBaseView.h"      //收款
+#import "RightMenueView.h"      //收款
 
 @interface SaleHistoryController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -18,13 +19,17 @@
 
 @property (nonatomic, strong) SaleHistorySearchView *searchView;     //搜索
 
+/**
+ 编辑菜单
+ */
+@property (nonatomic, strong) RightMenueView*menueView;
 
+@property (nonatomic, strong) SellOrderDeliverDetail *detailModel;     //model
 @end
 
 @implementation SaleHistoryController{
     
     NSMutableArray *_dataArr;
-    SellOrderDeliverDetail *_detailModel;
 }
 
 - (void)viewDidLoad {
@@ -51,6 +56,9 @@
     [self.view addSubview:self.detailView];
     UIView *line = [BaseViewFactory viewWithFrame:CGRectMake(300, 0, 1, ScreenHeight) color:UIColorFromRGB(LineColorValue)];
     [self.view addSubview:line];
+    
+    //编辑
+    [self.view addSubview:self.menueView];
 }
 
 #pragma mark ======顶部UI
@@ -69,7 +77,9 @@
     [view addSubview:button];
     UILabel *titleLab = [BaseViewFactory labelWithFrame:CGRectMake(300, 20, ScreenWidth-400, 44) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(20) textAligment:NSTextAlignmentCenter andtext:@"单据详情"];
     [view addSubview:titleLab];
-    NSArray *titleArr = @[@"···",@"分享",@"打印",@"收款"];
+  //  NSArray *titleArr = @[@"···",@"分享",@"打印",@"收款"];
+    NSArray *titleArr = @[@"···"];
+
     for (int i = 0; i<titleArr.count; i++) {
         UIButton *btn = [BaseViewFactory buttonWithFrame:CGRectMake(ScreenWidth-158-44*i, 20, 48, 44) font:APPFONT14 title:titleArr[i] titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
         [view addSubview:btn];
@@ -92,6 +102,7 @@
     switch (topBtn.tag - 1000) {
         case 0:{
             //弹出编辑删除
+            [self orderChange];
             break;
         }
         case 1:{
@@ -111,6 +122,66 @@
     }
     
 }
+
+
+//编辑
+- (void)orderChange{
+    WeakSelf(self);
+    [self.view bringSubviewToFront:self.menueView];
+    self.menueView.hidden = NO;
+    self.menueView.returnBlock = ^(NSInteger index) {
+        switch (index) {
+            case 0:{
+                if (weakself.returnBlock) {
+                    weakself.returnBlock(weakself.detailModel);
+                }
+                [weakself.navigationController popViewControllerAnimated:YES];
+                break;
+            }
+            case 1:{
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定删除该记录么？" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    [weakself deleteCurrentOrder];
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:NULL];
+                [alert addAction:action];
+                [alert addAction:cancelAction];
+                UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+                popPresenter.sourceView = weakself.view;
+                popPresenter.sourceRect = weakself.view.bounds;
+                [weakself presentViewController:alert animated:YES completion:nil];
+                break;
+            }
+            default:
+                break;
+        }
+    };
+}
+
+- (void)deleteCurrentOrder{
+    SellOrderDeliver *onmodel;
+    for (SellOrderDeliver *model in _dataArr) {
+        if (model.selected == YES) {
+            onmodel = model;
+        }
+    }
+    if (!onmodel) {
+        return;
+    }
+    [[HttpClient sharedHttpClient] requestDeleteWithURLStr:[NSString stringWithFormat:@"/sell/%@/deliver",onmodel.deliverId] paramDic:nil WithReturnBlock:^(id returnValue) {
+        [HUD show:@"删除成功"];
+        [self reloadList];
+        
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+    
+    
+    
+}
+
+
 #pragma mark ====== 获取销货单列表
 - (void)getSellList{
     User *user = [[UserPL shareManager] getLoginUser];
@@ -251,5 +322,12 @@
     }
     return _searchView;
 }
-
+-(RightMenueView *)menueView{
+    
+    if (!_menueView) {
+        NSArray *titleArr = @[@"编辑",@"删除"];
+        _menueView = [[RightMenueView alloc]initWithTitleArr:titleArr];
+    }
+    return _menueView;
+}
 @end

@@ -178,6 +178,9 @@
     {
         //销售历史
         SaleHistoryController *hisVc = [[SaleHistoryController alloc]init];
+        hisVc.returnBlock = ^(SellOrderDeliverDetail *detailModel) {
+            [self initDatasWithdetailModel:detailModel];
+        };
         [self.navigationController pushViewController:hisVc animated:YES];
         
     }else if (tag == 1)

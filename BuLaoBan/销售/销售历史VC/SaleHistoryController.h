@@ -7,10 +7,16 @@
 //
 
 #import "BaseViewController.h"
+@class SellOrderDeliverDetail;
+
+typedef void(^SaleHistoryReturnBlock)(SellOrderDeliverDetail * _Nonnull detailModel);
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SaleHistoryController : BaseViewController
+
+@property (nonatomic,copy) SaleHistoryReturnBlock returnBlock;
+
 
 @end
 

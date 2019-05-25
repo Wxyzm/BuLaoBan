@@ -322,7 +322,7 @@
 
 //设置titlelab
 - (void)setToptitle{
-    NSArray *titleArr = @[@"应收对账单/货品",@"应收对账单/单",@"应收统计表"];
+    NSArray *titleArr = @[@"应收对账单/货品",@"应收对账单/单据",@"应收款统计表"];
     self.title = titleArr[_selectedType];
 }
 

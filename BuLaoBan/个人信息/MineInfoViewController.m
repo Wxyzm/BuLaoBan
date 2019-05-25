@@ -351,7 +351,7 @@
 -(MineInfoView *)mineInfoView{
     
     if (!_mineInfoView) {
-        _mineInfoView = [[MineInfoView alloc]initWithFrame:CGRectMake(300, 64, ScreenWidth-400, 230)];
+        _mineInfoView = [[MineInfoView alloc]initWithFrame:CGRectMake(300, 64, ScreenWidth-400, 280)];
     }
     return _mineInfoView;
 }

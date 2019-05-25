@@ -19,7 +19,7 @@
     UITextField *_nameTxt;
     UITextField *_phoneTxt;
     UITextField *_mailTxt;
-
+    UILabel *_comNameLab;
     
 }
 
@@ -57,10 +57,12 @@
     _mailTxt.textAlignment = NSTextAlignmentRight;
     [self addSubview:_mailTxt];
     
+    _comNameLab = [BaseViewFactory labelWithFrame:CGRectMake(100, 230, Width-120, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentRight andtext:@""];
+    [self addSubview:_comNameLab];
     
-    NSArray *titleArr = @[@"用户名",@"手机",@"邮箱"];
-    for (int i = 0; i<4; i++) {
-        if (i!=3) {
+    NSArray *titleArr = @[@"用户名",@"手机",@"邮箱",@"公司名"];
+    for (int i = 0; i<5; i++) {
+        if (i!=4) {
             UILabel *titlelab= [BaseViewFactory labelWithFrame:CGRectMake(20, 80+50*i, 60, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:titleArr[i]];
             [self addSubview:titlelab];
         }
@@ -77,7 +79,8 @@
     _nameTxt.text = infoModel.userName;
     _phoneTxt.text = infoModel.mobile;
     _mailTxt.text = infoModel.email;
-    
+     User *user = [[UserPL shareManager] getLoginUser];
+    _comNameLab.text = infoModel.companyName.length>0?infoModel.companyName:user.defutecompanyName;
     
 }
 

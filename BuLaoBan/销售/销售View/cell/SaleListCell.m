@@ -131,7 +131,7 @@
     [self.contentView addSubview:_amoutMoneyTxt];
     
     
-    _deleteBtn = [BaseViewFactory buttonWithFrame:CGRectMake(660, 0, 45, 50) font:APPFONT12 title:@"删除" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
+    _deleteBtn = [BaseViewFactory buttonWithFrame:CGRectMake(660, 0, 45, 50) font:APPFONT12 title:@"移除" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [_deleteBtn addTarget:self action:@selector(deleteBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_deleteBtn];
 
