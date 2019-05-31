@@ -22,7 +22,8 @@
     
     UITextField *_nameTxt;    //货品名称
     UITextField *_specTxt;    //规格
- 
+    UITextField *_supplyTxt;    //供应
+
     UILabel *_unitLab;       //单位
     NSMutableArray *_photosArr; //照片
 }
@@ -78,11 +79,12 @@
     _specTxt.textAlignment = NSTextAlignmentRight;
     [self addSubview:_specTxt];
     
-    _unitLab= [BaseViewFactory labelWithFrame:CGRectMake(150, 44*7, 430, 44) textColor:UIColorFromRGB(BlueColorValue) font:APPFONT13 textAligment:NSTextAlignmentRight andtext:@"选择"];
-    [self addSubview:_weightLab];
     
+    _supplyTxt = [BaseViewFactory textFieldWithFrame:CGRectMake(150, 44*7, 430, 44) font:APPFONT13 placeholder:@"输入供应商" textColor:UIColorFromRGB(BlackColorValue) placeholderColor:UIColorFromRGB(LitterBlackColorValue) delegate:self];
+    _supplyTxt.textAlignment = NSTextAlignmentRight;
+    [self addSubview:_supplyTxt];
     
-    NSArray *titleArr = @[@"货品名称",@"成分",@"门幅",@"克重",@"规格",@"图片"];
+    NSArray *titleArr = @[@"货品名称",@"成分",@"门幅",@"克重",@"规格",@"供应商",@"图片"];
     for (int i = 0; i<titleArr.count; i++) {
         UILabel *lab = [BaseViewFactory labelWithFrame:CGRectMake(20, 88 +44*i, 100, 44) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentLeft andtext:titleArr[i]];
         [self addSubview:lab];
@@ -104,10 +106,10 @@
      //configCollectionView
     [self configCollectionView];
     
-    UILabel *showLab = [BaseViewFactory labelWithFrame:CGRectMake(20, 442, 400, 15) textColor:UIColorFromRGB(0x9b9b9b) font:APPFONT12 textAligment:NSTextAlignmentLeft andtext:@"最多可上传9张（.gif,.jpg,.jpeg,.png）"];
+    UILabel *showLab = [BaseViewFactory labelWithFrame:CGRectMake(20, 486, 400, 15) textColor:UIColorFromRGB(0x9b9b9b) font:APPFONT12 textAligment:NSTextAlignmentLeft andtext:@"最多可上传9张（.gif,.jpg,.jpeg,.png）"];
     [self addSubview:showLab];
     
-    UIButton *saveBtn = [BaseViewFactory buttonWithFrame:CGRectMake(self.width/2-150, self.height-90, 300, 40) font:APPFONT14 title:@"保存" titleColor:UIColorFromRGB(WhiteColorValue) backColor:UIColorFromRGB(BlueColorValue)];
+    UIButton *saveBtn = [BaseViewFactory buttonWithFrame:CGRectMake(self.width/2-150, self.height-46, 300, 40) font:APPFONT14 title:@"保存" titleColor:UIColorFromRGB(WhiteColorValue) backColor:UIColorFromRGB(BlueColorValue)];
     saveBtn.layer.cornerRadius = 2;
     [saveBtn addTarget:self action:@selector(saveAllInfo) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:saveBtn];
@@ -129,7 +131,7 @@
     layout.minimumLineSpacing = _margin;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 342, 600, 92) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 386, 600, 92) collectionViewLayout:layout];
     _collectionView.backgroundColor = UIColorFromRGB(WhiteColorValue);
     _collectionView.contentInset = UIEdgeInsetsMake(0, 20, 0, 20);
     _collectionView.dataSource = self;
@@ -184,7 +186,8 @@
     _weightLab.text = sampleModel.weight.length>0?sampleModel.weight:@"选择";
     _specTxt.text = sampleModel.specification.length>0?sampleModel.specification:@"";
     _unitLab.text = sampleModel.primaryUnit.length>0?sampleModel.primaryUnit:@"";
-    
+    _supplyTxt.text = sampleModel.supply.length>0?sampleModel.supply:@"";
+
     [_photosArr removeAllObjects];
     [self.collectionView reloadData];
     if (sampleModel.pics.count>0) {
@@ -339,6 +342,9 @@
     }else{
         [attrdic setValue:@"" forKey:@"6"];
     }
+    if (_supplyTxt.text.length>0) {
+        [attrdic setValue:_supplyTxt.text forKey:@"21"];
+    }
     [dic setValue:attrdic forKey:@"customAttribute"];
     if (picUrlArr.count>0) {
         NSMutableArray *urlArr = [NSMutableArray arrayWithCapacity:0];
@@ -399,6 +405,9 @@
         [attrdic setValue:_specTxt.text forKey:@"6"];
     }else{
         [attrdic setValue:@"" forKey:@"6"];
+    }
+    if (_supplyTxt.text.length>0) {
+        [attrdic setValue:_supplyTxt.text forKey:@"21"];
     }
     [dic setValue:attrdic forKey:@"customAttribute"];
 

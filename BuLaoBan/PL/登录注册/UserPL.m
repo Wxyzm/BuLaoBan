@@ -71,6 +71,10 @@ static UserPL *sharedManager = nil;
     }];
 };
 
+
+
+
+
 /**
  微信登录
  */
@@ -214,6 +218,7 @@ static UserPL *sharedManager = nil;
             User *user = [self getLoginUser];
             user.defutecompanyId = [dic objectForKey:@"companyId"];
             user.defutecompanyName = [dic objectForKey:@"companyName"];
+            [self setComAttribute:user.defutecompanyId];
             [self setUser:user];
             [self writeUser];
             returnBlock(dic);
@@ -230,6 +235,14 @@ static UserPL *sharedManager = nil;
     }];
 }
 
+- (void)setComAttribute:(NSString *)comID{
+    NSDictionary *dic =@{@"companyId":comID,@"isUsed":@"1"};
+    [[HttpClient sharedHttpClient] requestPUTWithURLStr:@"/company/attribute/21" paramDic:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
 
 
 

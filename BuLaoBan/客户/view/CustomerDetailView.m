@@ -39,7 +39,7 @@
     [self addSubview:topview];
     
     
-    _nameLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 16, viewWidth-32, 28) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(18) textAligment:NSTextAlignmentLeft andtext:@"吉布纺织"];
+    _nameLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 16, viewWidth-32, 28) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(18) textAligment:NSTextAlignmentLeft andtext:@""];
     [self addSubview:_nameLab];
     
     _acceptLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 56, viewWidth-32, 22) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"应收欠款："];

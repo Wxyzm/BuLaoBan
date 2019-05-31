@@ -24,7 +24,7 @@
         _BtnArr = [NSMutableArray arrayWithCapacity:0];
         _titleArr = [NSMutableArray arrayWithCapacity:0];
         for (int i = 6; i<=40; i++) {
-            NSString *titleStr = [NSString stringWithFormat:@"%dgsm",i*10];
+            NSString *titleStr = [NSString stringWithFormat:@"%dg/㎡",i*10];
             [_titleArr addObject:titleStr];
         }
       

@@ -73,6 +73,7 @@
     
     _scanBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(ScreenWidth-200, 10, 80, 30) font:APPFONT13 title:@"扫码选货" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [_scanBtn setTitleRect:CGRectMake(10, 0, 130, 30)];
+    _scanBtn.hidden = YES;
     _scanBtn.layer.cornerRadius = 2;
     _scanBtn.layer.borderColor = UIColorFromRGB(BlueColorValue).CGColor;
     _scanBtn.layer.borderWidth = 1;

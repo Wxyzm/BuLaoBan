@@ -10,6 +10,7 @@
 #import "SaleHistHeader.h"
 #import "ReceiveBaseView.h"      //收款
 #import "RightMenueView.h"      //收款
+#import "SaleHistoryEditController.h"
 
 @interface SaleHistoryController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -38,7 +39,10 @@
     [self initDatas];
     [self initUI];
     [self getSellList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadList) name:@"HistoryChanged" object:nil];
+
 }
+
 
 - (void)initDatas{
     self.loadWay = START_LOAD_FIRST;
@@ -127,15 +131,22 @@
 //编辑
 - (void)orderChange{
     WeakSelf(self);
+    if (self.detailModel.deliverId.length<=0) {
+        [HUD show:@"获取销货单详情失败"];
+        return;
+    }
     [self.view bringSubviewToFront:self.menueView];
     self.menueView.hidden = NO;
     self.menueView.returnBlock = ^(NSInteger index) {
         switch (index) {
             case 0:{
-                if (weakself.returnBlock) {
-                    weakself.returnBlock(weakself.detailModel);
-                }
-                [weakself.navigationController popViewControllerAnimated:YES];
+                SaleHistoryEditController *edvc = [[SaleHistoryEditController alloc]init];
+                edvc.dataModel = weakself.detailModel;
+                [weakself.navigationController pushViewController:edvc animated:YES];
+//                if (weakself.returnBlock) {
+//                    weakself.returnBlock(weakself.detailModel);
+//                }
+//                [weakself.navigationController popViewControllerAnimated:YES];
                 break;
             }
             case 1:{

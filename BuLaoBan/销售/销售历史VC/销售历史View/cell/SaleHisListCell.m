@@ -41,7 +41,7 @@
 
 - (void)setUP{
     
-    _nameLab = [BaseViewFactory labelWithFrame:CGRectMake(12, 10,276 , 18) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentLeft andtext:@"吉布纺织"];
+    _nameLab = [BaseViewFactory labelWithFrame:CGRectMake(12, 10,276 , 18) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentLeft andtext:@""];
     [self.contentView addSubview:_nameLab];
     
     _numberLab = [BaseViewFactory labelWithFrame:CGRectMake(12, 34,138 , 16) textColor:UIColorFromRGB(0x858585) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:@"单号：SA2019010001"];
@@ -59,7 +59,7 @@
     _model = model;
     _nameLab.text = model.customerName;
     _numberLab.text = [NSString stringWithFormat:@"单号：%@",model.deliverNo];
-    _dateLab.text = [NSString stringWithFormat:@"日期：%@",model.leadTime];
+    _dateLab.text = [NSString stringWithFormat:@"日期：%@",model.deliverDate];
     if (model.selected) {
         self.contentView.backgroundColor = UIColorFromRGB(0xeff6f9);
     }else{

@@ -65,6 +65,9 @@
     }else{
         self.window.rootViewController = lbVc;
     }
+    if ([user.defutecompanyId intValue]>0) {
+        [self setComAttribute:user.defutecompanyId];
+    }
     
     self.splitViewController.maximumPrimaryColumnWidth = 100.0;
     [Bugtags startWithAppKey:@"a1bc1972953ced15a53bcd43caae981f" invocationEvent:BTGInvocationEventBubble];
@@ -72,7 +75,14 @@
     return YES;
 }
 
-
+- (void)setComAttribute:(NSString *)comID{
+    NSDictionary *dic =@{@"companyId":[NSString stringWithFormat:@"%@",comID],@"isUsed":@"1"};
+    [[HttpClient sharedHttpClient] requestPUTWithURLStr:@"/company/attribute/21" paramDic:dic WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url

@@ -25,6 +25,10 @@ typedef void(^SaleListCellReturnBlock)(SaleSamModel *model,NSInteger type);
 @property (nonatomic, copy) SaleListCellReturnBlock returnBlock;
 
 
+/**
+ 细码单
+ */
+@property (nonatomic, strong) UIButton *codeListBtn;
 
 @end
 

@@ -29,6 +29,7 @@
     UILabel *_weightLab;    //克重
     UILabel *_specLab;      //规格
     UILabel *_unitLab;      //单位
+    UILabel *_supplyLab;      //供应商
 
 
 }
@@ -66,16 +67,16 @@
     _specLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 178, viewWidth-32, 20) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"规格："];
     [self addSubview:_specLab];
     
-//    _unitLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 208, viewWidth-32, 20) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"单位："];
-//    [self addSubview:_unitLab];
+    _supplyLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 208, viewWidth-32, 20) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"供应商："];
+    [self addSubview:_supplyLab];
     
-    UIView *line =  [BaseViewFactory viewWithFrame:CGRectMake(0, 218, viewWidth, 10) color:UIColorFromRGB(BackColorValue)];
+    UIView *line =  [BaseViewFactory viewWithFrame:CGRectMake(0, 248, viewWidth, 10) color:UIColorFromRGB(BackColorValue)];
     [self addSubview:line];
     
-    UIView *boomview = [BaseViewFactory viewWithFrame:CGRectMake(0, 228, viewWidth, 200) color:UIColorFromRGB(WhiteColorValue)];
+    UIView *boomview = [BaseViewFactory viewWithFrame:CGRectMake(0, 258, viewWidth, 200) color:UIColorFromRGB(WhiteColorValue)];
     [self addSubview:boomview];
     
-   UILabel * showlab = [BaseViewFactory labelWithFrame:CGRectMake(16, 244, viewWidth-32, 22) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(16) textAligment:NSTextAlignmentLeft andtext:@"货品图片"];
+   UILabel * showlab = [BaseViewFactory labelWithFrame:CGRectMake(16, 274, viewWidth-32, 22) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(16) textAligment:NSTextAlignmentLeft andtext:@"货品图片"];
     [self addSubview:showlab];
     
     
@@ -152,7 +153,8 @@
     _weightLab.text = [NSString stringWithFormat:@"克重：%@",sampledetail.weight];
     _specLab.text = [NSString stringWithFormat:@"规格：%@",sampledetail.specification];
     _unitLab.text = [NSString stringWithFormat:@"单位：%@",sampledetail.viceUnit];
-    
+    _supplyLab.text = [NSString stringWithFormat:@"供应商：%@",sampledetail.supply];
+
     [_picArr removeAllObjects];
     [self.collectionView reloadData];
     if (sampledetail.pics.count>0) {

@@ -39,10 +39,7 @@
  */
 @property (nonatomic, strong) UITextField *unitPriceTxt;
 
-/**
- 细码单
- */
-@property (nonatomic, strong) UIButton *codeListBtn;
+
 
 /**
  匹数

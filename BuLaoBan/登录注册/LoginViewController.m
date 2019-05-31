@@ -181,6 +181,12 @@
     }];
 }
 
+
+
+
+
+
+
 - (void)gotoHomeVC{
     [[UserPL shareManager] showHomeViewController];
 }

@@ -25,8 +25,10 @@
     UILabel *_nameLab;  //名称
     UILabel *_memoLab;  //备注
     UILabel *_totolLab; //合计
+    UILabel *_memolab;
     NSMutableArray *_dataArr;
     NSMutableArray *_labArr; //其余属性
+    
 
 }
 
@@ -43,7 +45,7 @@
 
 - (void)initUI{
     
-    _nameLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 16, ScreenWidth-100-32, 28) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(20) textAligment:NSTextAlignmentLeft andtext:@"吉布纺织"];
+    _nameLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 16, ScreenWidth-100-32, 28) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(20) textAligment:NSTextAlignmentLeft andtext:@""];
     [self addSubview:_nameLab];
     
     NSArray *titleArr = @[@"单号：",@"本单应收：",@"日期：",@"本单已收：",@"业务员：",@"本单欠款：",@"类型：",@"结算账户："];
@@ -57,8 +59,8 @@
         [_labArr addObject:lab];
         
     }
-    UILabel *memolab  = [BaseViewFactory labelWithFrame:CGRectMake(16, 178, 45, 20) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"备注："];
-    [self addSubview:memolab];
+    _memolab  = [BaseViewFactory labelWithFrame:CGRectMake(16, 178, ScreenWidth-400-32, 20) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"备注："];
+    [self addSubview:_memolab];
     
     _memoLab  = [BaseViewFactory labelWithFrame:CGRectZero textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@""];
     [self addSubview:_memoLab];
@@ -77,11 +79,13 @@
 
 -(void)setModel:(SellOrderDeliverDetail *)model{
     _model = model;
+    _nameLab.text = model.customerName;
+    _memolab.text = [NSString stringWithFormat:@"备注：%@",model.remark];
     NSString *receivablePrice = [NSString stringWithFormat:@"%.2f",[model.depositPrice floatValue]+[model.receivablePrice floatValue]];
     NSArray *titleArr = @[@"单号：",@"本单应收：",@"日期：",@"本单已收：",@"业务员：",@"本单欠款：",@"类型：",@"结算账户："];
     NSString *money = [NSString stringWithFormat:@"%.2f",[model.receivablePrice floatValue]- [model.receiptPrice floatValue]];
     NSString *kind = [model.type intValue]==0?@"剪样":@"大货";
-    NSArray *valueArr = @[model.deliverNo,receivablePrice,model.deliverDate,model.depositPrice,model.sellerName,money,kind,model.customerName];
+    NSArray *valueArr = @[model.deliverNo,receivablePrice,model.deliverDate,model.depositPrice,model.sellerName,money,kind,model.companyAccountName];
 
     for (int i = 0; i<_labArr.count; i++) {
         UILabel *lab = _labArr[i];
@@ -135,6 +139,12 @@
         cell = [[SaleListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     cell.deliveDetails = _dataArr[indexPath.row];
+    if (cell.deliveDetails.packingList.length>0) {
+        //若新增了细码单，则无法输入米数和匹数销货量，且总码单是细码单算出来的（匹数和米数）
+        [cell.codeListBtn setTitle:@"查看" forState:UIControlStateNormal];
+    }else{
+        [cell.codeListBtn setTitle:@"无" forState:UIControlStateNormal];
+    }
     cell.returnBlock = ^(SaleSamModel * _Nonnull model, NSInteger type) {
         if (type==1){
             //添加细码单

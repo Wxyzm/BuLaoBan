@@ -86,6 +86,8 @@
 		0B9BC32B222E6A4300A4C083 /* StaffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC32A222E6A4300A4C083 /* StaffCell.m */; };
 		0B9BC32F222E704F00A4C083 /* StaffView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BC32E222E704F00A4C083 /* StaffView.m */; };
 		0BA79B78227188A50095B005 /* StaffOperaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA79B77227188A50095B005 /* StaffOperaView.m */; };
+		0BAB1D1B229B738A007CEEAE /* SaleHistoryEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB1D1A229B738A007CEEAE /* SaleHistoryEditController.m */; };
+		0BAB1D1E229BB6D4007CEEAE /* SaleHisSettleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB1D1D229BB6D4007CEEAE /* SaleHisSettleController.m */; };
 		0BB05E2E224615D8003A5A02 /* ReceiveBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB05E2D224615D8003A5A02 /* ReceiveBaseView.m */; };
 		0BB088A7227D287B0021738A /* OpenAccMView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB088A6227D287B0021738A /* OpenAccMView.m */; };
 		0BB0F42F22741F300051B78E /* TypeChoseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0F42E22741F300051B78E /* TypeChoseView.m */; };
@@ -116,6 +118,7 @@
 		0BEAD81F2244D6E9005BA430 /* AccountListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEAD81E2244D6E9005BA430 /* AccountListView.m */; };
 		0BEAD8222244DB8B005BA430 /* AccountEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEAD8212244DB8B005BA430 /* AccountEditView.m */; };
 		0BEBB79822657A3B00798617 /* AccountChoseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEBB79722657A3B00798617 /* AccountChoseView.m */; };
+		0BF46B92229D087E00B30A09 /* SupplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF46B91229D087E00B30A09 /* SupplyView.m */; };
 		18049AC92223DF670068C75C /* LBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18049AC82223DF670068C75C /* LBTabBarController.m */; };
 		180B63792226B8AF00578565 /* BillCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B63782226B8AF00578565 /* BillCheckView.m */; };
 		180B63812226BFFD00578565 /* ReceiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B63802226BFFD00578565 /* ReceiveCell.m */; };
@@ -444,6 +447,10 @@
 		0B9BC32E222E704F00A4C083 /* StaffView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffView.m; sourceTree = "<group>"; };
 		0BA79B76227188A50095B005 /* StaffOperaView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaffOperaView.h; sourceTree = "<group>"; };
 		0BA79B77227188A50095B005 /* StaffOperaView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaffOperaView.m; sourceTree = "<group>"; };
+		0BAB1D19229B738A007CEEAE /* SaleHistoryEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleHistoryEditController.h; sourceTree = "<group>"; };
+		0BAB1D1A229B738A007CEEAE /* SaleHistoryEditController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleHistoryEditController.m; sourceTree = "<group>"; };
+		0BAB1D1C229BB6D4007CEEAE /* SaleHisSettleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleHisSettleController.h; sourceTree = "<group>"; };
+		0BAB1D1D229BB6D4007CEEAE /* SaleHisSettleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleHisSettleController.m; sourceTree = "<group>"; };
 		0BB05E2C224615D8003A5A02 /* ReceiveBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveBaseView.h; sourceTree = "<group>"; };
 		0BB05E2D224615D8003A5A02 /* ReceiveBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveBaseView.m; sourceTree = "<group>"; };
 		0BB088A5227D287B0021738A /* OpenAccMView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenAccMView.h; sourceTree = "<group>"; };
@@ -501,6 +508,8 @@
 		0BEAD8212244DB8B005BA430 /* AccountEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountEditView.m; sourceTree = "<group>"; };
 		0BEBB79622657A3B00798617 /* AccountChoseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountChoseView.h; sourceTree = "<group>"; };
 		0BEBB79722657A3B00798617 /* AccountChoseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountChoseView.m; sourceTree = "<group>"; };
+		0BF46B90229D087E00B30A09 /* SupplyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplyView.h; sourceTree = "<group>"; };
+		0BF46B91229D087E00B30A09 /* SupplyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupplyView.m; sourceTree = "<group>"; };
 		155A735819312D58DF46AE1F /* Pods_BuLaoBan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuLaoBan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18049AC72223DF670068C75C /* LBTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTabBarController.h; sourceTree = "<group>"; };
 		18049AC82223DF670068C75C /* LBTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTabBarController.m; sourceTree = "<group>"; };
@@ -1312,6 +1321,17 @@
 			path = "员工管理View";
 			sourceTree = "<group>";
 		};
+		0BAB1D18229B736A007CEEAE /* 销售历史编辑 */ = {
+			isa = PBXGroup;
+			children = (
+				0BAB1D19229B738A007CEEAE /* SaleHistoryEditController.h */,
+				0BAB1D1A229B738A007CEEAE /* SaleHistoryEditController.m */,
+				0BAB1D1C229BB6D4007CEEAE /* SaleHisSettleController.h */,
+				0BAB1D1D229BB6D4007CEEAE /* SaleHisSettleController.m */,
+			);
+			path = "销售历史编辑";
+			sourceTree = "<group>";
+		};
 		0BB088A4227D28610021738A /* 启用应收月份View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1461,6 +1481,15 @@
 			children = (
 			);
 			path = "选择货品种类View";
+			sourceTree = "<group>";
+		};
+		0BF46B8F229D086B00B30A09 /* 供应商View */ = {
+			isa = PBXGroup;
+			children = (
+				0BF46B90229D087E00B30A09 /* SupplyView.h */,
+				0BF46B91229D087E00B30A09 /* SupplyView.m */,
+			);
+			path = "供应商View";
 			sourceTree = "<group>";
 		};
 		180B63762226B87A00578565 /* 对账单统计View */ = {
@@ -1706,6 +1735,7 @@
 				1870E10222265FBA00D328BA /* SaleHistoryController.h */,
 				1870E10322265FBA00D328BA /* SaleHistoryController.m */,
 				0B44DFFB224B44D2008F0741 /* SaleHistHeader.h */,
+				0BAB1D18229B736A007CEEAE /* 销售历史编辑 */,
 				1870E106222666D700D328BA /* 销售历史View */,
 			);
 			path = "销售历史VC";
@@ -2298,6 +2328,7 @@
 				18A16D68221165820099767F /* AddGoodsHomeView.m */,
 				18A16D6422115AC40099767F /* AddGoodsView.h */,
 				18A16D6522115AC40099767F /* AddGoodsView.m */,
+				0BF46B8F229D086B00B30A09 /* 供应商View */,
 				0B5F468A2230BFBA00C67EF5 /* 货品克重View */,
 				18CF0FCD2212AE5600B8D9CC /* 货品成分view */,
 				18CF0FD62212C82800B8D9CC /* 货品门幅View */,
@@ -2672,6 +2703,7 @@
 				189C1F4221F9924E00C84CA4 /* NSString+MJExtension.m in Sources */,
 				18B39AB12226AD86009AAC17 /* ReceiveSearchView.m in Sources */,
 				0B9BC32B222E6A4300A4C083 /* StaffCell.m in Sources */,
+				0BF46B92229D087E00B30A09 /* SupplyView.m in Sources */,
 				189C1F1221F9923C00C84CA4 /* MJRefreshFooter.m in Sources */,
 				189C1FDF21F9928700C84CA4 /* NSData+ImageContentType.m in Sources */,
 				0B34ED76227EACE900139290 /* AbContCell.m in Sources */,
@@ -2706,6 +2738,7 @@
 				0BC13E6D22377E370065C0A0 /* CustomerSelectedCell.m in Sources */,
 				0B24931F2272E50600B213EC /* StaffInvitationView.m in Sources */,
 				0B2493232272F28500B213EC /* InviteController.m in Sources */,
+				0BAB1D1B229B738A007CEEAE /* SaleHistoryEditController.m in Sources */,
 				0BEBB79822657A3B00798617 /* AccountChoseView.m in Sources */,
 				0B1C18CD226EA5CB00808209 /* BindPhoneController.m in Sources */,
 				0B24931B2272AB8000B213EC /* StaffOperaCell.m in Sources */,
@@ -2713,6 +2746,7 @@
 				0B2021652238D77700EAF565 /* PackingListDetail.m in Sources */,
 				184D667322100C0F00181590 /* TZPhotoPreviewCell.m in Sources */,
 				0BB0F42F22741F300051B78E /* TypeChoseView.m in Sources */,
+				0BAB1D1E229BB6D4007CEEAE /* SaleHisSettleController.m in Sources */,
 				0BE389E12254AEB5002F7348 /* SaleSSample.m in Sources */,
 				189C1FB021F9927800C84CA4 /* AFURLConnectionOperation.m in Sources */,
 				1889FFE921F9EB5C00F29B8B /* GlobalMethod.m in Sources */,

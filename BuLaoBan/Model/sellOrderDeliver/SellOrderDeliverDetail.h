@@ -110,8 +110,27 @@ NS_ASSUME_NONNULL_BEGIN
  发货单详细
  */
 @property (nonatomic,strong) NSMutableArray *details;
+/**
+ 结算账户
+ */
+@property (nonatomic,strong) NSString *companyAccountName;
+/**
+ 结算账户ID
+ */
+@property (nonatomic,strong) NSString *companyAccountId;
+
+@property (nonatomic,strong) NSMutableArray *sampleList;
 
 
+//匹数  米数
+@property (nonatomic,assign) NSInteger pieces;
+@property (nonatomic,assign) CGFloat meet;
+@property (nonatomic,assign) CGFloat totMoney; //合计
+@property (nonatomic,assign) CGFloat othMoney; //其他
+@property (nonatomic,assign) CGFloat setMoney; //总计 = 合计 +其他
+
+
+- (void)getsampleListWithSellOrderDeliverDetail;
 
 
 @end

@@ -1,23 +1,23 @@
 //
-//  SettlementViewController.m
+//  SaleHisSettleController.m
 //  BuLaoBan
 //
-//  Created by apple on 2019/2/22.
-//  Copyright © 2019年 XX. All rights reserved.
-//  所有好走的路，都是下坡路
+//  Created by souxiuyun on 2019/5/27.
+//  Copyright © 2019 XX. All rights reserved.
+//
 
-#import "SettlementViewController.h"
-#import "SettlementInputCell.h"
+#import "SaleHisSettleController.h"
 #import "SettleKeyBoardView.h"
-#import "SettleVcModel.h"
-#import "Settlement.h"
-#import "SettleMoneyCell.h"
-#import "SaleSamModel.h"
-#import "PackListModel.h"
 #import "Accounts.h"
 #import "AccountChoseView.h"
-
-@interface SettlementViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "SellOrderDeliverDetail.h"
+#import "Settlement.h"
+#import "SettleMoneyCell.h"
+#import "SettlementInputCell.h"
+#import "SaleSamModel.h"
+#import "PackListModel.h"
+#import "SaleHistoryController.h"
+@interface SaleHisSettleController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *ListTab;               //左侧列表
 
@@ -25,20 +25,22 @@
 
 @property (nonatomic, strong)SettleKeyBoardView *keyBoardView;
 
-@property (nonatomic, strong)NSString *accStr;
-@property (nonatomic, assign)BOOL isHaveDian;
 @property (nonatomic, strong)NSMutableArray *dataArr1;    //左侧dataarr
 @property (nonatomic, strong)NSMutableArray *dataArr2;    //右侧dataarr
-@property (nonatomic, strong) AccountChoseView  *choseView;
+
+
+@property (nonatomic, strong)NSString *accStr;
+@property (nonatomic, assign)BOOL isHaveDian;
+
 @property (nonatomic, strong)  Accounts *selectAccount;
+@property (nonatomic, strong) AccountChoseView  *choseView;
+
 
 @end
 
-@implementation SettlementViewController{
-
-    UISwitch *_mprintSwitch;
+@implementation SaleHisSettleController{
     UITextView *_memoTxt;
-   
+
 }
 
 - (void)viewDidLoad {
@@ -50,21 +52,18 @@
 }
 
 - (void)initData{
-    NSDate *date=[NSDate date];
-    NSDateFormatter *format1=[[NSDateFormatter alloc] init];
-    [format1 setDateFormat:@"yyyy-MM-dd"];
-    NSString *dateStr;
-    dateStr=[format1 stringFromDate:date];
-    _model.date = dateStr;
-    _accStr = @"";
+    _selectAccount = [[Accounts alloc]init];
+    _selectAccount.accountName = _dataModel.companyAccountName;
+    _selectAccount.companyAccountId = _dataModel.companyAccountId;
     _dataArr1 = [NSMutableArray arrayWithCapacity:0];
     _dataArr2 = [NSMutableArray arrayWithCapacity:0];
+    _dataModel.setMoney = _dataModel.othMoney +_dataModel.totMoney;
     NSArray *titlearr1 = @[@"业务日期",@"客户",@"业务员",@"货品数量",@"合计金额",@"其他费用",@"总计",@"备注"];
-    NSArray *valueArr1 = @[dateStr,_model.comName,_model.sellerName?_model.sellerName:@"",[NSString stringWithFormat:@"%ld款, %ld匹, %.2f米",_model.styleNum,_model.pieceNum,_model.meetNum],[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"",[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"备注"];
+    NSArray *valueArr1 = @[_dataModel.deliverDate,_dataModel.customerName,_dataModel.sellerName?_dataModel.sellerName:@"",[NSString stringWithFormat:@"%ld款, %ld匹, %.2f米",_dataModel.sampleList.count,_dataModel.pieces,_dataModel.meet],[NSString stringWithFormat:@"%.2f元",_dataModel.totMoney],[NSString stringWithFormat:@"%.2f元",_dataModel.othMoney],[NSString stringWithFormat:@"%.2f元",_dataModel.setMoney],@"备注"];
     NSMutableArray  *arr1 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *arr2 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *arr3 = [NSMutableArray arrayWithCapacity:0];
-
+    
     
     for (int i = 0; i<titlearr1.count; i++) {
         Settlement *settleModel = [[Settlement alloc]init];
@@ -86,21 +85,23 @@
             [arr1 addObject:settleModel];
         }else if (i<=6){
             [arr2 addObject:settleModel];
-
+            
         }else{
             [arr3 addObject:settleModel];
-
+            
         }
     }
     [_dataArr1 addObject:arr1];
     [_dataArr1 addObject:arr2];
     [_dataArr1 addObject:arr3];
-
+    
     NSArray *titlearr2 = @[@"本单应收",@"本单已收",@"本单欠款",@"结算账户",@"实收金额",@"开单后打印"];
-    NSArray *valueArr2 = @[[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"0.00元",[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"请选择",@"元",@""];
+    _accStr = [NSString stringWithFormat:@"%.2f",[_dataModel.depositPrice floatValue]];
+
+    NSArray *valueArr2 = @[[NSString stringWithFormat:@"%.2f元",_dataModel.totMoney],[NSString stringWithFormat:@"%.2f元",[_dataModel.depositPrice floatValue]],[NSString stringWithFormat:@"%.2f元",_dataModel.totMoney - [_dataModel.depositPrice floatValue]],_dataModel.companyAccountName,[NSString stringWithFormat:@"%.2f元",[_accStr floatValue]],@""];
     NSMutableArray  *tarr1 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *tarr2 = [NSMutableArray arrayWithCapacity:0];
-
+    
     for (int i = 0; i<titlearr2.count; i++) {
         Settlement *settleModel = [[Settlement alloc]init];
         settleModel.title = titlearr2[i];
@@ -123,9 +124,8 @@
     }
     [_dataArr2 addObject:tarr1];
     [_dataArr2 addObject:tarr2];
-
+    
 }
-
 
 - (void)initUI{
     self.view.backgroundColor = UIColorFromRGB(BackColorValue);
@@ -148,7 +148,7 @@
             weakself.isHaveDian = NO;
         }else{
             weakself.isHaveDian = YES;
-            
+
         }
         if ([selectStr length] > 0)
         {
@@ -168,6 +168,7 @@
                     if(!weakself.isHaveDian)
                     {//text中还没有小数点
                         if (_accStr.length<=0) {
+                            
                         }else{
                             weakself.isHaveDian = YES;
                             _accStr = [NSString stringWithFormat:@"%@%@",_accStr,selectStr];
@@ -183,6 +184,8 @@
                             NSString *str = arr[1];
                             if (str.length<2) {
                                 _accStr = [NSString stringWithFormat:@"%@%@",_accStr,selectStr];
+                            }else{
+                                [HUD show:@"小数点后最多输入两位"];
                             }
                         }
                     }else{
@@ -197,21 +200,20 @@
             //删除
             _accStr = [NSString stringWithFormat:@"%@%@",_accStr,selectStr];
             if (_accStr.length>0) {
-              _accStr =  [_accStr stringByReplacingCharactersInRange:NSMakeRange(_accStr.length-1, 1) withString:@""];
+                _accStr =  [_accStr stringByReplacingCharactersInRange:NSMakeRange(_accStr.length-1, 1) withString:@""];
             }
         }
         NSArray *arr1 = weakself.dataArr2[1];
         Settlement *tmodel = arr1[0];
-        tmodel.showValue = [NSString stringWithFormat:@"%@元",_accStr];
-        _model.actualAcc  = [NSString stringWithFormat:@"%@元",_accStr];
+        tmodel.showValue = [NSString stringWithFormat:@"%@元",weakself.accStr];
+       // _model.actualAcc  = [NSString stringWithFormat:@"%@元",_accStr];
         [weakself setShowLab];
-        NSLog(@"%@",_accStr);
     };
 }
 
 #pragma mark ====== 提交
 - (void)setAllInfo{
-    if (_model.actualAcc.length<=0) {
+    if (_accStr.length<=0) {
         [HUD show:@"请输入实收金额"];
         return;
     }
@@ -219,51 +221,32 @@
         [HUD show:@"请选择结算账户"];
         return;
     }
-    NSLog(@"%@",_model);
     User *user = [[UserPL shareManager] getLoginUser];
+
     NSMutableDictionary *setDic= [[NSMutableDictionary alloc]init];
-    //公司ID*
-    [setDic setObject:user.defutecompanyId forKey:@"companyId"];
-    //销售单ID
-    if (_model.sellOrderId.length>0) {
-        [setDic setObject:_model.sellOrderId forKey:@"sellOrderId"];
-        
-    }
-    //发货日期*
-    [setDic setObject:_model.date forKey:@"deliverDate"];
     //备注
     [setDic setObject:_memoTxt.text forKey:@"remark"];
-    //销售员ID
-    [setDic setObject:_model.sellerId forKey:@"sellerId"];
-    //客户ID
-    [setDic setObject:_model.comId forKey:@"customerId"];
-    //价格单位【11:元 12:美元】
-    [setDic setObject:@"11" forKey:@"priceUnit"];
-    //预收款 就是已收金额
-    [setDic setObject:[_model.actualAcc stringByReplacingOccurrencesOfString:@"元" withString:@""] forKey:@"depositPrice"];
-
-    //剩余应收款 就是欠款金额
-    [setDic setObject:[_model.oweAcc stringByReplacingOccurrencesOfString:@"元" withString:@""] forKey:@"receivablePrice"];
-    //订单类型【0:剪样 1:大货】
-    [setDic setObject:_model.type?_model.type:@"1" forKey:@"type"];
-    //计税类型【0:不计税 1:应税内含 2:应税外加】
-    [setDic setObject:@"0" forKey:@"taxType"];
     //付款类型
     [setDic setObject:@"1" forKey:@"payType"];
-    //结算状态【0：挂单 1：结算】
-    [setDic setObject:@"1" forKey:@"settleStatus"];
-    //仓库ID*
-    [setDic setObject:_model.wareID.length>0?_model.wareID:@"" forKey:@"warehouseId"];
+    //尾款截止日期
+    [setDic setObject:@"" forKey:@"deliverDate"];
+    //实收首款
+    [setDic setObject:[_accStr stringByReplacingOccurrencesOfString:@"元" withString:@""] forKey:@"depositPrice"];
+    //剩余应收款 就是欠款金额
+    //欠款model
+    NSArray *arr2 = _dataArr2[0];
+    Settlement *qkModel = arr2[2];
+    [setDic setObject:[qkModel.showValue stringByReplacingOccurrencesOfString:@"元" withString:@""] forKey:@"receivablePrice"];
     //公司账户ID
-    [setDic setObject:_selectAccount.companyAccountId forKey:@"companyAccountId"];
-
-    
+    [setDic setObject:_selectAccount.companyAccountId.length>0?_selectAccount.companyAccountId:_dataModel.companyAccountId forKey:@"companyAccountId"];
+    //计税类型【0:不计税 1:应税内含 2:应税外加】
+    [setDic setObject:@"0" forKey:@"taxType"];
     NSMutableArray *details = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray *packingListDetail = [NSMutableArray arrayWithCapacity:0];
-
-    for (int i = 0; i<_model.packListArr.count; i++)
+    
+    for (int i = 0; i<_dataModel.sampleList.count; i++)
     {
-        SaleSamModel *samodel = _model.packListArr[i];
+        SaleSamModel *samodel =_dataModel.sampleList[i];
         NSMutableDictionary *packingListDetailDic = [[NSMutableDictionary alloc]init];
         //样品ID*
         [packingListDetailDic setObject:samodel.sampId forKey:@"sampleId"];
@@ -275,7 +258,7 @@
         //o匹
         [packingListDetailDic setObject:samodel.pieces forKey:@"packageNum"];
         [packingListDetailDic setObject:@"卷" forKey:@"packageUnit"];
-
+        
         [packingListDetailDic setObject:[NSString stringWithFormat:@"%.2f",[samodel.salesVol floatValue]] forKey:@"quantity"];
         [packingListDetailDic setObject:samodel.unit forKey:@"quantityUnit"];
         [packingListDetail addObject:packingListDetailDic];
@@ -293,7 +276,7 @@
         [samDic setObject:samodel.pieces forKey:@"packageNum"];
         [samDic setObject:@"卷" forKey:@"packageUnit"];
         //发货数量*
-        [samDic setObject:samodel.salesVol?samodel.salesVol:[NSString stringWithFormat:@"%.2f",_model.meetNum] forKey:@"num"];
+        [samDic setObject:samodel.salesVol?samodel.salesVol:[NSString stringWithFormat:@"%.2f",_dataModel.meet] forKey:@"num"];
         //数量单位*
         [samDic setObject:samodel.unit.length>0?samodel.unit:@"米" forKey:@"numUnit"];
         //单价
@@ -305,7 +288,7 @@
         //价格
         [samDic setObject:samodel.money forKey:@"price"];
         //未税金额
-       // [samDic setObject:samodel.money forKey:@"noTaxPrice"];
+        // [samDic setObject:samodel.money forKey:@"noTaxPrice"];
         //税额
         //[samDic setObject: forKey:@"taxPrice"];
         //汇率
@@ -319,9 +302,9 @@
             [packDic setObject:@"" forKey:@"subTitle"];
             [packDic setObject:@"出库细码单" forKey:@"typeTitle"];
             [packDic setObject:@{@"label":@"编号",@"value":samodel.itemNo} forKey:@"infoTL"];
-            [packDic setObject:@{@"label":@"客户",@"value":_model.comName} forKey:@"infoTR"];
+            [packDic setObject:@{@"label":@"客户",@"value":_dataModel.customerName} forKey:@"infoTR"];
             [packDic setObject:@{@"label":@"颜色",@"value":samodel.color} forKey:@"infoBL"];
-            [packDic setObject:@{@"label":@"日期",@"value":_model.date} forKey:@"infoBR"];
+            [packDic setObject:@{@"label":@"日期",@"value":_dataModel.deliverDate} forKey:@"infoBR"];
             [packDic setObject:@{@"label":@"",@"value":@""} forKey:@"infoBBL"];
             [packDic setObject:@{@"label":@"",@"value":@""} forKey:@"infoBBR"];
             NSMutableArray *colThArr = [NSMutableArray arrayWithCapacity:0];
@@ -340,12 +323,12 @@
                 }
             }
             NSDictionary *dic1 =  @{
-                                   @"label": @"卷号",
-                                   @"key": @"line",
-                                   @"value":@[a>0?[NSString stringWithFormat:@"%d",a]:@"",b>0?[NSString stringWithFormat:@"%d",b]:@""],
-                                   @"isDefault": @"false",
-                                   @"editable": @"true"
-                                   };
+                                    @"label": @"卷号",
+                                    @"key": @"line",
+                                    @"value":@[a>0?[NSString stringWithFormat:@"%d",a]:@"",b>0?[NSString stringWithFormat:@"%d",b]:@""],
+                                    @"isDefault": @"false",
+                                    @"editable": @"true"
+                                    };
             NSDictionary *dic2 =  @{
                                     @"label": @"缸号",
                                     @"key": @"gang",
@@ -393,49 +376,26 @@
             [samDic setObject:[GlobalMethod dictionaryToJson:packDic] forKey:@"packingList"];
         }
         [details addObject:samDic];
-
+        
     }
     [setDic setObject:details forKey:@"details"];
     [setDic setObject:packingListDetail forKey:@"packingListDetail"];
-    [[HttpClient sharedHttpClient] requestPOST:@"/sell/deliver" Withdict:setDic WithReturnBlock:^(id returnValue) {
-        [HUD show:@"结算完成"];
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"deliverSuccess" object:nil];
-        [self.navigationController popViewControllerAnimated:YES];
-    } andErrorBlock:^(NSString *msg) {
+    [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/sell/%@/deliver",_dataModel.deliverId] paramDic:setDic WithReturnBlock:^(id returnValue) {
+        [HUD show:@"修改成功"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"HistoryChanged" object:nil];
+
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[SaleHistoryController class]]) {
+                SaleHistoryController *A =(SaleHistoryController *)controller;
+                [self.navigationController popToViewController:A animated:YES];
+            }
+        }
         
+    } andErrorBlock:^(NSString *msg) {
+        [HUD show:msg];
     }];
 }
 
-#pragma mark -- 将数组拆分成固定长度
-/**
- *  将数组拆分成固定长度的子数组
- *  @param array 需要拆分的数组
- *  @param subSize 指定长度
- */
-- (NSMutableArray*)splitArray: (NSMutableArray*)array withSubSize : (int)subSize{
-    //  数组将被拆分成指定长度数组的个数
-    unsigned long count = array.count% subSize ==0? (array.count/ subSize) : (array.count/ subSize +1);
-    //  用来保存指定长度数组的可变数组对象
-    NSMutableArray*arr = [[NSMutableArray alloc]init];
-    //利用总个数进行循环，将指定长度的元素加入数组
-    for(int i =0; i < count; i ++) {
-        //数组下标
-        int index =i* subSize;
-        //保存拆分的固定长度的数组元素的可变数组
-        NSMutableArray*arr1= [[NSMutableArray alloc]init];
-        //移除子数组的所有元素
-        [arr1 removeAllObjects];
-        int j = index;
-        //将数组下标乘以1、2、3，得到拆分时数组的最大下标值，但最大不能超过数组的总大小
-        while(j < subSize*(i +1) && j < array.count) {
-            [arr1 addObject:[array objectAtIndex:j]];
-            j +=1;
-        }
-        //将子数组添加到保存子数组的数组中
-        [arr addObject:[arr1 mutableCopy]];
-    }
-    return[arr mutableCopy];
-}
 
 #pragma mark ====== tableviewdelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -493,7 +453,7 @@
         return 50;
     }
     if (indexPath.section ==1) {
-       return 70;
+        return 70;
     }
     return 50;
     
@@ -526,6 +486,7 @@
                 UILabel *memoLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 14, 40, 17) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentLeft andtext:@"备注"];
                 [cell.contentView addSubview:memoLab];
                 _memoTxt = [[UITextView alloc]initWithFrame:CGRectMake(16, 40, 368, 80)];
+                _memoTxt.text = _dataModel.remark;
                 [cell.contentView addSubview:_memoTxt];
             }
             return cell;
@@ -557,7 +518,7 @@
                 cell.lineView.hidden = YES;
             }
         }else{
-           cell.lineView.hidden = NO;
+            cell.lineView.hidden = NO;
         }
         
         return cell;
@@ -571,11 +532,6 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:btnCellid];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.contentView.backgroundColor = UIColorFromRGB(BackColorValue);
-//            UILabel *showLab = [BaseViewFactory labelWithFrame:CGRectMake(253, 0, 180, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentRight andtext:@"开单后打印"];
-//            [cell.contentView addSubview:showLab];
-//            _mprintSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(454, 10, 52, 31)];
-            [cell.contentView addSubview:_mprintSwitch];
-
         }
         return cell;
     }
@@ -611,7 +567,7 @@
     }
     else if (tableView == self.settleTab)
     {
-     //右侧按钮
+        //右侧按钮
         if (indexPath.section == 0)
         {
             if (indexPath.row ==3)
@@ -647,7 +603,6 @@
 }
 
 
-
 #pragma mark ====== 设置显示
 - (void)setShowLab{
     NSArray *arr1 = _dataArr1[1];
@@ -674,25 +629,14 @@
     zjModel.showValue = [NSString stringWithFormat:@"%.2f元",[qtModel.showValue floatValue] +[hjModel.showValue floatValue]];
     //应收赋值
     ysModel.showValue = zjModel.showValue;
-    _model.needAcc = zjModel.showValue;
-
+    //  _model.needAcc = zjModel.showValue;
+    
     //已收赋值
     shouldModel.showValue = ssmodel.showValue;
     //欠款赋值
     qkModel.showValue =  [NSString stringWithFormat:@"%.2f元",[ysModel.showValue floatValue] -[shouldModel.showValue floatValue]];
-    _model.oweAcc = qkModel.showValue;
-//    //输入金额完成
-//    if ([model.title isEqualToString:@"其他费用"]) {
-//        //总计
-//        NSArray *arr = _dataArr1[1];
-//        Settlement *tmodel = arr[2];
-//        tmodel.showValue = [NSString stringWithFormat:@"%.2f元",[model.showValue floatValue] +_model.goofsMoney];
-//        //本单应收
-//        NSArray *arr2 = _dataArr2[0];
-//        Settlement *smodel = arr2[0];
-//        smodel.showValue = [NSString stringWithFormat:@"%.2f元",[model.showValue floatValue] +_model.goofsMoney];
-//        //本单欠款
-//    }
+   // _model.oweAcc = qkModel.showValue;
+   
     dispatch_async(dispatch_get_main_queue(), ^{
         //在主线程刷新
         [self.ListTab reloadData];
@@ -700,7 +644,36 @@
     });
     
 }
-
+#pragma mark -- 将数组拆分成固定长度
+/**
+ *  将数组拆分成固定长度的子数组
+ *  @param array 需要拆分的数组
+ *  @param subSize 指定长度
+ */
+- (NSMutableArray*)splitArray: (NSMutableArray*)array withSubSize : (int)subSize{
+    //  数组将被拆分成指定长度数组的个数
+    unsigned long count = array.count% subSize ==0? (array.count/ subSize) : (array.count/ subSize +1);
+    //  用来保存指定长度数组的可变数组对象
+    NSMutableArray*arr = [[NSMutableArray alloc]init];
+    //利用总个数进行循环，将指定长度的元素加入数组
+    for(int i =0; i < count; i ++) {
+        //数组下标
+        int index =i* subSize;
+        //保存拆分的固定长度的数组元素的可变数组
+        NSMutableArray*arr1= [[NSMutableArray alloc]init];
+        //移除子数组的所有元素
+        [arr1 removeAllObjects];
+        int j = index;
+        //将数组下标乘以1、2、3，得到拆分时数组的最大下标值，但最大不能超过数组的总大小
+        while(j < subSize*(i +1) && j < array.count) {
+            [arr1 addObject:[array objectAtIndex:j]];
+            j +=1;
+        }
+        //将子数组添加到保存子数组的数组中
+        [arr addObject:[arr1 mutableCopy]];
+    }
+    return[arr mutableCopy];
+}
 
 #pragma mark ====== get
 
@@ -712,7 +685,7 @@
         _ListTab.backgroundColor = UIColorFromRGB(BackColorValue);
         _ListTab.separatorStyle = UITableViewCellSeparatorStyleNone;
         _ListTab.bounces = NO;
-
+        
         if (@available(iOS 11.0, *)) {
             _ListTab.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
@@ -746,6 +719,5 @@
     }
     return _choseView;
 }
-
 
 @end

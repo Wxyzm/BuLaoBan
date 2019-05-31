@@ -195,6 +195,9 @@
                 deModel.specification = dic[@"value"]?dic[@"value"]:@"";
             }else if ([dic[@"attributeId"] intValue]==7){
                 //分类
+            }else if ([dic[@"attributeId"] intValue]==21){
+                //供应商
+                deModel.supply = dic[@"value"]?dic[@"value"]:@"";
             }
         }
         _detailView.sampledetail = deModel;

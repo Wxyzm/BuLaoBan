@@ -20,7 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
  克重
  */
 @property (nonatomic, copy) NSString *weight;
-
+/**
+ 供应商
+ */
+@property (nonatomic, copy) NSString *supply;
 /**
  样品标记列表
  */
