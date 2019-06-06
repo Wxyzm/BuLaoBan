@@ -245,7 +245,7 @@
     [_customerBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
     [_saleManBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
     [_customerBtn setTitle:@"选择客户" forState:UIControlStateNormal];
-    [_saleManBtn setTitle:@"选择销售" forState:UIControlStateNormal];
+    [_saleManBtn setTitle:@"选择业务员" forState:UIControlStateNormal];
 
 }
 
@@ -253,9 +253,9 @@
 
 -(void)setStatics:(Statics *)statics{
     _statics = statics;
-    if (statics.sellPrice.count>0) {
+    if (statics.deliverPrice.count>0) {
         CGFloat money = 0.00;
-        for (NSDictionary *dic in statics.sellPrice) {
+        for (NSDictionary *dic in statics.deliverPrice) {
             money+= [dic[@"value"] floatValue];
         }
         _moneyLab.text = [NSString stringWithFormat:@"￥ %.2f",money];
@@ -263,11 +263,41 @@
     }else{
         _moneyLab.text = @"￥ 0.00";
     }
-    _numberLab.text = statics.sellTimes;
+    _numberLab.text = statics.deliverTimes;
     _cusNumberLab.text = statics.customerCount;
     _unitNumberLab.text = statics.sampleCount;
 
 }
+
+/*
+ {
+ code = 200;
+ message = "";
+ statistics =     (
+ {
+ customerCount = 1;
+ deliverNum =             (
+ );
+ deliverPrice =             (
+ {
+ unit = 11;
+ value = 2017;
+ }
+ );
+ deliverTimes = 4;
+ groupNo = 0;
+ noAccountingTimes = 4;
+ profitPrice =             (
+ {
+ unit = 11;
+ value = 2017;
+ }
+ );
+ sampleCount = 5;
+ }
+ );
+ }
+ */
 
 #pragma mark ====== 展示View
 
@@ -295,9 +325,9 @@
         _numberView.hidden = YES;
         _customerView.hidden = YES;
         _saleManView.hidden = NO;
-        _saleManView.frame = CGRectMake(440, 10, 156, 30);
-        _searchBtn.frame = CGRectMake(613, 10, 60, 30);
-        _resetBtn.frame = CGRectMake(689, 10, 60, 30);
+        _saleManView.frame = CGRectMake(440, 10, 170, 30);
+        _searchBtn.frame = CGRectMake(628, 10, 60, 30);
+        _resetBtn.frame = CGRectMake(700, 10, 60, 30);
     }
 }
 
@@ -396,10 +426,10 @@
     if (!_saleManView) {
         _saleManView = [BaseViewFactory viewWithFrame:CGRectZero color:UIColorFromRGB(0xf5f5f5)];
         
-        UILabel *nameLab = [BaseViewFactory labelWithFrame:CGRectMake(0, 0, 30, 30) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:@"销售"];
+        UILabel *nameLab = [BaseViewFactory labelWithFrame:CGRectMake(0, 0, 45, 30) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:@"业务员"];
         [_saleManView addSubview:nameLab];
         
-        _saleManBtn  = [BaseViewFactory ylButtonWithFrame:CGRectMake(36, 0, 120, 30) font:APPFONT13 title:@"" titleColor:UIColorFromRGB(BlackColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
+        _saleManBtn  = [BaseViewFactory ylButtonWithFrame:CGRectMake(51, 0, 120, 30) font:APPFONT13 title:@"" titleColor:UIColorFromRGB(BlackColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
         [_saleManBtn setImage:[UIImage imageNamed:@"down_chose"] forState:UIControlStateNormal];
         _saleManBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
         [_saleManBtn setTitleRect:CGRectMake(10, 0, 94, 30)];
@@ -407,7 +437,7 @@
         _saleManBtn.layer.borderWidth = 1;
         _saleManBtn.layer.borderColor = UIColorFromRGB(LineColorValue).CGColor;
         [_saleManView addSubview:_saleManBtn];
-        [_saleManBtn setTitle:@"选择销售" forState:UIControlStateNormal];
+        [_saleManBtn setTitle:@"选择业务员" forState:UIControlStateNormal];
         [_saleManBtn addTarget:self action:@selector(saleManBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
     }

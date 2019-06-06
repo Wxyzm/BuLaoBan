@@ -34,8 +34,8 @@
         _numberLab.text = @"";
         _unitLab.text = @"";
     }
-    if (customerModel.sellPrice.count>0) {
-        NSDictionary *dic = customerModel.sellNum[0];
+    if (customerModel.deliverPrice.count>0) {
+        NSDictionary *dic = customerModel.deliverPrice[0];
         _moneyLab.text = [NSString stringWithFormat:@"￥ %@",dic[@"value"]];
     }else{
         _moneyLab.text = @"";
@@ -55,8 +55,8 @@
         _numberLab.text = @"";
         _unitLab.text = @"";
     }
-    if (sellerModel.sellPrice.count>0) {
-        NSDictionary *dic = sellerModel.sellNum[0];
+    if (sellerModel.deliverPrice.count>0) {
+        NSDictionary *dic = sellerModel.deliverPrice[0];
         _moneyLab.text = [NSString stringWithFormat:@"￥ %@",dic[@"value"]];
     }else{
         _moneyLab.text = @"";

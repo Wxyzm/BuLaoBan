@@ -28,6 +28,8 @@ typedef void(^SaleSTopViewReturnBlock)(NSInteger tag);
  */
 - (void)setTitle:(NSString *)title withTag:(NSInteger)tag;
 
+- (void)resetAllInfo;
+
 @end
 
 NS_ASSUME_NONNULL_END

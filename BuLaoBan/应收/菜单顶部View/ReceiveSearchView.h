@@ -31,6 +31,10 @@ typedef void(^ReceiveSearchViewBlock)(NSInteger tag,CGRect frame);
  */
 - (void)clearBtnTitleWithTag:(NSInteger)tag;
 
+/**
+ 全部重置
+ */
+- (void)allReload;
 
 @end
 

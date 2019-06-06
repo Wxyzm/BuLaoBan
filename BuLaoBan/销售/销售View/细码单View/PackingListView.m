@@ -321,7 +321,7 @@
     }
     if (indexPath.row ==0) {
         cell.dyelotTxt.text = @"缸号";
-        cell.reelTxt.text = @"卷号";
+        cell.reelTxt.text = @"匹号";
         cell.meetTxt.text = @"米数";
         cell.userInteractionEnabled = NO;
     }else{

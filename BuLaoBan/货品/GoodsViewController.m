@@ -37,12 +37,15 @@
 @implementation GoodsViewController{
     
     NSMutableArray *_dataArr;
+    NSMutableArray *_alldataArr;
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.needHideNavBar = YES;
     _dataArr = [NSMutableArray arrayWithCapacity:0];
+    _alldataArr = [NSMutableArray arrayWithCapacity:0];
     self.page = 1;
     [self initUI];
     self.loadWay = START_LOAD_FIRST;
@@ -99,8 +102,38 @@
         if ([searchtxt isEqualToString:@"detailSearch"]) {
             [self.searchView showView];
         }else{
-            NSDictionary *dic = @{@"2":searchtxt};
-            [weakself topSearchLoadGoodsListWithDic:dic];
+          
+            NSMutableArray *sedataArr = [NSMutableArray arrayWithCapacity:0];
+            NSMutableArray *noArr = [NSMutableArray arrayWithCapacity:0];
+            NSMutableArray *nameArr = [NSMutableArray arrayWithCapacity:0];
+            for (Sample *model in _alldataArr) {
+                model.isSelected = NO;
+                [noArr addObject:model.itemNo];
+                [nameArr addObject:model.name];
+            }
+            for (NSString *nostr in noArr) {
+                if ([nostr containsString:searchtxt]){
+                    NSInteger index = [noArr indexOfObject:nostr];
+                    Sample *model = _alldataArr[index];
+                    if (![sedataArr containsObject:model]) {
+                         [sedataArr addObject:model];
+                    }
+                }
+            }
+            for (NSString *namestr in nameArr) {
+                if ([namestr containsString:searchtxt]){
+                    NSInteger index = [nameArr indexOfObject:namestr];
+                    Sample *model = _alldataArr[index];
+                    if (![sedataArr containsObject:model]) {
+                        [sedataArr addObject:model];
+                    }
+                }
+            }
+            self.loadWay = START_LOAD_FIRST;
+            if (searchtxt.length<=0 ) {
+                [sedataArr addObjectsFromArray:_alldataArr];
+            }
+            [self loadSuccessWithArr:sedataArr];
         }
     };
     self.searchView.returnBlock = ^(NSDictionary * _Nonnull keyDic) {
@@ -128,8 +161,6 @@
     } andErrorBlock:^(NSString *msg) {
         
     }];
-    
-    
 }
 
 #pragma mark ==== 上拉加载下拉刷新
@@ -159,6 +190,7 @@
     [SamplePL Sample_sampleSamplesRegisterWithDic:updic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         NSArray *arr = [Sample mj_objectArrayWithKeyValuesArray:returnValue[@"samples"]];
+        _alldataArr = [Sample mj_objectArrayWithKeyValuesArray:returnValue[@"samples"]];
         [self loadSuccessWithArr:arr];
         [self endRefresh];
     } andErrorBlock:^(NSString *msg) {

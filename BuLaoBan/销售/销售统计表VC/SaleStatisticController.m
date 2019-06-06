@@ -95,6 +95,11 @@
             {
                 _topIndex = tag;
                 //按货品
+                _starTime = @"";
+                _endTime = @"";
+                _comCusModel = nil;
+                _companyUser = nil;
+                [weakself.topView resetAllInfo];
                 [weakself statisticsList];
                 break;
             }
@@ -102,6 +107,11 @@
             {
                  _topIndex = tag;
                  //按客户
+                _starTime = @"";
+                _endTime = @"";
+                _comCusModel = nil;
+                _companyUser = nil;
+                [weakself.topView resetAllInfo];
                 [weakself statisticscustomerList];
                 break;
             }
@@ -109,6 +119,11 @@
             {
                  _topIndex = tag;
                  //按业务员
+                _starTime = @"";
+                _endTime = @"";
+                _comCusModel = nil;
+                _companyUser = nil;
+                [weakself.topView resetAllInfo];
                  [weakself statisticssellerList];
                 break;
             }
@@ -301,7 +316,7 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setObject:user.defutecompanyId forKey:@"companyId"];
  
-    [[HttpClient sharedHttpClient] requestGET:@"/sell/statistics" Withdict:dic WithReturnBlock:^(id returnValue) {
+    [[HttpClient sharedHttpClient] requestGET:@"/sell/deliver/statistics" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         NSArray *arr = [Statics mj_objectArrayWithKeyValuesArray:returnValue[@"statistics"]];
         if (arr.count>0) {
@@ -329,10 +344,10 @@
 
     }
     [HUD showLoading:nil];
-    [[HttpClient sharedHttpClient] requestGET:@"/sell/statistics/sample" Withdict:dic WithReturnBlock:^(id returnValue) {
+    [[HttpClient sharedHttpClient] requestGET:@"/sell/deliver/statistics/sample" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         [HUD cancel];
-        _dataArr1 = [SaleSSample mj_objectArrayWithKeyValuesArray:returnValue[@"sellSamples"]];
+        _dataArr1 = [SaleSSample mj_objectArrayWithKeyValuesArray:returnValue[@"deliverSamples"]];
         if (_dataArr1.count<=0) {
             [HUD show:@"未查询到数据"];
         }
@@ -357,7 +372,7 @@
     }
     [HUD showLoading:nil];
 
-    [[HttpClient sharedHttpClient] requestGET:@"/sell/statistics/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
+    [[HttpClient sharedHttpClient] requestGET:@"/sell/deliver/statistics/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
          [HUD cancel];
         NSLog(@"%@",returnValue);
         _dataArr2 = [SaleSCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"sellCustomers"]];
@@ -388,7 +403,7 @@
     }
     [HUD showLoading:nil];
 
-    [[HttpClient sharedHttpClient] requestGET:@"/sell/statistics/seller" Withdict:dic WithReturnBlock:^(id returnValue) {
+    [[HttpClient sharedHttpClient] requestGET:@"/sell/deliver/statistics/seller" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         [HUD cancel];
 

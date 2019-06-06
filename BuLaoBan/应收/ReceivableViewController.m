@@ -102,12 +102,17 @@
      //菜单点击
     self.MenueView.returnBlock = ^(NSInteger tag) {
         _selectedType = tag;
+        [weakself.searchView allReload];
+        _starTime = @"";
+        _endTime = @"";
+        _customer= @"";
         [weakself setToptitle];
         [weakself loadDate];
     };
     self.customerSelecteView.returnBlock = ^(ComCustomer * _Nonnull comCusModel) {
         _customer = comCusModel.name;
         [weakself.searchView setTitle:comCusModel.name withTag:2];
+        [weakself.searchView setTitle:comCusModel.salesmanName withTag:3];
 
     };
     
@@ -308,7 +313,13 @@
     [[HttpClient sharedHttpClient] requestGET:@"contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         [HUD cancel];
-        NSMutableArray *dataArr = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
+        NSMutableArray *dataArr = [NSMutableArray arrayWithCapacity:0];
+        NSArray *arr = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
+        for (ComCustomer *model in arr) {
+            if (![dataArr containsObject:model]&&[model.nature intValue]==2) {
+                [dataArr addObject:model];
+            }
+        }
         //tag : 1选择员工
         if (tag ==1) {
             self.customerSelecteView.SelectYype =1;

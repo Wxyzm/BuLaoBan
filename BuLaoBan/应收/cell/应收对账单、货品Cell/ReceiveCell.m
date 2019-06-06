@@ -94,7 +94,12 @@
         default:
             break;
     }
-    NSString *orderDate =Items.orderDate.length>0?Items.orderDate:@"";
+    NSString *orderDate;
+    if ([Items.orderDate isEqualToString:@"1970-01-01"]) {
+        orderDate = @"";
+    }else{
+       orderDate  =Items.orderDate.length>0?Items.orderDate:@"";
+    }
     NSString *orderNo =Items.orderNo.length>0?Items.orderNo:@"";
     NSString *itemNo =Items.itemNo.length>0?Items.itemNo:@"";
     NSString *name =Items.name.length>0?Items.name:@"";

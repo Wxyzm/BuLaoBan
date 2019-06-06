@@ -127,7 +127,8 @@
         if (_SearchStr.length<=0) {
             [weakself.sampleSearchResultView dismiss];
         }else{
-            [weakself loadGoodsList];
+            NSDictionary *dic =@{@"1":searchTxt};
+            [weakself topSearchLoadGoodsListWithDic:dic];
         }
     };
     //选择商品
@@ -321,7 +322,13 @@
                           };
     [[HttpClient sharedHttpClient] requestGET:@"contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
-        NSMutableArray *dataArr = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
+        NSMutableArray *dataArr = [NSMutableArray arrayWithCapacity:0];
+        NSArray *arr = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
+        for (ComCustomer *model in arr) {
+            if ([model.nature intValue]==2) {
+                [dataArr addObject:model];
+            }
+        }
         self.customerSelecteView.dataArr = dataArr;
         [self.customerSelecteView showView];
     } andErrorBlock:^(NSString *msg) {
@@ -345,6 +352,28 @@
     } andErrorBlock:^(NSString *msg) {
     }];
 }
+
+#pragma mark ==== 高级搜索获取货品列表
+
+- (void)topSearchLoadGoodsListWithDic:(NSDictionary *)keyDic{
+    User *user = [[UserPL shareManager] getLoginUser];
+    self.loadWay = START_LOAD_FIRST;
+    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+                          @"pageSize":@"5000",
+                          @"pageNo":@"1",
+                          @"orderByType":@"2",
+                          @"searchMap":keyDic
+                          };
+    [[HttpClient sharedHttpClient] requestPOST:@"/samples/search" Withdict:dic WithReturnBlock:^(id returnValue) {
+        NSMutableArray *reArr = [Sample mj_objectArrayWithKeyValuesArray:returnValue[@"samples"]];
+        self.sampleSearchResultView.dataArr = reArr;
+        [self.sampleSearchResultView showinView:self.view];
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+
+
 #pragma mark ====== 获取仓库列表
 - (void)loadWarehousesList{
     User *user = [[UserPL shareManager] getLoginUser];

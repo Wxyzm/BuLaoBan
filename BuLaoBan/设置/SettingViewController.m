@@ -135,10 +135,41 @@
 - (void)rightBtnGoodsBtnClick{
     if (_selectIndex ==0) {
         //邀请员工
-        [self.invitationView showView];
+        [self judgeComIsPayed];
     }
     
 }
+
+
+
+#pragma mark ========= 判断公司是否是付费公司
+- (void)judgeComIsPayed{
+    User *user = [[UserPL shareManager] getLoginUser];
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
+        NSString *payStatus = returnValue[@"company"][@"payStatus"];
+        if ([payStatus intValue] == 0) {
+            [self showmessage];
+            return ;
+        }
+        [self.invitationView showView];
+
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+
+- (void)showmessage{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"抱歉，邀请员工需要注册为付费用户" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    }];
+    
+    [alert addAction:action];
+    UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+    popPresenter.sourceView = self.view;
+    popPresenter.sourceRect = self.view.bounds;
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark ====  获取员工列表
 
 - (void)loadcompanysUsersList{

@@ -50,6 +50,7 @@
     weakself.receView.returnBlock = ^(NSInteger tag) {
         if (tag ==0||tag ==2) {
             //关闭
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"accMoneySuccess" object:nil];
             [weakself dismiss];
         }else{
             //选择账户
@@ -116,6 +117,7 @@
     _commodel = commodel;
     //收款view赋值
     self.receView.commodel = commodel;
+    self.receView.account = nil;
     self.editView.comId = _commodel.comId;
     self.editView.companyCurrencyId = _commodel.companyCurrencyId;
 }

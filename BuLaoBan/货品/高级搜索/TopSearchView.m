@@ -174,7 +174,7 @@
         [setDic setValue:_numberTxt.text forKey:@"1"];
     }
     if (_nameTxt.text.length>0) {
-        [setDic setValue:_numberTxt.text forKey:@"2"];
+        [setDic setValue:_nameTxt.text forKey:@"2"];
     }
     if (_copTxt.text.length>0) {
         [setDic setValue:_copTxt.text forKey:@"3"];
@@ -190,6 +190,9 @@
     }
     if (_weightMaxTxt.text.length>0) {
         [setDic setValue:_weightMaxTxt.text forKey:@"weightMax"];
+    }
+    if (_specTxt.text.length>0) {
+        [setDic setValue:_specTxt.text forKey:@"6"];
     }
     if (_isHaveIma==1) {
         [setDic setValue:@"1" forKey:@"havePics"];

@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;View/&#x7ec6;&#x7801;&#x5355;View/PackingListView.m"
-            timestampString = "577876594.824134"
+            timestampString = "581419261.034761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "239"
@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.5574991"
+            timestampString = "581069318.048619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "570"
@@ -68,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.5577869"
+            timestampString = "581069318.048702"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "678"
@@ -116,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.5579799"
+            timestampString = "581069318.04875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "680"
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
-            timestampString = "580715542.367878"
+            timestampString = "581419261.034973"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "-changeBtnGoodsBtnClick"
             landmarkType = "7">
          </BreakpointContent>
@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
-            timestampString = "580715542.367937"
+            timestampString = "581419261.035354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
             landmarkName = "-refreshdetail:"
             landmarkType = "7">
             <Locations>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
-            timestampString = "580715542.367978"
+            timestampString = "581419261.035596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "-refreshList:"
             landmarkType = "7">
          </BreakpointContent>
@@ -212,7 +212,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/&#x65b0;&#x589e;&#x8d27;&#x54c1;/AddGoodsView.m"
-            timestampString = "580715542.368017"
+            timestampString = "581059510.745505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "312"
@@ -228,7 +228,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/&#x65b0;&#x589e;&#x8d27;&#x54c1;/AddGoodsView.m"
-            timestampString = "580715542.368333"
+            timestampString = "581059510.745814"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "375"
@@ -244,7 +244,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/&#x65b0;&#x589e;&#x8d27;&#x54c1;/AddGoodsView.m"
-            timestampString = "580715542.368538"
+            timestampString = "581059510.745998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "251"
@@ -260,7 +260,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/&#x65b0;&#x589e;&#x8d27;&#x54c1;/AddGoodsView.m"
-            timestampString = "580715542.368735"
+            timestampString = "581059510.746173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "220"
@@ -276,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
-            timestampString = "580715542.368935"
+            timestampString = "581419261.035911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "-initUI"
             landmarkType = "7">
          </BreakpointContent>
@@ -292,28 +292,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/view/GoodsSearchView.m"
-            timestampString = "576320073.663476"
+            timestampString = "581419261.036144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
             endingLineNumber = "50"
             landmarkName = "-seacrchBtnClick"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
-            timestampString = "580715542.369009"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "-topSearchLoadGoodsListWithDic:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -340,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
-            timestampString = "580715542.369072"
+            timestampString = "581419261.036213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "-loadSuccessWithArr:"
             landmarkType = "7">
          </BreakpointContent>
@@ -356,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
-            timestampString = "580715542.369109"
+            timestampString = "581419261.036447"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "-topSearchLoadGoodsListWithDic:"
             landmarkType = "7">
             <Locations>
@@ -372,11 +356,11 @@
                   moduleName = "BuLaoBan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E8%B4%A7%E5%93%81/GoodsViewController.m"
-                  timestampString = "576319628.93129"
+                  timestampString = "581413122.511755"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "125"
-                  endingLineNumber = "125"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
                   offsetFromSymbolStart = "413">
                </Location>
                <Location
@@ -387,11 +371,11 @@
                   moduleName = "BuLaoBan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E8%B4%A7%E5%93%81/GoodsViewController.m"
-                  timestampString = "576319628.933443"
+                  timestampString = "581413122.513485"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "125"
-                  endingLineNumber = "125"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
                   offsetFromSymbolStart = "12">
                </Location>
             </Locations>
@@ -404,11 +388,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
-            timestampString = "578645471.567178"
+            timestampString = "581419261.0366811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
             landmarkName = "-statisticsList"
             landmarkType = "7">
          </BreakpointContent>
@@ -420,27 +404,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
-            timestampString = "578645471.567409"
+            timestampString = "581419261.036728"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
-            landmarkName = "-statisticssellerList"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
-            timestampString = "578645471.5675499"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
+            startingLineNumber = "373"
+            endingLineNumber = "373"
             landmarkName = "-statisticscustomerList"
             landmarkType = "7">
          </BreakpointContent>
@@ -452,7 +420,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
-            timestampString = "578645471.56761"
+            timestampString = "581419261.036768"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
@@ -468,11 +436,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.118639"
+            timestampString = "581419261.036806"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "-setBtnClick"
             landmarkType = "7">
          </BreakpointContent>
@@ -490,22 +458,6 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "-setBillDic:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x5e94;&#x6536;/ReceivableViewController.m"
-            timestampString = "580463864.678124"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "-loadBillListFromBill"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -708,11 +660,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
-            timestampString = "580715542.3695199"
+            timestampString = "581419261.037038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "-loadGoodsDetailWithSampleId:"
             landmarkType = "7">
          </BreakpointContent>
@@ -724,7 +676,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.559379"
+            timestampString = "581069318.049269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "280"
@@ -740,11 +692,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.119289"
+            timestampString = "581419261.037294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "-reloadDatasList"
             landmarkType = "7">
          </BreakpointContent>
@@ -756,11 +708,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.119344"
+            timestampString = "581419261.037336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "-reloadDatasList"
             landmarkType = "7">
          </BreakpointContent>
@@ -788,7 +740,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.559664"
+            timestampString = "581069318.049399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "400"
@@ -836,7 +788,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.5598691"
+            timestampString = "581069318.049437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "315"
@@ -900,7 +852,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x5386;&#x53f2;VC/SaleHistoryController.m"
-            timestampString = "580636011.1200989"
+            timestampString = "581068849.723804"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "204"
@@ -996,11 +948,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x5ba2;&#x6237;/CustomerViewController.m"
-            timestampString = "577875497.460498"
+            timestampString = "581419261.037541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "-loadCustomerDetailWithCustomereId:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1012,11 +964,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x5ba2;&#x6237;/&#x6536;&#x6b3e;/ReceivablesView.m"
-            timestampString = "577876594.825482"
+            timestampString = "581069318.049585"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "-saveAllInfo"
             landmarkType = "7">
             <Locations>
@@ -1059,28 +1011,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x5ba2;&#x6237;/&#x6536;&#x6b3e;/ReceivablesView.m"
-            timestampString = "577876594.825714"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-setCommodel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x5ba2;&#x6237;/CustomerViewController.m"
-            timestampString = "577875497.4610471"
+            timestampString = "581419261.037806"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "-changeParticiWithID:"
             landmarkType = "7">
             <Locations>
@@ -1220,11 +1156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x5ba2;&#x6237;/&#x6536;&#x6b3e;/ReceiveBaseView.m"
-            timestampString = "577096202.874969"
+            timestampString = "581069318.049706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "-loadComAccountList"
             landmarkType = "7">
          </BreakpointContent>
@@ -1332,7 +1268,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.560735"
+            timestampString = "581069318.0497921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "589"
@@ -1348,7 +1284,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.560936"
+            timestampString = "581069318.049832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "641"
@@ -1364,7 +1300,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.5611219"
+            timestampString = "581069318.049868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "498"
@@ -1380,7 +1316,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x7ed3;&#x7b97;VC/SettlementViewController.m"
-            timestampString = "580707122.561306"
+            timestampString = "581069318.049904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "519"
@@ -1396,11 +1332,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.121828"
+            timestampString = "581419261.0382479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "566"
-            endingLineNumber = "566"
+            startingLineNumber = "595"
+            endingLineNumber = "595"
             landmarkName = "-putOrders"
             landmarkType = "7">
          </BreakpointContent>
@@ -1412,11 +1348,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.121881"
+            timestampString = "581419261.038289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "568"
-            endingLineNumber = "568"
+            startingLineNumber = "597"
+            endingLineNumber = "597"
             landmarkName = "-putOrders"
             landmarkType = "7">
          </BreakpointContent>
@@ -1428,11 +1364,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.121927"
+            timestampString = "581419261.038325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "552"
-            endingLineNumber = "552"
+            startingLineNumber = "581"
+            endingLineNumber = "581"
             landmarkName = "-putOrders"
             landmarkType = "7">
          </BreakpointContent>
@@ -1444,11 +1380,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.121971"
+            timestampString = "581419261.038359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "556"
-            endingLineNumber = "556"
+            startingLineNumber = "585"
+            endingLineNumber = "585"
             landmarkName = "-putOrders"
             landmarkType = "7">
          </BreakpointContent>
@@ -1460,11 +1396,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.122014"
+            timestampString = "581419261.038393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "551"
-            endingLineNumber = "551"
+            startingLineNumber = "580"
+            endingLineNumber = "580"
             landmarkName = "-putOrders"
             landmarkType = "7">
          </BreakpointContent>
@@ -1508,11 +1444,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.122111"
+            timestampString = "581419261.0384721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "589"
-            endingLineNumber = "589"
+            startingLineNumber = "618"
+            endingLineNumber = "618"
             landmarkName = "-putOrders"
             landmarkType = "7">
          </BreakpointContent>
@@ -1540,11 +1476,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/MineInfoViewController.m"
-            timestampString = "580463864.680438"
+            timestampString = "581069318.050195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "-loadWXAccountBind"
             landmarkType = "7">
          </BreakpointContent>
@@ -1620,11 +1556,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.15175"
+            timestampString = "581419261.038594"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "-userGroupBtnClick"
             landmarkType = "7">
          </BreakpointContent>
@@ -1636,11 +1572,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.151991"
+            timestampString = "581419261.0386339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "-userGroupBtnClick"
             landmarkType = "7">
          </BreakpointContent>
@@ -1652,11 +1588,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/SettingViewController.m"
-            timestampString = "580463864.680768"
+            timestampString = "581419261.038671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "-loadcompanysUsersList"
             landmarkType = "7">
          </BreakpointContent>
@@ -1668,55 +1604,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.152231"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
-            landmarkName = "-setModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.152455"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "-changeRole"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.152666"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "-changeGroup"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.152867"
+            timestampString = "581419261.038707"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "234"
@@ -1732,27 +1620,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.153075"
+            timestampString = "581419261.0387419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "-changeRole"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.153277"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "-changeGroup"
             landmarkType = "7">
          </BreakpointContent>
@@ -1764,11 +1636,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.1534801"
+            timestampString = "581419261.038776"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "-changeGroup"
             landmarkType = "7">
          </BreakpointContent>
@@ -1780,11 +1652,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.153687"
+            timestampString = "581419261.0388089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-changeGroup"
             landmarkType = "7">
          </BreakpointContent>
@@ -1796,11 +1668,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.153893"
+            timestampString = "581419261.038841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "-changeGroup"
             landmarkType = "7">
             <Locations>
@@ -1844,11 +1716,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.154139"
+            timestampString = "581419261.038874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-deleteStaff"
             landmarkType = "7">
          </BreakpointContent>
@@ -1860,11 +1732,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
-            timestampString = "578041286.154451"
+            timestampString = "581419261.038906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-deleteStaff"
             landmarkType = "7">
          </BreakpointContent>
@@ -1891,44 +1763,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x8d27;&#x54c1;/&#x9ad8;&#x7ea7;&#x641c;&#x7d22;/TopSearchView.m"
-            timestampString = "578041286.154771"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "-searchBtnClick"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x8d27;&#x54c1;/&#x9ad8;&#x7ea7;&#x641c;&#x7d22;/TopSearchView.m"
-            timestampString = "578041286.1548131"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "-searchBtnClick"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
-            timestampString = "578645471.568863"
+            timestampString = "581419261.0389659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "-loadcompanysUsersList"
             landmarkType = "7">
             <Locations>
@@ -1972,107 +1812,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
-            timestampString = "578645471.568905"
+            timestampString = "581419261.039005"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
-            landmarkName = "-statisticsList"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SaleStatisticController statisticsList]"
-                  moduleName = "BuLaoBan"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E9%94%80%E5%94%AE/%E9%94%80%E5%94%AE%E7%BB%9F%E8%AE%A1%E8%A1%A8VC/SaleStatisticController.m"
-                  timestampString = "578037139.7901011"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "329"
-                  endingLineNumber = "329"
-                  offsetFromSymbolStart = "903">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41-[SaleStatisticController statisticsList]_block_invoke"
-                  moduleName = "BuLaoBan"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E9%94%80%E5%94%AE/%E9%94%80%E5%94%AE%E7%BB%9F%E8%AE%A1%E8%A1%A8VC/SaleStatisticController.m"
-                  timestampString = "578037139.791602"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "329"
-                  endingLineNumber = "329"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
-            timestampString = "578645471.568941"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "-getSalestatistics"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SaleStatisticController getSalestatistics]"
-                  moduleName = "BuLaoBan"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E9%94%80%E5%94%AE/%E9%94%80%E5%94%AE%E7%BB%9F%E8%AE%A1%E8%A1%A8VC/SaleStatisticController.m"
-                  timestampString = "578037139.795192"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "301"
-                  endingLineNumber = "301"
-                  offsetFromSymbolStart = "256">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__44-[SaleStatisticController getSalestatistics]_block_invoke"
-                  moduleName = "BuLaoBan"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/%E9%94%80%E5%94%AE/%E9%94%80%E5%94%AE%E7%BB%9F%E8%AE%A1%E8%A1%A8VC/SaleStatisticController.m"
-                  timestampString = "578037139.796703"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "302"
-                  endingLineNumber = "302"
-                  offsetFromSymbolStart = "54">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
-            timestampString = "578645471.568976"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "-initUI"
             landmarkType = "7">
          </BreakpointContent>
@@ -2084,7 +1828,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/View/SaleSTopView.m"
-            timestampString = "578037277.428895"
+            timestampString = "581419261.0390429"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "168"
@@ -2100,7 +1844,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/MineInfoViewController.m"
-            timestampString = "580463864.681249"
+            timestampString = "581069318.0506279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -2148,7 +1892,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/MineInfoViewController.m"
-            timestampString = "580463864.6814899"
+            timestampString = "581069318.050663"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
@@ -2196,11 +1940,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/SettingViewController.m"
-            timestampString = "580463864.681706"
+            timestampString = "581419261.039121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "-setViewShowandHidden"
             landmarkType = "7">
          </BreakpointContent>
@@ -2212,11 +1956,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/SettingViewController.m"
-            timestampString = "580463864.681754"
+            timestampString = "581419261.039157"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "-getComSetting"
             landmarkType = "7">
          </BreakpointContent>
@@ -2244,11 +1988,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/SettingViewController.m"
-            timestampString = "580463864.6818579"
+            timestampString = "581419261.039214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "-setRightbtnTitle"
             landmarkType = "7">
          </BreakpointContent>
@@ -2356,11 +2100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.122907"
+            timestampString = "581419261.039332"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "-loadWarehousesList"
             landmarkType = "7">
          </BreakpointContent>
@@ -2372,11 +2116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.122987"
+            timestampString = "581419261.039369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "-getComSetting"
             landmarkType = "7">
          </BreakpointContent>
@@ -2388,7 +2132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/MineInfoViewController.m"
-            timestampString = "580463864.682084"
+            timestampString = "581069318.050867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
@@ -2404,11 +2148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/GoodsViewController.m"
-            timestampString = "580715542.371208"
+            timestampString = "581419261.039428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-loadGoodsDetailWithSampleId:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2420,11 +2164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
-            timestampString = "580636011.123088"
+            timestampString = "581419261.039664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "667"
-            endingLineNumber = "667"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
             landmarkName = "-initDatasWithdetailModel:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2436,7 +2180,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x5386;&#x53f2;VC/SaleHistoryController.m"
-            timestampString = "580636011.123142"
+            timestampString = "581068849.728001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "255"
@@ -2532,28 +2276,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x5e94;&#x6536;/ReceivableViewController.m"
-            timestampString = "580701841.788414"
+            timestampString = "581069318.051031"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "-getStatisticeListFromCustomer"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BuLaoBan/&#x5e94;&#x6536;/ReceivableViewController.m"
-            timestampString = "580701852.566004"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
-            landmarkName = "-loadBillListFromGoods"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2576,7 +2304,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/PL/&#x767b;&#x5f55;&#x6ce8;&#x518c;/UserPL.m"
@@ -2589,14 +2317,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[UserPL setComAttribute:]"
                   moduleName = "BuLaoBan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/PL/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/UserPL.m"
-                  timestampString = "580723106.500398"
+                  timestampString = "581059621.004364"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "240"
@@ -2604,14 +2332,14 @@
                   offsetFromSymbolStart = "153">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__26-[UserPL setComAttribute:]_block_invoke"
                   moduleName = "BuLaoBan"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/souxiuyun/%E9%A1%B9%E7%9B%AE/BuLaoBan/BuLaoBan/PL/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/UserPL.m"
-                  timestampString = "580723106.50209"
+                  timestampString = "581059621.0058579"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "241"
@@ -2628,7 +2356,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/AppDelegate.m"
-            timestampString = "580715542.3715301"
+            timestampString = "581059620.7654639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -2640,7 +2368,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/PL/&#x767b;&#x5f55;&#x6ce8;&#x518c;/UserPL.m"
@@ -2660,7 +2388,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/&#x65b0;&#x589e;&#x8d27;&#x54c1;/AddGoodsView.m"
-            timestampString = "580715542.371601"
+            timestampString = "581059510.7472399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "182"
@@ -2676,12 +2404,236 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BuLaoBan/&#x8d27;&#x54c1;/&#x65b0;&#x589e;&#x8d27;&#x54c1;/AddGoodsView.m"
-            timestampString = "580715542.3718261"
+            timestampString = "581059510.747427"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "346"
             endingLineNumber = "346"
             landmarkName = "-changeSampleWithPicArr:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x9500;&#x552e;/SaleViewController.m"
+            timestampString = "581419261.039975"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
+            landmarkName = "-loadCustomerList"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x5ba2;&#x6237;/CustomerViewController.m"
+            timestampString = "581419261.040019"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "-loadCustomerList"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x5e94;&#x6536;/ReceivableViewController.m"
+            timestampString = "581069318.0512559"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "-loadBillListFromBill"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x8d27;&#x54c1;/&#x9ad8;&#x7ea7;&#x641c;&#x7d22;/TopSearchView.m"
+            timestampString = "581419261.040244"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-searchBtnClick"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x5e94;&#x6536;/cell/&#x5e94;&#x6536;&#x5bf9;&#x8d26;&#x5355;&#x3001;&#x5355;Cell/BillCell.m"
+            timestampString = "581419261.040289"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-setItems:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x5e94;&#x6536;/ReceivableViewController.m"
+            timestampString = "581414585.080036"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "430"
+            endingLineNumber = "430"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x5e94;&#x6536;/ReceivableViewController.m"
+            timestampString = "581414602.975868"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "463"
+            endingLineNumber = "463"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
+            timestampString = "581419261.0403709"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "-setModel:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x8bbe;&#x7f6e;/&#x5458;&#x5de5;&#x7ba1;&#x7406;View/StaffOperaView.m"
+            timestampString = "581419261.040409"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "-roleBtnClick"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/PL/&#x767b;&#x5f55;&#x6ce8;&#x518c;/UserPL.m"
+            timestampString = "581417197.574679"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "-userAccountGetComIdAndComNameWithReturnBlock:andErrorBlock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
+            timestampString = "581419261.0404691"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
+            landmarkName = "-statisticssellerList"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
+            timestampString = "581419261.040511"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
+            landmarkName = "-getSalestatistics"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/SaleStatisticController.m"
+            timestampString = "581419261.04055"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
+            landmarkName = "-getSalestatistics"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BuLaoBan/&#x9500;&#x552e;/&#x9500;&#x552e;&#x7edf;&#x8ba1;&#x8868;VC/cell/&#x6309;&#x8d27;&#x54c1;/SaleSGoodsCell.m"
+            timestampString = "581419261.040589"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-setSampleModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

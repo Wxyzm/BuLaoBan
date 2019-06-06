@@ -32,7 +32,7 @@
     BOOL _isShow;
     NSDictionary *_roleDic;
     NSDictionary *_groupDic;
-
+    UIButton *_deleteBtn;
     
 }
 
@@ -97,9 +97,9 @@
         UIView *line = [BaseViewFactory viewWithFrame:CGRectMake(20, 88+44*i-0.5, 580, 1) color:UIColorFromRGB(LineColorValue)];
         [self.sideView addSubview:line];
     }
-    UIButton *deleteBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(270, 230, 60, 20) font:APPFONT14 title:@"删除员工" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
-    [self.sideView addSubview:deleteBtn];
-    [deleteBtn addTarget:self action:@selector(deleteBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    _deleteBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(270, 230, 60, 20) font:APPFONT14 title:@"删除员工" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
+    [self.sideView addSubview:_deleteBtn];
+    [_deleteBtn addTarget:self action:@selector(deleteBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *setBtn = [BaseViewFactory buttonWithFrame:CGRectMake(150, 280, 300, 40) font:APPFONT14 title:@"保存" titleColor:UIColorFromRGB(WhiteColorValue) backColor:UIColorFromRGB(BlueColorValue)];
     setBtn.layer.cornerRadius = 20;
@@ -123,6 +123,11 @@
 
 //员工角色
 - (void)roleBtnClick{
+    if ([_model.roleId intValue] == 1) {
+        //所有者
+        [HUD show:@"所有者不能修改自己身份"];
+        return;
+    }
     _type = 1;
     User *user = [[UserPL shareManager] getLoginUser];
     [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/roles",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
@@ -248,8 +253,16 @@
     if (model.groups.count>0) {
         NSDictionary *dic = model.groups[0];
         [_userGroupBtn setTitle:dic[@"name"] forState:UIControlStateNormal];
-
     }
+    //roleId == 1所有者
+    if ([model.roleId intValue] == 1) {
+        _deleteBtn.hidden = YES;
+    }else{
+        _deleteBtn.hidden = NO;
+    }
+    
+    
+    
 }
 
 

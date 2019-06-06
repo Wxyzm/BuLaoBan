@@ -20,12 +20,18 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  总销售单数
  */
-@property (nonatomic,copy) NSString *sellTimes;
+@property (nonatomic,copy) NSString *deliverTimes;
 
 /**
 销售单品数
  */
 @property (nonatomic,copy) NSString *sampleCount;
+
+
+/**
+ 未核算数
+ */
+@property (nonatomic,copy) NSString *noAccountingTimes;
 
 /**
  客户数
@@ -33,19 +39,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString  *customerCount;
 
 /**
- 销货金额
+ 销售金额
  */
 @property (nonatomic,strong) NSMutableArray *deliverPrice;
 
 /**
- 销货金额
+ 利润
  */
-@property (nonatomic,strong) NSMutableArray *sellPrice;
+@property (nonatomic,strong) NSMutableArray *profitPrice;
 
-/**
- 销售数量
- */
-@property (nonatomic,strong) NSMutableArray *sellNum;
+///**
+// 销售数量
+// */
+//@property (nonatomic,strong) NSMutableArray *sellNum;
 
 
 @end

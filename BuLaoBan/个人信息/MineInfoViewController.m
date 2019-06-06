@@ -130,10 +130,17 @@
     }
     [[HttpClient sharedHttpClient] requestPUTWithURLStr:@"/user/account/password" paramDic:dic WithReturnBlock:^(id returnValue) {
         [HUD show:@"密码修改成功"];
+        [self performSelector:@selector(logOut) withObject:nil afterDelay:1];
     } andErrorBlock:^(NSString *msg) {
         
     }];
 }
+
+- (void)logOut{
+    [[UserPL shareManager] logout];
+}
+
+
 #pragma mark ====== 获取微信账号绑定信息
 - (void)loadWXAccountBind{
     [[HttpClient sharedHttpClient] requestGET:@"/user/account/platform" Withdict:nil WithReturnBlock:^(id returnValue) {

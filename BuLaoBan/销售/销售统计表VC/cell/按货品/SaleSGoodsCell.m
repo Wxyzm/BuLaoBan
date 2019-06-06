@@ -40,8 +40,8 @@
     }
     
     _customerNumLab.text = @"1";
-    if (sampleModel.sellPrice.count>0) {
-        NSDictionary *dic = sampleModel.sellNum[0];
+    if (sampleModel.deliverPrice.count>0) {
+        NSDictionary *dic = sampleModel.deliverPrice[0];
         _moneyLab.text = [NSString stringWithFormat:@"￥ %@",dic[@"value"]];
     }else{
         _moneyLab.text = @"";

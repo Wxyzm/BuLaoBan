@@ -109,7 +109,6 @@
 #pragma mark ========= 按钮点击
 //保存
 - (void)setBtnCLick{
- //   [self changeRole];
     if (_phoneTxt.text.length<=0) {
         [HUD show:@"输入邀请员工手机号"];
         return;
@@ -134,6 +133,9 @@
     
 }
 
+
+
+
 #pragma - mark ====== netwotk
 
 //员工角色
@@ -143,6 +145,11 @@
     [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/roles",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         _roleArr = returnValue[@"roles"];
+        for (NSDictionary *obj in _roleArr.reverseObjectEnumerator) {
+            if ([obj[@"id"] intValue] == 1) {
+                [_roleArr removeObject:obj];
+            }
+        }
         [self.ListTab reloadData];
         _sideView.hidden = YES;
         self.ListTab.hidden = NO;

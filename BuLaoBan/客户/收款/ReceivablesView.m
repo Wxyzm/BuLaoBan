@@ -38,11 +38,12 @@
     _commodel = commodel;
     _nameLab.text = commodel.name;
     _arreLab.text = commodel.receivableAmount;
+    _MoneyTxt.text = @"";
 }
 
 -(void)setAccount:(Accounts *)account{
     _account = account;
-    [_accountBtn setTitle:account.accountName forState:UIControlStateNormal];    
+    [_accountBtn setTitle:account.accountName?account.accountName:@"" forState:UIControlStateNormal];    
 }
 
 #pragma mark ==== btnclick

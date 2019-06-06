@@ -245,7 +245,7 @@
     //剩余应收款 就是欠款金额
     [setDic setObject:[_model.oweAcc stringByReplacingOccurrencesOfString:@"元" withString:@""] forKey:@"receivablePrice"];
     //订单类型【0:剪样 1:大货】
-    [setDic setObject:_model.type?_model.type:@"1" forKey:@"type"];
+    [setDic setObject:_model.type?_model.type:@"0" forKey:@"type"];
     //计税类型【0:不计税 1:应税内含 2:应税外加】
     [setDic setObject:@"0" forKey:@"taxType"];
     //付款类型

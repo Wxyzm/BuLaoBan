@@ -18,6 +18,7 @@
 @implementation CustomerAddView{
     
     BOOL _isShow;
+    BOOL    isHaveDian;
 }
 
 -(instancetype)init{
@@ -27,6 +28,7 @@
         self.backgroundColor = [UIColor clearColor];
         _parArr = [NSMutableArray arrayWithCapacity:0];
         _comArr = [NSMutableArray arrayWithCapacity:0];
+        isHaveDian = NO;
         [self setUP];
     }
     return self;
@@ -322,7 +324,6 @@
         cell.participants = _parArr[indexPath.row];
     }
     return cell;
-
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -362,6 +363,83 @@
         }
     }
     return _ListTab;  
+}
+
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (!_moneyTxt.isFirstResponder) {
+        return YES;
+    }
+    
+    if ([textField.text rangeOfString:@"."].location == NSNotFound)
+    {
+        isHaveDian = NO;
+    }
+    if ([string length] > 0)
+    {
+        unichar single = [string characterAtIndex:0];//当前输入的字符
+        if ((single >= '0' && single <= '9') || single == '.')//数据格式正确
+        {
+            //首字母不能为0和小数点
+            if([textField.text length] == 0)
+            {
+                
+                if(single == '.')
+                {
+                    //  [self showMyMessage:@"亲，第一个数字不能为小数点!"];
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+            }
+            //输入的字符是否是小数点
+            if (single == '.')
+            {
+                
+                if(!isHaveDian)//text中还没有小数点
+                {
+                    
+                    isHaveDian = YES;
+                    return YES;
+                    
+                }else{
+                    //   [self showMyMessage:@"亲，您已经输入过小数点了!"];
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+                
+            }else{
+                if (isHaveDian) {//存在小数点
+                    
+                    //判断小数点的位数
+                    NSRange ran = [textField.text rangeOfString:@"."];
+                    if (range.location - ran.location <= 2) {
+                        return YES;
+                    }else{
+                        //    [self showMyMessage:@"亲，您最多输入两位小数!"];
+                        return NO;
+                    }
+                    
+                }else{
+                    return YES;
+                }
+            }
+        }else{//输入的数据格式不正确
+            [textField.text stringByReplacingCharactersInRange:range withString:@""];
+            return NO;
+            
+        }
+    }
+    
+    else
+        
+    {
+        return YES;
+        
+    }
+   
+    
+    
 }
 
 @end

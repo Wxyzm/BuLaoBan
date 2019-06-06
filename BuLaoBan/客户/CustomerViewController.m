@@ -49,6 +49,7 @@
     _dataArr = [NSMutableArray arrayWithCapacity:0];
     [self initUI];
     [self loadCustomerList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadDetail) name:@"accMoneySuccess" object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -132,6 +133,16 @@
     };
 }
 
+
+- (void)loadDetail{
+    for (ComCustomer *customer in _dataArr) {
+        if (customer.isSelected == YES) {
+            [self loadCustomerDetailWithCustomereId:customer.comId];
+
+        }
+    }
+}
+
 #pragma mark ====== 获取列表
 - (void)loadCustomerList{
     User *user = [[UserPL shareManager] getLoginUser];
@@ -141,6 +152,7 @@
                           };
     [[HttpClient sharedHttpClient] requestGET:@"contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
+        
         _dataArr = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
         NSArray *allArr  = [ComCustomer mj_objectArrayWithKeyValuesArray:returnValue[@"contactCompanys"]];
         if (_searchTxt.text.length>0) {
@@ -148,12 +160,20 @@
             [_dataArr removeAllObjects];
             for (ComCustomer *model in allArr) {
                 if ([model.name containsString:_searchTxt.text]||[model.telephone containsString:_searchTxt.text]) {
-                    if (![_dataArr containsObject:model]) {
+                    if (![_dataArr containsObject:model]&&[model.nature intValue]==2) {
                         [_dataArr addObject:model];
                     }
                 }
             }
+        }else{
+            [_dataArr removeAllObjects];
+            for (ComCustomer *model in allArr) {
+                if (![_dataArr containsObject:model]&&[model.nature intValue]==2) {
+                    [_dataArr addObject:model];
+                }
+            }
         }
+        
         if (_dataArr.count>0) {
             ComCustomer *Customer = _dataArr[0];
             Customer.isSelected = YES;
