@@ -111,24 +111,24 @@
                 [noArr addObject:model.itemNo];
                 [nameArr addObject:model.name];
             }
-            for (NSString *nostr in noArr) {
+            
+            for (int i = 0; i<noArr.count; i++) {
+                NSString *nostr = noArr[i];
                 if ([nostr containsString:searchtxt]){
-                    NSInteger index = [noArr indexOfObject:nostr];
-                    Sample *model = _alldataArr[index];
-                    if (![sedataArr containsObject:model]) {
-                         [sedataArr addObject:model];
-                    }
+                    Sample *model = _alldataArr[i];
+                    [sedataArr addObject:model];
                 }
             }
-            for (NSString *namestr in nameArr) {
+            
+            for (int i = 0; i<nameArr.count; i++) {
+                NSString *namestr = nameArr[i];
                 if ([namestr containsString:searchtxt]){
-                    NSInteger index = [nameArr indexOfObject:namestr];
-                    Sample *model = _alldataArr[index];
-                    if (![sedataArr containsObject:model]) {
-                        [sedataArr addObject:model];
-                    }
+                    Sample *model = _alldataArr[i];
+                    [sedataArr addObject:model];
                 }
             }
+            
+            
             self.loadWay = START_LOAD_FIRST;
             if (searchtxt.length<=0 ) {
                 [sedataArr addObjectsFromArray:_alldataArr];

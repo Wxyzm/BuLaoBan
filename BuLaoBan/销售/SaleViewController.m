@@ -42,19 +42,25 @@
     [super viewDidLoad];
     self.needHideNavBar = YES;
     self.view.backgroundColor = UIColorFromRGB(BackColorValue);
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadtheList) name:@"deliverSuccess" object:nil];
-
+  
     [self initDatas];
     [self initUI];
     [self loadOrderListandisShowView:NO];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadtheList) name:@"deliverSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadOrderList) name:@"DelListDeleteSuccess" object:nil];
 }
+
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self getComSetting];
-    
 }
 
+
+- (void)loadOrderList{
+    [self loadOrderListandisShowView:NO];
+}
 - (void)initDatas{
     _SearchStr = @"";
     _dataArr = [NSMutableArray arrayWithCapacity:0];
@@ -456,15 +462,12 @@
         }
     }
     
+    
+    
     User *user = [[UserPL shareManager] getLoginUser];
     NSMutableDictionary *setDic= [[NSMutableDictionary alloc]init];
     //公司ID*
     [setDic setObject:user.defutecompanyId forKey:@"companyId"];
-    //销售单ID
-    if (_settleModel.sellOrderId.length>0) {
-        [setDic setObject:_settleModel.sellOrderId forKey:@"sellOrderId"];
-
-    }
     //发货日期*
     NSDateFormatter *format1=[[NSDateFormatter alloc] init];
     [format1 setDateFormat:@"yyyy-MM-dd"];
@@ -504,9 +507,7 @@
         [packingListDetailDic setObject:samodel.unit forKey:@"quantityUnit"];
         [packingListDetail addObject:packingListDetailDic];
         
-        
-        //details
-        //[NSString stringWithFormat:@"%ld款, %ld匹, %.2f米",_model.styleNum,_model.pieceNum,_model.meetNum]
+      
         NSMutableDictionary *samDic = [[NSMutableDictionary alloc]init];
         //样品ID*
         [samDic setObject:samodel.sampId forKey:@"sampleId"];
@@ -522,20 +523,8 @@
         [samDic setObject:samodel.unit.length>0?samodel.unit:@"米" forKey:@"numUnit"];
         //单价
         [samDic setObject:samodel.unitPrice forKey:@"unitPrice"];
-        //税率
-        //[samDic setObject: forKey:@"taxRate"];
-        //附加费
-        //[samDic setObject: forKey:@"extraCharge"];
         //价格
         [samDic setObject:samodel.money forKey:@"price"];
-        //未税金额
-        // [samDic setObject:samodel.money forKey:@"noTaxPrice"];
-        //税额
-        //[samDic setObject: forKey:@"taxPrice"];
-        //汇率
-        //[samDic setObject: forKey:@"exchangeRate"];
-        //外币金额
-        //[samDic setObject: forKey:@"foreignPrice"];
         if (samodel.packingList.count>0)
         {
             NSMutableDictionary *packDic = [[NSMutableDictionary alloc]init];
@@ -621,13 +610,22 @@
     }
     [setDic setObject:details forKey:@"details"];
     [setDic setObject:packingListDetail forKey:@"packingListDetail"];
+    if (_settleModel.sellOrderId.length>0) {
+        //更新细码单
+    }
+    
     [[HttpClient sharedHttpClient] requestPOST:@"/sell/deliver" Withdict:setDic WithReturnBlock:^(id returnValue) {
         [HUD show:@"挂单成功"];
+        [self loadOrderListandisShowView:NO];
         [self reloadtheList];
     } andErrorBlock:^(NSString *msg) {
-        [HUD show:@"挂单"];
+        [HUD show:@"挂单失败"];
     }];
 }
+#pragma mark ====== 更新细码单
+
+
+
 #pragma mark ====== 获取取单
 - (void)loadOrderListandisShowView:(BOOL)isSHow{
     User *user = [[UserPL shareManager] getLoginUser];
@@ -668,7 +666,7 @@
             return;
         }
         [self initDatasWithdetailModel:detailModel];
-        [self deleteOrderWithOrderId:orderID];
+    //    [self deleteOrderWithOrderId:orderID];
     } andErrorBlock:^(NSString *msg) {
         
     }];
@@ -692,6 +690,8 @@
     _settleModel.comName = detailModel.customerName;
     _settleModel.comId = detailModel.customerId;
     _settleModel.sellOrderId = detailModel.deliverId;
+    [self.CustomerView.customerBtn setTitle:detailModel.customerName forState:UIControlStateNormal];
+
     //刷新列表数据
     [self reloadDatasList];
     
@@ -703,6 +703,8 @@
     _model = [[SaleVcModel alloc]init];
     _settleModel = [[SettleVcModel alloc]init];
     [self.CustomerView.customerBtn setTitle:@"选择客户" forState:UIControlStateNormal];
+    _numLab.text = @"0款, 0匹, 0.00米";
+    _moneyLab.text = @"0.00";
     [self.ListTab reloadData];
 }
 

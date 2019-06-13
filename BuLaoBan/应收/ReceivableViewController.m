@@ -102,10 +102,10 @@
      //菜单点击
     self.MenueView.returnBlock = ^(NSInteger tag) {
         _selectedType = tag;
-        [weakself.searchView allReload];
+        [weakself.searchView ReloadWithoutCustomer];
         _starTime = @"";
         _endTime = @"";
-        _customer= @"";
+       // _customer= @"";
         [weakself setToptitle];
         [weakself loadDate];
     };
@@ -122,6 +122,14 @@
 - (void)loadDate{
     //设置顶部视图显示
     [self setTableViewTopSHow];
+    if (_customer.length<=0) {
+        [HUD show:@"请先选择客户"];
+        [_dataArr removeAllObjects];
+        [_dataArr1 removeAllObjects];
+        [_dataArr2 removeAllObjects];
+        [self.ListTab reloadData];
+        return;
+    }
     
     switch (_selectedType) {
         case 0:{

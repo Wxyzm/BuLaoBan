@@ -35,8 +35,13 @@
         _unitLab.text = @"";
     }
     if (customerModel.deliverPrice.count>0) {
-        NSDictionary *dic = customerModel.deliverPrice[0];
-        _moneyLab.text = [NSString stringWithFormat:@"￥ %@",dic[@"value"]];
+//        NSDictionary *dic = customerModel.deliverPrice[0];
+//        _moneyLab.text = [NSString stringWithFormat:@"￥ %@",dic[@"value"]];
+        for (NSDictionary *dic in customerModel.deliverPrice) {
+            if ([dic[@"unit"] intValue]>0) {
+                _moneyLab.text = [NSString stringWithFormat:@"￥ %@",dic[@"value"]];
+            }
+        }
     }else{
         _moneyLab.text = @"";
     }
@@ -56,8 +61,11 @@
         _unitLab.text = @"";
     }
     if (sellerModel.deliverPrice.count>0) {
-        NSDictionary *dic = sellerModel.deliverPrice[0];
-        _moneyLab.text = [NSString stringWithFormat:@"￥ %@",dic[@"value"]];
+        for (NSDictionary *dic in sellerModel.deliverPrice) {
+            if ([dic[@"unit"] intValue]>0) {
+                _moneyLab.text = [NSString stringWithFormat:@"￥ %@",dic[@"value"]];
+            }
+        }
     }else{
         _moneyLab.text = @"";
     }

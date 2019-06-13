@@ -225,10 +225,10 @@
     //公司ID*
     [setDic setObject:user.defutecompanyId forKey:@"companyId"];
     //销售单ID
-    if (_model.sellOrderId.length>0) {
-        [setDic setObject:_model.sellOrderId forKey:@"sellOrderId"];
-        
-    }
+//    if (_model.sellOrderId.length>0) {
+//        [setDic setObject:_model.sellOrderId forKey:@"sellOrderId"];
+//        
+//    }
     //发货日期*
     [setDic setObject:_model.date forKey:@"deliverDate"];
     //备注

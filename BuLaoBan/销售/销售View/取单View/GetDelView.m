@@ -67,6 +67,8 @@
         cell = [[GetDelCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
     cell.model = _dataArr[indexPath.row];
+    cell.deleteBtn.tag = 1000 + indexPath.row;
+    [cell.deleteBtn addTarget:self action:@selector(deleteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -101,6 +103,38 @@
         
     }];
 }
+
+- (void)deleteBtnClick:(UIButton *)btn{
+    
+    AppDelegate *app = (AppDelegate *)[[UIApplication  sharedApplication] delegate];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定删除该销售单？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        SellOrderDeliver *model = _dataArr[btn.tag - 1000];
+        [[HttpClient sharedHttpClient] requestDeleteWithURLStr:[NSString stringWithFormat:@"/sell/%@/deliver",model.deliverId] paramDic:nil WithReturnBlock:^(id returnValue) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DelListDeleteSuccess" object:nil];
+          
+
+            [_dataArr removeObject:model];
+            [self.ListTab reloadData];
+        } andErrorBlock:^(NSString *msg) {
+            
+        }];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:NULL];
+    [alert addAction:action];
+    [alert addAction:cancelAction];
+    UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+    popPresenter.sourceView = app.splitViewController.view;
+    popPresenter.sourceRect = app.splitViewController.view.bounds;
+    [app.splitViewController presentViewController:alert animated:YES completion:nil];
+    
+    
+    
+    
+}
+
+
 #pragma mark ========= get
 
 - (UIButton *)backButton

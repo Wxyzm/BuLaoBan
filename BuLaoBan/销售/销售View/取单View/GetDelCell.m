@@ -40,6 +40,10 @@
     _dateLab = [BaseViewFactory labelWithFrame:CGRectMake(220, 34, 200, 17) textColor:UIColorFromRGB(0x797979) font:APPFONT12 textAligment:NSTextAlignmentRight andtext:@"日期："];
     [self.contentView addSubview:_dateLab];
     
+   _deleteBtn = [BaseViewFactory buttonWithFrame:CGRectMake(540, 0, 60, 60) font:APPFONT15 title:@"删除" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColor.clearColor];
+    [self.contentView addSubview:_deleteBtn];
+
+    
     UIView *line = [BaseViewFactory viewWithFrame:CGRectMake(0, 59, 600, 1) color:UIColorFromRGB(BackColorValue)];
     [self.contentView addSubview:line];
 }

@@ -54,7 +54,7 @@
     [self initDatas];
     [self initUI];
     [self statisticsList];
-    [self getSalestatistics];
+  //  [self getSalestatistics];
 }
 
 - (void)initDatas{
@@ -315,7 +315,13 @@
     User *user  =[[UserPL shareManager] getLoginUser];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setObject:user.defutecompanyId forKey:@"companyId"];
- 
+    if (_starTime.length>0) {
+        [dic setObject:_starTime forKey:@"deliverDateStart"];
+    }
+    if (_endTime.length>0) {
+        [dic setObject:_endTime forKey:@"deliverDateEnd"];
+    }
+    
     [[HttpClient sharedHttpClient] requestGET:@"/sell/deliver/statistics" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         NSArray *arr = [Statics mj_objectArrayWithKeyValuesArray:returnValue[@"statistics"]];
@@ -333,16 +339,18 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setObject:user.defutecompanyId forKey:@"companyId"];
     if (_starTime.length>0) {
-        [dic setObject:_starTime forKey:@"orderDateStart"];
+        [dic setObject:_starTime forKey:@"deliverDateStart"];
     }
     if (_endTime.length>0) {
-        [dic setObject:_endTime forKey:@"orderDateEnd"];
+        [dic setObject:_endTime forKey:@"deliverDateEnd"];
     }
     if (self.topView.numberTxt.text.length>0) {
         [dic setObject:self.topView.numberTxt.text forKey:@"key"];
         [dic setObject:@"0" forKey:@"searchType"];
 
     }
+    [self getSalestatistics];
+
     [HUD showLoading:nil];
     [[HttpClient sharedHttpClient] requestGET:@"/sell/deliver/statistics/sample" Withdict:dic WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
@@ -362,14 +370,16 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setObject:user.defutecompanyId forKey:@"companyId"];
     if (_starTime.length>0) {
-        [dic setObject:_starTime forKey:@"orderDateStart"];
+        [dic setObject:_starTime forKey:@"deliverDateStart"];
     }
     if (_endTime.length>0) {
-        [dic setObject:_endTime forKey:@"orderDateEnd"];
+        [dic setObject:_endTime forKey:@"deliverDateEnd"];
     }
     if (_comCusModel) {
         [dic setObject:_comCusModel.name forKey:@"key"];
     }
+    [self getSalestatistics];
+
     [HUD showLoading:nil];
 
     [[HttpClient sharedHttpClient] requestGET:@"/sell/deliver/statistics/customer" Withdict:dic WithReturnBlock:^(id returnValue) {
@@ -393,14 +403,16 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setObject:user.defutecompanyId forKey:@"companyId"];
     if (_starTime.length>0) {
-        [dic setObject:_starTime forKey:@"orderDateStart"];
+        [dic setObject:_starTime forKey:@"deliverDateStart"];
     }
     if (_endTime.length>0) {
-        [dic setObject:_endTime forKey:@"orderDateEnd"];
+        [dic setObject:_endTime forKey:@"deliverDateEnd"];
     }
     if (_companyUser) {
         [dic setObject:_companyUser.name forKey:@"key"];
     }
+    [self getSalestatistics];
+
     [HUD showLoading:nil];
 
     [[HttpClient sharedHttpClient] requestGET:@"/sell/deliver/statistics/seller" Withdict:dic WithReturnBlock:^(id returnValue) {

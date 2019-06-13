@@ -63,7 +63,7 @@
     _linkManLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 52, viewWidth-32, 20) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"联系人："];
     [boomview addSubview:_linkManLab];
     
-    _phoneLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 82, viewWidth-32, 20) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"手机号："];
+    _phoneLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 82, viewWidth-32, 20) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"联系电话："];
     [boomview addSubview:_phoneLab];
     
     _mailLab = [BaseViewFactory labelWithFrame:CGRectMake(16, 112, viewWidth-32, 20) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT(14) textAligment:NSTextAlignmentLeft andtext:@"邮箱："];

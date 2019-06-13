@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GetDelCell : UITableViewCell
 
+@property (nonatomic,strong)UIButton *deleteBtn;
 @property (nonatomic,strong) SellOrderDeliver *model;
 
 

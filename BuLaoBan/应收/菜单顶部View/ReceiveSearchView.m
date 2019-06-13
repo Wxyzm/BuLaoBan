@@ -198,6 +198,18 @@
     [_salesmanBtn setTitle:@"对应业务员" forState:UIControlStateNormal];
     [_salesmanBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
 }
-
+/**
+ 全部重置
+ */
+- (void)ReloadWithoutCustomer{
+    [_startTimeBtn setTitle:@"开始日期" forState:UIControlStateNormal];
+    [_startTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    [_endTimeBtn setTitle:@"结束日期" forState:UIControlStateNormal];
+    [_endTimeBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    //    [_customerBtn setTitle:@"选择客户" forState:UIControlStateNormal];
+    //    [_customerBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+    //    [_salesmanBtn setTitle:@"对应业务员" forState:UIControlStateNormal];
+    //    [_salesmanBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+}
 
 @end

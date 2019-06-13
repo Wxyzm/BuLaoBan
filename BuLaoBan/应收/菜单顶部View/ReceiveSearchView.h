@@ -35,7 +35,7 @@ typedef void(^ReceiveSearchViewBlock)(NSInteger tag,CGRect frame);
  全部重置
  */
 - (void)allReload;
-
+- (void)ReloadWithoutCustomer;
 @end
 
 NS_ASSUME_NONNULL_END
