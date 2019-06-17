@@ -168,7 +168,6 @@
             }
         }
     }
-    
     allsum = oddsum + evensum;
     allsum += lastNum;
     if((allsum % 10) == 0)
@@ -212,7 +211,6 @@
     if(str.length<=len)return str;
     int count=0;
     NSMutableString *sb = [NSMutableString string];
-    
     for (int i=0; i<str.length; i++) {
         NSRange range = NSMakeRange(i, 1) ;
         NSString *aStr = [str substringWithRange:range];
@@ -256,10 +254,7 @@
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
-
-
 + (void)addgradientLayerColorsForView:(UIView *)view{
-    
     //  创建 CAGradientLayer 对象
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     //  设置 gradientLayer 的 Frame
@@ -271,12 +266,10 @@
                              (id)UIColorFromRGB(0xff5d3b).CGColor];
     //  设置三种颜色变化点，取值范围 0.0~1.0
     gradientLayer.locations = @[@(0.1f) ,@(0.5f),@(1.0f)];
-    
     //  设置渐变颜色方向，左上点为(0,0), 右下点为(1,1)
     gradientLayer.startPoint = CGPointMake(0, 0);
     gradientLayer.endPoint = CGPointMake(1, 0);
     [view.layer addSublayer:gradientLayer];
-
 }
 
 
@@ -319,7 +312,6 @@
     {
         mdic[obj] = arrSet[obj];
     }
-    
     return mdic;
 }
 

@@ -25,7 +25,7 @@
 //新增一页空数据
 - (void)addOnepageNewDatas{
     if (self.dataArr.count>=_MaxpageNum) {
-        [HUD show:[NSString stringWithFormat:@"最多添加%ld组表格",_MaxpageNum]];
+        [HUD show:[NSString stringWithFormat:@"最多添加%ld组表格",(long)_MaxpageNum]];
         return;
     }
     NSMutableArray *emptyArr = [NSMutableArray arrayWithCapacity:0];
@@ -213,14 +213,6 @@
             [arr1 addObject:[array objectAtIndex:j]];
             j +=1;
         }
-        //注意，此处是特例：将未满subSize的数组用model补齐
-//        for (int i = 0; i<subSize; i++) {
-//            if (arr1.count<=subSize) {
-//                PackListModel *model = [[PackListModel alloc]init];
-//                [arr1 addObject:model];
-//            }
-//        }
-        
         //将子数组添加到保存子数组的数组中
         [arr addObject:[arr1 mutableCopy]];
     }

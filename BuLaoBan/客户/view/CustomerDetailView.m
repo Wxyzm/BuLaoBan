@@ -86,7 +86,7 @@
     }
     _memoLab.text =[NSString stringWithFormat:@"备注：%@",detailModel.remark] ;
     _linkManLab.text =[NSString stringWithFormat:@"联系人：%@",detailModel.manager];
-    _phoneLab.text =[NSString stringWithFormat:@"手机号：%@",detailModel.telephone];
+    _phoneLab.text =[NSString stringWithFormat:@"联系电话：%@",detailModel.telephone];
     _mailLab.text =[NSString stringWithFormat:@"邮箱：%@",detailModel.email];
     _adressLab.text =[NSString stringWithFormat:@"地址：%@%@%@%@",detailModel.provinceName,detailModel.cityName,detailModel.areaName,detailModel.address];
 

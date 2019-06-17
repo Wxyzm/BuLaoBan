@@ -18,25 +18,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 //新增一页空数据
 - (void)addOnepageNewDatas;
-
 // 删除1页  index:对应页数
 -(void)deleteOnepageDatasWithIndex:(NSInteger)index;
-
 //插入一条新数据于oldmodel之后
 -(void)insertOndDataaftermodel:(PackListModel *)oldmodel;
-
 //对数组排序
 - (void )sortWithArr;
 - (void )sortWithdatasArr:(NSMutableArray *)inputArr;
-
 //卷号数量合计
 - (NSInteger )getReelTotal;
 //米数数量合计
 - (float )getMeetTotal;
-
 //获取数组中有效的数据
 - (NSMutableArray *)getValidDatas;
-
 /**
  *  将数组拆分成固定长度的子数组
  *  @param array 需要拆分的数组

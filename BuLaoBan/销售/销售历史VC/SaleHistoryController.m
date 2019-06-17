@@ -196,7 +196,7 @@
 #pragma mark ====== 获取销货单列表
 - (void)getSellList{
     User *user = [[UserPL shareManager] getLoginUser];
-    NSDictionary *dic= @{@"pageNo":[NSString stringWithFormat:@"%ld",self.page],
+    NSDictionary *dic= @{@"pageNo":[NSString stringWithFormat:@"%ld",(long)self.page],
                          @"pageSize":@"2000",
                          @"settleStatus":@"1",
                          @"companyId":user.defutecompanyId
