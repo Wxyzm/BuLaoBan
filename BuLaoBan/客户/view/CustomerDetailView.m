@@ -76,7 +76,7 @@
 -(void)setDetailModel:(ComCustomerDetail *)detailModel{
     _detailModel = detailModel;
     _nameLab.text = detailModel.name;
-    _acceptLab.text =[NSString stringWithFormat:@"应收欠款：￥  %@",detailModel.receivableAmount];
+    _acceptLab.text =[NSString stringWithFormat:@"应收欠款：￥  %@",detailModel.receivableAmount?detailModel.receivableAmount:@"0.00"];
     _manLab.text = [NSString stringWithFormat:@"业务员：：%@",detailModel.salesmanName] ;
     if (detailModel.participants.count>0) {
         NSDictionary *dic =detailModel.participants[0];

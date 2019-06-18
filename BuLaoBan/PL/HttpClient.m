@@ -73,8 +73,6 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"" forHTTPHeaderField:@"Authorization"];
     [request setValue:@"iPad_APP" forHTTPHeaderField:@"os"];
-    
-    
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     CFShow((__bridge CFTypeRef)(infoDictionary));
         [request setValue:[infoDictionary objectForKey:@"CFBundleShortVersionString"] forHTTPHeaderField:@"app-version"];

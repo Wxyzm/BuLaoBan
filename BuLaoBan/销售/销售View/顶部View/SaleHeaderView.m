@@ -43,16 +43,20 @@
     [self addSubview:amountBtn];
     [amountBtn addTarget:self action:@selector(amountBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *GDBtn = [BaseViewFactory buttonWithFrame:CGRectMake(790, 20, 48, 44) font:APPFONT14 title:@"挂单" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
+    UIButton *GDBtn = [BaseViewFactory buttonWithFrame:CGRectMake(ScreenWidth - 100 -44 -86 - 44 - 20, 20, 48, 44) font:APPFONT14 title:@"挂单" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [self addSubview:GDBtn];
     [GDBtn addTarget:self action:@selector(GDBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    _getBtn= [BaseViewFactory buttonWithFrame:CGRectMake(838, 20, 86, 44) font:APPFONT14 title:@"取单" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
+    _getBtn= [BaseViewFactory buttonWithFrame:CGRectMake(ScreenWidth - 100 -44 -86 - 20, 20, 86, 44) font:APPFONT14 title:@"取单" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
     [self addSubview:_getBtn];
     [_getBtn addTarget:self action:@selector(getBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *line = [BaseViewFactory viewWithFrame:CGRectMake(0, 63, ScreenWidth-100, 1) color:UIColorFromRGB(BackColorValue)];
     [self addSubview:line];
+    
+    UIButton *resetBtn = [BaseViewFactory buttonWithFrame:CGRectMake(ScreenWidth - 100 -44 - 20, 20, 48, 44) font:APPFONT14 title:@"新开" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
+    [self addSubview:resetBtn];
+    [resetBtn addTarget:self action:@selector(resetBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -100,6 +104,13 @@
     WeakSelf(self);
     if (weakself.returnBlock) {
         weakself.returnBlock(3);
+    }
+}
+
+- (void)resetBtnClick{
+    WeakSelf(self);
+    if (weakself.returnBlock) {
+        weakself.returnBlock(4);
     }
 }
 

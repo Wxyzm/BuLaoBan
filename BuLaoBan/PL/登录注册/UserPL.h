@@ -68,7 +68,10 @@ NS_ASSUME_NONNULL_BEGIN
 
  - (void)userAccountGetComIdAndComNameWithReturnBlock:(PLReturnValueBlock)returnBlock
                                         andErrorBlock:(PLErrorCodeBlock)errorBlock;
- 
+
+
+
+- (void)setComAttribute:(NSString *)comID;
 /**
  *  设置用户数据
  *

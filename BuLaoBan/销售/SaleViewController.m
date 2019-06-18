@@ -173,7 +173,7 @@
 
 
 
-#pragma mark ====== 顶部按钮点击 0:销售历史   1：s销售统计    2：挂单   3：取单
+#pragma mark ====== 顶部按钮点击 0:销售历史   1：s销售统计    2：挂单   3：取单   4：新开
 /**
  顶部按钮点击
 
@@ -204,6 +204,21 @@
     {
         //取单
         [self loadOrderListandisShowView:YES];
+    }else if (tag == 4)
+    {
+        //新开
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定新开销货单吗，将清空当前表单数据" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self reloadtheList];
+
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:NULL];
+        [alert addAction:action];
+        [alert addAction:cancelAction];
+        UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+        popPresenter.sourceView = self.view;
+        popPresenter.sourceRect = self.view.bounds;
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -272,6 +287,18 @@
             //细码单填写
         }
     }
+    for (int i = 0; i<_model.sampleList.count; i++) {
+        SaleSamModel *allmodel = _model.sampleList[i];
+        for (int j = i+1 ; j < _model.sampleList.count; j++) {
+            SaleSamModel *tmodel = _model.sampleList[j];
+            if ([allmodel.name isEqualToString:tmodel.name]&&[allmodel.color isEqualToString:tmodel.color]&&[allmodel.sampId isEqualToString:tmodel.sampId]) {
+                [HUD show:@"同一个样品不能添加同一种颜色"];
+                return;
+            }
+        }
+    }
+    
+   
     //添加商品
     [_settleModel.packListArr removeAllObjects];
     [_settleModel.packListArr addObjectsFromArray:_model.sampleList];
@@ -623,7 +650,9 @@
     }];
 }
 #pragma mark ====== 更新细码单
-
+- (void)deleteOrderWithID{
+    
+}
 
 
 #pragma mark ====== 获取取单
@@ -666,7 +695,7 @@
             return;
         }
         [self initDatasWithdetailModel:detailModel];
-    //    [self deleteOrderWithOrderId:orderID];
+        [self deleteOrderWithOrderId:orderID];
     } andErrorBlock:^(NSString *msg) {
         
     }];
@@ -740,6 +769,16 @@
         }
         else{
          //输入完成
+            for (int i = 0; i<_model.sampleList.count; i++) {
+                SaleSamModel *allmodel = _model.sampleList[i];
+                for (int j = i+1 ; j < _model.sampleList.count; j++) {
+                    SaleSamModel *tmodel = _model.sampleList[j];
+                    if ([allmodel.name isEqualToString:tmodel.name]&&[allmodel.color isEqualToString:tmodel.color]&&[allmodel.sampId isEqualToString:tmodel.sampId]) {
+                        [HUD show:@"同一个样品不能添加同一种颜色"];
+                        return;
+                    }
+                }
+            }
             [self reloadDatasList];
         }
     };

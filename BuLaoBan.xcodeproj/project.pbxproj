@@ -93,6 +93,7 @@
 		0BB0F42F22741F300051B78E /* TypeChoseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0F42E22741F300051B78E /* TypeChoseView.m */; };
 		0BC13E6D22377E370065C0A0 /* CustomerSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */; };
 		0BC26992226DBDDD00A0AC68 /* KindChoseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC26991226DBDDD00A0AC68 /* KindChoseController.m */; };
+		0BCF52F622B8886100600520 /* ChangeComController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF52F522B8886100600520 /* ChangeComController.m */; };
 		0BD61425223C8E7D00AC45B4 /* SettleVcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */; };
 		0BD61429223C9B6A00AC45B4 /* SettleMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61427223C9B6A00AC45B4 /* SettleMoneyCell.m */; };
 		0BD770952240D6F3001D51F0 /* CustomerAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD770942240D6F3001D51F0 /* CustomerAddView.xib */; };
@@ -461,6 +462,8 @@
 		0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerSelectedCell.m; sourceTree = "<group>"; };
 		0BC26990226DBDDD00A0AC68 /* KindChoseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KindChoseController.h; sourceTree = "<group>"; };
 		0BC26991226DBDDD00A0AC68 /* KindChoseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KindChoseController.m; sourceTree = "<group>"; };
+		0BCF52F422B8886100600520 /* ChangeComController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeComController.h; sourceTree = "<group>"; };
+		0BCF52F522B8886100600520 /* ChangeComController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeComController.m; sourceTree = "<group>"; };
 		0BD61423223C8E7D00AC45B4 /* SettleVcModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettleVcModel.h; sourceTree = "<group>"; };
 		0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettleVcModel.m; sourceTree = "<group>"; };
 		0BD61426223C9B6A00AC45B4 /* SettleMoneyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettleMoneyCell.h; sourceTree = "<group>"; };
@@ -1359,6 +1362,15 @@
 			path = "公司类型";
 			sourceTree = "<group>";
 		};
+		0BCF52F322B8884900600520 /* 选择公司 */ = {
+			isa = PBXGroup;
+			children = (
+				0BCF52F422B8886100600520 /* ChangeComController.h */,
+				0BCF52F522B8886100600520 /* ChangeComController.m */,
+			);
+			path = "选择公司";
+			sourceTree = "<group>";
+		};
 		0BD61421223C8E5300AC45B4 /* 页面model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1783,6 +1795,7 @@
 			children = (
 				187B94602213EA8C00E857D1 /* MineInfoViewController.h */,
 				187B94612213EA8C00E857D1 /* MineInfoViewController.m */,
+				0BCF52F322B8884900600520 /* 选择公司 */,
 				18501A522227C9BF00AEF25E /* 修改密码view */,
 				18501A4E2227C6FE00AEF25E /* 账号绑定view */,
 				18501A4A2227BDD100AEF25E /* 个人资料view */,
@@ -2661,6 +2674,7 @@
 				0BDDA3D5224CA6EF000FC1ED /* UIImageView+HUWebImage.m in Sources */,
 				0B631B7C22558BD1009C1A35 /* Statics.m in Sources */,
 				0BEAD81F2244D6E9005BA430 /* AccountListView.m in Sources */,
+				0BCF52F622B8886100600520 /* ChangeComController.m in Sources */,
 				189D51B7221CF4E2002AD8A3 /* SaleListTopView.m in Sources */,
 				0BE389CE22549EA7002F7348 /* SaleSGoodsTopCell.m in Sources */,
 				189C1FE021F9928700C84CA4 /* SDImageCache.m in Sources */,

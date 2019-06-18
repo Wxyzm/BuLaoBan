@@ -30,7 +30,7 @@
     _nameLab = [BaseViewFactory labelWithFrame:CGRectMake(12, 10, 256, 18) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentLeft andtext:@""];
     [self.contentView addSubview:_nameLab];
     
-    _moneyLab = [BaseViewFactory labelWithFrame:CGRectMake(12, 34, 226, 16) textColor:UIColorFromRGB(0x858585) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:@"欠款：500.00元"];
+    _moneyLab = [BaseViewFactory labelWithFrame:CGRectMake(12, 34, 226, 16) textColor:UIColorFromRGB(0x858585) font:APPFONT13 textAligment:NSTextAlignmentLeft andtext:@"业务员"];
     [self.contentView addSubview:_moneyLab];
     
     
@@ -40,7 +40,7 @@
 
 -(void)setCustomer:(ComCustomer *)customer{
     _nameLab.text = customer.name;
-    _moneyLab.text = [NSString stringWithFormat:@"欠款：元"];
+    _moneyLab.text = [NSString stringWithFormat:@"业务员：%@",customer.salesmanName];
     if (customer.isSelected) {
         self.contentView.backgroundColor = UIColorFromRGB(0xeff6f9);
     }else{

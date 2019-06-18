@@ -7,6 +7,8 @@
 //
 
 #import "MineInfoViewController.h"
+#import "ChangeComController.h"
+
 #import "ChangePwdView.h"
 #import "BindingView.h"
 #import "MineInfoView.h"
@@ -86,7 +88,6 @@
 }
 
 #pragma mark ==== 保存
-
 /**
  保存
  */
@@ -100,7 +101,6 @@
         }
         case 1:{
             //账号绑定
-           
             break;
         }
         case 2:{
@@ -118,7 +118,6 @@
     [[HttpClient sharedHttpClient] requestPUTWithURLStr:@"user/account" paramDic:dic WithReturnBlock:^(id returnValue) {
         [HUD show:@"信息已保存"];
         [self loaduserDatas];
-
     } andErrorBlock:^(NSString *msg) {
         
     }];
@@ -139,8 +138,6 @@
 - (void)logOut{
     [[UserPL shareManager] logout];
 }
-
-
 #pragma mark ====== 获取微信账号绑定信息
 - (void)loadWXAccountBind{
     [[HttpClient sharedHttpClient] requestGET:@"/user/account/platform" Withdict:nil WithReturnBlock:^(id returnValue) {
@@ -153,11 +150,9 @@
                     if ([dic[@"isBind"] intValue]==1) {
                         [self.bindingView WxIsBind:YES];
                         _WxIsBind = YES;
-
                     }else{
                         [self.bindingView WxIsBind:NO];
                         _WxIsBind = NO;
-
                     }
                 }
             }
@@ -228,6 +223,13 @@
     
     
 }
+
+#pragma mark ===== 获取公司列表
+- (void)changeBtnClick{
+    ChangeComController *chanVc = [[ChangeComController alloc]init];
+    [self.navigationController pushViewController:chanVc animated:YES];
+}
+
 
 #pragma mark ====== tableviewdelegate
 
@@ -359,6 +361,11 @@
     
     if (!_mineInfoView) {
         _mineInfoView = [[MineInfoView alloc]initWithFrame:CGRectMake(300, 64, ScreenWidth-400, 280)];
+        UIButton *changeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_mineInfoView addSubview:changeBtn];
+        changeBtn.frame =CGRectMake(100, 230, ScreenWidth - 400, 50);
+        [changeBtn addTarget:self action:@selector(changeBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return _mineInfoView;
 }
