@@ -94,6 +94,8 @@
 		0BC13E6D22377E370065C0A0 /* CustomerSelectedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC13E6C22377E370065C0A0 /* CustomerSelectedCell.m */; };
 		0BC26992226DBDDD00A0AC68 /* KindChoseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC26991226DBDDD00A0AC68 /* KindChoseController.m */; };
 		0BCF52F622B8886100600520 /* ChangeComController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF52F522B8886100600520 /* ChangeComController.m */; };
+		0BCF52F922B8B81200600520 /* NewPackListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF52F822B8B81200600520 /* NewPackListView.m */; };
+		0BCF52FC22B8BAEB00600520 /* ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF52FB22B8BAEB00600520 /* ViewModel.m */; };
 		0BD61425223C8E7D00AC45B4 /* SettleVcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */; };
 		0BD61429223C9B6A00AC45B4 /* SettleMoneyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD61427223C9B6A00AC45B4 /* SettleMoneyCell.m */; };
 		0BD770952240D6F3001D51F0 /* CustomerAddView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD770942240D6F3001D51F0 /* CustomerAddView.xib */; };
@@ -464,6 +466,10 @@
 		0BC26991226DBDDD00A0AC68 /* KindChoseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KindChoseController.m; sourceTree = "<group>"; };
 		0BCF52F422B8886100600520 /* ChangeComController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeComController.h; sourceTree = "<group>"; };
 		0BCF52F522B8886100600520 /* ChangeComController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeComController.m; sourceTree = "<group>"; };
+		0BCF52F722B8B81200600520 /* NewPackListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewPackListView.h; sourceTree = "<group>"; };
+		0BCF52F822B8B81200600520 /* NewPackListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPackListView.m; sourceTree = "<group>"; };
+		0BCF52FA22B8BAEB00600520 /* ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModel.h; sourceTree = "<group>"; };
+		0BCF52FB22B8BAEB00600520 /* ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewModel.m; sourceTree = "<group>"; };
 		0BD61423223C8E7D00AC45B4 /* SettleVcModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettleVcModel.h; sourceTree = "<group>"; };
 		0BD61424223C8E7D00AC45B4 /* SettleVcModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettleVcModel.m; sourceTree = "<group>"; };
 		0BD61426223C9B6A00AC45B4 /* SettleMoneyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettleMoneyCell.h; sourceTree = "<group>"; };
@@ -1021,6 +1027,10 @@
 			children = (
 				0B33039A2239EA9C00B0688D /* PackingListView.h */,
 				0B33039B2239EA9C00B0688D /* PackingListView.m */,
+				0BCF52F722B8B81200600520 /* NewPackListView.h */,
+				0BCF52F822B8B81200600520 /* NewPackListView.m */,
+				0BCF52FA22B8BAEB00600520 /* ViewModel.h */,
+				0BCF52FB22B8BAEB00600520 /* ViewModel.m */,
 				0B5E57B12239EE3B0009D95B /* PacklistCell.h */,
 				0B5E57B22239EE3B0009D95B /* PacklistCell.m */,
 			);
@@ -2769,6 +2779,7 @@
 				18CF0FCC2212AB3B00B8D9CC /* GoodsCompView.m in Sources */,
 				189C1FF021F99EFE00C84CA4 /* LoginViewController.m in Sources */,
 				0B02AAC72253340E0098DE1F /* SaleSTopView.m in Sources */,
+				0BCF52F922B8B81200600520 /* NewPackListView.m in Sources */,
 				0BE389E72254B13C002F7348 /* SaleSSeller.m in Sources */,
 				0B5F46982230FEFC00C67EF5 /* CustomerSelecteView.m in Sources */,
 				189C1F2221F9923C00C84CA4 /* UIView+MJExtension.m in Sources */,
@@ -2803,6 +2814,7 @@
 				189C1F1721F9923C00C84CA4 /* MJRefreshBackGifFooter.m in Sources */,
 				189C1DFC21F9904F00C84CA4 /* LBNavigationController.m in Sources */,
 				189C1FB321F9927800C84CA4 /* AFURLSessionManager.m in Sources */,
+				0BCF52FC22B8BAEB00600520 /* ViewModel.m in Sources */,
 				18290E1F2226812900745A2E /* ReceiveMenueView.m in Sources */,
 				189C1E0121F9905600C84CA4 /* BaseViewFactory.m in Sources */,
 				189C1DC621F9882200C84CA4 /* main.m in Sources */,

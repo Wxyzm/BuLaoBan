@@ -17,7 +17,7 @@
 @property (nonatomic, strong) SaleCustomerView *CustomerView;       //客户、类型、仓库
 @property (nonatomic, strong) CustomerSelecteView *customerSelecteView;       //客户选择
 @property (nonatomic, strong) SampleSearchResultView *sampleSearchResultView; //样品选择
-@property (nonatomic, strong) PackingListView *packingListView;     //细码单填写
+@property (nonatomic, strong) NewPackListView *packingListView;     //细码单填写
 @property (nonatomic, strong) GetDelView *delView;                  //取单View
 @property (nonatomic, strong) TypeChoseView *typeView;              //剪样大货
 
@@ -48,6 +48,8 @@
     [self loadOrderListandisShowView:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadtheList) name:@"deliverSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadOrderList) name:@"DelListDeleteSuccess" object:nil];
+    
+    
 }
 
 
@@ -144,7 +146,7 @@
         samodel.sampId = SampleModel.sampleId;
         samodel.itemNo = SampleModel.itemNo;
         samodel.name = SampleModel.name;
-        samodel.unit = SampleModel.primaryUnit;
+        samodel.unit = SampleModel.primaryUnit.length>0?SampleModel.primaryUnit:@"米";
         [weakself.model.sampleList addObject:samodel];
         [weakself reloadDatasList];
     };
@@ -509,7 +511,7 @@
     //结算状态【0：挂单 1：结算】
     [setDic setObject:@"0" forKey:@"settleStatus"];
     //仓库ID*
-    [setDic setObject:@"" forKey:@"warehouseId"];
+    [setDic setObject:self.settleModel.wareID.length>0?self.settleModel.wareID:@"" forKey:@"warehouseId"];
     //销售员ID
     [setDic setObject:_settleModel.sellerId forKey:@"sellerId"];
     
@@ -874,9 +876,9 @@
     return _sampleSearchResultView;
 }
 
--(PackingListView *)packingListView{
+-(NewPackListView *)packingListView{
     if (!_packingListView) {
-        _packingListView = [[PackingListView alloc]init];
+        _packingListView = [[NewPackListView alloc]init];
     }
     return _packingListView;
 }

@@ -15,7 +15,7 @@
 -(instancetype)init{
     self = [super init];
     if (self) {
-        _pageSize = 20;
+        _pageSize = 40;
         _MaxpageNum = 5;
         self.dataArr = [NSMutableArray arrayWithCapacity:0];
     }
@@ -29,7 +29,7 @@
         return;
     }
     NSMutableArray *emptyArr = [NSMutableArray arrayWithCapacity:0];
-    for (int i = 0; i<20; i++) {
+    for (int i = 0; i<_pageSize; i++) {
         PackListModel *model = [[PackListModel alloc]init];
         [emptyArr addObject:model];
     }
@@ -140,7 +140,7 @@
     for (NSMutableArray *subArr in dataSource) {
         [totolArr addObjectsFromArray:subArr];
     }
-    NSArray *rearr = [self splitArray:totolArr withSubSize:20];
+    NSArray *rearr = [self splitArray:totolArr withSubSize:_pageSize];
     [self.dataArr removeAllObjects];
     [self.dataArr addObjectsFromArray:rearr];
 }
@@ -226,5 +226,9 @@
 -(NSMutableArray *)dataArr{
     return _dataArr;
 }
+
+
+
+
 
 @end

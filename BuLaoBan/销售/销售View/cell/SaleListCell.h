@@ -25,6 +25,8 @@ typedef void(^SaleListCellReturnBlock)(SaleSamModel *model,NSInteger type);
 @property (nonatomic, copy) SaleListCellReturnBlock returnBlock;
 
 
+
+
 /**
  细码单
  */

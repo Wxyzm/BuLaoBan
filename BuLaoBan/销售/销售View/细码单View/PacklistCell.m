@@ -85,10 +85,8 @@
             weakself.InsertBlock(_packModel);
         }
         [[IQKeyboardManager sharedManager] goNext];
-
     }else{
         [[IQKeyboardManager sharedManager] goNext];
-
     }
     return YES;
 }

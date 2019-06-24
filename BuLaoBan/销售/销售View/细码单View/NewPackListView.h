@@ -1,32 +1,27 @@
 //
-//  PackingListView.h
+//  NewPackListView.h
 //  BuLaoBan
 //
-//  Created by souxiuyun on 2019/3/14.
+//  Created by souxiuyun on 2019/6/18.
 //  Copyright © 2019 XX. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
 @class SaleSamModel;
 @class DeliveDetails;
-NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^PackingListViewSaveBlock)(SaleSamModel *saleSamModel);
+typedef void(^NewPackingListViewSaveBlock)(SaleSamModel *saleSamModel);
 
-@interface PackingListView : UIView
+@interface NewPackListView : UIView
 
 @property (nonatomic, strong) SaleSamModel    *saleSamModel;
 @property (nonatomic, strong) DeliveDetails   *deliveDetails;
+@property (nonatomic, copy) NewPackingListViewSaveBlock returnBlock;
 
-
-
-@property (nonatomic, copy) PackingListViewSaveBlock returnBlock;
-
-//设置不可编辑
-- (void)hideEditBtn;
 - (void)showView;
 - (void)dismiss;
-
 @end
 
 NS_ASSUME_NONNULL_END

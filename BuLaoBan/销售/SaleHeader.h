@@ -30,6 +30,8 @@
 #import "SaleVcModel.h"
 #import "SaleSamModel.h"
 #import "PackingListView.h"//细码单填写View
+#import "NewPackListView.h"//细码单填写View
+
 #import "PackListModel.h"  //细码单
 #import "SettleVcModel.h"  //结算页面model
 

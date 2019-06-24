@@ -305,7 +305,6 @@
 
 
 
-
 //算出总价
 - (void)setModelMoney{
     if (_model.unitPrice.length>0&&_model.salesVol.length) {

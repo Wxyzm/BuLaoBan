@@ -11,6 +11,7 @@
 @interface DIYSearchKeyBoardView ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *numTxt;          //输入货号
+@property (nonatomic, strong) UIButton *sureBtn;            //确认按钮
 @property (nonatomic, strong) NSMutableArray *KeyboardArr;  //数字键盘
 
 
@@ -37,14 +38,19 @@
     
     UIView *view = [BaseViewFactory viewWithFrame:CGRectMake(0, 0, 220, 60) color:UIColorFromRGB(0xbdbdbd)];
     [self addSubview:view];
-    _numTxt = [BaseViewFactory textFieldWithFrame:CGRectMake(10, 7, 200, 44) font:APPFONT14 placeholder:@"输入货号" textColor:UIColorFromRGB(BlackColorValue) placeholderColor:UIColorFromRGB(PLAColorValue) delegate:self];
+    _numTxt = [BaseViewFactory textFieldWithFrame:CGRectMake(10, 7, 140, 44) font:APPFONT14 placeholder:@"输入货号" textColor:UIColorFromRGB(BlackColorValue) placeholderColor:UIColorFromRGB(PLAColorValue) delegate:self];
     _numTxt.keyboardType = UIKeyboardTypeASCIICapable;
     _numTxt.leftViewMode =UITextFieldViewModeAlways;
     _numTxt.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 12, 44)];
     [view addSubview:_numTxt];
     _numTxt.backgroundColor = UIColorFromRGB(WhiteColorValue);
-    [_numTxt addTarget:self
-                   action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+  //  [_numTxt addTarget:self
+  //                 action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    _sureBtn = [BaseViewFactory buttonWithFrame:CGRectMake(160, 7, 50, 44) font:APPFONT14 title:@"搜索" titleColor:UIColorFromRGB(NAVColorValue) backColor:UIColor.whiteColor];
+    [_sureBtn addTarget:self action:@selector(sureBtnClcik) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:_sureBtn];
+
     
     _titleArr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"",@"0",@"-"];
     for (int i = 0; i<_titleArr.count; i++) {
@@ -71,6 +77,8 @@
 - (void)btnClick:(YLButton *)btn{
     
     NSInteger tag = btn.tag -1000;
+   // WeakSelf(self);
+
     if (tag ==12) {
         //A ~ Z
         [_numTxt becomeFirstResponder];
@@ -79,29 +87,36 @@
         if (_numTxt.text.length>0) {
           _numTxt.text = [_numTxt.text substringToIndex:_numTxt.text.length - 1];
         }
-        WeakSelf(self);
-        if (weakself.returnBlock) {
-            weakself.returnBlock(_numTxt.text);
-        }
+//        if (weakself.returnBlock) {
+//            weakself.returnBlock(_numTxt.text);
+//        }
     }else{
        //拼接
         _numTxt.text = [NSString stringWithFormat:@"%@%@",_numTxt.text,_titleArr[tag]];
-        WeakSelf(self);
-        if (weakself.returnBlock) {
-            weakself.returnBlock(_numTxt.text);
-        }
+
+//        if (weakself.returnBlock) {
+//            weakself.returnBlock(_numTxt.text);
+//        }
     }
    
 }
 
-#pragma mark ====== textfieldDidChange
-- (void)textFieldDidChange:(UITextField *)textField
-{
+- (void)sureBtnClcik{
     WeakSelf(self);
     if (weakself.returnBlock) {
-        weakself.returnBlock(textField.text);
+        weakself.returnBlock(_numTxt.text);
     }
+    
 }
+
+//#pragma mark ====== textfieldDidChange
+//- (void)textFieldDidChange:(UITextField *)textField
+//{
+//    WeakSelf(self);
+//    if (weakself.returnBlock) {
+//        weakself.returnBlock(textField.text);
+//    }
+//}
 
 
 

@@ -329,8 +329,15 @@
             int b = 0;
             CGFloat meeta = 0.00;
             CGFloat meetb = 0.00;
-            for (int j= 0; j<samodel.packingList.count; j++) {
-                PackListModel *pacModel = samodel.packingList[j];
+            
+            NSMutableArray *dataArr = [NSMutableArray arrayWithCapacity:0];
+            for ( PackListModel *pacModel in samodel.packingList) {
+                if (pacModel.meet.length>0) {
+                    [dataArr addObject:pacModel];
+                }
+            }
+            for (int j= 0; j<dataArr.count; j++) {
+                PackListModel *pacModel = dataArr[j];
                 if (j%2==0) {
                     a+=1;
                     meeta += [pacModel.meet floatValue];
@@ -373,7 +380,7 @@
             [colThArr addObject:dic4];
             [packDic setObject:colThArr forKey:@"colTh"];
             
-            NSMutableArray *twoArr = [self splitArray:samodel.packingList withSubSize:2];
+            NSMutableArray *twoArr = [self splitArray:dataArr withSubSize:2];
             NSMutableArray *twoSetArr = [NSMutableArray arrayWithCapacity:0];
             for (NSArray *arr in twoArr) {
                 NSArray *setmodelarr;

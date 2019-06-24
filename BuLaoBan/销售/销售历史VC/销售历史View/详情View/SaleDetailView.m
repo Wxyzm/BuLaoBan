@@ -145,17 +145,20 @@
     }else{
         [cell.codeListBtn setTitle:@"无" forState:UIControlStateNormal];
     }
+    
     cell.returnBlock = ^(SaleSamModel * _Nonnull model, NSInteger type) {
         if (type==1){
             //添加细码单
             DeliveDetails *model =  _dataArr[indexPath.row];
             if (model.packingList.length>0) {
                 self.packingListView.deliveDetails = model;
+                [_packingListView hideEditBtn];
                 [self.packingListView showView];
             }
         }
         
     };
+
     return cell;
 }
 
