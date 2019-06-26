@@ -126,7 +126,7 @@
     };
     //选择仓库
     self.wareView.wareBlock = ^(Warehouses * _Nonnull model) {
-        [weakself.CustomerView.wareBtn setTitle:model.warehouseName forState:UIControlStateNormal];
+      //  [weakself.CustomerView.wareBtn setTitle:model.warehouseName forState:UIControlStateNormal];
         weakself.settleModel.wareID = model.warehouseId;
     };
     //商品搜索
@@ -439,14 +439,13 @@
         if (!str) {
             return ;
         }
-        if ([str intValue]==1) {
-            //扣减
-            [self.CustomerView wareBtnIsshow:YES];
-        }else{
-            //不扣减
-            [self.CustomerView wareBtnIsshow:NO];
-
-        }
+//        if ([str intValue]==1) {
+//            //扣减
+//            [self.CustomerView wareBtnIsshow:YES];
+//        }else{
+//            //不扣减
+//            [self.CustomerView wareBtnIsshow:NO];
+//        }
     } andErrorBlock:^(NSString *msg) {
     }];
 }

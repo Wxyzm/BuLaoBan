@@ -58,17 +58,17 @@
     [self addSubview:_kindBtn];
     
     
-   _wareLab = [BaseViewFactory labelWithFrame:CGRectMake(412, 0, 36, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentRight andtext:@"仓库"];
-    [self addSubview:_wareLab];
-    _wareBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(459, 10, 150, 30) font:APPFONT13 title:@"选择仓库" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
-    [_wareBtn setTitleRect:CGRectMake(10, 0, 130, 30)];
-    [_wareBtn setImageRect:CGRectMake(128, 10, 10, 6)];
-    _wareBtn.layer.cornerRadius = 2;
-    _wareBtn.layer.borderColor = UIColorFromRGB(LineColorValue).CGColor;
-    _wareBtn.layer.borderWidth = 1;
-    _wareBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
-    [_wareBtn addTarget:self action:@selector(wareBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_wareBtn];
+//   _wareLab = [BaseViewFactory labelWithFrame:CGRectMake(412, 0, 36, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT14 textAligment:NSTextAlignmentRight andtext:@"仓库"];
+//    [self addSubview:_wareLab];
+//    _wareBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(459, 10, 150, 30) font:APPFONT13 title:@"选择仓库" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
+//    [_wareBtn setTitleRect:CGRectMake(10, 0, 130, 30)];
+//    [_wareBtn setImageRect:CGRectMake(128, 10, 10, 6)];
+//    _wareBtn.layer.cornerRadius = 2;
+//    _wareBtn.layer.borderColor = UIColorFromRGB(LineColorValue).CGColor;
+//    _wareBtn.layer.borderWidth = 1;
+//    _wareBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
+//    [_wareBtn addTarget:self action:@selector(wareBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:_wareBtn];
     
     
     _scanBtn = [BaseViewFactory ylButtonWithFrame:CGRectMake(ScreenWidth-200, 10, 80, 30) font:APPFONT13 title:@"扫码选货" titleColor:UIColorFromRGB(BlueColorValue) backColor:UIColorFromRGB(WhiteColorValue)];
@@ -79,18 +79,18 @@
     _scanBtn.layer.borderWidth = 1;
     [_scanBtn addTarget:self action:@selector(scanBtnCLick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_scanBtn];
-    [self wareBtnIsshow:NO];
+  //  [self wareBtnIsshow:NO];
 
 }
-- (void)wareBtnIsshow:(BOOL)isShow{
-    if (isShow) {
-        _wareBtn.hidden = NO;
-        _wareLab.hidden = NO;
-    }else{
-        _wareBtn.hidden = YES;
-        _wareLab.hidden = YES;
-    }
-}
+//- (void)wareBtnIsshow:(BOOL)isShow{
+//    if (isShow) {
+//        _wareBtn.hidden = NO;
+//        _wareLab.hidden = NO;
+//    }else{
+//        _wareBtn.hidden = YES;
+//        _wareLab.hidden = YES;
+//    }
+//}
 
 
 /**

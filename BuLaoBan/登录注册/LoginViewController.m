@@ -12,6 +12,7 @@
 #import "IdentityController.h"      //角色选择
 
 #import "WXApiManager.h"
+#import "Setting.h"
 
 @interface LoginViewController ()<WXAuthDelegate>
 
@@ -159,30 +160,48 @@
     user.account = _phoneTxt.text;
     user.password =_passWTxt.text.hu_md5;
     [[UserPL shareManager] setUserData:user];
+    [HUD showLoading:nil];
     [[UserPL shareManager] userAccountLoginWithReturnBlock:^(id returnValue) {
         [self loadUserCompanyID];
-    } andErrorBlock:^(NSString *msg) {
+    } andErrorBlock:^(NSString *msg) {;
+        [HUD cancel];
         [HUD show:msg];
     }];
 }
 
 - (void)loadUserCompanyID{
     [[UserPL shareManager] userAccountGetComIdAndComNameWithReturnBlock:^(id returnValue) {
+        [HUD cancel];
         [HUD show:@"登录成功"];
         if ([returnValue[@"companyName"] isEqualToString:@"示例样品间"]) {
             //前往角色选择
             IdentityController *idVc = [[IdentityController alloc]init];
             [self.navigationController pushViewController:idVc animated:YES];
         }else{
-            [self performSelector:@selector(gotoHomeVC) withObject:nil afterDelay:0.5];
+            [self loadcompanySettingwithId:returnValue[@"companyId"]];
+          //  [self performSelector:@selector(gotoHomeVC) withObject:nil afterDelay:0.5];
         }
+    } andErrorBlock:^(NSString *msg) {
+        [HUD cancel];
+
+    }];
+}
+
+#pragma mark ==== 获取样品间基础设置
+- (void)loadcompanySettingwithId:(NSString *)comID{
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/settings",comID] Withdict:nil WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        Setting *setmodel = [Setting mj_objectWithKeyValues:returnValue];
+        if ([setmodel.sellInventoryReduce intValue]==1 ||[setmodel.foreignCurrency intValue]==1 ||[setmodel.distributionProcess intValue]==1 ||[setmodel.sellInventoryReduce intValue]==1  ) {
+            //如果样品间已经开启了库存扣减或多计量单位或配货或外币核算四个功能中任意一个，就不让进入这个样品间。
+            //差一个多计量单位
+
+        }
+        
     } andErrorBlock:^(NSString *msg) {
         
     }];
 }
-
-
-
 
 
 

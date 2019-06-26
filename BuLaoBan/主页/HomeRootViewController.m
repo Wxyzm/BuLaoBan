@@ -15,11 +15,8 @@
 @property (strong, nonatomic) GoodsViewController *goodsController;          //货品
 @property (strong, nonatomic) ReceivableViewController *receivableController;//应收
 @property (strong, nonatomic) CustomerViewController *customerController;    //客户
-
 @property (strong, nonatomic) MineInfoViewController *mineInfoViewController;    //客户
-
 @property (strong, nonatomic) SettingViewController *settingViewController;    //客户
-
 //当前视图
 @property(nonatomic, strong)BaseViewController *currentViewController;
 //视图控制器数组

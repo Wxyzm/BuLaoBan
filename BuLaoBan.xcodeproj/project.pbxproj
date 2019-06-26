@@ -274,6 +274,7 @@
 		18F43BAB220FEF580089168E /* SamplePL.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F43BAA220FEF580089168E /* SamplePL.m */; };
 		18F43BB0220FFBBB0089168E /* GoodsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F43BAF220FFBBB0089168E /* GoodsListCell.m */; };
 		441DABD2A7B1A165C0E00612 /* Pods_BuLaoBan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155A735819312D58DF46AE1F /* Pods_BuLaoBan.framework */; };
+		8CEBBC2C22C3B2FB00D2615F /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CEBBC2B22C3B2FB00D2615F /* Setting.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -830,6 +831,8 @@
 		18F43BAE220FFBBB0089168E /* GoodsListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsListCell.h; sourceTree = "<group>"; };
 		18F43BAF220FFBBB0089168E /* GoodsListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsListCell.m; sourceTree = "<group>"; };
 		7F0CE28BA4778AF7EF1AB369 /* Pods-BuLaoBan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuLaoBan.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuLaoBan/Pods-BuLaoBan.release.xcconfig"; sourceTree = "<group>"; };
+		8CEBBC2A22C3B2FB00D2615F /* Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		8CEBBC2B22C3B2FB00D2615F /* Setting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
 		CEDE8B7D4F5BFDBF5570B9FF /* Pods-BuLaoBan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuLaoBan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BuLaoBan/Pods-BuLaoBan.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1545,6 +1548,7 @@
 		1827742121FEC13E000F4E0F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8CEBBC2922C3B29E00D2615F /* Setting */,
 				0B2E66A5227FCE7300F0C043 /* warehouses */,
 				0BDDA3E4224CD892000FC1ED /* companyUsers */,
 				0B44DFF1224B0B1A008F0741 /* sellOrderDeliver */,
@@ -2434,6 +2438,15 @@
 			path = "样品";
 			sourceTree = "<group>";
 		};
+		8CEBBC2922C3B29E00D2615F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				8CEBBC2A22C3B2FB00D2615F /* Setting.h */,
+				8CEBBC2B22C3B2FB00D2615F /* Setting.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		DC6CD071BA4917F472E68F10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2841,6 +2854,7 @@
 				0B348BFA2240CF4B004EE967 /* CustomerAddView.m in Sources */,
 				189C1FE421F9928700C84CA4 /* SDWebImageDownloaderOperation.m in Sources */,
 				0BDDA3D3224CA6EF000FC1ED /* HUWebImageDownloader.m in Sources */,
+				8CEBBC2C22C3B2FB00D2615F /* Setting.m in Sources */,
 				0B1C18E0226F0CCC00808209 /* RSA.m in Sources */,
 				0B5E54BD222F50CC00F30346 /* LinkPrinterView.m in Sources */,
 				0B1873622267122000B8C384 /* GetDelView.m in Sources */,

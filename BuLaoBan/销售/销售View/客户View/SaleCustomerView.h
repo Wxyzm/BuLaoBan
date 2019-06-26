@@ -19,7 +19,7 @@ typedef void(^SaleCustomerViewBtnBlock)(NSInteger tag);
 
 @property (nonatomic, strong) YLButton *kindBtn;          //类型
 
-@property (nonatomic, strong) YLButton *wareBtn;          //仓库，扣减库存时显示
+//@property (nonatomic, strong) YLButton *wareBtn;          //仓库，扣减库存时显示
 
 
 @property (nonatomic, strong) YLButton *scanBtn;          //扫码选货
@@ -29,7 +29,7 @@ typedef void(^SaleCustomerViewBtnBlock)(NSInteger tag);
  */
 @property (nonatomic, copy) SaleCustomerViewBtnBlock returnBlock;
 
-- (void)wareBtnIsshow:(BOOL)isShow;
+//- (void)wareBtnIsshow:(BOOL)isShow;
 
 @end
 
