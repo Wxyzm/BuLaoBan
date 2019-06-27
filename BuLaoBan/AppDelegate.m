@@ -18,6 +18,9 @@
 //微信
 #import "WXApi.h"
 #import "WXApiManager.h"
+#import "Setting.h"
+//选择公司
+#import "ChoseComController.h"
 
 
 
@@ -58,12 +61,16 @@
         if ([user.defutecompanyName isEqualToString:@"示例样品间"]) {
              //选择角色
             self.window.rootViewController = lbVc;
+            [self.window makeKeyAndVisible];
+
         }else{
-           
-            self.window.rootViewController = self.splitViewController;
+            [self loadcompanySettingwithId:user.defutecompanyId];
+           // self.window.rootViewController = self.splitViewController;
         }
     }else{
         self.window.rootViewController = lbVc;
+        [self.window makeKeyAndVisible];
+
     }
     if ([user.defutecompanyId intValue]>0) {
         [self setComAttribute:user.defutecompanyId];
@@ -71,7 +78,6 @@
     
     self.splitViewController.maximumPrimaryColumnWidth = 100.0;
     [Bugtags startWithAppKey:@"a1bc1972953ced15a53bcd43caae981f" invocationEvent:BTGInvocationEventBubble];
-    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -83,6 +89,29 @@
         
     }];
 }
+
+#pragma mark ==== 获取样品间基础设置
+- (void)loadcompanySettingwithId:(NSString *)comID{
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/settings",comID] Withdict:nil WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        Setting *setmodel = [Setting mj_objectWithKeyValues:returnValue];
+        if ([setmodel.sellInventoryReduce intValue]==1 ||[setmodel.foreignCurrency intValue]==1 ||[setmodel.distributionProcess intValue]==1 ||[setmodel.multiUnit intValue]==1  ) {
+        //如果样品间已经开启了库存扣减或多计量单位或配货或外币核算四个功能中任意一个，就不让进入这个样品间。
+            //差一个多计量单位
+            LBNavigationController *lbVc = [[LBNavigationController alloc]initWithRootViewController:[[LoginViewController alloc]init]];
+            self.window.rootViewController = lbVc;
+        }else{
+            self.window.rootViewController = self.splitViewController;
+        }
+        [self.window makeKeyAndVisible];
+
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
+
+
+
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url

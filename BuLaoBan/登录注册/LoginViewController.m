@@ -10,7 +10,7 @@
 #import "RegistViewController.h"    //注册
 #import "ForgetPwdViewController.h" //忘记密码
 #import "IdentityController.h"      //角色选择
-
+#import "ChoseComController.h"
 #import "WXApiManager.h"
 #import "Setting.h"
 
@@ -142,7 +142,6 @@
     .centerXEqualToView(self.view);
 }
 
-
 #pragma mark ====== 按钮点击
 /**
  登录
@@ -179,7 +178,6 @@
             [self.navigationController pushViewController:idVc animated:YES];
         }else{
             [self loadcompanySettingwithId:returnValue[@"companyId"]];
-          //  [self performSelector:@selector(gotoHomeVC) withObject:nil afterDelay:0.5];
         }
     } andErrorBlock:^(NSString *msg) {
         [HUD cancel];
@@ -192,24 +190,21 @@
     [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/settings",comID] Withdict:nil WithReturnBlock:^(id returnValue) {
         NSLog(@"%@",returnValue);
         Setting *setmodel = [Setting mj_objectWithKeyValues:returnValue];
-        if ([setmodel.sellInventoryReduce intValue]==1 ||[setmodel.foreignCurrency intValue]==1 ||[setmodel.distributionProcess intValue]==1 ||[setmodel.sellInventoryReduce intValue]==1  ) {
-            //如果样品间已经开启了库存扣减或多计量单位或配货或外币核算四个功能中任意一个，就不让进入这个样品间。
+        if ([setmodel.sellInventoryReduce intValue]==1 ||[setmodel.foreignCurrency intValue]==1 ||[setmodel.distributionProcess intValue]==1 ||[setmodel.multiUnit intValue]==1  ) {
+        //如果样品间已经开启了库存扣减或多计量单位或配货或外币核算四个功能中任意一个，就不让进入这个样品间。
             //差一个多计量单位
-
+            [self showAlert];
+        }else{
+            [self gotoHomeVC];
         }
-        
     } andErrorBlock:^(NSString *msg) {
         
     }];
 }
 
-
-
-
 - (void)gotoHomeVC{
     [[UserPL shareManager] showHomeViewController];
 }
-
 /**
  注册
  */
@@ -226,13 +221,28 @@
     [self.navigationController pushViewController:forVc animated:YES];
 }
 
-
 /**
  微信登录
  */
 - (void)WXBtnClick{
     [[WXApiManager sharedManager] sendAuthRequestWithController:self
                                                        delegate:self];
+}
+
+- (void)showAlert{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"公司若开启了库存扣减或多计量单位或配货或外币核算四个功能中的任何一个,则无法登录pad版,是否切换公司？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        ChoseComController *choseVc = [[ChoseComController alloc]init];
+        [self.navigationController pushViewController:choseVc animated:YES];
+        
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:NULL];
+    [alert addAction:action];
+    [alert addAction:cancelAction];
+    UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+    popPresenter.sourceView = self.view;
+    popPresenter.sourceRect = self.view.bounds;
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - WXAuthDelegate

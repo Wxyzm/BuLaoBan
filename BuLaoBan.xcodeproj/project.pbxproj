@@ -58,6 +58,9 @@
 		0B4FC7A322339BC5001B335F /* BillTopCellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7A222339BC5001B335F /* BillTopCellCell.m */; };
 		0B4FC7A82233A361001B335F /* receivableGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7A72233A361001B335F /* receivableGoods.m */; };
 		0B4FC7AB2233A37C001B335F /* GoodsIteams.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FC7AA2233A37C001B335F /* GoodsIteams.m */; };
+		0B51A52522C456F30025F7BB /* ChoseComController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B51A52422C456F30025F7BB /* ChoseComController.m */; };
+		0B51A52622C45B890025F7BB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189C1FEF21F99EFE00C84CA4 /* LoginViewController.m */; };
+		0B51A52D22C48D310025F7BB /* ComModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B51A52C22C48D310025F7BB /* ComModel.m */; };
 		0B5B3BC32248A66C0033A13B /* Accounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B3BC22248A66C0033A13B /* Accounts.m */; };
 		0B5E54BD222F50CC00F30346 /* LinkPrinterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54BC222F50CC00F30346 /* LinkPrinterView.m */; };
 		0B5E54C1222F59F200F30346 /* PrinterModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E54C0222F59F200F30346 /* PrinterModelView.m */; };
@@ -397,6 +400,10 @@
 		0B4FC7A72233A361001B335F /* receivableGoods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = receivableGoods.m; sourceTree = "<group>"; };
 		0B4FC7A92233A37C001B335F /* GoodsIteams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsIteams.h; sourceTree = "<group>"; };
 		0B4FC7AA2233A37C001B335F /* GoodsIteams.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsIteams.m; sourceTree = "<group>"; };
+		0B51A52322C456F30025F7BB /* ChoseComController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoseComController.h; sourceTree = "<group>"; };
+		0B51A52422C456F30025F7BB /* ChoseComController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoseComController.m; sourceTree = "<group>"; };
+		0B51A52B22C48D310025F7BB /* ComModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComModel.h; sourceTree = "<group>"; };
+		0B51A52C22C48D310025F7BB /* ComModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComModel.m; sourceTree = "<group>"; };
 		0B5B3BC12248A66C0033A13B /* Accounts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Accounts.h; sourceTree = "<group>"; };
 		0B5B3BC22248A66C0033A13B /* Accounts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Accounts.m; sourceTree = "<group>"; };
 		0B5E54BB222F50CC00F30346 /* LinkPrinterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkPrinterView.h; sourceTree = "<group>"; };
@@ -1177,6 +1184,17 @@
 				0B776EA8223600990007DA02 /* StastisticCell.xib */,
 			);
 			path = "统计cell";
+			sourceTree = "<group>";
+		};
+		0B51A51F22C456020025F7BB /* 选择公司 */ = {
+			isa = PBXGroup;
+			children = (
+				0B51A52322C456F30025F7BB /* ChoseComController.h */,
+				0B51A52422C456F30025F7BB /* ChoseComController.m */,
+				0B51A52B22C48D310025F7BB /* ComModel.h */,
+				0B51A52C22C48D310025F7BB /* ComModel.m */,
+			);
+			path = "选择公司";
 			sourceTree = "<group>";
 		};
 		0B5B3BC02248A6590033A13B /* Account */ = {
@@ -2024,6 +2042,7 @@
 			children = (
 				189C1FEE21F99EFE00C84CA4 /* LoginViewController.h */,
 				189C1FEF21F99EFE00C84CA4 /* LoginViewController.m */,
+				0B51A51F22C456020025F7BB /* 选择公司 */,
 				0B1C18CA226EA59700808209 /* 绑定手机号 */,
 				0B0D4B4822699CC3005B517D /* 选择角色 */,
 				0B0D4B4C2269A940005B517D /* 创建公司 */,
@@ -2750,6 +2769,7 @@
 				189C1FBA21F9927800C84CA4 /* UIRefreshControl+AFNetworking.m in Sources */,
 				0B5E57B9223A3E820009D95B /* PacKListDataManager.m in Sources */,
 				189C1FEB21F9928700C84CA4 /* UIImageView+HighlightedWebCache.m in Sources */,
+				0B51A52522C456F30025F7BB /* ChoseComController.m in Sources */,
 				189C1F1E21F9923C00C84CA4 /* MJRefreshConst.m in Sources */,
 				1827742F21FEEB52000F4E0F /* SaleViewController.m in Sources */,
 				0B3C569A22420C4500C2B07B /* Participants.m in Sources */,
@@ -2904,6 +2924,7 @@
 				0B44DFF7224B3D09008F0741 /* SellOrderDeliverDetail.m in Sources */,
 				189C1FB421F9927800C84CA4 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				1870E10422265FBA00D328BA /* SaleHistoryController.m in Sources */,
+				0B51A52D22C48D310025F7BB /* ComModel.m in Sources */,
 				1889FFE121F9E09A00F29B8B /* ForgetPwdViewController.m in Sources */,
 				0B34ED73227E827000139290 /* AboutMeView.m in Sources */,
 				189C1FB121F9927800C84CA4 /* AFURLRequestSerialization.m in Sources */,
@@ -2957,6 +2978,7 @@
 			files = (
 				18CF0FD52212BCEC00B8D9CC /* AddGoodsHomeView.m in Sources */,
 				189C1DDB21F9882300C84CA4 /* BuLaoBanUITests.m in Sources */,
+				0B51A52622C45B890025F7BB /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

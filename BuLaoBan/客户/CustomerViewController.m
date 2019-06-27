@@ -313,7 +313,7 @@
 }
 
 
-#pragma mark ====== 按钮点击
+#pragma mark ====== 按钮点击 新增客户 收款 客户编辑
 //新增客户
 - (void)addNewCustomerBtnClick{
     [self.addView clearAllInfo];

@@ -96,8 +96,8 @@
     [_dataArr1 addObject:arr2];
     [_dataArr1 addObject:arr3];
 
-    NSArray *titlearr2 = @[@"本单应收",@"本单已收",@"本单欠款",@"结算账户",@"实收金额",@"开单后打印"];
-    NSArray *valueArr2 = @[[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"0.00元",[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"请选择",@"元",@""];
+    NSArray *titlearr2 = @[@"本单应收",@"本单已收",@"本单欠款",@"结算账户",@"抹零金额",@"实收金额"];
+    NSArray *valueArr2 = @[[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"0.00元",[NSString stringWithFormat:@"%.2f元",_model.goofsMoney],@"请选择",@"元",@"元"];
     NSMutableArray  *tarr1 = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray  *tarr2 = [NSMutableArray arrayWithCapacity:0];
 
@@ -108,7 +108,7 @@
         if (i==3) {
             settleModel.ValueType = ValueType_Select;
         }else if (i==4){
-            settleModel.ValueType = ValueType_Input;
+            settleModel.ValueType = ValueType_Money;
         }else{
             settleModel.ValueType = ValueType_Input;
         }
@@ -201,7 +201,7 @@
             }
         }
         NSArray *arr1 = weakself.dataArr2[1];
-        Settlement *tmodel = arr1[0];
+        Settlement *tmodel = arr1[1];
         tmodel.showValue = [NSString stringWithFormat:@"%@元",_accStr];
         _model.actualAcc  = [NSString stringWithFormat:@"%@元",_accStr];
         [weakself setShowLab];
@@ -499,7 +499,7 @@
         }
         return 50;
     }
-    if (indexPath.section ==1) {
+    if (indexPath.section == 1 && indexPath.row == 1) {
        return 70;
     }
     return 50;
@@ -571,23 +571,19 @@
     }
     NSMutableArray *dataArr = _dataArr2[indexPath.section];
     Settlement *model = dataArr[indexPath.row];
-    if (indexPath.section ==1&&indexPath.row ==1) {
-        static NSString *btnCellid = @"Cellid";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:btnCellid];
+    if (model.ValueType == ValueType_Money){
+        //其他费用
+        static NSString *leftCellid = @"MoneyCellid";
+        SettleMoneyCell *cell = [tableView dequeueReusableCellWithIdentifier:leftCellid];
         if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:btnCellid];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.contentView.backgroundColor = UIColorFromRGB(BackColorValue);
-//            UILabel *showLab = [BaseViewFactory labelWithFrame:CGRectMake(253, 0, 180, 50) textColor:UIColorFromRGB(BlackColorValue) font:APPFONT16 textAligment:NSTextAlignmentRight andtext:@"开单后打印"];
-//            [cell.contentView addSubview:showLab];
-//            _mprintSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(454, 10, 52, 31)];
-            [cell.contentView addSubview:_mprintSwitch];
-
+            cell = [[SettleMoneyCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:leftCellid];
         }
+        cell.Settlement = model;
+        cell.returnBlock = ^(Settlement * _Nonnull model) {
+            [self setShowLab];
+        };
         return cell;
     }
-    
-    
     static NSString *leftCellid = @"rightCellid";
     SettlementInputCell *cell = [tableView dequeueReusableCellWithIdentifier:leftCellid];
     if (!cell) {
@@ -605,15 +601,12 @@
     }else{
         cell.lineView.hidden = NO;
     }
-    
     return cell;
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.ListTab)
     {
-        
         
     }
     else if (tableView == self.settleTab)
@@ -629,7 +622,6 @@
         }
     }
 }
-
 #pragma mark ======  获取公司账户列表
 - (void)loadComAccountList{
     User  *user = [[UserPL shareManager] getLoginUser];
@@ -649,11 +641,8 @@
             });
         };
     } andErrorBlock:^(NSString *msg) {
-        
     }];
 }
-
-
 
 #pragma mark ====== 设置显示
 - (void)setShowLab{
@@ -664,7 +653,6 @@
     Settlement *qtModel = arr1[1];
     //总计model
     Settlement *zjModel = arr1[2];
-    
     NSArray *arr2 = _dataArr2[0];
     //应收model
     Settlement *ysModel = arr2[0];
@@ -672,40 +660,26 @@
     Settlement *shouldModel = arr2[1];
     //欠款model
     Settlement *qkModel = arr2[2];
-    
     NSArray *arr3 = _dataArr2[1];
     //实收model
-    Settlement *ssmodel = arr3[0];
-    
+    Settlement *ssmodel = arr3[1];
+     //抹零model
+    Settlement *mzmodel = arr3[0];
     //总计赋值
     zjModel.showValue = [NSString stringWithFormat:@"%.2f元",[qtModel.showValue floatValue] +[hjModel.showValue floatValue]];
     //应收赋值
     ysModel.showValue = zjModel.showValue;
     _model.needAcc = zjModel.showValue;
-
     //已收赋值
     shouldModel.showValue = ssmodel.showValue;
     //欠款赋值
-    qkModel.showValue =  [NSString stringWithFormat:@"%.2f元",[ysModel.showValue floatValue] -[shouldModel.showValue floatValue]];
+    qkModel.showValue =  [NSString stringWithFormat:@"%.2f元",[ysModel.showValue floatValue] -[shouldModel.showValue floatValue]-[mzmodel.showValue floatValue]];
     _model.oweAcc = qkModel.showValue;
-//    //输入金额完成
-//    if ([model.title isEqualToString:@"其他费用"]) {
-//        //总计
-//        NSArray *arr = _dataArr1[1];
-//        Settlement *tmodel = arr[2];
-//        tmodel.showValue = [NSString stringWithFormat:@"%.2f元",[model.showValue floatValue] +_model.goofsMoney];
-//        //本单应收
-//        NSArray *arr2 = _dataArr2[0];
-//        Settlement *smodel = arr2[0];
-//        smodel.showValue = [NSString stringWithFormat:@"%.2f元",[model.showValue floatValue] +_model.goofsMoney];
-//        //本单欠款
-//    }
     dispatch_async(dispatch_get_main_queue(), ^{
         //在主线程刷新
         [self.ListTab reloadData];
         [self.settleTab reloadData];
     });
-    
 }
 
 
@@ -728,7 +702,6 @@
     }
     return _ListTab;
 }
-
 
 -(BaseTableView *)settleTab{
     if (!_settleTab) {

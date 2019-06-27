@@ -39,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
  样品间开通过的模块
  */
 @property (nonatomic,strong) NSArray *modules;
+/**
+ 多计量单位(0:不开启 1:开启)
+ */
 @property (nonatomic,copy) NSString *multiUnit;
 /**
  应付开始使用日期
