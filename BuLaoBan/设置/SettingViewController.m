@@ -281,11 +281,11 @@
         _titleLab.text = arr[_selectIndex];
         
     }else if (indexPath.section==1){
-        _selectIndex = 4;
+        _selectIndex = 2;
         _titleLab.text = @"关于我们";
 
     }else if (indexPath.section==2){
-        _selectIndex = 5;
+        _selectIndex = 3;
         _titleLab.text = @"清除缓存";
 
         [HUD showLoading:@"正在清除"];
@@ -297,7 +297,7 @@
     if (_selectIndex ==0) {
         //员工管理
         [self loadcompanysUsersList];
-    }else if (_selectIndex ==3){
+    }else if (_selectIndex ==1){
         //应收
         [self getComSetting];
     }

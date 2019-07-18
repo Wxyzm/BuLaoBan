@@ -66,15 +66,13 @@
 
 
 - (void)dateBtnCLick{
-
     if (!_datepicker) {
         _datepicker = [[DatePickerView alloc]init];
         _datepicker.dateType =3;
     }
     [_datepicker showViewWithFrame:CGRectMake(482, 132, 300, 320)];
-    
     //日期选择
-    WeakSelf(self);
+    WeakSelf(self)
     _datepicker.returnBlock = ^(NSInteger dateType, NSString *dateStr) {
         _dataStr = dateStr;
         [weakself.dateBtn setTitleColor:UIColorFromRGB(BlueColorValue) forState:UIControlStateNormal];
@@ -82,6 +80,10 @@
         if (dateStr.length<=0) {
             [weakself.dateBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
             [weakself.dateBtn setTitle:@"选择年月" forState:UIControlStateNormal];
+        }else{
+            if (_openSwitch.isOn) {
+                [weakself upDatas];
+            }
         }
     };
 
@@ -96,10 +98,15 @@
             return;
         }
     }else{
+        if (!swi.isOn) {
+            [HUD show:@"应收打开后无法关闭"];
+            [_openSwitch setOn:YES];
+            return;
+        }
         //关闭
-        _dataStr = @"1980-01";
-        [self.dateBtn setTitle:@"选择年月" forState:UIControlStateNormal];
-        [self.dateBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
+//        _dataStr = @"1980-01";
+//        [self.dateBtn setTitle:@"选择年月" forState:UIControlStateNormal];
+//        [self.dateBtn setTitleColor:UIColorFromRGB(0x858585) forState:UIControlStateNormal];
     }
     [self upDatas];
     
@@ -109,10 +116,11 @@
 
 -(void)setInfoDic:(NSDictionary *)infoDic{
     _infoDic = infoDic;
+   
     NSString * receivableStartDate = @"";
     receivableStartDate = [infoDic objectForKey:@"receivableStartDate"]?[infoDic objectForKey:@"receivableStartDate"]:@"";
     _dataStr = receivableStartDate;
-    if (receivableStartDate.length<=0||[receivableStartDate isEqualToString:@"1980-01"]) {
+    if (receivableStartDate.length<=0) {
         [_openSwitch setOn:NO];
 
     }else{
@@ -123,6 +131,9 @@
 }
 
 - (void)upDatas{
+    if (!_infoDic) {
+        return;
+    }
     NSMutableDictionary *upDic = [[NSMutableDictionary alloc]init];
     [upDic setObject:_dataStr forKey:@"receivableStartDate"];
     [upDic setObject:_infoDic[@"foreignCurrency"] forKey:@"foreignCurrency"];
@@ -136,11 +147,8 @@
     User *user = [[UserPL shareManager] getLoginUser];
     
     [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/companys/%@/settings",user.defutecompanyId] paramDic:upDic WithReturnBlock:^(id returnValue) {
-        if ([_dataStr isEqualToString:@"1980-01"]) {
-            [_openSwitch setOn:NO];
-        }else{
-            [_openSwitch setOn:YES];
-        }
+     //   [_openSwitch setOn:YES];
+
     } andErrorBlock:^(NSString *msg) {
         
     }];

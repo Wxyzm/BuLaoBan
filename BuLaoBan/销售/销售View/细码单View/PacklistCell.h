@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ViewModel;
 NS_ASSUME_NONNULL_BEGIN
 @class PackListModel;
 
@@ -19,6 +19,10 @@ typedef void(^PacklistCellInsertBlock)(PackListModel *oldModel);
 @property (nonatomic, strong) UITextField *reelTxt;     //卷号
 @property (nonatomic, strong) UITextField *meetTxt;     //米数
 @property (nonatomic, copy) PacklistCellInsertBlock InsertBlock;     //
+
+@property (nonatomic,strong) ViewModel *viewmodel;
+
+
 
 @end
 

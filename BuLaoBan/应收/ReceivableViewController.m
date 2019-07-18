@@ -218,6 +218,7 @@
         case 1:{
             if (dateStr.length<=0) {
                 //清除l开始日期
+                _starTime = @"";
                 [self.searchView clearBtnTitleWithTag:0];
             }else{
                 _starTime = dateStr;
@@ -228,6 +229,7 @@
         case 2:{
             if (dateStr.length<=0) {
                 //清除结束日期
+                _endTime = @"";
                 [self.searchView clearBtnTitleWithTag:1];
             }else{
                 _endTime = dateStr;

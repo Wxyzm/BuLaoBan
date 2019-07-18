@@ -78,11 +78,44 @@
          for (int j = 0; j<sortArray.count; j++) {
              PackListModel *model = sortArray[j];
              model.reel = [NSString stringWithFormat:@"%d",j+1];
-
          }
      }
 }
+#pragma mark ====== 合并相同数据
+- (void)margeSameData{
+    NSMutableArray *dataArr = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *nameArr = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *resultDataArr = [NSMutableArray arrayWithCapacity:0];
 
+    for (NSMutableArray *arr in self.dataArr) {
+        [dataArr addObjectsFromArray:arr];
+    }
+    for (PackListModel *model in dataArr) {
+        if (![nameArr containsObject:model.dyelot]&&model.dyelot.length>0) {
+            [nameArr addObject:model.dyelot];
+        }
+    }
+    for (int i = 0; i<nameArr.count; i++) {
+        NSString *name = nameArr[i];
+        //相同缸号的数组
+        NSMutableArray *nameDataArr = [NSMutableArray arrayWithCapacity:0];
+        for (PackListModel *model in dataArr) {
+            if ([model.dyelot isEqualToString:name]) {
+                [nameDataArr addObject:model];
+            }
+        }
+        [resultDataArr addObjectsFromArray:nameDataArr];
+    }
+    if (resultDataArr.count<dataArr.count) {
+        int a = dataArr.count-resultDataArr.count;
+        for (int i = 0; i<a; i++) {
+            [resultDataArr addObject:[[PackListModel alloc]init]];
+        }
+    }
+    NSArray *rearr = [self splitArray:resultDataArr withSubSize:(int)_pageSize];
+    [self.dataArr removeAllObjects];
+    [self.dataArr addObjectsFromArray:rearr];
+}
 
 #pragma mark ====== 合计
 

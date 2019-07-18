@@ -9,6 +9,10 @@
 #import "CustomerViewController.h"
 #import "Customerheader.h"
 
+#import "CustomerAddVM.h"
+#import "CustomerAddTypeModel.h"
+#import "CustomerAddReceOpenView.h"
+#import "Setting.h"
 @interface CustomerViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) BaseTableView *ListTab;
@@ -18,7 +22,7 @@
 /**
  新增View
  */
-@property (nonatomic, strong) CustomerAddView *addView;
+//@property (nonatomic, strong) CustomerAddView *addView;
 
 /**
  s详情View
@@ -34,6 +38,11 @@
  编辑菜单
  */
 @property (nonatomic, strong) RightMenueView*menueView;
+
+@property (nonatomic, strong) CustomerAddVM *viewModel;
+@property (nonatomic, strong) CustomerAddReceOpenView *addReceView;
+
+
 @end
 
 @implementation CustomerViewController{
@@ -49,6 +58,8 @@
     _dataArr = [NSMutableArray arrayWithCapacity:0];
     [self initUI];
     [self loadCustomerList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadList) name:@"reloadCustomerList" object:nil];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadDetail) name:@"accMoneySuccess" object:nil];
 }
 
@@ -102,35 +113,35 @@
     
 #pragma mark ====== addView回调
     WeakSelf(self);
-    self.addView.returnBlock = ^(NSInteger tag, ComCustomerDetail * _Nonnull model) {
-        //0:保存  1：业务员  2：参与者
-        switch (tag) {
-            case 0:{
-                //保存
-                NSDictionary *setDic = [weakself.addView getSetUPDic];
-                if (model.comId.length<=0) {
-                    //新增
-                    [weakself addcontactComWiyhDic:setDic];
-                }else{
-                    //编辑
-                    [weakself savecontactComWiyhDic:setDic ComCustomerDetail:model];
-                }
-                break;
-            }
-            case 1:{
-                //1：业务员
-                [weakself getCompanyUsersWithComCustomerDetail:model];
-                break;
-            }
-            case 2:{
-                //参与者
-                [weakself getCompanyparticipantsWithComCustomerDetail:model];
-                break;
-            }
-            default:
-                break;
-        }
-    };
+//    self.addView.returnBlock = ^(NSInteger tag, ComCustomerDetail * _Nonnull model) {
+//        //0:保存  1：业务员  2：参与者
+//        switch (tag) {
+//            case 0:{
+//                //保存
+//                NSDictionary *setDic = [weakself.addView getSetUPDic];
+//                if (model.comId.length<=0) {
+//                    //新增
+//                    [weakself addcontactComWiyhDic:setDic];
+//                }else{
+//                    //编辑
+//                    [weakself savecontactComWiyhDic:setDic ComCustomerDetail:model];
+//                }
+//                break;
+//            }
+//            case 1:{
+//                //1：业务员
+//                [weakself getCompanyUsersWithComCustomerDetail:model];
+//                break;
+//            }
+//            case 2:{
+//                //参与者
+//                [weakself getCompanyparticipantsWithComCustomerDetail:model];
+//                break;
+//            }
+//            default:
+//                break;
+//        }
+//    };
 }
 
 
@@ -205,66 +216,66 @@
 
 #pragma mark ====== 获取业务员
 - (void)getCompanyUsersWithComCustomerDetail:(ComCustomerDetail*)model{
-    NSDictionary *dic = @{@"pageNo":@"1",@"pageSize":@"5000",};
-    User *user = [[UserPL shareManager] getLoginUser];
-    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/users",user.defutecompanyId] Withdict:dic WithReturnBlock:^(id returnValue) {
-        NSLog(@"%@",returnValue);
-        NSMutableArray * comArr = [CompanyUsers mj_objectArrayWithKeyValuesArray:returnValue[@"companyUsers"]];
-        self.addView.comArr = comArr;
-    } andErrorBlock:^(NSString *msg) {
-        
-    }];
+//    NSDictionary *dic = @{@"pageNo":@"1",@"pageSize":@"5000",};
+//    User *user = [[UserPL shareManager] getLoginUser];
+//    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/users",user.defutecompanyId] Withdict:dic WithReturnBlock:^(id returnValue) {
+//        NSLog(@"%@",returnValue);
+//        NSMutableArray * comArr = [CompanyUsers mj_objectArrayWithKeyValuesArray:returnValue[@"companyUsers"]];
+//        self.addView.comArr = comArr;
+//    } andErrorBlock:^(NSString *msg) {
+//
+//    }];
 }
 #pragma mark ====== 获取参与者
 - (void)getCompanyparticipantsWithComCustomerDetail:(ComCustomerDetail*)model{
-    User *user = [[UserPL shareManager] getLoginUser];
-    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
-                          @"nature":@"1"
-                          };
-    [[HttpClient sharedHttpClient] requestGET:@"contact/company/participants" Withdict:dic WithReturnBlock:^(id returnValue) {
-        NSLog(@"%@",returnValue);
-        NSMutableArray * particModelArr = [Participants mj_objectArrayWithKeyValuesArray:returnValue[@"participants"]];
-        self.addView.parArr = particModelArr;
-    } andErrorBlock:^(NSString *msg) {
-        
-    }];
+//    User *user = [[UserPL shareManager] getLoginUser];
+//    NSDictionary *dic = @{@"companyId":user.defutecompanyId,
+//                          @"nature":@"1"
+//                          };
+//    [[HttpClient sharedHttpClient] requestGET:@"contact/company/participants" Withdict:dic WithReturnBlock:^(id returnValue) {
+//        NSLog(@"%@",returnValue);
+//        NSMutableArray * particModelArr = [Participants mj_objectArrayWithKeyValuesArray:returnValue[@"participants"]];
+//        self.addView.parArr = particModelArr;
+//    } andErrorBlock:^(NSString *msg) {
+//
+//    }];
 }
 
 #pragma mark ====== 修改联系公司
 - (void)savecontactComWiyhDic:(NSDictionary *)dic ComCustomerDetail:(ComCustomerDetail*)model{
-    [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/contact/company/%@",model.comId] paramDic:dic WithReturnBlock:^(id returnValue) {
-        NSLog(@"%@",returnValue);
-        [self changeParticiWithID:model.comId];
-        [HUD show:@"修改成功"];
-        [self.addView dismiss];
-        [self reloadList];
-    } andErrorBlock:^(NSString *msg) {
-        
-    }];
+//    [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/contact/company/%@",model.comId] paramDic:dic WithReturnBlock:^(id returnValue) {
+//        NSLog(@"%@",returnValue);
+//        [self changeParticiWithID:model.comId];
+//        [HUD show:@"修改成功"];
+//        [self.addView dismiss];
+//        [self reloadList];
+//    } andErrorBlock:^(NSString *msg) {
+//
+//    }];
 }
 #pragma mark ====== 添加联系公司
 - (void)addcontactComWiyhDic:(NSDictionary *)dic{
-    [[HttpClient sharedHttpClient] requestPOST:@"/contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
-        [HUD show:@"添加成功"];
-        [self changeParticiWithID:returnValue[@"contactCompanyId"]];
-        [self.addView dismiss];
-        [self reloadList];
-    } andErrorBlock:^(NSString *msg) {
-        
-    }];
+//    [[HttpClient sharedHttpClient] requestPOST:@"/contact/company" Withdict:dic WithReturnBlock:^(id returnValue) {
+//        [HUD show:@"添加成功"];
+//        [self changeParticiWithID:returnValue[@"contactCompanyId"]];
+//        [self.addView dismiss];
+//        [self reloadList];
+//    } andErrorBlock:^(NSString *msg) {
+//
+//    }];
 }
 
 #pragma mark ====== 修改参与者
 - (void)changeParticiWithID:(NSString *)comID{
-    if (![self.addView GetParticiDic]) {
-        return;
-    }
-    NSDictionary *dic = [self.addView GetParticiDic];
-    [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/contact/company/%@/participants",comID] paramDic:dic WithReturnBlock:^(id returnValue) {
-        
-    } andErrorBlock:^(NSString *msg) {
-        
-    }];
+//    if (![self.addView GetParticiDic]) {
+//        return;
+//    }
+//    NSDictionary *dic = [self.addView GetParticiDic];
+//    [[HttpClient sharedHttpClient] requestPUTWithURLStr:[NSString stringWithFormat:@"/contact/company/%@/participants",comID] paramDic:dic WithReturnBlock:^(id returnValue) {
+//
+//    } andErrorBlock:^(NSString *msg) {
+//
+//    }];
    
 }
 
@@ -311,13 +322,56 @@
         
     }];
 }
+#pragma mark ==== 获取样品间基础设置
+/**
+ @param type 0:新增 1:编辑
+ */
+- (void)loadcompanySettingwithIdWithType:(NSInteger)type{
+    User *user = [[UserPL shareManager] getLoginUser];
+    [[HttpClient sharedHttpClient] requestGET:[NSString stringWithFormat:@"/companys/%@/settings",user.defutecompanyId] Withdict:nil WithReturnBlock:^(id returnValue) {
+        NSLog(@"%@",returnValue);
+        Setting *setmodel = [Setting mj_objectWithKeyValues:returnValue];
+        
+        
+        if (type ==0) {
+            if (setmodel.receivableStartDate.length>0) {
+                //启用
+                [self.viewModel reSetDataWithReceiveAble:YES];
+            }else{
+                [self.viewModel reSetDataWithReceiveAble:NO];
+            }
+            if (_detailModel.nature.length>0&&type == 0) {
+                //新增
+                self.addReceView.nature = _detailModel.nature;
+            }else{
+                self.addReceView.nature = @"2";
+            }
+        }else{
+            if (setmodel.receivableStartDate.length>0) {
+                //启用
+                [self.viewModel setComCustomerDetailModel:_detailModel andisReceive:YES];
+            }else{
+                [self.viewModel setComCustomerDetailModel:_detailModel andisReceive:NO];
+            }
+            self.addReceView.comID = _detailModel.comId;
+        }
+        self.addReceView.type = type;
+        self.addReceView.dataArr = self.viewModel.listArr;
 
+        [self.addReceView showTheView];
+
+        
+    } andErrorBlock:^(NSString *msg) {
+        
+    }];
+}
 
 #pragma mark ====== 按钮点击 新增客户 收款 客户编辑
 //新增客户
 - (void)addNewCustomerBtnClick{
-    [self.addView clearAllInfo];
-    [self.addView showTheView];
+    [self loadcompanySettingwithIdWithType:0];
+//    [self.addView clearAllInfo];
+//    [self.addView showTheView];
 }
 
 //收款
@@ -332,12 +386,14 @@
     self.menueView.returnBlock = ^(NSInteger index) {
         switch (index) {
             case 0:{
-                for (ComCustomer *customer in weakself.dataArr) {
-                    if (customer.isSelected == YES) {
-                        weakself.addView.model = weakself.detailModel;
-                    }
-                }
-                [weakself.addView showTheView];
+                [weakself loadcompanySettingwithIdWithType:1];
+//                for (ComCustomer *customer in weakself.dataArr) {
+//                    if (customer.isSelected == YES) {
+//                        weakself.addView.model = weakself.detailModel;
+//                    }
+//                }
+//                [weakself.addView showTheView];
+                
                 break;
             }
             case 1:{
@@ -449,12 +505,12 @@
     return _menueView;
 }
 
--(CustomerAddView *)addView{
-    if (!_addView) {
-        _addView = [[CustomerAddView alloc]init];
-    }
-    return _addView;
-}
+//-(CustomerAddView *)addView{
+//    if (!_addView) {
+//        _addView = [[CustomerAddView alloc]init];
+//    }
+//    return _addView;
+//}
 
 -(ReceiveBaseView *)receiveView{
     if (!_receiveView) {
@@ -462,4 +518,20 @@
     }
     return _receiveView;
 }
+
+-(CustomerAddVM *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [[CustomerAddVM alloc]init];
+    }
+    return _viewModel;
+}
+
+-(CustomerAddReceOpenView *)addReceView{
+    
+    if (!_addReceView) {
+        _addReceView = [[CustomerAddReceOpenView alloc]init];
+    }
+    return _addReceView;
+}
+
 @end

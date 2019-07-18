@@ -318,14 +318,17 @@
         NSMutableArray *dataArr = _viewmodel.dataArr[_selectedIndex];
         cell.packModel = dataArr[indexPath.row-1];
     }
+    cell.viewmodel = _viewmodel;
+
     cell.InsertBlock = ^(PackListModel * _Nonnull oldModel) {
         NSMutableArray *dataArr = _viewmodel.dataArr[_selectedIndex];
+      //  [_viewmodel reelSort];
         if (indexPath.row>=dataArr.count) {
             return ;
         }
         //顶部是标题所以-1
         PackListModel *model = dataArr[indexPath.row];
-      //  model.meet = oldModel.meet;
+        model.reel = [NSString stringWithFormat:@"%d",[oldModel.reel intValue]+1];
         model.dyelot = oldModel.dyelot;
         [self refreshBoomBtn];
         if (indexPath.row+1<=dataArr.count) {
@@ -347,6 +350,7 @@
 {
     //对数据从新排序展示
     [_viewmodel reelSort];
+    [_viewmodel margeSameData];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.ListTab reloadData];
         [self setToolLabText];

@@ -30,6 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reelSort;
 //通过数组添加数据
 - (void)addModelsFrameArr:(NSMutableArray *)arr;
+//合并缸号
+- (void)margeSameData;
+
+
 
 @end
 

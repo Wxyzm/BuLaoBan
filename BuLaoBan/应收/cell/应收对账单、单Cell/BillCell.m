@@ -44,7 +44,13 @@
         default:
             break;
     }
-    _dateLab.text = Items.orderDate;
+    NSString *orderDate;
+    if ([Items.orderDate isEqualToString:@"1970-01-01"]) {
+        orderDate = @"";
+    }else{
+        orderDate  =Items.orderDate.length>0?Items.orderDate:@"";
+    }
+    _dateLab.text = orderDate;
     _billNumLab.text = Items.orderNo;
     if ([Items.receivableAmount floatValue]==0) {
         _shouldAccLab.text = @"";
